@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Items</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{item.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      {{item.id}}
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!showInputs">
+    <button ion-button icon-left (click)="addItem()">
+      <ion-icon name="add"></ion-icon>
+      Add Item
+    </button>
+  </div>
+
+  <div *ngIf="showInputs">
+    <ion-item>
+      <ion-input placeholder="Item Name" [(ngModel)]="input"></ion-input>
+    </ion-item>
+  </div>
+  <br>
+
+  <div *ngIf="showInputs" model="text">
+    <p>{{text}}</p>
+  </div>
+
+  <div *ngIf="showInputs">
+    <button ion-button icon-left (click)="add()" [disabled]="!tagFound">
+      <ion-icon name="add"></ion-icon>
+      Add
+    </button>
+  </div>
+
+
+
+</ion-content>
