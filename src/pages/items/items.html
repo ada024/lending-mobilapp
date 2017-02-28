@@ -17,7 +17,7 @@
   </ion-list>
 
   <div *ngIf="!showInputs">
-    <button ion-button icon-left (click)="addItem()">
+    <button ion-button icon-left (click)="this.showInputs = true;">
       <ion-icon name="add"></ion-icon>
       Add Item
     </button>
@@ -30,8 +30,8 @@
   </div>
   <br>
 
-  <div *ngIf="showInputs" model="text">
-    <p>{{text}}</p>
+  <div *ngIf="showInputs" model="id">
+    <p>{{id}}</p>
   </div>
 
   <div *ngIf="showInputs">

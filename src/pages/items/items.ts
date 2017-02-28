@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 
@@ -11,42 +11,35 @@ import { DatabaseService } from '../../providers/database-service';
 
 export class ItemsPage {
   showInputs = false;
-  tagFound = true;
+  tagFound = false;
   input = "";
-  text = "Scan tag..";
+  id = "Scan tag..";
   items;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    public zone: NgZone,
     public db: DatabaseService) {
-    try{(<any>window).nfc.addNdefListener(this.onTagFound);}
+    try{(<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));}
     catch(error){}
     this.items = db.getItems();
   }
 
-  onTagFound(nfcEvent) {
-    var bytes = nfcEvent.tag.ndefMessage[0].payload;
-    var result = "";
-    for (var i = 3; i < bytes.length; i++) {
-      result += String.fromCharCode(bytes[i]);
+    onTagFound(nfcEvent) {
+      this.zone.run(() => {
+        this.id = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
+        this.tagFound = true;
+      });
     }
-    this.text = "Success";
-    this.tagFound = true;
-    console.log(result);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsPage');
-  }
-
-  addItem() {
-    this.showInputs = true;
-  }
 
   add() {
-    this.db.addItem({name:this.input, id:"3"});
+    //validate input?
+
+    this.db.addItem({name: this.input, id: this.id});
     this.showInputs = false;
+    this.tagFound = false;
     this.input = "";
+    this.id = "Scan tag..";
   }
 
 }
