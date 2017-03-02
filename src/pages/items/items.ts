@@ -11,7 +11,7 @@ import { DatabaseService } from '../../providers/database-service';
 
 export class ItemsPage {
   showInputs = false;
-  tagFound = false;
+  tagFound = true;
   input = "";
   id = "Scan tag..";
   items;
@@ -37,9 +37,14 @@ export class ItemsPage {
 
     this.db.addItem({name: this.input, id: this.id});
     this.showInputs = false;
-    this.tagFound = false;
+
+    //this.tagFound = false;
     this.input = "";
     this.id = "Scan tag..";
+  }
+
+  clear(){
+    this.db.clear();
   }
 
 }
