@@ -1,12 +1,72 @@
-<ion-content padding class="content">
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
 
-  <ion-icon name="logo-android" class="logo"></ion-icon>
+<ion-content padding>
 
-  <h1>Borrowing</h1>
+  <div class="button-container">
+    <button class="check-out-button">
+      <div>
+        <ion-icon name="redo" class="check-out-icon"></ion-icon><br>
+        <div class="check-out-text">
+          check out
+        </div>
+      </div>
+    </button>
 
-  <button ion-button large icon-left (click)="forward()" class="button">
-    <ion-icon name="logo-facebook"></ion-icon>
-    Sign in with Facebook
+    <button class="check-in-button">
+      <div>
+        <ion-icon name="return-left" class="check-in-icon"></ion-icon><br>
+        <div class="check-in-text">
+          check in
+        </div>
+      </div>
+    </button>
+  </div>
+
+<div class="button-container">
+  <button class="grey-button" (click)="goToItemPage()">
+    <div>
+      <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
+      <div class="grey-button-text-container">
+        <div class="grey-button-text-title">
+          Items
+        </div><br>
+        <div class="grey-button-text-info">
+          167 items registered
+        </div>
+      </div>
+    </div>
   </button>
+
+  <button class="grey-button">
+    <div>
+      <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
+      <div class="grey-button-text-container">
+        <div class="grey-button-text-title">
+          Entity
+        </div><br>
+        <div class="grey-button-text-info">
+          Faculty of Art, Music and Design, Bergen
+        </div>
+      </div>
+    </div>
+  </button>
+
+  <button class="grey-button">
+    <div>
+      <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
+      <div class="grey-button-text-container">
+        <div class="grey-button-text-title">
+          Users
+        </div><br>
+        <div class="grey-button-text-info">
+          530 items registered
+        </div>
+      </div>
+    </div>
+  </button>
+</div>
 
 </ion-content>

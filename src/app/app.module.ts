@@ -1,8 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
-import { MainPage } from '../pages/main/main';
 import { ItemsPage } from '../pages/items/items';
 
 // Import the AF2 Module
@@ -20,8 +20,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     HomePage,
-    MainPage,
     ItemsPage
   ],
   imports: [
@@ -31,8 +31,8 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     HomePage,
-    MainPage,
     ItemsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

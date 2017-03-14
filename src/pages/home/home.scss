@@ -1,38 +1,75 @@
 page-home {
 
-  .content {
-    background-color: #825c47;
-    position: relative;
+  .button-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  .logo {
-    color: white;
-    font-size: 200px;
-    margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+
+
+
+  .check-out-button {
+    width: 150px;
+    height: 130px;
+    margin-right: 20px;
+    background-color: #f28282;
   }
 
-  h1 {
-    color: white;
+  .check-out-icon {
+    font-size: 50px;
+  }
+
+  .check-out-text {
+    font-size: 20px;
+  }
+
+
+
+
+  .check-in-button {
+    width: 150px;
+    height: 130px;
+    background-color: #9ee084;
+  }
+
+  .check-in-icon {
+    font-size: 50px;
+  }
+
+  .check-in-text {
+    font-size: 20px;
+  }
+
+
+
+
+  .grey-button {
+    width: 100%;
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #d6d6d6;
+  }
+
+  .grey-button-icon {
     font-size: 40px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin-right: 20px;
+    margin-right: 20px;
+    float: left;
+    display: inline-block;
   }
 
-  .button {
-    margin: 0;
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+  .grey-button-text-container {
+    float: left;
+    display: inline-block;
+  }
+
+  .grey-button-text-title {
+    font-size: 20px;
+    float: left;
+  }
+
+  .grey-button-text-info {
+    float: left;
   }
 }

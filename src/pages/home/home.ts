@@ -1,21 +1,27 @@
 import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { ItemsPage } from '../items/items';
 
-import { NavController } from 'ionic-angular';
+/*
+  Generated class for the Main page.
 
-import { MainPage } from '../main/main';
-
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+*/
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MainPage');
   }
 
-  forward() {
-    this.navCtrl.push(MainPage);
+  goToItemPage() {
+    this.navCtrl.push(ItemsPage);
   }
 
 }
