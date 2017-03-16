@@ -8,10 +8,9 @@ page-login {
   .logo {
     color: white;
     font-size: 200px;
-    margin: 0;
-    position: absolute;
     top: 30%;
     left: 50%;
+    position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
@@ -19,19 +18,17 @@ page-login {
   h1 {
     color: white;
     font-size: 40px;
-    margin: 0;
-    position: absolute;
     top: 50%;
     left: 50%;
+    position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 
   .button {
-    margin: 0;
-    position: absolute;
     top: 90%;
     left: 50%;
+    position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }

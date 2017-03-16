@@ -8,4 +8,23 @@ page-items-admin {
     display:inline-block;
     float: right;
   }
+
+  .add-icon {
+    font-size: 90px;
+    color: green;
+    top: 80%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .add-item-text {
+    font-size: 25px;
+    top: 85%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
 }

@@ -10,7 +10,7 @@ export class HomeAdminPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  goToItemPage() {
+  goToItemsAdminPage() {
     this.navCtrl.push(ItemsAdminPage);
   }
 

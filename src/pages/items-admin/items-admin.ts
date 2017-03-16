@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
-
+import { ItemsAddNameAdminPage } from '../items-add-name-admin/items-add-name-admin';
 
 @Component({
   selector: 'page-items-admin',
@@ -45,6 +45,10 @@ export class ItemsAdminPage {
 
   clear(){
     this.db.clear();
+  }
+
+  goToItemsAddNameAdminPage(){
+    this.navCtrl.push(ItemsAddNameAdminPage);
   }
 
 }

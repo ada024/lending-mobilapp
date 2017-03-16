@@ -5,6 +5,8 @@ import { LoginPage } from '../pages/login/login';
 import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
 import { HomeAdminPage } from '../pages/home-admin/home-admin';
 import { ItemsAdminPage } from '../pages/items-admin/items-admin';
+import { ItemsAddNameAdminPage } from '../pages/items-add-name-admin/items-add-name-admin';
+import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add-photo-admin';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -24,7 +26,9 @@ export const firebaseConfig = {
     LoginPage,
     ChooseAccountTypePage,
     HomeAdminPage,
-    ItemsAdminPage
+    ItemsAdminPage,
+    ItemsAddNameAdminPage,
+    ItemsAddPhotoAdminPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -36,7 +40,9 @@ export const firebaseConfig = {
     LoginPage,
     ChooseAccountTypePage,
     HomeAdminPage,
-    ItemsAdminPage
+    ItemsAdminPage,
+    ItemsAddNameAdminPage,
+    ItemsAddPhotoAdminPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

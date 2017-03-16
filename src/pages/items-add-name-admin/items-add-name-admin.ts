@@ -1,22 +1,17 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ItemsAddPhotoAdminPage } from '../items-add-photo-admin/items-add-photo-admin';
 
-/*
-  Generated class for the ItemsAddNameAdmin page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-add-name-admin',
   templateUrl: 'items-add-name-admin.html'
 })
 export class ItemsAddNameAdminPage {
+  itemName = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsAddNameAdminPage');
+  goToItemsAddPhotoAdminPage(){
+    this.navCtrl.push(ItemsAddPhotoAdminPage,{itemName: this.itemName});
   }
-
 }
