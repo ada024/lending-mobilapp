@@ -1,27 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ItemsPage } from '../items/items';
 
 /*
-  Generated class for the Main page.
+  Generated class for the ItemsAddTagScannAdmin page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-items-add-tag-scann-admin',
+  templateUrl: 'items-add-tag-scann-admin.html'
 })
-export class HomePage {
+export class ItemsAddTagScannAdminPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MainPage');
-  }
-
-  goToItemPage() {
-    this.navCtrl.push(ItemsPage);
+    console.log('ionViewDidLoad ItemsAddTagScannAdminPage');
   }
 
 }

@@ -4,12 +4,12 @@ import { DatabaseService } from '../../providers/database-service';
 
 
 @Component({
-  selector: 'page-items',
-  templateUrl: 'items.html',
+  selector: 'page-items-admin',
+  templateUrl: 'items-admin.html',
   providers: [DatabaseService]
 })
 
-export class ItemsPage {
+export class ItemsAdminPage {
   showInputs = false;
   tagFound = true;
   input = "";

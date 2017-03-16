@@ -2,8 +2,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { HomePage } from '../pages/home/home';
-import { ItemsPage } from '../pages/items/items';
+import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
+import { HomeAdminPage } from '../pages/home-admin/home-admin';
+import { ItemsAdminPage } from '../pages/items-admin/items-admin';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -21,8 +22,9 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     LoginPage,
-    HomePage,
-    ItemsPage
+    ChooseAccountTypePage,
+    HomeAdminPage,
+    ItemsAdminPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -32,8 +34,9 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     LoginPage,
-    HomePage,
-    ItemsPage
+    ChooseAccountTypePage,
+    HomeAdminPage,
+    ItemsAdminPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

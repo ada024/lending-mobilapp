@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { HomePage } from '../home/home';
+import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
 
 @Component({
   selector: 'page-login',
@@ -15,7 +15,7 @@ export class LoginPage {
   }
 
   login() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(ChooseAccountTypePage);
   }
 
 }

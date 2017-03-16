@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>chooseAccountType</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p class=title-text>
+    <b>Which account do you want?</b>
+  </p>
+
+  <div class="button-container">
+    <button class="blue-button">
+      <div class="button-text">
+        <b>Borrower account</b>
+      </div>
+    </button>
+
+    <button ion-button (click)="goToHomeAdminPage()" class="blue-button">
+      <div class="button-text">
+        <b>Admin account</b>
+      </div>
+    </button>
+  </div>
+
+  <p class=info-text>
+    (You can change this any time in your settings)
+  </p>
+
+</ion-content>
