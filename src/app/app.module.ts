@@ -1,12 +1,17 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
 import { LoginPage } from '../pages/login/login';
 import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
 import { HomeAdminPage } from '../pages/home-admin/home-admin';
+
 import { ItemsAdminPage } from '../pages/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/items-add-name-admin/items-add-name-admin';
 import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add-photo-admin';
+import { ItemsAddTagAdminPage } from '../pages/items-add-tag-admin/items-add-tag-admin';
+import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/items-add-tag-scann-admin';
+import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -26,9 +31,13 @@ export const firebaseConfig = {
     LoginPage,
     ChooseAccountTypePage,
     HomeAdminPage,
+
     ItemsAdminPage,
     ItemsAddNameAdminPage,
-    ItemsAddPhotoAdminPage
+    ItemsAddPhotoAdminPage,
+    ItemsAddTagAdminPage,
+    ItemsAddTagScannAdminPage,
+    ItemsAddSuccessAdminPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -40,9 +49,13 @@ export const firebaseConfig = {
     LoginPage,
     ChooseAccountTypePage,
     HomeAdminPage,
+
     ItemsAdminPage,
     ItemsAddNameAdminPage,
-    ItemsAddPhotoAdminPage
+    ItemsAddPhotoAdminPage,
+    ItemsAddTagAdminPage,
+    ItemsAddTagScannAdminPage,
+    ItemsAddSuccessAdminPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

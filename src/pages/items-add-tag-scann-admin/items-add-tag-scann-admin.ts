@@ -1,22 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-success-admin';
 
-/*
-  Generated class for the ItemsAddTagScannAdmin page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-add-tag-scann-admin',
   templateUrl: 'items-add-tag-scann-admin.html'
 })
 export class ItemsAddTagScannAdminPage {
+  itemName = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController,
+  public navParams: NavParams,
+  public zone: NgZone) {
+    this.itemName = navParams.get("itemName");
+    try{(<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));}
+    catch(error){}
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsAddTagScannAdminPage');
+  onTagFound(nfcEvent) {
+    this.zone.run(() => {
+      var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
+      this.navCtrl.push(ItemsAddSuccessAdminPage,{
+        itemName: this.itemName,
+        tagId: tagId
+      });
+    });
   }
 
 }

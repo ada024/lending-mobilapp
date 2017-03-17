@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ItemsAddTagScannAdminPage } from '../items-add-tag-scann-admin/items-add-tag-scann-admin';
+import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-success-admin';
 
-/*
-  Generated class for the ItemsAddTagAdmin page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-add-tag-admin',
   templateUrl: 'items-add-tag-admin.html'
 })
 export class ItemsAddTagAdminPage {
+  itemName = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.itemName = navParams.get("itemName");
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsAddTagAdminPage');
+  goToItemsAddTagScannAdminPage(){
+    this.navCtrl.push(ItemsAddTagScannAdminPage,{itemName: this.itemName});
+  }
+
+  goToItemsAddSuccessAdminPage(){
+    this.navCtrl.push(ItemsAddSuccessAdminPage,{itemName: this.itemName});
   }
 
 }
