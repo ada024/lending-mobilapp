@@ -12,6 +12,7 @@ import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add
 import { ItemsAddTagAdminPage } from '../pages/items-add-tag-admin/items-add-tag-admin';
 import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/items-add-tag-scann-admin';
 import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
+import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -37,7 +38,8 @@ export const firebaseConfig = {
     ItemsAddPhotoAdminPage,
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
-    ItemsAddSuccessAdminPage
+    ItemsAddSuccessAdminPage,
+	CheckoutFirstPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -55,7 +57,8 @@ export const firebaseConfig = {
     ItemsAddPhotoAdminPage,
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
-    ItemsAddSuccessAdminPage
+    ItemsAddSuccessAdminPage,
+	CheckoutFirstPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
