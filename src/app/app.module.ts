@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+﻿import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -13,6 +13,7 @@ import { ItemsAddTagAdminPage } from '../pages/items-add-tag-admin/items-add-tag
 import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/items-add-tag-scann-admin';
 import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
 import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
+import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
-	CheckoutFirstPage
+    CheckoutFirstPage,
+    CheckoutItemsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -58,7 +60,8 @@ export const firebaseConfig = {
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
-	CheckoutFirstPage
+    CheckoutFirstPage,
+    CheckoutItemsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
