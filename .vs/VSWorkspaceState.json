@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\assets",
+    "\\src\\pages",
+    "\\src\\pages\\checkout-first",
+    "\\src\\pages\\checkout-items",
+    "\\src\\pages\\items-admin"
+  ],
+  "SelectedNode": "\\src\\pages\\checkout-first\\checkout-first.ts",
+  "PreviewInSolutionExplorer": false
+}
