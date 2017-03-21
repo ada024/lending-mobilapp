@@ -16,6 +16,12 @@
     </ion-item>
   </ion-list>
 
+  <ion-list>
+    <ion-item *ngFor="let user of users | async">
+      <div class="name">{{user.name}}</div>
+    </ion-item>
+  </ion-list>
+
   <div *ngIf="!showInputs">
     <button ion-button icon-left (click)="this.showInputs = true;">
       <ion-icon name="add"></ion-icon>
@@ -42,18 +48,31 @@
   </div>
 
   <div>
-    <button ion-button (click)="clear()">
-      Clear
+    <button ion-button (click)="populateDatabase()">
+      Populate Database
     </button>
   </div>
 
   <div>
-      <ion-icon class="add-icon" name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
+    <button ion-button (click)="clearDatabase()">
+      Clear Database
+    </button>
   </div>
 
-  <p class="add-item-text">
+  <button class="blue-button" (click)="goToItemsListAdminPage()">
+    <ion-icon name="ios-list-box-outline" class="blue-button-icon"></ion-icon>
+    <div class="blue-button-text">
+      <b>List all items</b>
+    </div>
+  </button>
+
+  <div class="add-icon">
+      <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
+  </div>
+
+  <div class="add-item-text">
     Add Item
-  </p>
+  </div>
 
 
 

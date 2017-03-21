@@ -15,6 +15,7 @@ export class ItemsAdminPage {
   input = "";
   id = "Scan tag..";
   items;
+  users;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -23,6 +24,7 @@ export class ItemsAdminPage {
     try{(<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));}
     catch(error){}
     this.items = db.getItems();
+    this.users = db.getUsers();
   }
 
     onTagFound(nfcEvent) {
@@ -35,7 +37,7 @@ export class ItemsAdminPage {
   add() {
     //validate input?
 
-    this.db.addItem({name: this.input, id: this.id});
+    this.db.addItem(this.input, this.id);
     this.showInputs = false;
 
     //this.tagFound = false;
@@ -43,8 +45,16 @@ export class ItemsAdminPage {
     this.id = "Scan tag..";
   }
 
-  clear(){
-    this.db.clear();
+  populateDatabase() {
+    this.db.populateDatabase();
+  }
+
+  clearDatabase(){
+    this.db.clearDatabase();
+  }
+
+  goToItemsListAdminPage() {
+    
   }
 
   goToItemsAddNameAdminPage(){

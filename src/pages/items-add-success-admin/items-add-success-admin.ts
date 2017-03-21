@@ -26,7 +26,7 @@ export class ItemsAddSuccessAdminPage {
   add() {
     //validate input?
 
-    this.db.addItem({name: this.itemName, id: this.tagId});
+    this.db.addItem(this.itemName, this.tagId);
   }
 
   goBackToItemsAdminPage() {

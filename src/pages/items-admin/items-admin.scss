@@ -5,26 +5,41 @@ page-items-admin {
   }
 
   .itemId {
-    display:inline-block;
     float: right;
   }
 
+  .blue-button {
+    width: 100%;
+    height: 70px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #40afce;
+  }
+
+  .blue-button-text {
+    font-size: 25px;
+    color: white;
+    margin-top: 15px;
+    float: left;
+  }
+
+  .blue-button-icon {
+    font-size: 55px;
+    color: white;
+    margin-left: 15px;
+    margin-right: 15px;
+    float: left;
+  }
+
   .add-icon {
-    font-size: 90px;
+    font-size: 80px;
+    width: 25%;
     color: green;
-    top: 80%;
-    left: 50%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: auto;
   }
 
   .add-item-text {
     font-size: 25px;
-    top: 85%;
-    left: 50%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    text-align: center;
   }
 }
