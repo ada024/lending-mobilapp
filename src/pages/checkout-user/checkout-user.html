@@ -14,8 +14,11 @@
 
 
 <ion-content padding>
+<ion-searchbar [(ngModel)]="searchUserString"
+                 (ionInput)="searchUsers($event)">
+  </ion-searchbar>
 <ion-list>
-    <ion-item *ngFor="let user of users | async">
+    <ion-item *ngFor="let user of usersList">
       <div class="name">{{user.name}}</div>
     </ion-item>
   </ion-list>

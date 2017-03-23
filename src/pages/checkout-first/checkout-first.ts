@@ -24,7 +24,7 @@ export class CheckoutFirstPage {
   goToCheckoutItemsPage() {
       this.navCtrl.push(CheckoutItemsPage);
   }
-   goToCheckoutUsersPage() {
+   goToCheckoutUserPage() {
       this.navCtrl.push(CheckoutUserPage);
   }
 
