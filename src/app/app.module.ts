@@ -14,6 +14,7 @@ import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/it
 import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
 import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
+import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -41,7 +42,8 @@ export const firebaseConfig = {
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
     CheckoutFirstPage,
-    CheckoutItemsPage
+    CheckoutItemsPage,
+	CheckoutUserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -61,7 +63,8 @@ export const firebaseConfig = {
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
     CheckoutFirstPage,
-    CheckoutItemsPage
+    CheckoutItemsPage,
+	CheckoutUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

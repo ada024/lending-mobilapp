@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CheckoutItemsPage } from '../checkout-items/checkout-items';
+import { CheckoutUserPage } from '../checkout-user/checkout-user';
 
 /*
   Generated class for the CheckoutFirst page.
@@ -22,6 +23,9 @@ export class CheckoutFirstPage {
 
   goToCheckoutItemsPage() {
       this.navCtrl.push(CheckoutItemsPage);
+  }
+   goToCheckoutUsersPage() {
+      this.navCtrl.push(CheckoutUserPage);
   }
 
 }
