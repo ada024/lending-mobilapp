@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
+import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
 
 /*
   Generated class for the CheckoutUser page.
@@ -19,6 +20,7 @@ export class CheckoutUserPage {
 	usersList: any;
 	loadedUserList: any;
 	searchUserString = '';
+	itemId = this.navParams.get('itemId');
 	
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
@@ -67,5 +69,9 @@ export class CheckoutUserPage {
 
   console.log(q, this.usersList.length);
 
+}
+
+goToCheckoutUserPickedPage(name){
+	this.navCtrl.push(CheckoutUserPickedPage, {userName: name, itemId: this.itemId})
 }
 }

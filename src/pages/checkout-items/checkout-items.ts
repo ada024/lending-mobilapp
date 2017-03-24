@@ -3,6 +3,7 @@ import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import firebase from 'firebase';
+import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
 
 /*
   Generated class for the CheckoutItems page.
@@ -68,6 +69,12 @@ export class CheckoutItemsPage {
 
   console.log(q, this.itemsList.length);
 
+}
+
+goToCheckoutItemPickedPage(id){
+	console.log("id items = " + id);
+	this.navCtrl.push(CheckoutItemPickedPage, {itemId: id})
+	
 }
     
 }

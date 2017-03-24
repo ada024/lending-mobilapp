@@ -15,6 +15,8 @@ import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items
 import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
+import { CheckoutItemPickedPage } from '../pages/checkout-item-picked/checkout-item-picked';
+import { CheckoutUserPickedPage } from '../pages/checkout-user-picked/checkout-user-picked';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -43,7 +45,9 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     CheckoutFirstPage,
     CheckoutItemsPage,
-	CheckoutUserPage
+	CheckoutUserPage,
+	CheckoutItemPickedPage,
+	CheckoutUserPickedPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -64,7 +68,9 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     CheckoutFirstPage,
     CheckoutItemsPage,
-	CheckoutUserPage
+	CheckoutUserPage,
+	CheckoutItemPickedPage,
+	CheckoutUserPickedPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

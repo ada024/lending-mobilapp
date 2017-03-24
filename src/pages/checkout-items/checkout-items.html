@@ -21,7 +21,7 @@
   </ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of itemsList">
-      <div class="itemName">{{item.name}}</div>
+      <div class="itemName" (click)="goToCheckoutItemPickedPage(item.id)">{{item.name}}</div>
     </ion-item>
   </ion-list>
  
