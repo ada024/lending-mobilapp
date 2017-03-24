@@ -8,6 +8,8 @@ import firebase from 'firebase';
 export class DatabaseService {
   items: FirebaseListObservable<any>;
   users: FirebaseListObservable<any>;
+  pendingLoans: FirebaseListObservable<any>;
+  pendingUsers: FirebaseListObservable<any>;
   
   itemsRef: any;
   itemsList: any;
@@ -20,6 +22,8 @@ export class DatabaseService {
   constructor(public http: Http, public af: AngularFire) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
+    this.pendingLoans = af.database.list('/pendingLoans');
+    this.pendingUsers = af.database.list('/pendingUsers');
 	
 	//maatte importere denne for aa lage en liste jeg kunne gaa igjennom for aa finne riktig id
 	this.itemsRef = firebase.database().ref('/items');
@@ -45,6 +49,15 @@ export class DatabaseService {
 		 
 	   this.usersList = usersFire;
   });
+}
+
+  
+  
+  addItem(name, id) {
+    this.items.push({
+      name: name,
+      id: id
+    });
   }
 
   getItems() {
@@ -62,37 +75,60 @@ export class DatabaseService {
 	  
 	  return this.itemReturn;
 		   }
-		   
-  getUserByName(name){
-	  this.usersList.forEach(user =>{
-		  if(user.name == name){
-			  this.userReturn = user;
-	  }});
-	  
-	  return this.userReturn;
-		   }
-		   
-  
-  
-  addItem(name, id) {
-    this.items.push({
-      name: name,
-      id: id
-    });
-  }
 
 
-
-
-  getUsers() {
-    return this.users;
-  }
 
   addUser(name) {
     this.users.push({
       name: name
     });
   }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUserByName(name){
+	  this.usersList.forEach(user =>{
+		  if(user.name == name){
+			  this.userReturn = user;
+	    }
+    });
+	  return this.userReturn;
+	}
+
+
+
+
+  addPendingUser(userId, EntityId) {
+    this.pendingUsers.push({
+      userId: userId,
+      EntityId: EntityId
+    });
+  }
+
+  getPendingUsers() {
+    return this.pendingUsers;
+  }
+
+
+
+
+
+  addPendingLoan(itemId, userId) {
+    this.pendingLoans.push({
+      itemId: itemId,
+      userId: userId
+    });
+  }
+
+  getPendingLoans() {
+    return this.pendingLoans;
+  }
+
+  getPendingLoansByUserId(userId){
+	  //todo
+	}
 
 
 
@@ -104,6 +140,8 @@ export class DatabaseService {
     this.addUser("Daniel");
     this.addUser("Younus");
     this.addUser("Andreas");
+    this.addPendingUser("John smith", "1");
+    this.addPendingUser("John fisher", "1");
   }
 
   clearDatabase() {
