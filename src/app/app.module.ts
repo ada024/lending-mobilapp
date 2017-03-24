@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
 import { HomeAdminPage } from '../pages/home-admin/home-admin';
+import { HomeUserPage } from '../pages/home-user/home-user';
 
 import { ItemsAdminPage } from '../pages/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/items-add-name-admin/items-add-name-admin';
@@ -12,6 +13,7 @@ import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add
 import { ItemsAddTagAdminPage } from '../pages/items-add-tag-admin/items-add-tag-admin';
 import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/items-add-tag-scann-admin';
 import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
+
 import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
@@ -36,6 +38,7 @@ export const firebaseConfig = {
     LoginPage,
     ChooseAccountTypePage,
     HomeAdminPage,
+    HomeUserPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -43,11 +46,12 @@ export const firebaseConfig = {
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
+
     CheckoutFirstPage,
     CheckoutItemsPage,
-	CheckoutUserPage,
-	CheckoutItemPickedPage,
-	CheckoutUserPickedPage
+	  CheckoutUserPage,
+	  CheckoutItemPickedPage,
+	  CheckoutUserPickedPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -59,6 +63,7 @@ export const firebaseConfig = {
     LoginPage,
     ChooseAccountTypePage,
     HomeAdminPage,
+    HomeUserPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -66,11 +71,12 @@ export const firebaseConfig = {
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
+
     CheckoutFirstPage,
     CheckoutItemsPage,
-	CheckoutUserPage,
-	CheckoutItemPickedPage,
-	CheckoutUserPickedPage
+	  CheckoutUserPage,
+  	CheckoutItemPickedPage,
+	  CheckoutUserPickedPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
