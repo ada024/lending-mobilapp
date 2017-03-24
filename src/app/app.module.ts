@@ -13,6 +13,8 @@ import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add
 import { ItemsAddTagAdminPage } from '../pages/items-add-tag-admin/items-add-tag-admin';
 import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/items-add-tag-scann-admin';
 import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
+import { ItemsListAdminPage } from '../pages/items-list-admin/items-list-admin';
+import { ItemsDetailsAdminPage } from '../pages/items-details-admin/items-details-admin';
 
 import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
@@ -47,10 +49,12 @@ export const firebaseConfig = {
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
+    ItemsListAdminPage,
+    ItemsDetailsAdminPage,
 
     CheckoutFirstPage,
     CheckoutItemsPage,
-	ConfirmCheckoutPage,
+	  ConfirmCheckoutPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
 	  CheckoutUserPickedPage
@@ -73,10 +77,12 @@ export const firebaseConfig = {
     ItemsAddTagAdminPage,
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
+    ItemsListAdminPage,
+    ItemsDetailsAdminPage,
 
     CheckoutFirstPage,
     CheckoutItemsPage,
-	ConfirmCheckoutPage,
+  	ConfirmCheckoutPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
 	  CheckoutUserPickedPage

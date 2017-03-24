@@ -15,4 +15,13 @@
 
 <ion-content padding>
 
+  <input [(ngModel)]="search">
+
+  <ion-list>
+    <ion-item *ngFor="let item of items | async">
+      <div class="itemName">{{item.name}}</div>
+      <div class="itemId">{{item.id}}</div>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

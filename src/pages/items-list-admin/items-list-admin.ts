@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../providers/database-service';
 
 /*
   Generated class for the ItemsListAdmin page.
@@ -9,11 +10,17 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-items-list-admin',
-  templateUrl: 'items-list-admin.html'
+  templateUrl: 'items-list-admin.html',
+  providers: [DatabaseService]
 })
 export class ItemsListAdminPage {
+  items;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController,
+  public navParams: NavParams,
+  public db: DatabaseService) {
+    this.items = db.getItems();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemsListAdminPage');

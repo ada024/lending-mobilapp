@@ -162,7 +162,7 @@ export class DatabaseService {
     this.addUser("Andreas");
     this.addPendingUser("John smith", "1");
     this.addPendingUser("John fisher", "1");
-    this.addPendingLoan("t34g3wq4t", "Daniel");
+    //this.addPendingLoan("t34g3wq4t", "Daniel");
   }
 
   clearDatabase() {
