@@ -10,6 +10,7 @@ export class DatabaseService {
   users: FirebaseListObservable<any>;
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
+  pendingItems: FirebaseListObservable<any>;
   
   itemsRef: any;
   itemsList: any;
@@ -24,6 +25,7 @@ export class DatabaseService {
     this.users = af.database.list('/users');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
+	this.pendingItems = af.database.list('/pendingItems');
 	
 	//maatte importere denne for aa lage en liste jeg kunne gaa igjennom for aa finne riktig id
 	this.itemsRef = firebase.database().ref('/items');
@@ -97,6 +99,16 @@ export class DatabaseService {
 	  return this.userReturn;
 	}
 
+	addPendingItems(item) {
+    this.pendingItems.push({
+      name: item.name,
+	  id: item.id
+    });
+    }
+  
+	getPendingItems(){
+		return this.pendingItems;
+	}
 
 
 
@@ -115,10 +127,18 @@ export class DatabaseService {
 
 
 
-  addPendingLoan(itemId, userId) {
+  
+  addItemToPendingLoan(item) {
     this.pendingLoans.push({
-      itemId: itemId,
-      userId: userId
+      itemName: item.name,
+	  itemId: item.id
+	  
+    });
+  }
+  
+  addUserToPendingLoan(userName) {
+    this.pendingLoans.push({
+      userName: userName
     });
   }
 

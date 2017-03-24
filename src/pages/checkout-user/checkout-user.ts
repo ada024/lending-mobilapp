@@ -20,7 +20,6 @@ export class CheckoutUserPage {
 	usersList: any;
 	loadedUserList: any;
 	searchUserString = '';
-	itemId = this.navParams.get('itemId');
 	
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
@@ -72,6 +71,7 @@ export class CheckoutUserPage {
 }
 
 goToCheckoutUserPickedPage(name){
-	this.navCtrl.push(CheckoutUserPickedPage, {userName: name, itemId: this.itemId})
+	this.db.addUserToPendingLoan(name);
+	this.navCtrl.push(CheckoutUserPickedPage)
 }
 }

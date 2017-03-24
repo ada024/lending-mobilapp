@@ -14,5 +14,20 @@
 
 
 <ion-content padding>
-<h1 class="title">You have chosen to lend {{item.name}} to {{user.name}}</h1>
+<ion-list>
+    <ion-item *ngFor="let user of itemList | async">
+      <h1>You have chosen to lend these items to {{user.userName}} :</h1>
+    </ion-item>
+  </ion-list>
+<ion-list>
+    <ion-item *ngFor="let item of itemList | async">
+      <div class="name">{{item.itemName}}</div>
+    </ion-item>
+  </ion-list>
+  
+  <button class="blue-button" (click)="goToConfirmCheckoutPage()">
+    <div class="blue-button-text">
+      <b>Confirm</b>
+    </div>
+  </button>
 </ion-content>

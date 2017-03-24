@@ -19,6 +19,7 @@ import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/checkout-item-picked/checkout-item-picked';
 import { CheckoutUserPickedPage } from '../pages/checkout-user-picked/checkout-user-picked';
+import { ConfirmCheckoutPage } from '../pages/confirm-checkout/confirm-checkout';
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -49,6 +50,7 @@ export const firebaseConfig = {
 
     CheckoutFirstPage,
     CheckoutItemsPage,
+	ConfirmCheckoutPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
 	  CheckoutUserPickedPage
@@ -74,6 +76,7 @@ export const firebaseConfig = {
 
     CheckoutFirstPage,
     CheckoutItemsPage,
+	ConfirmCheckoutPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
 	  CheckoutUserPickedPage

@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { DatabaseService } from '../../providers/database-service';
 import { CheckoutUserPage } from '../checkout-user/checkout-user';
+import { CheckoutItemsPage } from  '../checkout-items/checkout-items';
 
 /*
   Generated class for the CheckoutItemPicked page.
@@ -16,20 +17,23 @@ import { CheckoutUserPage } from '../checkout-user/checkout-user';
   providers: [DatabaseService]
 })
 export class CheckoutItemPickedPage {
-	item: any;
+	itemList;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-	  console.log("id itempicked =" + this.navParams.get('itemId'));
-	  this.item = this.db.getItemById(this.navParams.get('itemId'));
-	  console.log("id funnet er" + this.item.id);
+	  this.itemList = this.db.getPendingLoans();
+	  
   }
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutItemPickedPage');
   }
   
-  goToCheckoutUserPage() {
-      this.navCtrl.push(CheckoutUserPage, {itemId: this.item.id});
+  goToCheckoutItemsPage() {
+      this.navCtrl.push(CheckoutItemsPage);
   }
+  goToCheckoutUserPage() {
+      this.navCtrl.push(CheckoutUserPage);
+  }
+  
 
 }

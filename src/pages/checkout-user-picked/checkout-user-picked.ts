@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
+import { ConfirmCheckoutPage } from '../confirm-checkout/confirm-checkout';
 
 /*
   Generated class for the CheckoutUserPicked page.
@@ -16,14 +17,17 @@ import { DatabaseService } from '../../providers/database-service';
 export class CheckoutUserPickedPage {
 	item: any;
 	user: any;
+	itemList: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-	  this.item = this.db.getItemById(this.navParams.get('itemId'));
-	  this.user = this.db.getUserByName(this.navParams.get('userName'));
+	  this.itemList = this.db.getPendingLoans();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutUserPickedPage');
   }
 
+  goToConfirmCheckoutPage(){
+	  this.navCtrl.push(ConfirmCheckoutPage);
+  }
 }

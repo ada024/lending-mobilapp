@@ -23,7 +23,7 @@ export class CheckoutItemsPage {
 	searchItemString = '';
 	
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService) {
         this.itemsRef = firebase.database().ref('/items');
 		
 		this.itemsRef.on('value', itemsList => {
@@ -71,9 +71,9 @@ export class CheckoutItemsPage {
 
 }
 
-goToCheckoutItemPickedPage(id){
-	console.log("id items = " + id);
-	this.navCtrl.push(CheckoutItemPickedPage, {itemId: id})
+goToCheckoutItemPickedPage(item){
+	this.db.addItemToPendingLoan(item);
+	this.navCtrl.push(CheckoutItemPickedPage)
 	
 }
     
