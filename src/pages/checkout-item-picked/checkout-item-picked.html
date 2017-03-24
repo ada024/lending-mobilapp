@@ -15,7 +15,14 @@
 
 <ion-content padding>
 
-<h1 class="title">Du har valgt {{item.name}}</h1>
+<h1 class="title">You have chosen {{item.name}}</h1>
+
+
+<button class="blue-button" (click)="goToCheckoutUserPage()">
+    <div class="blue-button-text">
+      <b>Add more items</b>
+    </div>
+  </button>
 
 <button class="blue-button" (click)="goToCheckoutUserPage()">
     <div class="blue-button-text">
