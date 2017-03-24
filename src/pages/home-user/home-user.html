@@ -15,4 +15,18 @@
 
 <ion-content padding>
 
+  <p>Someone wants to loan you</p>
+
+  <ion-list>
+    <ion-item *ngFor="let pendingLoan of pendingLoans | async">
+      <div>{{pendingLoan.itemId}} </div>
+    </ion-item>
+  </ion-list>
+
+  <div>
+    <button>
+      Accept
+    </button>
+  </div>
+
 </ion-content>
