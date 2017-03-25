@@ -15,15 +15,21 @@ import { DatabaseService } from '../../providers/database-service';
 })
 export class HomeUserPage {
   pendingLoans;
+  loans;
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
   public db: DatabaseService) {
     this.pendingLoans = db.getPendingLoans();
+    this.loans = db.getLoans();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomeUserPage');
+  }
+
+  acceptLoan(pendingLoan) {
+    this.db.addLoans(pendingLoan.itemName);
   }
 
 }

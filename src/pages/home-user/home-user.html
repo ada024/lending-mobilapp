@@ -19,14 +19,19 @@
 
   <ion-list>
     <ion-item *ngFor="let pendingLoan of pendingLoans | async">
-      <div>{{pendingLoan.itemId}} </div>
+      <div>{{pendingLoan.itemName}} </div>
+      <button class="accept-button" (click)="acceptLoan(pendingLoan)">
+        Accept
+      </button>
     </ion-item>
   </ion-list>
 
-  <div>
-    <button>
-      Accept
-    </button>
-  </div>
+  <p>You are currently barrowing</p>
+
+  <ion-list>
+    <ion-item *ngFor="let loan of Loans | async">
+      <div>{{loan.itemName}} </div>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

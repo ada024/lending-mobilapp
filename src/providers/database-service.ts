@@ -8,6 +8,7 @@ import firebase from 'firebase';
 export class DatabaseService {
   items: FirebaseListObservable<any>;
   users: FirebaseListObservable<any>;
+  loans: FirebaseListObservable<any>;
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
   pendingItems: FirebaseListObservable<any>;
@@ -23,9 +24,10 @@ export class DatabaseService {
   constructor(public http: Http, public af: AngularFire) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
+    this.loans = af.database.list('/loans');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
-	this.pendingItems = af.database.list('/pendingItems');
+	  this.pendingItems = af.database.list('/pendingItems');
 	
 	//maatte importere denne for aa lage en liste jeg kunne gaa igjennom for aa finne riktig id
 	this.itemsRef = firebase.database().ref('/items');
@@ -53,7 +55,10 @@ export class DatabaseService {
   });
 }
 
+
+
   
+  //Methods to add and get items
   
   addItem(name, id) {
     this.items.push({
@@ -80,6 +85,9 @@ export class DatabaseService {
 
 
 
+
+  //Methods to add and get users
+
   addUser(name) {
     this.users.push({
       name: name
@@ -99,40 +107,26 @@ export class DatabaseService {
 	  return this.userReturn;
 	}
 
+
+
+
+  //Pending stuff
+
 	addPendingItems(item) {
     this.pendingItems.push({
       name: item.name,
-	  id: item.id
+	    id: item.id
     });
     }
   
 	getPendingItems(){
 		return this.pendingItems;
 	}
-
-
-
-  addPendingUser(userId, EntityId) {
-    this.pendingUsers.push({
-      userId: userId,
-      EntityId: EntityId
-    });
-  }
-
-  getPendingUsers() {
-    return this.pendingUsers;
-  }
-
-
-
-
-
   
   addItemToPendingLoan(item) {
     this.pendingLoans.push({
       itemName: item.name,
-	  itemId: item.id
-	  
+	    itemId: item.id
     });
   }
   
@@ -150,8 +144,35 @@ export class DatabaseService {
 	  //todo
 	}
 
+  addPendingUser(userId, EntityId) {
+    this.pendingUsers.push({
+      userId: userId,
+      EntityId: EntityId
+    });
+  }
+
+  getPendingUsers() {
+    return this.pendingUsers;
+  }
 
 
+
+
+  //Methods to add and get loans
+
+  addLoans(itemName) {
+    this.loans.push({
+      name: itemName,
+    });
+  }
+
+  getLoans() {
+    return this.loans;
+  }
+
+
+
+  //Developer tools
 
   populateDatabase() { 
     this.addItem("iphone lader", "1gf13gf1");
@@ -162,12 +183,12 @@ export class DatabaseService {
     this.addUser("Andreas");
     this.addPendingUser("John smith", "1");
     this.addPendingUser("John fisher", "1");
-    //this.addPendingLoan("t34g3wq4t", "Daniel");
   }
 
   clearDatabase() {
     this.items.remove();
     this.users.remove();
+    this.loans.remove();
     this.pendingUsers.remove();
     this.pendingLoans.remove();
   }
