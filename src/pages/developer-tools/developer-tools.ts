@@ -18,14 +18,22 @@ export class DeveloperToolsPage {
   tagFound = true;
   input = "";
   id = "Scan tag..";
+  entitys;
   items;
   users;
+  pendingUsers;
+  loans;
+  pendingLoans;
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
   public db: DatabaseService) {
+    this.entitys = db.getEntitys();
     this.items = db.getItems();
     this.users = db.getUsers();
+    this.pendingUsers = db.getPendingUsers();
+    this.loans = db.getLoans();
+    this.pendingLoans = db.getPendingLoans();
   }
 
   add() {

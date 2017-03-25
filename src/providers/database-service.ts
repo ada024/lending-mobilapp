@@ -9,6 +9,7 @@ export class DatabaseService {
   items: FirebaseListObservable<any>;
   users: FirebaseListObservable<any>;
   loans: FirebaseListObservable<any>;
+  entitys: FirebaseListObservable<any>;
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
   pendingItems: FirebaseListObservable<any>;
@@ -25,6 +26,7 @@ export class DatabaseService {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
     this.loans = af.database.list('/loans');
+    this.entitys = af.database.list('/entitys');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
 	  this.pendingItems = af.database.list('/pendingItems');
@@ -144,10 +146,10 @@ export class DatabaseService {
 	  //todo
 	}
 
-  addPendingUser(userId, EntityId) {
+  addPendingUser(userId, entityId) {
     this.pendingUsers.push({
       userId: userId,
-      EntityId: EntityId
+      entityId: entityId
     });
   }
 
@@ -155,14 +157,18 @@ export class DatabaseService {
     return this.pendingUsers;
   }
 
+  deletePendingLoan(pendingLoan) {
+    this.pendingLoans.remove(pendingLoan);
+  }
+
 
 
 
   //Methods to add and get loans
 
-  addLoans(itemName) {
+  addLoan(itemName) {
     this.loans.push({
-      name: itemName,
+      itemName: itemName,
     });
   }
 
@@ -172,20 +178,43 @@ export class DatabaseService {
 
 
 
+
+  //Methods to add and get entitys
+
+  addEntity(entityName, owner) {
+    this.entitys.push({
+      entityName: entityName,
+      owner: owner
+    });
+  }
+
+  getEntitys() {
+    return this.entitys;
+  }
+
+
+
+
   //Developer tools
 
   populateDatabase() { 
+    this.addEntity("Faculty of Art, Bergen", "Daniel");
     this.addItem("iphone lader", "1gf13gf1");
     this.addItem("android lader", "6554y5hh");
     this.addItem("camera", "876ur5htr");
     this.addUser("Daniel");
     this.addUser("Younus");
     this.addUser("Andreas");
-    this.addPendingUser("John smith", "1");
-    this.addPendingUser("John fisher", "1");
+    this.addPendingUser("John smith", "Faculty of Art, Bergen");
+    this.addPendingUser("John fisher", "Faculty of Art, Bergen");
+    this.addLoan("HDMI cable");
+    this.addLoan("Macbook charger");
+    this.addItemToPendingLoan({name: "ipad 7", id: "324t3t43"});
+    this.addItemToPendingLoan({name: "ipad 8", id: "65745yhhh"})
   }
 
   clearDatabase() {
+    this.entitys.remove();
     this.items.remove();
     this.users.remove();
     this.loans.remove();

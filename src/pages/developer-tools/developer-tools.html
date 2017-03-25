@@ -15,16 +15,12 @@
 
 <ion-content padding>
 
+  <p>Items (name, id)</p>
+
   <ion-list>
     <ion-item *ngFor="let item of items | async">
       <div class="itemName">{{item.name}}</div>
       <div class="itemId">{{item.id}}</div>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item *ngFor="let user of users | async">
-      <div class="name">{{user.name}}</div>
     </ion-item>
   </ion-list>
 
@@ -52,6 +48,48 @@
       Add
     </button>
   </div>
+
+  <p>Entitys (name, owner)</p>
+
+  <ion-list>
+    <ion-item *ngFor="let entity of entitys | async">
+      <div class="itemName">{{entity.entityName}}</div>
+      <div class="itemId">{{entity.owner}}</div>
+    </ion-item>
+  </ion-list>
+
+  <p>Users (name)</p>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users | async">
+      <div class="name">{{user.name}}</div>
+    </ion-item>
+  </ion-list>
+
+  <p>Pending Users (name, entity name)</p>
+
+  <ion-list>
+    <ion-item *ngFor="let pendingUser of pendingUsers | async">
+      <div class="itemName">{{pendingUser.userId}}</div>
+      <div class="itemId">{{pendingUser.entityId}}</div>
+    </ion-item>
+  </ion-list>
+
+  <p>Loans (item name)</p>
+
+  <ion-list>
+    <ion-item *ngFor="let loan of loans | async">
+      <div class="name">{{loan.itemName}}</div>
+    </ion-item>
+  </ion-list>
+
+  <p>Pending Loans (item name)</p>
+
+  <ion-list>
+    <ion-item *ngFor="let pendingLoan of pendingLoans | async">
+      <div class="name">{{pendingLoan.itemName}}</div>
+    </ion-item>
+  </ion-list>
 
   <div>
     <button ion-button (click)="populateDatabase()">

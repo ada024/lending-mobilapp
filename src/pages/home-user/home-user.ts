@@ -16,6 +16,7 @@ import { DatabaseService } from '../../providers/database-service';
 export class HomeUserPage {
   pendingLoans;
   loans;
+  //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
@@ -28,8 +29,8 @@ export class HomeUserPage {
     console.log('ionViewDidLoad HomeUserPage');
   }
 
-  acceptLoan(pendingLoan) {
-    this.db.addLoans(pendingLoan.itemName);
+  acceptLoan(event, pendingLoan) {
+    this.db.deletePendingLoan(pendingLoan);
+    this.db.addLoan(pendingLoan.itemName);
   }
-
 }
