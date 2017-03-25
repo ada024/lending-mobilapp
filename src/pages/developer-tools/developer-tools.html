@@ -1,0 +1,68 @@
+<!--
+  Generated template for the DeveloperTools page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>developerTools</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items | async">
+      <div class="itemName">{{item.name}}</div>
+      <div class="itemId">{{item.id}}</div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users | async">
+      <div class="name">{{user.name}}</div>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!showInputs">
+    <button ion-button icon-left (click)="this.showInputs = true;">
+      <ion-icon name="add"></ion-icon>
+      Add Item
+    </button>
+  </div>
+
+  <div *ngIf="showInputs">
+    <ion-item>
+      <ion-input placeholder="Item Name" [(ngModel)]="input"></ion-input>
+    </ion-item>
+  </div>
+  <br>
+
+  <div *ngIf="showInputs" model="id">
+    <p>{{id}}</p>
+  </div>
+
+  <div *ngIf="showInputs">
+    <button ion-button icon-left (click)="add()" [disabled]="!tagFound">
+      <ion-icon name="add"></ion-icon>
+      Add
+    </button>
+  </div>
+
+  <div>
+    <button ion-button (click)="populateDatabase()">
+      Populate Database
+    </button>
+  </div>
+
+  <div>
+    <button ion-button (click)="clearDatabase()">
+      Clear Database
+    </button>
+  </div>
+  
+</ion-content>

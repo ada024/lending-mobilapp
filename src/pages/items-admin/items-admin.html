@@ -9,65 +9,28 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item *ngFor="let item of items | async">
-      <div class="itemName">{{item.name}}</div>
-      <div class="itemId">{{item.id}}</div>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item *ngFor="let user of users | async">
-      <div class="name">{{user.name}}</div>
-    </ion-item>
-  </ion-list>
-
-  <div *ngIf="!showInputs">
-    <button ion-button icon-left (click)="this.showInputs = true;">
-      <ion-icon name="add"></ion-icon>
-      Add Item
-    </button>
+  <div class="items-icon">
+    <ion-icon name="logo-freebsd-devil"></ion-icon>
   </div>
 
-  <div *ngIf="showInputs">
-    <ion-item>
-      <ion-input placeholder="Item Name" [(ngModel)]="input"></ion-input>
-    </ion-item>
-  </div>
-  <br>
+  <p class=title-text>
+    <b>167 items registered</b>
+  </p>
 
-  <div *ngIf="showInputs" model="id">
-    <p>{{id}}</p>
-  </div>
-
-  <div *ngIf="showInputs">
-    <button ion-button icon-left (click)="add()" [disabled]="!tagFound">
-      <ion-icon name="add"></ion-icon>
-      Add
-    </button>
-  </div>
+  <ion-searchbar>
+  </ion-searchbar>
 
   <div>
-    <button ion-button (click)="populateDatabase()">
-      Populate Database
-    </button>
+    <button class="blue-button" (click)="goToItemsListAdminPage()">
+      <ion-icon name="ios-list-box-outline" class="blue-button-icon"></ion-icon>
+     <div class="blue-button-text">
+       <b>List all items</b>
+      </div>
+   </button>
   </div>
-
-  <div>
-    <button ion-button (click)="clearDatabase()">
-      Clear Database
-    </button>
-  </div>
-
-  <button class="blue-button" (click)="goToItemsListAdminPage()">
-    <ion-icon name="ios-list-box-outline" class="blue-button-icon"></ion-icon>
-    <div class="blue-button-text">
-      <b>List all items</b>
-    </div>
-  </button>
 
   <div class="add-icon">
-      <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
+    <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
   </div>
 
   <div class="add-item-text">

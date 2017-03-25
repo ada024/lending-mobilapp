@@ -7,6 +7,8 @@ import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-accou
 import { HomeAdminPage } from '../pages/home-admin/home-admin';
 import { HomeUserPage } from '../pages/home-user/home-user';
 
+import { DeveloperToolsPage } from '../pages/developer-tools/developer-tools';
+
 import { ItemsAdminPage } from '../pages/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/items-add-name-admin/items-add-name-admin';
 import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add-photo-admin';
@@ -15,6 +17,8 @@ import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/it
 import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
 import { ItemsListAdminPage } from '../pages/items-list-admin/items-list-admin';
 import { ItemsDetailsAdminPage } from '../pages/items-details-admin/items-details-admin';
+
+import { EntityAdminPage } from '../pages/entity-admin/entity-admin';
 
 import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
@@ -43,6 +47,8 @@ export const firebaseConfig = {
     HomeAdminPage,
     HomeUserPage,
 
+    DeveloperToolsPage,
+
     ItemsAdminPage,
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
@@ -51,6 +57,8 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
+
+    EntityAdminPage,
 
     CheckoutFirstPage,
     CheckoutItemsPage,
@@ -71,6 +79,8 @@ export const firebaseConfig = {
     HomeAdminPage,
     HomeUserPage,
 
+    DeveloperToolsPage,
+
     ItemsAdminPage,
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
@@ -79,6 +89,8 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
+
+    EntityAdminPage,
 
     CheckoutFirstPage,
     CheckoutItemsPage,

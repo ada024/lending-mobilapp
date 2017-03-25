@@ -1,11 +1,15 @@
 page-items-admin {
 
-  .itemName {
-    display:inline-block;
+  .title-text {
+    font-size: 30px;
+    text-align: center;
   }
 
-  .itemId {
-    float: right;
+  .items-icon {
+    font-size: 100px;
+    display: block;
+    margin: auto;
+    width: 40%;
   }
 
   .blue-button {
@@ -33,13 +37,20 @@ page-items-admin {
 
   .add-icon {
     font-size: 80px;
-    width: 25%;
+    top: 80%;
+    left: 50%;
     color: green;
-    margin: auto;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
   .add-item-text {
     font-size: 25px;
-    text-align: center;
+    top: 90%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }

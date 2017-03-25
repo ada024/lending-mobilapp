@@ -40,7 +40,7 @@
     </div>
   </button>
 
-  <button class="grey-button">
+  <button class="grey-button" (click)="goToEntityAdminPage()">
     <div>
       <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
       <div class="grey-button-text-container">
@@ -67,6 +67,13 @@
       </div>
     </div>
   </button>
+  
+  <button class="developer-tools-button"  (click)="goToDeveloperToolsAdminPage()">
+    <div class="developer-tools-text">
+      Developer tools
+    </div>
+  </button>
+
 </div>
 
 </ion-content>
