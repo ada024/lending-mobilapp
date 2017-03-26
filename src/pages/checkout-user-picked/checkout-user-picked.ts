@@ -27,7 +27,7 @@ export class CheckoutUserPickedPage {
       this.user = navParams.get('user');
       //this.itemListShow = this.db.getPendingItems();
 
-      this.itemRef = firebase.database().ref('/items');
+      this.itemRef = firebase.database().ref('/temporaryItems');
       this.itemRef.on('value', itemList => {
           let itemsFire = [];
           itemList.forEach(item => {
@@ -51,6 +51,8 @@ export class CheckoutUserPickedPage {
           console.log("itemname" + item.name + "username" + this.user.name);
           this.db.addPendingLoan(item, this.user);
       }
+
+      this.db.removeTemporaryItems();
      
 	  this.navCtrl.push(ConfirmCheckoutPage);
   }

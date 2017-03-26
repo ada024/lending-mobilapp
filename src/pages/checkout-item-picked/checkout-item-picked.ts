@@ -20,7 +20,7 @@ export class CheckoutItemPickedPage {
 	itemList;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-	  this.itemList = this.db.getPendingItems();
+	  this.itemList = this.db.getTemporaryItems();
 	  
   }
   
