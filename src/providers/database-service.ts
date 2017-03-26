@@ -34,27 +34,29 @@ export class DatabaseService {
 	//maatte importere denne for aa lage en liste jeg kunne gaa igjennom for aa finne riktig id
 	this.itemsRef = firebase.database().ref('/items');
 	
-	this.itemsRef.on('value', itemsList => {
-        let itemsFire = [];
-         itemsList.forEach( item => {
-         itemsFire.push(item.val());
-         });
+	// this.itemsRef.on('value', itemsList => {
+  //       let itemsFire = [];
+  //        itemsList.forEach( item => {
+  //        itemsFire.push(item.val());
+  //        });
 		 
-	   this.itemsList = itemsFire;
+	//    this.itemsList = itemsFire;
 	   
 	
-  });
+  // });
   
   this.usersRef = firebase.database().ref('/users');
   
-  this.usersRef.on('value', usersList => {
-        let usersFire = [];
-         usersList.forEach( user => {
-         usersFire.push(user.val());
-         });
+//   this.usersRef.on('value', usersList => {
+//         let usersFire = [];
+//          usersList.forEach( user => {
+//          usersFire.push(user.val());
+//          });
 		 
-	   this.usersList = usersFire;
-  });
+// 	   this.usersList = usersFire;
+//   });
+
+
 }
 
 
@@ -71,6 +73,10 @@ export class DatabaseService {
 
   getItems() {
     return this.items;
+  }
+
+  loadItems(onDataLoaded){
+    this.loadDataFromRef(this.itemsRef, onDataLoaded);
   }
   
   getItemById(id){
@@ -96,6 +102,11 @@ export class DatabaseService {
   getUsers() {
     return this.users;
   }
+
+  loadUsers(onDataLoaded){
+    this.loadDataFromRef(this.usersRef, onDataLoaded);
+  }
+
 
   getUserByName(name){
 	  this.usersList.forEach(user =>{
@@ -216,5 +227,43 @@ export class DatabaseService {
     this.pendingUsers.remove();
     this.pendingLoans.remove();
   }
+
+
+
+
+  //fetches firebase data and sends it to the onDataLoaded function
+
+  loadDataFromRef(ref, onDataLoaded) {
+    ref.on('value', (data) => {
+      let list = [];
+      data.forEach(node => {
+        list.push(node.val());
+        onDataLoaded(list);
+      });
+    });
+  }
+
+
+
+
+  //Searches a list
+
+  search(loadedList, key, property){
+    let list = loadedList;
+    if(key) {
+      list = list.filter((v) => {
+      if(eval(property) && key) {
+       if(eval(property).toLowerCase().indexOf(key.toLowerCase()) > -1) {
+         return true;
+        }
+        return false;
+      }
+     });
+    }
+    return list;
+  }
+
+
+
 
 }
