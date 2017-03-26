@@ -72,7 +72,7 @@ export class CheckoutItemsPage {
 }
 
 goToCheckoutItemPickedPage(item){
-	this.db.addItemToPendingLoan(item);
+	this.db.addPendingItems(item);
 	this.navCtrl.push(CheckoutItemPickedPage)
 	
 }

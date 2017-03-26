@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { DatabaseService } from '../../providers/database-service';
@@ -20,7 +20,7 @@ export class CheckoutItemPickedPage {
 	itemList;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-	  this.itemList = this.db.getPendingLoans();
+	  this.itemList = this.db.getPendingItems();
 	  
   }
   

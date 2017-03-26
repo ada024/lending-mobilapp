@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
@@ -29,7 +29,7 @@ export class DatabaseService {
     this.entitys = af.database.list('/entitys');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
-	  this.pendingItems = af.database.list('/pendingItems');
+	this.pendingItems = af.database.list('/pendingItems');
 	
 	//maatte importere denne for aa lage en liste jeg kunne gaa igjennom for aa finne riktig id
 	this.itemsRef = firebase.database().ref('/items');
@@ -74,10 +74,7 @@ export class DatabaseService {
   }
   
   getItemById(id){
-	  console.log("den kommer hit");
-	  console.log("id her er " + id);
 	  this.itemsList.forEach(item =>{
-		   console.log("item.id er " + item.id);
 		  if(item.id == id){
 			  this.itemReturn = item;
 	  }});
@@ -125,19 +122,14 @@ export class DatabaseService {
 		return this.pendingItems;
 	}
   
-  addItemToPendingLoan(item) {
+  addPendingLoan(item, user) {
     this.pendingLoans.push({
       itemName: item.name,
-	    itemId: item.id
+      itemId: item.id,
+      userName: user.name
     });
   }
   
-  addUserToPendingLoan(userName) {
-    this.pendingLoans.push({
-      userName: userName
-    });
-  }
-
   getPendingLoans() {
     return this.pendingLoans;
   }
@@ -209,8 +201,8 @@ export class DatabaseService {
     this.addPendingUser("John fisher", "Faculty of Art, Bergen");
     this.addLoan("HDMI cable");
     this.addLoan("Macbook charger");
-    this.addItemToPendingLoan({name: "ipad 7", id: "324t3t43"});
-    this.addItemToPendingLoan({name: "ipad 8", id: "65745yhhh"})
+    //this.addItemToPendingLoan({name: "ipad 7", id: "324t3t43"});
+    //this.addItemToPendingLoan({name: "ipad 8", id: "65745yhhh"})
   }
 
   clearDatabase() {
