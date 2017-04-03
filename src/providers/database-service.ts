@@ -31,32 +31,9 @@ export class DatabaseService {
     this.pendingUsers = af.database.list('/pendingUsers');
 	this.temporaryItems = af.database.list('/temporaryItems');
 	
-	//maatte importere denne for aa lage en liste jeg kunne gaa igjennom for aa finne riktig id
 	this.itemsRef = firebase.database().ref('/items');
-	
-	// this.itemsRef.on('value', itemsList => {
-  //       let itemsFire = [];
-  //        itemsList.forEach( item => {
-  //        itemsFire.push(item.val());
-  //        });
-		 
-	//    this.itemsList = itemsFire;
-	   
-	
-  // });
+	this.usersRef = firebase.database().ref('/users');
   
-  this.usersRef = firebase.database().ref('/users');
-  
-//   this.usersRef.on('value', usersList => {
-//         let usersFire = [];
-//          usersList.forEach( user => {
-//          usersFire.push(user.val());
-//          });
-		 
-// 	   this.usersList = usersFire;
-//   });
-
-
 }
 
 
