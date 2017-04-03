@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
@@ -17,59 +17,31 @@ import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-pi
   providers: [DatabaseService]
 })
 export class CheckoutItemsPage {
-	itemsRef: any;
 	itemsList: any;
 	loadedItemList: any;
 	searchItemString = '';
 	
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService) {
-        this.itemsRef = firebase.database().ref('/items');
+    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone) {
 		
-		this.itemsRef.on('value', itemsList => {
-        let items = [];
-        itemsList.forEach( item => {
-         items.push(item.val());
-         });
-
-         this.itemsList = items;
-         this.loadedItemList = items;
-		});
+        db.loadItems(this.onDataLoaded.bind(this));
 		}
 
-  ionViewDidLoad() {
+    ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutItemsPage');
-  }
-  
-  initializeItems(): void {
-  this.itemsList = this.loadedItemList;
-}
-  
-  searchItems(searchbar){
-  // Reset items back to all of the items
-  this.initializeItems();
-
-  // set q to the value of the searchbar
-  var q = this.searchItemString;
-
-
-  // if the value is an empty string don't filter the items
-  if (!q) {
-    return;
-  }
-
-  this.itemsList = this.itemsList.filter((v) => {
-    if(v.name && q) {
-      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-        return true;
-      }
-      return false;
     }
-  });
+  
+ 
 
-  console.log(q, this.itemsList.length);
+  onDataLoaded(loadedList) {
+      this.zone.run(() => {
+          this.itemsList = this.loadedItemList = loadedList;
+      });
+  }
 
-}
+  searchItems() {
+      this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
+  }
 
 goToCheckoutItemPickedPage(item){
 	this.db.addTemporaryItems(item);
