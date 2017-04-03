@@ -17,7 +17,6 @@ import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-pi
 })
 export class CheckoutUserPage {
     usersList: any;
-
     loadedUserList: any;
     searchUserString = '';
 
@@ -28,7 +27,7 @@ export class CheckoutUserPage {
             }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad CheckoutItemsPage');
+        console.log('ionViewDidLoad CheckoutUserPage');
     }
 
     onDataLoaded(loadedList) {
@@ -37,7 +36,7 @@ export class CheckoutUserPage {
         });
     }
 
-    searchItems() {
+    searchUsers() {
         this.usersList = this.db.search(this.loadedUserList, this.searchUserString, "v.name");
     }
 
