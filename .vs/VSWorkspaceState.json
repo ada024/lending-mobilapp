@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\assets",
+    "\\src\\classes",
     "\\src\\pages",
-    "\\src\\pages\\checkout-item-picked",
-    "\\src\\pages\\checkout-items",
-    "\\src\\pages\\checkout-user",
-    "\\src\\pages\\checkout-user-picked",
-    "\\src\\pages\\items-list-admin"
+    "\\src\\pages\\checkout-first",
+    "\\src\\pages\\checkout-scan-item",
+    "\\src\\pages\\checkout-scan-user",
+    "\\src\\pages\\items-add-success-admin",
+    "\\src\\pages\\items-add-tag-scann-admin"
   ],
-  "SelectedNode": "\\src\\pages\\checkout-user\\checkout-user.html",
+  "SelectedNode": "\\src\\classes\\tag.ts",
   "PreviewInSolutionExplorer": false
 }
