@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
-  Generated class for the ConfirmCheckout page.
+  Generated class for the CheckoutScanUser page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-confirm-checkout',
-  templateUrl: 'confirm-checkout.html'
+  selector: 'page-checkout-scan-user',
+  templateUrl: 'checkout-scan-user.html'
 })
-export class ConfirmCheckoutPage {
+export class CheckoutScanUserPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfirmCheckoutPage');
+    console.log('ionViewDidLoad CheckoutScanUserPage');
   }
 
 }

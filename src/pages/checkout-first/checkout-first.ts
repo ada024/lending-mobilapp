@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CheckoutItemsPage } from '../checkout-items/checkout-items';
+import { CheckoutScanItemPage } from '../checkout-scan-item/checkout-scan-item';
 
 
 /*
@@ -21,6 +22,10 @@ export class CheckoutFirstPage {
     console.log('ionViewDidLoad CheckoutFirstPage');
   }
 
+
+  goToCheckoutScanItemPage() {
+      this.navCtrl.push(CheckoutScanItemPage);
+  }
   goToCheckoutItemsPage() {
       this.navCtrl.push(CheckoutItemsPage);
   }
