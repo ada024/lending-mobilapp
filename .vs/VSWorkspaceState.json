@@ -9,8 +9,8 @@
     "\\src\\pages\\checkout-items",
     "\\src\\pages\\checkout-user",
     "\\src\\pages\\checkout-user-picked",
-    "\\src\\providers"
+    "\\src\\pages\\items-list-admin"
   ],
-  "SelectedNode": "\\src\\providers\\database-service.ts",
+  "SelectedNode": "\\src\\pages\\checkout-user\\checkout-user.html",
   "PreviewInSolutionExplorer": false
 }

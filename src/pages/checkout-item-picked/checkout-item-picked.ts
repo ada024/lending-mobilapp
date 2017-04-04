@@ -34,6 +34,11 @@ export class CheckoutItemPickedPage {
   goToCheckoutUserPage() {
       this.navCtrl.push(CheckoutUserPage);
   }
-  
+
+
+  removeItem(item) {
+              this.db.removeTemporaryItem(item);
+          }
+
 
 }

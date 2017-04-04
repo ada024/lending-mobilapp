@@ -1,8 +1,11 @@
 ﻿import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
-import { ConfirmCheckoutPage } from '../confirm-checkout/confirm-checkout';
+import { HomeAdminPage } from '../home-admin/home-admin';
 import firebase from 'firebase';
+import { Toast } from 'ionic-native';
+
+declare var window: any;
 
 /*
   Generated class for the CheckoutUserPicked page.
@@ -11,49 +14,61 @@ import firebase from 'firebase';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-checkout-user-picked',
-  templateUrl: 'checkout-user-picked.html',
-  providers: [DatabaseService]
+    selector: 'page-checkout-user-picked',
+    templateUrl: 'checkout-user-picked.html',
+    providers: [DatabaseService]
 })
 export class CheckoutUserPickedPage {
-	item: any;
+    item: any;
     user: any;
 
     itemListShow
     itemList: any;
     itemRef: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-      this.user = navParams.get('user');
-      //this.itemListShow = this.db.getPendingItems();
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
+        this.user = navParams.get('user');
+        //this.itemListShow = this.db.getPendingItems();
 
-      this.itemRef = firebase.database().ref('/temporaryItems');
-      this.itemRef.on('value', itemList => {
-          let itemsFire = [];
-          itemList.forEach(item => {
-              itemsFire.push(item.val());
-          });
+        this.itemRef = firebase.database().ref('/temporaryItems');
+        this.itemRef.on('value', itemList => {
+            let itemsFire = [];
+            itemList.forEach(item => {
+                itemsFire.push(item.val());
+            });
 
-          this.itemList = itemsFire;
+            this.itemList = itemsFire;
 
 
-      });
+        });
 
-  }
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutUserPickedPage');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad CheckoutUserPickedPage');
+    }
 
-  goToConfirmCheckoutPage() {
-     
-      for (let item of this.itemList) {
-          console.log("itemname" + item.name + "username" + this.user.name);
-          this.db.addPendingLoan(item, this.user);
-      }
+    goToHomeAdminPage() {
 
-      this.db.removeTemporaryItems();
-     
-	  this.navCtrl.push(ConfirmCheckoutPage);
-  }
+        this.showToast('Loan added to list. Waiting for approval from ' + this.user.name, 'bottom');
+
+        for (let item of this.itemList) {
+            console.log("itemname" + item.name + "username" + this.user.name);
+            this.db.addPendingLoan(item, this.user);
+        }
+
+        this.db.removeTemporaryItems();
+
+
+
+        this.navCtrl.push(HomeAdminPage);
+    }
+
+    showToast(message, position) {
+        this.platform.ready().then(() =>Toast.show(message, "long", position).subscribe(
+            toast => {
+                console.log(toast);
+            }
+        ));
+    }
 }

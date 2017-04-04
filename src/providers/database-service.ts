@@ -108,6 +108,9 @@ export class DatabaseService {
   removeTemporaryItems() {
       this.temporaryItems.remove();
   }
+  removeTemporaryItem(item) {
+      this.temporaryItems.remove(item);
+  }
 
 
   //Pending stuff
