@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { CheckoutFirstPage } from '../checkout-first/checkout-first';
+import { CheckoutItemsPage } from '../checkout-items/checkout-items';
 import { ItemsAdminPage } from '../items-admin/items-admin';
 import { EntityAdminPage } from '../entity-admin/entity-admin';
 import { DeveloperToolsPage } from '../developer-tools/developer-tools';
@@ -14,7 +14,7 @@ export class HomeAdminPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   goToCheckOut() {
-    this.navCtrl.push(CheckoutFirstPage);
+    this.navCtrl.push(CheckoutItemsPage);
   }
 
   goToItemsAdminPage() {

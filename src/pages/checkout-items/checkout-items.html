@@ -17,12 +17,18 @@
 
 <ion-content padding>
   <ion-searchbar [(ngModel)]="searchItemString"
-                 (ionInput)="searchItems($event)">
+                (ionInput)="searchItems($event)">
   </ion-searchbar>
-  <ion-list>
+  <ion-list *ngIf="showList">
     <ion-item *ngFor="let item of itemsList">
-      <div class="itemName" (click)="goToCheckoutItemPickedPage(item)">{{item.name}}</div>
+      <div class="name" (click)="goToCheckoutItemPickedPage(item)">{{item.name}}</div>
     </ion-item>
   </ion-list>
- 
+
+  <p class=title-text>
+    <b>Place your device on the items NFC tag</b>
+  </p>
+
+  <ion-icon name="finger-print" class="scann-icon"></ion-icon>
+
 </ion-content>

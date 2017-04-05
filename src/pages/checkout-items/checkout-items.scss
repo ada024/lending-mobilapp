@@ -1,3 +1,17 @@
-page-checkout-items {
+﻿page-checkout-items {
+  .title-text {
+    font-size: 30px;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 
+  .scann-icon {
+    font-size: 300px;
+    top: 60%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
 }
