@@ -64,6 +64,18 @@ export class DatabaseService {
       return foundItem;
   }
 
+  getItemByTag(id) {
+      var foundItem;
+      this.items.subscribe(items => {
+          items.forEach(item => {
+              if (item.id == id) {
+                  foundItem = item;
+              }
+          });
+      });
+      return foundItem;
+  }
+
   removeItem(item) {
       return this.items.remove(item);
   }
@@ -82,6 +94,17 @@ export class DatabaseService {
 
   getUsers() {
     return this.users;
+  }
+  getUserByTag(id) {
+      var foundUser;
+      this.users.subscribe(users => {
+          users.forEach(user => {
+              if (user.id == id) {
+                  foundUser = user;
+              }
+          });
+      });
+      return foundUser;
   }
 
   loadUsers(onDataLoaded){
