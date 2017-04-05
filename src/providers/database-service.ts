@@ -51,23 +51,27 @@ export class DatabaseService {
   getItems() {
     return this.items;
   }
+  getItem(name, id) {
+      var foundItem;
+      this.items.subscribe(items => {
+          items.forEach(item => {
+              if (item.name == name && item.id == id) {
+                  foundItem = item;
+                  console.log(foundItem.name);
+              }
+          });
+      });
+      return foundItem;
+  }
+
+  removeItem(item) {
+      return this.items.remove(item);
+  }
 
   loadItems(onDataLoaded){
     this.loadDataFromRef(this.itemsRef, onDataLoaded);
   }
   
-  getItemById(id){
-	  this.itemsList.forEach(item =>{
-		  if(item.id == id){
-			  this.itemReturn = item;
-	  }});
-	  
-	  return this.itemReturn;
-		   }
-
-
-
-
   //Methods to add and get users
 
   addUser(name) {

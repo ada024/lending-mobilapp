@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 
@@ -25,6 +25,11 @@ export class ItemsListAdminPage {
 
   searchItems(){
     this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
+  }
+
+  removeItem(item) {
+      var deleteItem = this.db.getItem(item.name, item.id);
+      this.db.removeItem(deleteItem);
   }
 
 

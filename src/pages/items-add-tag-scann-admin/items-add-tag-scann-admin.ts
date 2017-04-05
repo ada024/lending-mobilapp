@@ -24,10 +24,10 @@ export class ItemsAddTagScannAdminPage {
       console.log("kommer til scanklassen");
       this.itemName = navParams.get("itemName");
 
-    
-      (<any>window).nfc.addNdefListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
-      (<any>window).nfc.addTagDiscoveredListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
-    
+      if ((<any>window).nfc != null) {
+          (<any>window).nfc.addNdefListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
+          (<any>window).nfc.addTagDiscoveredListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
+      }
 
     platform.registerBackButtonAction(this.onBackPressed.bind(this));
   }

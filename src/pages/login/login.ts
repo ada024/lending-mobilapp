@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+﻿import {Component, ElementRef, OnInit} from '@angular/core';
 import { AngularFire,AuthProviders,AuthMethods } from 'angularfire2';
 import { NavController } from 'ionic-angular';
 
