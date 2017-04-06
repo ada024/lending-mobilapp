@@ -20,17 +20,15 @@ export class ItemsAddSuccessAdminPage {
     if(this.tagId == null) {this.tagId = "0";}
     this.add();
 
-    this.navCtrl.remove(4, 10);
+    this.navCtrl.remove(2, 10);
   }
 
   add() {
-    //validate input?
-
     this.db.addItem(this.itemName, this.tagId);
   }
 
   goBackToItemsAdminPage() {
-    this.navCtrl.remove(4, 4);
+    this.navCtrl.remove(2, 10);
     this.navCtrl.pop();
   }
 }

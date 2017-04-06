@@ -1,3 +1,21 @@
 page-entity-admin {
 
+  .add-icon {
+    font-size: 80px;
+    top: 80%;
+    left: 50%;
+    color: green;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .add-entity-text {
+    font-size: 25px;
+    top: 90%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
 }

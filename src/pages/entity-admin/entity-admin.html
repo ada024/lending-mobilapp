@@ -15,4 +15,35 @@
 
 <ion-content padding>
 
+  <div class="big-icon">
+    <ion-icon name="logo-freebsd-devil"></ion-icon>
+  </div>
+
+  <p class=title>
+    <b>Selected entity</b>
+  </p>
+
+  <div class="button-container">
+   <button class="blue-button" (click)="goToHomeAdminPage()">
+      <div class="button-text">
+        <b>Entity 1</b>
+      </div>
+    </button>
+
+    <button class="blue-button" (click)="goToItemsListAdminPage()">
+      <ion-icon name="ios-list-box-outline" class="button-icon"></ion-icon>
+     <div class="button-with-icon-text">
+       <b>List all entities</b>
+      </div>
+   </button>
+  </div>
+
+  <div class="add-icon">
+    <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
+  </div>
+
+  <div class="add-entity-text">
+    Add Item
+  </div>
+
 </ion-content>

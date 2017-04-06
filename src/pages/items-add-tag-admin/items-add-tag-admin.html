@@ -9,24 +9,32 @@
 
 <ion-content padding>
 
-  <p class=title-text>
+  <p class=title>
     <b>Encode a NFC tag for the item</b>
   </p>
 
   <div class="button-container">
     <button class="blue-button" (click)="goToItemsAddTagScannAdminPage()">
-      <ion-icon name="finger-print" class="blue-button-icon"></ion-icon>
-      <div class="blue-button-text">
+      <ion-icon name="finger-print" class="button-icon"></ion-icon>
+      <div class="button-with-icon-text">
         <b>Encode now</b>
       </div>
     </button>
 
     <button class="blue-button" (click)="goToItemsAddSuccessAdminPage()">
-      <div class="blue-button-text">
+      <div class="button-text">
         <b>Skip NFC tag for this item</b>
       </div>
     </button>
   </div>
+
+  <div class="bar">
+    <div class="progress"></div>
+  </div>
+
+  <p class="progress-text">
+    99%
+  </p>
 
   <div class="item-container">
     <ion-icon name="image" class="item-image"></ion-icon>

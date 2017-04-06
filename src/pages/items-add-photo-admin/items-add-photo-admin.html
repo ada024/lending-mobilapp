@@ -9,25 +9,33 @@
 
 <ion-content padding>
 
-  <p class=title-text>
+  <p class=title>
     <b>Add a photo of the item</b>
   </p>
 
   <div class="button-container">
     <button class="blue-button" (click)="goToItemsAddTagAdminPage()">
-      <ion-icon name="camera" class="blue-button-icon"></ion-icon>
-      <div class="blue-button-text">
+      <ion-icon name="camera" class="button-icon"></ion-icon>
+      <div class="button-with-icon-text">
         <b>Take a photo</b>
       </div>
     </button>
 
     <button class="blue-button" (click)="goToItemsAddTagAdminPage()">
-      <ion-icon name="image" class="blue-button-icon"></ion-icon>
-      <div class="blue-button-text">
+      <ion-icon name="image" class="button-icon"></ion-icon>
+      <div class="button-with-icon-text">
         <b>Add from gallery</b>
       </div>
     </button>
   </div>
+
+  <div class="bar">
+    <div class="progress"></div>
+  </div>
+
+  <p class="progress-text">
+    66%
+  </p>
 
   <div class="item-container">
     <ion-icon name="image" class="item-image"></ion-icon>
