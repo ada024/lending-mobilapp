@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+﻿import {Component, ElementRef} from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { NavController } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';

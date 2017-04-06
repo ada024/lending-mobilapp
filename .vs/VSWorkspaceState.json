@@ -6,10 +6,10 @@
     "\\src\\pages",
     "\\src\\pages\\checkout-item-picked",
     "\\src\\pages\\checkout-items",
-    "\\src\\pages\\checkout-user",
-    "\\src\\pages\\checkout-user-picked",
-    "\\src\\pages\\items-add-success-admin",
-    "\\src\\pages\\login"
+    "\\src\\pages\\choose-account-type",
+    "\\src\\pages\\items-add-tag-admin",
+    "\\src\\pages\\items-add-tag-scann-admin",
+    "\\src\\pages\\items-list-admin"
   ],
   "SelectedNode": "\\src\\pages\\checkout-item-picked\\checkout-item-picked.ts",
   "PreviewInSolutionExplorer": false

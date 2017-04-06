@@ -117,6 +117,12 @@ export class CheckoutItemsPage {
         });
         alert.present();
     }
+
+    goHome() {
+        this.db.removeTemporaryItems();
+        this.close = true;
+        this.navCtrl.pop();
+    }
     
 }
 

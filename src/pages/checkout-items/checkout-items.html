@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>CheckoutItems</ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="goHome()">
+        <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons end>
       <button class="blue-button" (click)="toggleView()">
         <div class="blue-button-text"><b>{{toggleText}}</b></div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
@@ -11,8 +11,8 @@ import {LoginPage} from "../pages/login/login";
 })
 export class MyApp {
   // BYTTE OM HER
-//  rootPage = ChooseAccountTypePage;
-  rootPage = LoginPage;
+ //rootPage = ChooseAccountTypePage;
+ rootPage = LoginPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
