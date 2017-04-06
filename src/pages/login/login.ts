@@ -13,7 +13,7 @@ export class LoginPage {
     constructor(public navCtrl: NavController, public element: ElementRef, public af: AngularFire) {
         this.element.nativeElement
     }
-    
+    /*
 ngOnInit(){
   this.root = this.element.nativeElement;
   console.log(this.root);
@@ -22,8 +22,8 @@ ngOnInit(){
   fbBtn.addEventListener('click',this.onFacebookLogin.bind(this));
 
 }
-    
-    
+    */
+    /*
 onFacebookLogin(e){
   let self = this;
   this.af.auth.login({
@@ -40,11 +40,10 @@ onFacebookLogin(e){
     console.log(error);
   });
 }
-    
-    /*
+    */
+
     login() {
         this.navCtrl.push(ChooseAccountTypePage);
     }
-    */
 
 }

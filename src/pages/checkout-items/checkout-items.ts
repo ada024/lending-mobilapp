@@ -74,9 +74,8 @@ export class CheckoutItemsPage {
   }
 
     goToCheckoutItemPickedPage(item) {
-        this.close = false;
-	this.db.addTemporaryItems(item);
-	this.navCtrl.push(CheckoutItemPickedPage)
+        this.db.addTemporaryItems(item);
+        this.navCtrl.push(CheckoutItemPickedPage, { self: this })
 	}
 
 

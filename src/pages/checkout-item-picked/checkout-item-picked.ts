@@ -28,6 +28,8 @@ export class CheckoutItemPickedPage {
   }
   
   goToCheckoutItemsPage() {
+      var self = this.navParams.get("self");
+      self.close = false;
       this.navCtrl.pop();
   }
  

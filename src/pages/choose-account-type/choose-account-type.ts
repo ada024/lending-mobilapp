@@ -12,11 +12,11 @@ export class ChooseAccountTypePage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    if(!this.isAlreadyLoggedIn()){
+   /* if(!this.isAlreadyLoggedIn()){
       console.log('not login yet, redirect to login page');
       this.navCtrl.push(LoginPage);
     }
-      
+      */
 
 
   }
