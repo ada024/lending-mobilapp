@@ -23,7 +23,7 @@ export class CheckoutItemsPage {
     
 
     tag: Tag;
-    close = false;
+    close: boolean;
     dataReceived: boolean;
     toggleText = "Show item list";
     showList: boolean;
@@ -78,11 +78,11 @@ export class CheckoutItemsPage {
    
   }
 
-goToCheckoutItemPickedPage(item){
+    goToCheckoutItemPickedPage(item) {
+        this.close = false;
 	this.db.addTemporaryItems(item);
 	this.navCtrl.push(CheckoutItemPickedPage)
-	
-}
+	}
 
 
     toggleView() {
@@ -109,6 +109,7 @@ goToCheckoutItemPickedPage(item){
                     text: 'No',
                     role: 'cancel',
                     handler: () => {
+                        this.close = false;
                         console.log('Cancel clicked');
                     }
                 },
@@ -116,7 +117,6 @@ goToCheckoutItemPickedPage(item){
                     text: 'Yes',
                     handler: () => {
                         this.goToCheckoutItemPickedPage(item);
-                        this.db.addTemporaryItems(item);
                     }
                 }
             ]

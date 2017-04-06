@@ -40,10 +40,11 @@ onFacebookLogin(e){
     console.log(error);
   });
 }
+    
     /*
-
     login() {
         this.navCtrl.push(ChooseAccountTypePage);
     }
     */
+
 }

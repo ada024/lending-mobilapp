@@ -2,17 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\app",
     "\\src\\pages",
     "\\src\\pages\\checkout-item-picked",
     "\\src\\pages\\checkout-items",
     "\\src\\pages\\checkout-user",
     "\\src\\pages\\checkout-user-picked",
-    "\\src\\pages\\choose-account-type",
-    "\\src\\pages\\home-admin",
-    "\\src\\pages\\items-list-admin",
-    "\\src\\pages\\login",
-    "\\src\\providers"
+    "\\src\\pages\\items-add-success-admin",
+    "\\src\\pages\\login"
   ],
-  "SelectedNode": "\\src\\pages\\choose-account-type\\choose-account-type.ts",
+  "SelectedNode": "\\src\\pages\\checkout-item-picked\\checkout-item-picked.ts",
   "PreviewInSolutionExplorer": false
 }
