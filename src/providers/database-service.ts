@@ -1,8 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, AuthMethods} from 'angularfire2';
 import firebase from 'firebase';
+import { Observable } from "rxjs/Observable";
+
+import { Platform } from 'ionic-angular';
+import { Facebook } from 'ionic-native';
+import { auth } from 'firebase'; //needed for the FacebookAuthProvider
 
 @Injectable()
 export class DatabaseService {
@@ -13,16 +18,16 @@ export class DatabaseService {
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
   temporaryItems: FirebaseListObservable<any>;
-  
+  public firebase : any;
+  private authState: FirebaseAuthState;
   itemsRef: any;
-  itemsList: any;
-  itemReturn: any;
-  
+
+
   usersRef: any;
   usersList: any;
   userReturn: any;
 
-  constructor(public http: Http, public af: AngularFire) {
+  constructor(public http: Http, public af: AngularFire, private platform: Platform) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
     this.loans = af.database.list('/loans');
@@ -30,17 +35,22 @@ export class DatabaseService {
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
 	this.temporaryItems = af.database.list('/temporaryItems');
-	
+	this.firebase = firebase;  //Add reference to native firebase SDK
 	this.itemsRef = firebase.database().ref('/items');
 	this.usersRef = firebase.database().ref('/users');
-  
+
+// CURREMT USER INFO
+    this.af.auth.subscribe((state: FirebaseAuthState) => {
+      this.authState = state;
+    });
+
 }
 
 
 
-  
+
   //Methods to add and get items
-  
+
   addItem(name, id) {
     this.items.push({
       name: name,
@@ -83,7 +93,7 @@ export class DatabaseService {
   loadItems(onDataLoaded){
     this.loadDataFromRef(this.itemsRef, onDataLoaded);
   }
-  
+
   //Methods to add and get users
 
   addUser(name) {
@@ -150,7 +160,7 @@ export class DatabaseService {
       userName: user.name
     });
   }
-  
+
   getPendingLoans() {
     return this.pendingLoans;
   }
@@ -210,7 +220,7 @@ export class DatabaseService {
 
   //Developer tools
 
-  populateDatabase() { 
+  populateDatabase() {
     this.addEntity("Faculty of Art, Bergen", "Daniel");
     this.addItem("iphone lader", "1gf13gf1");
     this.addItem("android lader", "6554y5hh");
@@ -271,6 +281,51 @@ export class DatabaseService {
   }
 
 
+  //FACEBOOK AUTH
+  loginWithFacebook() {
+    return Observable.create(observer => {
+      if (this.platform.is('cordova')) {
+        return Facebook.login(['email', 'public_profile']).then(res => {
+          const facebookCredential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+          this.firebase.auth().signInWithCredential(facebookCredential).then(()=>{
+
+            observer.next();
+          }).catch(error => {
+            //console.log(error);
+            observer.error(error);
+          });
+        });
+      } else {
+        return this.af.auth.login({
+          provider: AuthProviders.Facebook,
+          method: AuthMethods.Popup
+        }).then(()=>{
+          observer.next();
+        }).catch(error => {
+          //console.log(error);
+          observer.error(error);
+        });
+      }
+    });
+  }
+
+  // FB USER INFO
+  get currentUserName():string{
+    return this.authState?this.authState.auth.displayName:'';
+  }
+
+  get currentUserEmail():string{
+    return this.authState?this.authState.auth.email:'';
+  }
+
+  get currentUserPhotoURI():string{
+    return this.authState?this.authState.auth.photoURL:'';
+  }
+
+//FACEBOOK LOGOUT
+  logout() {
+    this.af.auth.logout();
+  }
 
 
 }

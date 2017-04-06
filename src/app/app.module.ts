@@ -20,6 +20,9 @@ import { ItemsDetailsAdminPage } from '../pages/items-details-admin/items-detail
 
 import { EntityAdminPage } from '../pages/entity-admin/entity-admin';
 
+
+import { DatabaseService} from '../providers/database-service'
+import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/checkout-item-picked/checkout-item-picked';
@@ -94,6 +97,6 @@ export const firebaseConfig = {
   	CheckoutItemPickedPage,
       CheckoutUserPickedPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })
 export class AppModule {}

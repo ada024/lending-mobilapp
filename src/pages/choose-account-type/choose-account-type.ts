@@ -30,10 +30,14 @@ export class ChooseAccountTypePage {
     this.navCtrl.push(HomeUserPage);
   }
 
+  /*
   isAlreadyLoggedIn(){
+    //TODO Henter user til bruk av login
     let user = window.localStorage.getItem('user');
     return user !== null &&  user !== undefined;
   }
+*/
+
 
 }
 

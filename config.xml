@@ -39,4 +39,8 @@
     <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
     <plugin name="cordova-plugin-barcodescanner" source="npm" />
     <plugin name="cordova-plugin-barcodescanner" source="npm" />
+    <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
+        <variable name="APP_ID" value="1699374637027668" />
+        <variable name="APP_NAME" value="ionic-app" />
+    </plugin>
 </widget>

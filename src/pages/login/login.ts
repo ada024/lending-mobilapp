@@ -1,49 +1,39 @@
-﻿import { Component, ElementRef, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import {Component, ElementRef} from '@angular/core';
+import { AngularFire } from 'angularfire2';
 import { NavController } from 'ionic-angular';
+import { DatabaseService } from '../../providers/database-service';
 
-import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
+//import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
 
 @Component({
-    selector: 'page-login',
-    templateUrl: 'login.html'
+  selector: 'page-login',
+  templateUrl: 'login.html'
 })
-export class LoginPage {
-    root: any;
-    constructor(public navCtrl: NavController, public element: ElementRef, public af: AngularFire) {
-        this.element.nativeElement
-    }
-    /*
-ngOnInit(){
-  this.root = this.element.nativeElement;
-  console.log(this.root);
+export class LoginPage{
+  //root:any;
+  userProfile: any = null;
+  constructor(public navCtrl: NavController, private auth: DatabaseService ){
 
-  var fbBtn =  this.root.querySelector('#fb-login');
-  fbBtn.addEventListener('click',this.onFacebookLogin.bind(this));
+  }
 
-}
-    */
-    /*
-onFacebookLogin(e){
-  let self = this;
-  this.af.auth.login({
-    provider: AuthProviders.Facebook,
-    method: AuthMethods.Popup
-  }).then(function(response){
-    let user = {
-      email:response.auth.email,
-      picture:response.auth.photoURL
-    };
-    window.localStorage.setItem('user',JSON.stringify(user));
-    self.navCtrl.pop();
-  }).catch(function(error){
-    console.log(error);
-  });
-}
-    */
+  loginWithFacebook(): void{
+    this.auth.loginWithFacebook().subscribe((success) => {
+      console.log(success);
+  //    this.userProfile = success;               // Brukes for å hente bilde og navn på login bruker til html
+    }, err => {
+      console.log(err);
+    });
+  }
 
-    login() {
-        this.navCtrl.push(ChooseAccountTypePage);
-    }
 
+  logout(): void {
+    this.auth.logout();
+  }
+
+
+/*
+  login() {
+    this.navCtrl.push(ChooseAccountTypePage);
+  }
+*/
 }
