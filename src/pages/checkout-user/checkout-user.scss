@@ -1,3 +1,23 @@
-page-checkout-user {
+﻿page-checkout-user {
+  .title-text {
+    font-size: 30px;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 
+  .scann-icon {
+    font-size: 250px;
+    margin-left: 23%;
+  }
+
+  .blue-button {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: #40afce;
+  }
+
+  .blue-button-text {
+    color: white;
+  }
 }

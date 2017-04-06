@@ -20,13 +20,11 @@ import { ItemsDetailsAdminPage } from '../pages/items-details-admin/items-detail
 
 import { EntityAdminPage } from '../pages/entity-admin/entity-admin';
 
-import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
 import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/checkout-item-picked/checkout-item-picked';
 import { CheckoutUserPickedPage } from '../pages/checkout-user-picked/checkout-user-picked';
-import { CheckoutScanItemPage } from '../pages/checkout-scan-item/checkout-scan-item';
-import { CheckoutScanUserPage } from '../pages/checkout-scan-user/checkout-scan-user';
+
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
@@ -59,15 +57,12 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
 
-    EntityAdminPage,
+      EntityAdminPage,
 
-    CheckoutFirstPage,
     CheckoutItemsPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
-      CheckoutUserPickedPage,
-      CheckoutScanItemPage,
-      CheckoutScanUserPage
+      CheckoutUserPickedPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -92,15 +87,12 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
 
-    EntityAdminPage,
+      EntityAdminPage,
 
-    CheckoutFirstPage,
     CheckoutItemsPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
-      CheckoutUserPickedPage,
-      CheckoutScanItemPage,
-      CheckoutScanUserPage
+      CheckoutUserPickedPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

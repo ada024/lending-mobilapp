@@ -1,8 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import firebase from 'firebase';
+import {AngularFire} from 'angularfire2';
 import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
 import { TagUtil, Tag } from '../../classes/tag';
 
@@ -21,16 +20,20 @@ export class CheckoutItemsPage {
 	itemsList: any;
 	loadedItemList: any;
     searchItemString = '';
-    showList: boolean;
+    
 
     tag: Tag;
     close = false;
     dataReceived: boolean;
+    toggleText = "Show item list";
+    showList: boolean;
+    showTagInfo: boolean;
 
 	
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone) {
         this.showList = false;
+        this.showTagInfo = true;
         db.loadItems(this.onDataLoaded.bind(this));
 
         this.tag = new Tag();
@@ -67,8 +70,13 @@ export class CheckoutItemsPage {
   }
 
   searchItems() {
-      this.showList = true;
-      this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
+      if (this.searchItemString != " ") {
+          this.showList = true;
+          this.showTagInfo = false;
+          this.toggleText = "Show tag info"
+      }
+          this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
+   
   }
 
 goToCheckoutItemPickedPage(item){
@@ -76,6 +84,21 @@ goToCheckoutItemPickedPage(item){
 	this.navCtrl.push(CheckoutItemPickedPage)
 	
 }
+
+
+    toggleView() {
+        if (this.toggleText == "Show item list") {
+            this.toggleText = "Show tag info";
+            this.showList = true;
+            this.showTagInfo = false
+        }
+        else if (this.toggleText == "Show tag info") {
+            this.toggleText = "Show item list";
+            this.showList = false;
+            this.showTagInfo = true;
+        }
+
+    }
     
 }
 

@@ -1,10 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import firebase from 'firebase';
 import { DatabaseService } from '../../providers/database-service';
 import { CheckoutUserPage } from '../checkout-user/checkout-user';
 import { CheckoutItemsPage } from '../checkout-items/checkout-items';
-import { CheckoutScanUserPage } from '../checkout-scan-user/checkout-scan-user';
 
 /*
   Generated class for the CheckoutItemPicked page.
@@ -32,9 +30,7 @@ export class CheckoutItemPickedPage {
   goToCheckoutItemsPage() {
       this.navCtrl.push(CheckoutItemsPage);
   }
-  goToCheckoutScanUserPage() {
-      this.navCtrl.push(CheckoutScanUserPage);
-  }
+ 
   goToCheckoutUserPage() {
       this.navCtrl.push(CheckoutUserPage);
   }

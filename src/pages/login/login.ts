@@ -1,19 +1,19 @@
-﻿import {Component, ElementRef, OnInit} from '@angular/core';
-import { AngularFire,AuthProviders,AuthMethods } from 'angularfire2';
+﻿import { Component, ElementRef, OnInit } from '@angular/core';
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { NavController } from 'ionic-angular';
 
-//import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
+import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+    selector: 'page-login',
+    templateUrl: 'login.html'
 })
-export class LoginPage implements OnInit{
-  root:any;
-  constructor(public navCtrl: NavController,public element: ElementRef, public af: AngularFire ){
-  this.element.nativeElement
-  }
-
+export class LoginPage {
+    root: any;
+    constructor(public navCtrl: NavController, public element: ElementRef, public af: AngularFire) {
+        this.element.nativeElement
+    }
+    
 ngOnInit(){
   this.root = this.element.nativeElement;
   console.log(this.root);
@@ -22,7 +22,8 @@ ngOnInit(){
   fbBtn.addEventListener('click',this.onFacebookLogin.bind(this));
 
 }
-
+    
+    
 onFacebookLogin(e){
   let self = this;
   this.af.auth.login({
@@ -39,10 +40,10 @@ onFacebookLogin(e){
     console.log(error);
   });
 }
+    /*
 
-/*
-  login() {
-    this.navCtrl.push(ChooseAccountTypePage);
-  }
-*/
+    login() {
+        this.navCtrl.push(ChooseAccountTypePage);
+    }
+    */
 }

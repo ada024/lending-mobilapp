@@ -16,6 +16,7 @@ export class ChooseAccountTypePage {
       console.log('not login yet, redirect to login page');
       this.navCtrl.push(LoginPage);
     }
+      
 
 
   }

@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>CheckoutUser</ion-title>
+    <ion-buttons end>
+      <button class="blue-button" (click)="toggleView()">
+        <div class="blue-button-text"><b>{{toggleText}}</b></div>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,10 +22,16 @@
 <ion-searchbar [(ngModel)]="searchUserString"
                  (ionInput)="searchUsers($event)">
   </ion-searchbar>
-<ion-list>
+<ion-list *ngIf="showList">
     <ion-item *ngFor="let user of usersList">
       <div class="name" (click)="goToCheckoutUserPickedPage(user)">{{user.name}}</div>
     </ion-item>
   </ion-list>
+
+  <p class=title-text *ngIf="showTagInfo">
+    <b>Place your device on the users NFC tag</b>
+  </p>
+
+  <ion-icon name="finger-print" class="scann-icon" *ngIf="showTagInfo"></ion-icon>
 
 </ion-content>
