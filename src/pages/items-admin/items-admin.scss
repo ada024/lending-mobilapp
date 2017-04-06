@@ -1,47 +1,11 @@
 page-items-admin {
 
-  .title-text {
-    font-size: 30px;
-    text-align: center;
-  }
-
-  .items-icon {
-    font-size: 100px;
-    display: block;
-    margin: auto;
-    width: 40%;
-  }
-
-  .blue-button {
-    width: 100%;
-    height: 70px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #40afce;
-  }
-
-  .blue-button-text {
-    font-size: 25px;
-    color: white;
-    margin-top: 15px;
-    float: left;
-  }
-
-  .blue-button-icon {
-    font-size: 55px;
-    color: white;
-    margin-left: 15px;
-    margin-right: 15px;
-    float: left;
-  }
-
   .add-icon {
     font-size: 80px;
     top: 80%;
     left: 50%;
     color: green;
     position: absolute;
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 
@@ -50,7 +14,6 @@ page-items-admin {
     top: 90%;
     left: 50%;
     position: absolute;
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 }

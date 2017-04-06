@@ -9,14 +9,26 @@
 
 <ion-content padding>
 
-  <p class=title-text>
+  <p class=title>
     <b>{{titleText}}</b>
   </p>
 
-  <ion-icon name="thumbs-up" class="item-image"></ion-icon>
+  <ion-icon name="image" class="item-image"></ion-icon>
+
+  <p class="item-name">
+    <b>{{itemName}}</b>
+  </p>
+
+  <div class="bar">
+    <div class="progress"></div>
+  </div>
+
+  <p class="progress-text">
+    100%
+  </p>
 
   <button class="blue-button" (click)="goBackToItemsAdminPage()">
-    <div class="blue-button-text">
+    <div class="button-text">
       <b>Done</b>
     </div>
   </button>
