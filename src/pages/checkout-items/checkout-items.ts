@@ -3,7 +3,6 @@ import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
-import { TagUtil, Tag } from '../../classes/tag';
 
 /*
   Generated class for the CheckoutItems page.
@@ -22,7 +21,6 @@ export class CheckoutItemsPage {
     searchItemString = '';
     
 
-    tag: Tag;
     close: boolean;
     dataReceived: boolean;
     toggleText = "Show item list";
@@ -35,12 +33,11 @@ export class CheckoutItemsPage {
         this.showList = false;
         this.showTagInfo = true;
         db.loadItems(this.onDataLoaded.bind(this));
-
-        this.tag = new Tag();
+       
 
         if ((<any>window).nfc != null) {
-            (<any>window).nfc.addNdefListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
-            (<any>window).nfc.addTagDiscoveredListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
+            (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
+            (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
         }
 		}
 
@@ -48,13 +45,11 @@ export class CheckoutItemsPage {
     console.log('ionViewDidLoad CheckoutItemsPage');
     }
   
-    tagListenerSuccess(tagEvent: Event) {
-        console.log(tagEvent);
+   
+    onTagFound(nfcEvent) {
         if (!this.close) {
             this.zone.run(() => {
-                this.tag = TagUtil.readTagFromJson(tagEvent);
-                var tagId = (<any>window).nfc.bytesToHexString(this.tag.id);
-                this.dataReceived = true;
+                var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 var item = this.db.getItemByTag(tagId);
                 this.confirmItem(item);
             });

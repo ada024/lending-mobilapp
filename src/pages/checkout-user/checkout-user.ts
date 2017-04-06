@@ -2,7 +2,6 @@
 import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
 import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
-import { TagUtil, Tag } from '../../classes/tag';
 
 /*
   Generated class for the CheckoutUser page.
@@ -20,7 +19,7 @@ export class CheckoutUserPage {
     loadedUserList: any;
     searchUserString = '';
 
-    tag: Tag;
+    //tag: Tag;
     close = false;
     dataReceived: boolean;
     toggleText = "Show user list";
@@ -33,33 +32,30 @@ export class CheckoutUserPage {
         this.showTagInfo = true;
         db.loadUsers(this.onDataLoaded.bind(this));
 
-        this.tag = new Tag();
-
-        if ((<any>window).nfc != null) {
-            (<any>window).nfc.addNdefListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
-            (<any>window).nfc.addTagDiscoveredListener((tagEvent: Event) => this.tagListenerSuccess(tagEvent));
+        //this.tag = new Tag();
+        /*
+       if ((<any>window).nfc != null) {
+            (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
+            (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
         }
-            }
+		}
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad CheckoutUserPage');
     }
-
-    tagListenerSuccess(tagEvent: Event) {
-        console.log(tagEvent);
+    
+     onTagFound(nfcEvent) {
         if (!this.close) {
             this.zone.run(() => {
-                this.tag = TagUtil.readTagFromJson(tagEvent);
-                var tagId = (<any>window).nfc.bytesToHexString(this.tag.id);
-                this.dataReceived = true;
-                var item = this.db.getItemByTag(tagId);
-                this.db.addTemporaryItems(item);
-                this.navCtrl.push(CheckoutUserPickedPage);
+                var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
+                var user = this.db.getUserByTag(tagId);
+                this.confirmUser(user);
             });
             this.close = true;
         }
     }
-
+    */
+    }
     onDataLoaded(loadedList) {
         this.zone.run(() => {
             this.usersList = this.loadedUserList = loadedList;
