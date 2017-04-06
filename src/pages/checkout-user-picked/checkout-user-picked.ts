@@ -53,22 +53,23 @@ export class CheckoutUserPickedPage {
         this.showToast('Loan added to list. Waiting for approval from ' + this.user.name, 'bottom');
 
         for (let item of this.itemList) {
-            console.log("itemname" + item.name + "username" + this.user.name);
             this.db.addPendingLoan(item, this.user);
         }
 
         this.db.removeTemporaryItems();
 
 
-
-        this.navCtrl.push(HomeAdminPage);
+        this.navCtrl.remove(2, 3);
+        this.navCtrl.pop();
+        //this.navCtrl.push(HomeAdminPage);
     }
 
-    showToast(message, position) {
-        this.platform.ready().then(() =>Toast.show(message, "long", position).subscribe(
-            toast => {
-                console.log(toast);
-            }
-        ));
-    }
+        showToast(message, position) {
+            this.platform.ready().then(() => Toast.show(message, "long", position).subscribe(
+                toast => {
+                    console.log(toast);
+                }
+            ));
+        }
+    
 }

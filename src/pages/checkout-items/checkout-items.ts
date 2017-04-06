@@ -1,6 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../providers/database-service';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
 import { TagUtil, Tag } from '../../classes/tag';
@@ -31,7 +31,7 @@ export class CheckoutItemsPage {
 
 	
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController) {
         this.showList = false;
         this.showTagInfo = true;
         db.loadItems(this.onDataLoaded.bind(this));
@@ -56,8 +56,7 @@ export class CheckoutItemsPage {
                 var tagId = (<any>window).nfc.bytesToHexString(this.tag.id);
                 this.dataReceived = true;
                 var item = this.db.getItemByTag(tagId);
-                this.db.addTemporaryItems(item);
-                this.navCtrl.push(CheckoutItemPickedPage);
+                this.confirmItem(item);
             });
             this.close = true;
         }
@@ -91,6 +90,7 @@ goToCheckoutItemPickedPage(item){
             this.toggleText = "Show tag info";
             this.showList = true;
             this.showTagInfo = false
+            this.searchItemString = "";
         }
         else if (this.toggleText == "Show tag info") {
             this.toggleText = "Show item list";
@@ -98,6 +98,30 @@ goToCheckoutItemPickedPage(item){
             this.showTagInfo = true;
         }
 
+    }
+
+    confirmItem(item) {
+        let alert = this.alertCtrl.create({
+            title: 'Is this the item you ment to scan?',
+            message: 'Item scanned: ' + item.name,
+            buttons: [
+                {
+                    text: 'No',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Yes',
+                    handler: () => {
+                        this.goToCheckoutItemPickedPage(item);
+                        this.db.addTemporaryItems(item);
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
     
 }

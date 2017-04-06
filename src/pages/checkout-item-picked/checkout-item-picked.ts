@@ -18,7 +18,7 @@ import { CheckoutItemsPage } from '../checkout-items/checkout-items';
 export class CheckoutItemPickedPage {
 	itemList;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
 	  this.itemList = this.db.getTemporaryItems();
 	  
   }
@@ -28,14 +28,18 @@ export class CheckoutItemPickedPage {
   }
   
   goToCheckoutItemsPage() {
-      this.navCtrl.push(CheckoutItemsPage);
+      this.navCtrl.pop();
   }
  
   goToCheckoutUserPage() {
       this.navCtrl.push(CheckoutUserPage);
   }
 
-
+  goHome() {
+      this.db.removeTemporaryItems();
+      this.navCtrl.remove(2, 3);
+      this.navCtrl.pop();
+  }
   removeItem(item) {
               this.db.removeTemporaryItem(item);
           }

@@ -1,15 +1,16 @@
-page-checkout-item-picked {
-.title-text {
+﻿page-checkout-item-picked {
+  .title-text {
     font-size: 30px;
     color: #825c47;
     text-align: center;
   }
 
-.button-container {
+  .button-container {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-.blue-button {
+
+  .blue-button {
     width: 100%;
     height: 70px;
     margin-top: 5px;
@@ -20,5 +21,9 @@ page-checkout-item-picked {
   .blue-button-text {
     font-size: 25px;
     color: white;
+  }
+
+  .customIcon {
+    font-size: 1.7em;
   }
 }

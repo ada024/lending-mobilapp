@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
-import firebase from 'firebase';
 import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
 import { TagUtil, Tag } from '../../classes/tag';
 
@@ -84,7 +83,7 @@ export class CheckoutUserPage {
         if (this.toggleText == "Show user list") {
             this.toggleText = "Show tag info";
             this.showList = true;
-            this.showTagInfo = false
+            this.showTagInfo = false;
         }
         else if (this.toggleText == "Show tag info") {
             this.toggleText = "Show user list";
