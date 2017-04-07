@@ -327,5 +327,8 @@ export class DatabaseService {
     this.af.auth.logout();
   }
 
+  isLoggedIn() {
+    return this.authState != null;
+  }
 
 }

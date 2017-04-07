@@ -1,5 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../providers/database-service';
 import { HomeAdminPage } from '../home-admin/home-admin';
 import { HomeUserPage } from '../home-user/home-user';
 import {LoginPage} from "../login/login";
@@ -9,9 +10,11 @@ import {LoginPage} from "../login/login";
   templateUrl: 'choose-account-type.html'
 })
 export class ChooseAccountTypePage {
+  currentUser = "";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+    this.currentUser = this.db.currentUserName;
    /* if(!this.isAlreadyLoggedIn()){
       console.log('not login yet, redirect to login page');
       this.navCtrl.push(LoginPage);

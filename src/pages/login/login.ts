@@ -3,7 +3,7 @@ import { AngularFire } from 'angularfire2';
 import { NavController } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 
-//import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
+import { ChooseAccountTypePage } from '../choose-account-type/choose-account-type';
 
 @Component({
   selector: 'page-login',
@@ -12,28 +12,28 @@ import { DatabaseService } from '../../providers/database-service';
 export class LoginPage{
   //root:any;
   userProfile: any = null;
-  constructor(public navCtrl: NavController, private auth: DatabaseService ){
-
-  }
+  
+  constructor(public navCtrl: NavController, private auth: DatabaseService ){}
 
   loginWithFacebook(): void{
-    this.auth.loginWithFacebook().subscribe((success) => {
+
+    if(!this.auth.isLoggedIn) {
+      this.auth.loginWithFacebook().subscribe((success) => {
       console.log(success);
+      this.navCtrl.push(ChooseAccountTypePage);
   //    this.userProfile = success;               // Brukes for å hente bilde og navn på login bruker til html
     }, err => {
       console.log(err);
     });
   }
-
+  else {
+    this.navCtrl.push(ChooseAccountTypePage);
+  }
+  }
 
   logout(): void {
     this.auth.logout();
   }
 
 
-/*
-  login() {
-    this.navCtrl.push(ChooseAccountTypePage);
-  }
-*/
 }
