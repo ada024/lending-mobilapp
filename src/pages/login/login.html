@@ -3,24 +3,10 @@
   <ion-icon name="logo-android" class="logo"></ion-icon>
 
   <h1>Borrowing</h1>
-
-<!---------------------------- Demo user info from FB -------------------------->
-  <ion-row>
-    <ion-item>
-      <div *ngIf="auth.authState">current user is {{auth.currentUserName}}</div>
-      <div *ngIf="auth.authState">current user Email: {{auth.currentUserEmail}}</div>
-      <div *ngIf="auth.authState">current user PhotoURI: {{auth.currentUserPhotoURI}}</div>
-      <button (click)="logout()" ion-button block>Log out</button>
-    </ion-item>
-  </ion-row>
-
-<!-- ---------------------------------  -->
-
   <button ion-button large icon-left (click)="loginWithFacebook()" class="button">
     <ion-icon name="logo-facebook"></ion-icon>
     Sign in with Facebook
   </button>
--->
 
 
 </ion-content>

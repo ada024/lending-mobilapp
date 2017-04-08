@@ -3,11 +3,17 @@
   <ion-navbar>
     <ion-title>{{currentUser}}</ion-title>
   </ion-navbar>
-  
+
 </ion-header>
 
 
 <ion-content padding>
+
+  <!---------------------------- Testing, userinfo from FB -------------------------->
+  <div *ngIf="auth.authState">current user is {{auth.currentUserName}}</div>
+  <div *ngIf="auth.authState">current user Email: {{auth.currentUserEmail}}</div>
+  <div *ngIf="auth.authState"><img [src]="auth.currentUserPhotoURI"/></div>
+  <!-- ---------------------------------  -->
 
   <p class=title-text>
     <b>Which account do you want?</b>
@@ -32,5 +38,9 @@
   <p class=info-text>
     (You can change this any time in your settings)
   </p>
+
+  <!-- log out test -->
+  <button (click)="logout()" ion-button block>Log out</button>
+
 
 </ion-content>

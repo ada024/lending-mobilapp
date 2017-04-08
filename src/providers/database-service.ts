@@ -23,7 +23,6 @@ export class DatabaseService {
   itemsRef: any;
   entitiesRef: any;
 
-
   usersRef: any;
   usersList: any;
   userReturn: any;
@@ -333,18 +332,42 @@ export class DatabaseService {
 
   //FACEBOOK AUTH
   loginWithFacebook() {
+
     return Observable.create(observer => {
+      //  PHONE or BROWSER?
       if (this.platform.is('cordova')) {
         return Facebook.login(['email', 'public_profile']).then(res => {
           const facebookCredential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
           this.firebase.auth().signInWithCredential(facebookCredential).then(()=>{
 
+            // Create user record in db
+           // if(this.authState){
+            /*
+             let user =this.authState.auth;
+              let res = this.authState.auth.displayName.split(" ");
+              this.users.child(user.uid).push({
+                email: user.email,
+                photoURL: user.photoURL,
+                fullname: user.displayName,
+                name:{
+                  first: res[0],
+                  middle: res[1],
+                  last: res[2],
+                }
+              });
+            */
+      //      }
+
+
+
+
             observer.next();
           }).catch(error => {
-            //console.log(error);
+         //   console.log will not be displayed on the phone, use toast instead
             observer.error(error);
           });
         });
+        //ON BROWSER
       } else {
         return this.af.auth.login({
           provider: AuthProviders.Facebook,
@@ -361,15 +384,15 @@ export class DatabaseService {
 
   // FB USER INFO
   get currentUserName():string{
-    return this.authState?this.authState.auth.displayName:'';
+    return this.authState?this.authState.auth.displayName:'no Name';
   }
 
   get currentUserEmail():string{
-    return this.authState?this.authState.auth.email:'';
+    return this.authState?this.authState.auth.email:'no Email';
   }
 
   get currentUserPhotoURI():string{
-    return this.authState?this.authState.auth.photoURL:'';
+    return this.authState?this.authState.auth.photoURL:'no photo';
   }
 
 //FACEBOOK LOGOUT
