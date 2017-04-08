@@ -17,7 +17,7 @@ export class LoginPage{
 
   loginWithFacebook(): void{
 
-    if(!this.auth.isLoggedIn) {
+    if(!this.auth.isLoggedIn()) {
       this.auth.loginWithFacebook().subscribe((success) => {
       console.log(success);
       this.navCtrl.push(ChooseAccountTypePage);

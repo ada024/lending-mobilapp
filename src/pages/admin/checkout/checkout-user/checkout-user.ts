@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { DatabaseService } from '../../providers/database-service';
+import { DatabaseService } from '../../../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
 import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
 

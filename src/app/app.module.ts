@@ -1,38 +1,39 @@
 ﻿import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { AngularFireModule } from 'angularfire2';
+import { DatabaseService} from '../providers/database-service'
+import { DeveloperToolsPage } from '../pages/admin/developer-tools/developer-tools';
 
 import { LoginPage } from '../pages/login/login';
 import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
-import { HomeAdminPage } from '../pages/home-admin/home-admin';
-import { HomeUserPage } from '../pages/home-user/home-user';
+import { HomeAdminPage } from '../pages/admin/home-admin/home-admin';
+import { HomeUserPage } from '../pages/user/home-user/home-user';
 
-import { DeveloperToolsPage } from '../pages/developer-tools/developer-tools';
+import { ItemsAdminPage } from '../pages/admin/items/items-admin/items-admin';
+import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
+import { ItemsAddPhotoAdminPage } from '../pages/admin/items/items-add-photo-admin/items-add-photo-admin';
+import { ItemsAddTagAdminPage } from '../pages/admin/items/items-add-tag-admin/items-add-tag-admin';
+import { ItemsAddTagScannAdminPage } from '../pages/admin/items/items-add-tag-scann-admin/items-add-tag-scann-admin';
+import { ItemsAddSuccessAdminPage } from '../pages/admin/items/items-add-success-admin/items-add-success-admin';
+import { ItemsListAdminPage } from '../pages/admin/items/items-list-admin/items-list-admin';
+import { ItemsDetailsAdminPage } from '../pages/admin/items/items-details-admin/items-details-admin';
 
-import { ItemsAdminPage } from '../pages/items-admin/items-admin';
-import { ItemsAddNameAdminPage } from '../pages/items-add-name-admin/items-add-name-admin';
-import { ItemsAddPhotoAdminPage } from '../pages/items-add-photo-admin/items-add-photo-admin';
-import { ItemsAddTagAdminPage } from '../pages/items-add-tag-admin/items-add-tag-admin';
-import { ItemsAddTagScannAdminPage } from '../pages/items-add-tag-scann-admin/items-add-tag-scann-admin';
-import { ItemsAddSuccessAdminPage } from '../pages/items-add-success-admin/items-add-success-admin';
-import { ItemsListAdminPage } from '../pages/items-list-admin/items-list-admin';
-import { ItemsDetailsAdminPage } from '../pages/items-details-admin/items-details-admin';
+import { EntityAdminPage } from '../pages/admin/entities/entity-admin/entity-admin';
+import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/entity-add-admin';
+import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
+import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
 
-import { EntityAdminPage } from '../pages/entity-admin/entity-admin';
-
-
-import { DatabaseService} from '../providers/database-service'
-import { CheckoutFirstPage } from '../pages/checkout-first/checkout-first';
-import { CheckoutItemsPage } from '../pages/checkout-items/checkout-items';
-import { CheckoutUserPage } from '../pages/checkout-user/checkout-user';
-import { CheckoutItemPickedPage } from '../pages/checkout-item-picked/checkout-item-picked';
-import { CheckoutUserPickedPage } from '../pages/checkout-user-picked/checkout-user-picked';
+import { CheckoutFirstPage } from '../pages/admin/checkout/checkout-first/checkout-first'; //????
+import { CheckoutItemsPage } from '../pages/admin/checkout/checkout-items/checkout-items';
+import { CheckoutUserPage } from '../pages/admin/checkout/checkout-user/checkout-user';
+import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-picked/checkout-item-picked';
+import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
 
 
-// Import the AF2 Module
-import { AngularFireModule } from 'angularfire2';
 
-// AF2 Settings
+
+//Firebase Settings
 export const firebaseConfig = {
   apiKey: "AIzaSyAHfCQArz_9VdSVJ0rGhaEMYeZuv8JJCIY",
   authDomain: "borrowing-app.firebaseapp.com",
@@ -48,7 +49,6 @@ export const firebaseConfig = {
     ChooseAccountTypePage,
     HomeAdminPage,
     HomeUserPage,
-
     DeveloperToolsPage,
 
     ItemsAdminPage,
@@ -60,12 +60,15 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
 
-      EntityAdminPage,
+    EntityAdminPage,
+    EntityAddAdminPage,
+    EntityListAdminPage,
+    EntityDetailsAdminPage,
 
     CheckoutItemsPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
-      CheckoutUserPickedPage
+    CheckoutUserPickedPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -78,7 +81,6 @@ export const firebaseConfig = {
     ChooseAccountTypePage,
     HomeAdminPage,
     HomeUserPage,
-
     DeveloperToolsPage,
 
     ItemsAdminPage,
@@ -90,12 +92,15 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
 
-      EntityAdminPage,
+    EntityAdminPage,
+    EntityAddAdminPage,
+    EntityListAdminPage,
+    EntityDetailsAdminPage,
 
     CheckoutItemsPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
-      CheckoutUserPickedPage
+    CheckoutUserPickedPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })

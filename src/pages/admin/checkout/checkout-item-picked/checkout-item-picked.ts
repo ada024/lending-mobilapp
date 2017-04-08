@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { DatabaseService } from '../../providers/database-service';
+import { DatabaseService } from '../../../../providers/database-service';
 import { CheckoutUserPage } from '../checkout-user/checkout-user';
 import { CheckoutItemsPage } from '../checkout-items/checkout-items';
 

@@ -34,10 +34,11 @@ export class DatabaseService {
     this.entitys = af.database.list('/entitys');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
-	this.temporaryItems = af.database.list('/temporaryItems');
-	this.firebase = firebase;  //Add reference to native firebase SDK
-	this.itemsRef = firebase.database().ref('/items');
-	this.usersRef = firebase.database().ref('/users');
+	  this.temporaryItems = af.database.list('/temporaryItems');
+  	this.firebase = firebase;  //Add reference to native firebase SDK
+  	this.itemsRef = firebase.database().ref('/items');
+  	this.usersRef = firebase.database().ref('/users');
+
 
 // CURREMT USER INFO
     this.af.auth.subscribe((state: FirebaseAuthState) => {

@@ -1,9 +1,9 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { DatabaseService } from '../../providers/database-service';
-import { CheckoutItemsPage } from '../checkout-items/checkout-items';
-import { ItemsAdminPage } from '../items-admin/items-admin';
-import { EntityAdminPage } from '../entity-admin/entity-admin';
+import { DatabaseService } from '../../../providers/database-service';
+import { CheckoutItemsPage } from '../checkout/checkout-items/checkout-items';
+import { ItemsAdminPage } from '../items/items-admin/items-admin';
+import { EntityAdminPage } from '../entities/entity-admin/entity-admin';
 import { DeveloperToolsPage } from '../developer-tools/developer-tools';
 
 @Component({

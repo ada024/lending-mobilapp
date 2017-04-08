@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
-import { HomeAdminPage } from '../home-admin/home-admin';
-import { HomeUserPage } from '../home-user/home-user';
+import { HomeAdminPage } from '../admin/home-admin/home-admin';
+import { HomeUserPage } from '../user/home-user/home-user';
 import {LoginPage} from "../login/login";
 
 @Component({
