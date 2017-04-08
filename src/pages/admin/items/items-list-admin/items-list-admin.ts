@@ -10,7 +10,7 @@ import { DatabaseService } from '../../../../providers/database-service';
 export class ItemsListAdminPage {
 	itemsList: any;
 	loadedItemList: any;
-	searchItemString = '';
+	searchString = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
@@ -23,8 +23,8 @@ export class ItemsListAdminPage {
     });
   }
 
-  searchItems(){
-    this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
+  search(){
+    this.itemsList = this.db.search(this.loadedItemList, this.searchString, "v.name");
   }
 
   removeItem(item) {

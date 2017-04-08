@@ -12,23 +12,18 @@ export class ItemsAddSuccessAdminPage {
   itemName = "";
   tagId = "0";
 
-  constructor(public navCtrl: NavController,
-  public navParams: NavParams,
-  public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
     this.itemName = navParams.get("itemName");
-    this.tagId = navParams.get("tagId");
-    if(this.tagId == null) {this.tagId = "0";}
-    this.add();
-
-    this.navCtrl.remove(2, 10);
-  }
-
-  add() {
+    let tagId = navParams.get("tagId");
+    if(tagId != null) {
+      this.tagId = tagId;
+    }
     this.db.addItem(this.itemName, this.tagId);
+    this.navCtrl.remove(3, 10);
   }
+
 
   goBackToItemsAdminPage() {
-    this.navCtrl.remove(2, 10);
     this.navCtrl.pop();
   }
 }

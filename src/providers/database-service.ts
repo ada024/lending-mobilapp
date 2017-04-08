@@ -14,36 +14,41 @@ export class DatabaseService {
   items: FirebaseListObservable<any>;
   users: FirebaseListObservable<any>;
   loans: FirebaseListObservable<any>;
-  entitys: FirebaseListObservable<any>;
+  entities: FirebaseListObservable<any>;
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
   temporaryItems: FirebaseListObservable<any>;
   public firebase : any;
   private authState: FirebaseAuthState;
   itemsRef: any;
+  entitiesRef: any;
 
 
   usersRef: any;
   usersList: any;
   userReturn: any;
 
+  currentUser: any;
+
   constructor(public http: Http, public af: AngularFire, private platform: Platform) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
     this.loans = af.database.list('/loans');
-    this.entitys = af.database.list('/entitys');
+    this.entities = af.database.list('/entities');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
 	  this.temporaryItems = af.database.list('/temporaryItems');
   	this.firebase = firebase;  //Add reference to native firebase SDK
   	this.itemsRef = firebase.database().ref('/items');
   	this.usersRef = firebase.database().ref('/users');
+    this.entitiesRef = firebase.database().ref('/entities');
 
 
 // CURREMT USER INFO
     this.af.auth.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
     });
+
 
 }
 
@@ -95,17 +100,22 @@ export class DatabaseService {
     this.loadDataFromRef(this.itemsRef, onDataLoaded);
   }
 
+
+
+
   //Methods to add and get users
 
-  addUser(name) {
+  addUser(name, entity) {
     this.users.push({
-      name: name
+      name: name,
+      entity: entity
     });
   }
 
   getUsers() {
     return this.users;
   }
+
   getUserByTag(id) {
       var foundUser;
       this.users.subscribe(users => {
@@ -131,6 +141,10 @@ export class DatabaseService {
     });
 	  return this.userReturn;
 	}
+
+
+
+
 
   addTemporaryItems(item) {
       this.temporaryItems.push({
@@ -205,15 +219,46 @@ export class DatabaseService {
 
   //Methods to add and get entitys
 
-  addEntity(entityName, owner) {
-    this.entitys.push({
-      entityName: entityName,
-      owner: owner
+  addEntity(name) {
+    this.entities.push({
+      name: name,
+      owner: this.currentUserName
     });
   }
 
   getEntitys() {
-    return this.entitys;
+    return this.entities;
+  }
+
+  loadEntities(onDataLoaded){
+    this.loadDataFromRef(this.entitiesRef, onDataLoaded);
+  }
+
+  loadCurrentEntity(onDataLoaded){
+    this.users.subscribe( users => {
+      users.forEach( user => {
+        if(user.name == this.currentUserName) {
+          onDataLoaded(user.entity);
+        }
+      });
+    });
+  }
+
+  setEntity(entity) {
+    this.users.update(this.currentUser.$key, {
+      name: this.currentUser.name,
+      entity: entity.name
+    });
+  }
+
+  setCurrentUser() {
+    this.users.subscribe( users => {
+      users.forEach( user => {
+        if(user.name == this.currentUserName) {
+          this.currentUser = user;
+        }
+      });
+    });
   }
 
 
@@ -222,13 +267,10 @@ export class DatabaseService {
   //Developer tools
 
   populateDatabase() {
-    this.addEntity("Faculty of Art, Bergen", "Daniel");
+    this.addEntity("Faculty of Art, Bergen");
     this.addItem("iphone lader", "1gf13gf1");
     this.addItem("android lader", "6554y5hh");
     this.addItem("camera", "876ur5htr");
-    this.addUser("Daniel");
-    this.addUser("Younus");
-    this.addUser("Andreas");
     this.addPendingUser("John smith", "Faculty of Art, Bergen");
     this.addPendingUser("John fisher", "Faculty of Art, Bergen");
     this.addLoan("HDMI cable");
@@ -238,7 +280,7 @@ export class DatabaseService {
   }
 
   clearDatabase() {
-    this.entitys.remove();
+    this.entities.remove();
     this.items.remove();
     this.users.remove();
     this.loans.remove();
@@ -252,12 +294,19 @@ export class DatabaseService {
   //fetches firebase data and sends it to the onDataLoaded function
 
   loadDataFromRef(ref, onDataLoaded) {
-    ref.on('value', (data) => {
-      let list = [];
-      data.forEach(node => {
-        list.push(node.val());
-        onDataLoaded(list);
-      });
+    ref.once('value', (snapshot) => {
+      if(snapshot.val() !== null) {
+        ref.on('value', (data) => {
+         let list = [];
+          data.forEach(node => {
+            list.push(node.val());
+           onDataLoaded(list);
+         });
+        });
+      }
+      else {
+        onDataLoaded([]);
+      }
     });
   }
 
@@ -332,4 +381,24 @@ export class DatabaseService {
     return this.authState != null;
   }
 
+
+
+
+  setup() {
+    this.setCurrentUser();
+    this.loadUsers(this.onDataLoaded.bind(this));
+  }
+
+  onDataLoaded(loadedList) {
+
+    let newUser = true;
+    for(let i = 0; i < loadedList.length; i++) {
+      if(loadedList[i].name == this.currentUserName) {
+        newUser = false;
+      }
+    }
+    if(newUser) {
+      this.addUser(this.currentUserName, "null");
+    }
+  }
 }

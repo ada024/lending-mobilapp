@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../../../providers/database-service';
 
 
 @Component({
@@ -7,8 +8,16 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'entity-add-admin.html'
 })
 export class EntityAddAdminPage {
+  currentUser = "";
+  entityName = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+    this.currentUser = this.db.currentUserName;
+  }
 
+  addNewEntity() {
+    this.db.addEntity(this.entityName);
+    this.navCtrl.pop();
+  }
 
 }

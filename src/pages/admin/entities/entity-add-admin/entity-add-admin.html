@@ -1,9 +1,4 @@
-<!--
-  Generated template for the EntityAddAdmin page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +9,21 @@
 
 
 <ion-content padding>
+
+  <p class=title>
+    <b>New Entity</b>
+  </p>
+
+  <div>
+    <ion-item>
+      <ion-input placeholder="Entity name"  [(ngModel)]="entityName"></ion-input>
+    </ion-item>
+  </div>
+
+  <button class="blue-button" (click)="addNewEntity()">
+    <div class="button-text">
+      <b>Done</b>
+    </div>
+  </button>
 
 </ion-content>

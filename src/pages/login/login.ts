@@ -20,15 +20,13 @@ export class LoginPage{
     if(!this.auth.isLoggedIn()) {
       this.auth.loginWithFacebook().subscribe((success) => {
       console.log(success);
-      this.navCtrl.push(ChooseAccountTypePage);
   //    this.userProfile = success;               // Brukes for å hente bilde og navn på login bruker til html
     }, err => {
       console.log(err);
     });
   }
-  else {
-    this.navCtrl.push(ChooseAccountTypePage);
-  }
+  this.auth.setup();
+  this.navCtrl.push(ChooseAccountTypePage);
   }
 
   logout(): void {
