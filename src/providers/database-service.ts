@@ -142,6 +142,16 @@ export class DatabaseService {
 	  return this.userReturn;
 	}
 
+  setCurrentUser() {
+    this.users.subscribe( users => {
+      users.forEach( user => {
+        if(user.name == this.currentUserName) {
+          this.currentUser = user;
+        }
+      });
+    });
+  }
+
 
 
 
@@ -248,16 +258,6 @@ export class DatabaseService {
     this.users.update(this.currentUser.$key, {
       name: this.currentUser.name,
       entity: entity.name
-    });
-  }
-
-  setCurrentUser() {
-    this.users.subscribe( users => {
-      users.forEach( user => {
-        if(user.name == this.currentUserName) {
-          this.currentUser = user;
-        }
-      });
     });
   }
 
