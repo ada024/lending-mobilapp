@@ -6,8 +6,10 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'items-details-admin.html'
 })
 export class ItemsDetailsAdminPage {
+  modify = false;
+  item;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+    this.item = navParams.get("item");
   }
 }

@@ -1,3 +1,51 @@
 page-items-details-admin {
 
+  .edit-icon {
+    float: right;
+    font-size: 50px;
+  }
+
+  .item-image{
+    position: absolute;
+    font-size: 150px;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .image-button-container{
+    display: inline-block;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .image-button {
+    background-color: #40afce;
+  }
+
+  .description {
+    position: absolute;
+    top: 50%;
+  }
+
+  .status {
+    position: absolute;
+    top: 60%;
+  }
+
+  .button-container {
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .red-button {
+    width: 100%;
+    height: 70px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: red;
+  }
+
 }

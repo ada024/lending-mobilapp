@@ -16,7 +16,7 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let item of itemsList">
-      <ion-item>
+      <ion-item (click)="goToItemsDetailsAdminPage(item)">
         {{item.name}}
         <br/>
         {{item.id}}
