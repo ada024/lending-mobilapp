@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>entity-list-user</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-searchbar [(ngModel)]="searchString"
+                 (ionInput)="search()">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let entity of entitiesList">
+      <ion-item (click)="changeEntity(entity)">
+        {{entity.name}}
+        <br/>
+        {{entity.owner}}
+      </ion-item>
+      <ion-item-options>
+        <button danger (click)="removeItem(item)"> Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

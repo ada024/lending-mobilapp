@@ -30,6 +30,10 @@ import { CheckoutUserPage } from '../pages/admin/checkout/checkout-user/checkout
 import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-picked/checkout-item-picked';
 import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
 
+import { EntityUserPage } from '../pages/user/entities/entity-user/entity-user';
+import { EntityListUserPage } from '../pages/user/entities/entity-list-user/entity-list-user';
+import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-user/entity-details-user';
+
 
 
 
@@ -68,7 +72,11 @@ export const firebaseConfig = {
     CheckoutItemsPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
-    CheckoutUserPickedPage
+    CheckoutUserPickedPage,
+
+    EntityUserPage,
+    EntityListUserPage,
+    EntityDetailsUserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -100,7 +108,11 @@ export const firebaseConfig = {
     CheckoutItemsPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
-    CheckoutUserPickedPage
+    CheckoutUserPickedPage,
+
+    EntityUserPage,
+    EntityListUserPage,
+    EntityDetailsUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })

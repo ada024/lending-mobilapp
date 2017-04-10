@@ -1,3 +1,31 @@
 page-home-user {
 
+    .grey-button {
+    width: 100%;
+    height: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #d6d6d6;
+  }
+
+  .grey-button-icon {
+    font-size: 40px;
+    margin-right: 20px;
+    float: left;
+    display: inline-block;
+  }
+
+  .grey-button-text-container {
+    float: left;
+    display: inline-block;
+  }
+
+  .grey-button-text-title {
+    font-size: 20px;
+    float: left;
+  }
+
+  .grey-button-text-info {
+    float: left;
+  }
 }
