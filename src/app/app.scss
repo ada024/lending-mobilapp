@@ -81,3 +81,24 @@
     font-size: 25px;
     margin-top: 15px;
   }
+  
+  .modal-wrapper{
+position: absolute;
+width: 90vw;
+height: 60vh;
+top: 0; 
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+border-radius: 8px !important;
+overflow:hidden !important;
+}
+
+
+@media not all and (min-height: 600px) and (min-width: 768px) {
+  ion-modal ion-backdrop {
+    visibility: visible;
+  }
+}
+

@@ -24,11 +24,11 @@ import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/ent
 import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
 
-import { CheckoutFirstPage } from '../pages/admin/checkout/checkout-first/checkout-first'; //????
 import { CheckoutItemsPage } from '../pages/admin/checkout/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/admin/checkout/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-picked/checkout-item-picked';
 import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
+import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-alert';
 
 
 
@@ -68,7 +68,8 @@ export const firebaseConfig = {
     CheckoutItemsPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
-    CheckoutUserPickedPage
+    CheckoutUserPickedPage,
+	CustomAlertPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -100,7 +101,8 @@ export const firebaseConfig = {
     CheckoutItemsPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
-    CheckoutUserPickedPage
+    CheckoutUserPickedPage,
+	CustomAlertPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })

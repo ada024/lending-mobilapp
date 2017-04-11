@@ -1,8 +1,10 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
+import { CustomAlertPage } from '../custom-alert/custom-alert';
+
 
 /*
   Generated class for the CheckoutItems page.
@@ -26,10 +28,11 @@ export class CheckoutItemsPage {
     toggleText = "Show item list";
     showList: boolean;
     showTagInfo: boolean;
+	item: any;
 
 	
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
         this.showList = false;
         this.showTagInfo = true;
         db.loadItems(this.onDataLoaded.bind(this));
@@ -51,7 +54,7 @@ export class CheckoutItemsPage {
             this.zone.run(() => {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 var item = this.db.getItemByTag(tagId);
-                this.confirmItem(item);
+				this.isThisTheRightItem(item);
             });
             this.close = true;
         }
@@ -94,36 +97,30 @@ export class CheckoutItemsPage {
 
     }
 
-    confirmItem(item) {
-        let alert = this.alertCtrl.create({
-            title: 'Is this the item you ment to scan?',
-            message: 'Item scanned: ' + item.name,
-            buttons: [
-                {
-                    text: 'No',
-                    role: 'cancel',
-                    handler: () => {
-                        this.close = false;
-                        console.log('Cancel clicked');
-                    }
-                },
-                {
-                    text: 'Yes',
-                    handler: () => {
-                        this.goToCheckoutItemPickedPage(item);
-                    }
-                }
-            ]
-        });
-        alert.present();
-    }
 
     goHome() {
         this.db.removeTemporaryItems();
         this.close = true;
         this.navCtrl.pop();
     }
+	
+	isThisTheRightItem(item){
+		this.item = item;
+	let customAlert = this.modalCtrl.create(CustomAlertPage, {item: item});
+	 customAlert.onDidDismiss(data => {
+		 if(data!=null){
+     this.goToCheckoutItemPickedPage(data);
+		 }
+		 else{
+			 this.close = false;
+		 }
+   });
+	customAlert.present();
+	}
+	
     
 }
+
+
 
 
