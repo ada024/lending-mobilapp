@@ -48,8 +48,10 @@ export class DatabaseService {
       this.authState = state;
     });
 
-    this.loadCurrentUser( currentUser => {this.currentUser = currentUser;});
-}
+    this.loadCurrentUser(currentUser => {
+      this.currentUser = currentUser;
+    });
+  }
 
 
   //Methods to add and get items
@@ -96,23 +98,23 @@ export class DatabaseService {
     return this.items.remove(item);
   }
 
-  loadItems(onDataLoaded){
+  loadItems(onDataLoaded) {
     this.loadDataFromRef(this.itemsRef, loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
     })
   }
 
   checkIfItemIsAdded(item) {
-      var foundItem = false;
-      this.temporaryItems.subscribe(items => {
-          items.forEach(tempItem => {
-              if (tempItem.id == item.id) {
-                  foundItem = true;
-              }
-          });
+    var foundItem = false;
+    this.temporaryItems.subscribe(items => {
+      items.forEach(tempItem => {
+        if (tempItem.id == item.id) {
+          foundItem = true;
+        }
       });
-      //return foundItem;
-      return false; // for testing (kan ikke scanne i browser)
+    });
+    //return foundItem;
+    return false; // for testing (kan ikke scanne i browser)
   }
 
 
@@ -156,16 +158,16 @@ export class DatabaseService {
   }
 
   loadCurrentUser(onDataLoaded) {
-    this.users.subscribe( users => {
+    this.users.subscribe(users => {
       let currentUser;
       let newUser = true;
-      users.forEach( user => {
-        if(user.name == this.currentUserName) {
+      users.forEach(user => {
+        if (user.name == this.currentUserName) {
           currentUser = user;
           newUser = false;
         }
       });
-      if(newUser) {
+      if (newUser) {
         this.addUser(this.currentUserName, "null");
         currentUser = {
           name: this.currentUserName,
@@ -353,7 +355,7 @@ export class DatabaseService {
           this.firebase.auth().signInWithCredential(facebookCredential).then(() => {
             observer.next();
           }).catch(error => {
-           console.log("Internal error...");
+            console.log("Internal error...");
             observer.error(error);
           });
         });
@@ -399,7 +401,7 @@ export class DatabaseService {
     // TODO Find a way to add user again if user is removed from db
     let existInDb;
     existInDb = JSON.parse(window.localStorage.getItem('savedExist'));
-    if(existInDb==true){
+    if (existInDb == true) {
       console.log("lagret exist er sann i writeIDbUser: " + existInDb)
       this.existInDb(existInDb);
 
@@ -428,7 +430,7 @@ export class DatabaseService {
   }
 
   existInDb(exist) {
-   // let exist: boolean;
+    // let exist: boolean;
     let user = this.authState.auth.uid;
     let usersReff = firebase.database().ref('/users');
 
