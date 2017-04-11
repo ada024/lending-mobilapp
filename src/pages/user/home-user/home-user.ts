@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
+import { EntityUserPage } from '../entities/entity-user/entity-user';
 
 @Component({
   selector: 'page-home-user',
@@ -19,12 +20,12 @@ export class HomeUserPage {
     this.loans = db.getLoans();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomeUserPage');
-  }
-
   acceptLoan(event, pendingLoan) {
     this.db.deletePendingLoan(pendingLoan);
     this.db.addLoan(pendingLoan.itemName);
+  }
+
+  goToEntityUserPage() {
+    this.navCtrl.push(EntityUserPage);
   }
 }

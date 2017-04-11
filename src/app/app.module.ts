@@ -24,11 +24,16 @@ import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/ent
 import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
 
+
 import { CheckoutItemsPage } from '../pages/admin/checkout/checkout-items/checkout-items';
 import { CheckoutUserPage } from '../pages/admin/checkout/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-picked/checkout-item-picked';
 import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
 import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-alert';
+
+import { EntityUserPage } from '../pages/user/entities/entity-user/entity-user';
+import { EntityListUserPage } from '../pages/user/entities/entity-list-user/entity-list-user';
+import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-user/entity-details-user';
 
 
 
@@ -69,7 +74,11 @@ export const firebaseConfig = {
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
     CheckoutUserPickedPage,
-	CustomAlertPage
+    CustomAlertPage,
+
+    EntityUserPage,
+    EntityListUserPage,
+    EntityDetailsUserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -102,7 +111,11 @@ export const firebaseConfig = {
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
     CheckoutUserPickedPage,
-	CustomAlertPage
+    CustomAlertPage,
+
+    EntityUserPage,
+    EntityListUserPage,
+    EntityDetailsUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })
