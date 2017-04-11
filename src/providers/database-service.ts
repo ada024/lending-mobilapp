@@ -1,13 +1,13 @@
-﻿import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+﻿import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, AuthMethods} from 'angularfire2';
 import firebase from 'firebase';
-import { Observable } from "rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 
-import { Platform } from 'ionic-angular';
-import { Facebook } from 'ionic-native';
-import { auth } from 'firebase'; //needed for the FacebookAuthProvider
+import {Platform, ToastController} from 'ionic-angular';
+import {Facebook} from 'ionic-native';
+import {auth} from 'firebase'; //needed for the FacebookAuthProvider
 
 @Injectable()
 export class DatabaseService {
@@ -18,28 +18,28 @@ export class DatabaseService {
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
   temporaryItems: FirebaseListObservable<any>;
-  public firebase : any;
+  public firebase: any;
   private authState: FirebaseAuthState;
   itemsRef: any;
   entitiesRef: any;
-
+  private _exist: boolean = false;
   usersRef: any;
   usersList: any;
   userReturn: any;
 
   currentUser: any;
 
-  constructor(public http: Http, public af: AngularFire, private platform: Platform) {
+  constructor(public http: Http, public af: AngularFire, private platform: Platform, private  toastCtrl: ToastController) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
     this.loans = af.database.list('/loans');
     this.entities = af.database.list('/entities');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
-	  this.temporaryItems = af.database.list('/temporaryItems');
-  	this.firebase = firebase;  //Add reference to native firebase SDK
-  	this.itemsRef = firebase.database().ref('/items');
-  	this.usersRef = firebase.database().ref('/users');
+    this.temporaryItems = af.database.list('/temporaryItems');
+    this.firebase = firebase;  //Add reference to native firebase SDK
+    this.itemsRef = firebase.database().ref('/items');
+    this.usersRef = firebase.database().ref('/users');
     this.entitiesRef = firebase.database().ref('/entities');
 
 
@@ -49,9 +49,7 @@ export class DatabaseService {
     });
 
 
-}
-
-
+  }
 
 
   //Methods to add and get items
@@ -66,40 +64,39 @@ export class DatabaseService {
   getItems() {
     return this.items;
   }
+
   getItem(name, id) {
-      var foundItem;
-      this.items.subscribe(items => {
-          items.forEach(item => {
-              if (item.name == name && item.id == id) {
-                  foundItem = item;
-                  console.log(foundItem.name);
-              }
-          });
+    let foundItem;
+    this.items.subscribe(items => {
+      items.forEach(item => {
+        if (item.name == name && item.id == id) {
+          foundItem = item;
+          console.log(foundItem.name);
+        }
       });
-      return foundItem;
+    });
+    return foundItem;
   }
 
   getItemByTag(id) {
-      var foundItem;
-      this.items.subscribe(items => {
-          items.forEach(item => {
-              if (item.id == id) {
-                  foundItem = item;
-              }
-          });
+    var foundItem;
+    this.items.subscribe(items => {
+      items.forEach(item => {
+        if (item.id == id) {
+          foundItem = item;
+        }
       });
-      return foundItem;
+    });
+    return foundItem;
   }
 
   removeItem(item) {
-      return this.items.remove(item);
+    return this.items.remove(item);
   }
 
-  loadItems(onDataLoaded){
+  loadItems(onDataLoaded) {
     this.loadDataFromRef(this.itemsRef, onDataLoaded);
   }
-
-
 
 
   //Methods to add and get users
@@ -116,35 +113,35 @@ export class DatabaseService {
   }
 
   getUserByTag(id) {
-      var foundUser;
-      this.users.subscribe(users => {
-          users.forEach(user => {
-              if (user.id == id) {
-                  foundUser = user;
-              }
-          });
+    let foundUser;
+    this.users.subscribe(users => {
+      users.forEach(user => {
+        if (user.id == id) {
+          foundUser = user;
+        }
       });
-      return foundUser;
+    });
+    return foundUser;
   }
 
-  loadUsers(onDataLoaded){
+  loadUsers(onDataLoaded) {
     this.loadDataFromRef(this.usersRef, onDataLoaded);
   }
 
 
-  getUserByName(name){
-	  this.usersList.forEach(user =>{
-		  if(user.name == name){
-			  this.userReturn = user;
-	    }
+  getUserByName(name) {
+    this.usersList.forEach(user => {
+      if (user.name == name) {
+        this.userReturn = user;
+      }
     });
-	  return this.userReturn;
-	}
+    return this.userReturn;
+  }
 
   setCurrentUser() {
-    this.users.subscribe( users => {
-      users.forEach( user => {
-        if(user.name == this.currentUserName) {
+    this.users.subscribe(users => {
+      users.forEach(user => {
+        if (user.name == this.currentUserName) {
           this.currentUser = user;
         }
       });
@@ -152,25 +149,23 @@ export class DatabaseService {
   }
 
 
-
-
-
   addTemporaryItems(item) {
-      this.temporaryItems.push({
-          name: item.name,
-          id: item.id
-      });
+    this.temporaryItems.push({
+      name: item.name,
+      id: item.id
+    });
   }
 
   getTemporaryItems() {
-      return this.temporaryItems;
+    return this.temporaryItems;
   }
 
   removeTemporaryItems() {
-      this.temporaryItems.remove();
+    this.temporaryItems.remove();
   }
+
   removeTemporaryItem(item) {
-      this.temporaryItems.remove(item);
+    this.temporaryItems.remove(item);
   }
 
 
@@ -189,9 +184,9 @@ export class DatabaseService {
     return this.pendingLoans;
   }
 
-  getPendingLoansByUserId(userId){
-	  //todo
-	}
+  getPendingLoansByUserId(userId) {
+    //todo
+  }
 
   addPendingUser(userId, entityId) {
     this.pendingUsers.push({
@@ -209,8 +204,6 @@ export class DatabaseService {
   }
 
 
-
-
   //Methods to add and get loans
 
   addLoan(itemName) {
@@ -222,8 +215,6 @@ export class DatabaseService {
   getLoans() {
     return this.loans;
   }
-
-
 
 
   //Methods to add and get entitys
@@ -239,14 +230,14 @@ export class DatabaseService {
     return this.entities;
   }
 
-  loadEntities(onDataLoaded){
+  loadEntities(onDataLoaded) {
     this.loadDataFromRef(this.entitiesRef, onDataLoaded);
   }
 
-  loadCurrentEntity(onDataLoaded){
-    this.users.subscribe( users => {
-      users.forEach( user => {
-        if(user.name == this.currentUserName) {
+  loadCurrentEntity(onDataLoaded) {
+    this.users.subscribe(users => {
+      users.forEach(user => {
+        if (user.name == this.currentUserName) {
           onDataLoaded(user.entity);
         }
       });
@@ -259,8 +250,6 @@ export class DatabaseService {
       entity: entity.name
     });
   }
-
-
 
 
   //Developer tools
@@ -288,19 +277,17 @@ export class DatabaseService {
   }
 
 
-
-
   //fetches firebase data and sends it to the onDataLoaded function
 
   loadDataFromRef(ref, onDataLoaded) {
     ref.once('value', (snapshot) => {
-      if(snapshot.val() !== null) {
+      if (snapshot.val() !== null) {
         ref.on('value', (data) => {
-         let list = [];
+          let list = [];
           data.forEach(node => {
             list.push(node.val());
-           onDataLoaded(list);
-         });
+            onDataLoaded(list);
+          });
         });
       }
       else {
@@ -310,21 +297,19 @@ export class DatabaseService {
   }
 
 
-
-
   //Searches a list
 
-  search(loadedList, key, property){
+  search(loadedList, key, property) {
     let list = loadedList;
-    if(key) {
+    if (key) {
       list = list.filter((v) => {
-      if(eval(property) && key) {
-       if(eval(property).toLowerCase().indexOf(key.toLowerCase()) > -1) {
-         return true;
+        if (eval(property) && key) {
+          if (eval(property).toLowerCase().indexOf(key.toLowerCase()) > -1) {
+            return true;
+          }
+          return false;
         }
-        return false;
-      }
-     });
+      });
     }
     return list;
   }
@@ -332,38 +317,15 @@ export class DatabaseService {
 
   //FACEBOOK AUTH
   loginWithFacebook() {
-
     return Observable.create(observer => {
       //  PHONE or BROWSER?
       if (this.platform.is('cordova')) {
         return Facebook.login(['email', 'public_profile']).then(res => {
           const facebookCredential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-          this.firebase.auth().signInWithCredential(facebookCredential).then(()=>{
-
-            // Create user record in db
-           // if(this.authState){
-            /*
-             let user =this.authState.auth;
-              let res = this.authState.auth.displayName.split(" ");
-              this.users.child(user.uid).push({
-                email: user.email,
-                photoURL: user.photoURL,
-                fullname: user.displayName,
-                name:{
-                  first: res[0],
-                  middle: res[1],
-                  last: res[2],
-                }
-              });
-            */
-      //      }
-
-
-
-
+          this.firebase.auth().signInWithCredential(facebookCredential).then(() => {
             observer.next();
           }).catch(error => {
-         //   console.log will not be displayed on the phone, use toast instead
+           console.log("Internal error...");
             observer.error(error);
           });
         });
@@ -372,7 +334,7 @@ export class DatabaseService {
         return this.af.auth.login({
           provider: AuthProviders.Facebook,
           method: AuthMethods.Popup
-        }).then(()=>{
+        }).then(() => {
           observer.next();
         }).catch(error => {
           //console.log(error);
@@ -383,16 +345,16 @@ export class DatabaseService {
   }
 
   // FB USER INFO
-  get currentUserName():string{
-    return this.authState?this.authState.auth.displayName:'no Name';
+  get currentUserName(): string {
+    return this.authState ? this.authState.auth.displayName : 'no Name';
   }
 
-  get currentUserEmail():string{
-    return this.authState?this.authState.auth.email:'no Email';
+  get currentUserEmail(): string {
+    return this.authState ? this.authState.auth.email : 'no Email';
   }
 
-  get currentUserPhotoURI():string{
-    return this.authState?this.authState.auth.photoURL:'no photo';
+  get currentUserPhotoURI(): string {
+    return this.authState ? this.authState.auth.photoURL : 'no photo';
   }
 
 //FACEBOOK LOGOUT
@@ -405,7 +367,76 @@ export class DatabaseService {
   }
 
 
+  writeDbUser() {
+    // TODO Find a way to add user again if user is removed from db
+    let existInDb;
+    existInDb = JSON.parse(window.localStorage.getItem('savedExist'));
+    if(existInDb==true){
+      console.log("lagret exist er sann i writeIDbUser: " + existInDb)
+      this.existInDb(existInDb);
 
+    }
+    this.existInDb(existInDb);
+    console.log("savedExist in writeIDbUser: " + existInDb)
+    if (!existInDb) {
+      console.log("User added in db");
+      let user = this.authState.auth;
+      //splits fullname into an array
+      let narr = this.authState.auth.displayName.split(" ");
+      this.usersRef.child(user.uid).set({
+        isAdmin: "false",
+        email: user.email || "",
+        photoURL: user.photoURL || "",
+        fullname: user.displayName || "",
+        name: {
+          first: narr[0] || "",
+          middle: narr[1] || "",
+          last: narr[2] || "",
+        },
+      });
+    } else {
+      console.log("User exist in db");
+    }
+  }
+
+  existInDb(exist) {
+   // let exist: boolean;
+    let user = this.authState.auth.uid;
+    let usersReff = firebase.database().ref('/users');
+
+    usersReff.child(user).once('value', function (snapshot) {
+      exist = (snapshot.val() != null);
+      console.log("value exist is: " + exist);
+      console.log("savedExist in exisitDB: " + exist);
+      window.localStorage.setItem('savedExist', JSON.stringify(exist));
+    });
+
+    // user has reinstalled app ,aka cleared localstorage
+    if (exist == null) {
+      usersReff.child(user).once('value', function (snapshot) {
+        exist = (snapshot.val() != null);
+        console.log("User has reinstall app : " + exist);
+        window.localStorage.setItem('savedExist', JSON.stringify(exist));
+      });
+    }
+
+// rerun check
+    if (exist == false) {
+      usersReff.child(user).once('value', function (snapshot) {
+        exist = (snapshot.val() != null);
+        console.log("User hase reinstall app : " + exist);
+        window.localStorage.setItem('savedExist', JSON.stringify(exist));
+      });
+    }
+  }
+
+  msgToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3500
+    });
+    return toast.present();
+  }
 
   setup() {
     this.setCurrentUser();
@@ -415,12 +446,12 @@ export class DatabaseService {
   onDataLoaded(loadedList) {
 
     let newUser = true;
-    for(let i = 0; i < loadedList.length; i++) {
-      if(loadedList[i].name == this.currentUserName) {
+    for (let i = 0; i < loadedList.length; i++) {
+      if (loadedList[i].name == this.currentUserName) {
         newUser = false;
       }
     }
-    if(newUser) {
+    if (newUser) {
       this.addUser(this.currentUserName, "null");
     }
   }

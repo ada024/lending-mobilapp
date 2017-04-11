@@ -19,25 +19,6 @@ export class ChooseAccountTypePage {
     this.navCtrl.push(HomeUserPage);
   }
 
-  /* DONT DELETE YET
-   isAlreadyLoggedIn() {
-   if (this.auth.isLoggedIn()) {
-   let toast = this.toastCtrl.create({
-   message: 'isLoged in true , chooseAcc',
-   duration: 3000
-   });
-   toast.present();
-   } else {
-   let toast = this.toastCtrl.create({
-   message: 'isLoged in false, chooseAcc',
-   duration: 3000
-   });
-   toast.present();
-   }
-   }
-   */
-
-
   logout(): void {
     this.auth.logout();
   }

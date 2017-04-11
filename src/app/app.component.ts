@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import {ChooseAccountTypePage} from "../pages/choose-account-type/choose-account-type";
 import {LoginPage} from "../pages/login/login";
 import {AngularFire, FirebaseAuthState} from "angularfire2";
+import {DatabaseService} from "../providers/database-service";
 
 
 @Component({
@@ -16,29 +17,19 @@ export class MyApp {
   private authState: FirebaseAuthState;
   public firebase: any;
   rootPage;
+  constructor(platform: Platform, public af: AngularFire, private db: DatabaseService) {
 
-  constructor(platform: Platform, private  toastCtrl: ToastController, public af: AngularFire) {
 
     this.af.auth.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
 
-// Based on user login , sets root page
+// Based on user login , sets root page og write user to db
       if (this.authState) {
-        let toast = this.toastCtrl.create({
-          message: 'isAleradyLoggedIn true , appcomp',
-          duration: 3000
-        });
-        toast.present();
         this.rootPage = ChooseAccountTypePage;
+        this.db.writeDbUser();
       } else {
-        let toast = this.toastCtrl.create({
-          message: 'isAleradyLoggedIn false , appcomp',
-          duration: 3000
-        });
-        toast.present();
         this.rootPage = LoginPage;
       }
-
     });
 
     platform.ready().then(() => {
@@ -47,6 +38,7 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
+
 
   }
 
