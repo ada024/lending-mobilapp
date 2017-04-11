@@ -22,7 +22,7 @@ export class DatabaseService {
   private authState: FirebaseAuthState;
   itemsRef: any;
   entitiesRef: any;
-  private _exist: boolean = false;
+
   usersRef: any;
   usersList: any;
   userReturn: any;
@@ -48,8 +48,8 @@ export class DatabaseService {
       this.authState = state;
     });
 
-
-  }
+    this.loadCurrentUser( currentUser => {this.currentUser = currentUser;});
+}
 
 
   //Methods to add and get items
@@ -57,7 +57,8 @@ export class DatabaseService {
   addItem(name, id) {
     this.items.push({
       name: name,
-      id: id
+      id: id,
+      entity: this.currentUser.entity
     });
   }
 
@@ -90,12 +91,28 @@ export class DatabaseService {
     return foundItem;
   }
 
+
   removeItem(item) {
     return this.items.remove(item);
   }
 
-  loadItems(onDataLoaded) {
-    this.loadDataFromRef(this.itemsRef, onDataLoaded);
+  loadItems(onDataLoaded){
+    this.loadDataFromRef(this.itemsRef, loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
+    })
+  }
+
+  checkIfItemIsAdded(item) {
+      var foundItem = false;
+      this.temporaryItems.subscribe(items => {
+          items.forEach(tempItem => {
+              if (tempItem.id == item.id) {
+                  foundItem = true;
+              }
+          });
+      });
+      //return foundItem;
+      return false; // for testing (kan ikke scanne i browser)
   }
 
 
@@ -138,13 +155,24 @@ export class DatabaseService {
     return this.userReturn;
   }
 
-  setCurrentUser() {
-    this.users.subscribe(users => {
-      users.forEach(user => {
-        if (user.name == this.currentUserName) {
-          this.currentUser = user;
+  loadCurrentUser(onDataLoaded) {
+    this.users.subscribe( users => {
+      let currentUser;
+      let newUser = true;
+      users.forEach( user => {
+        if(user.name == this.currentUserName) {
+          currentUser = user;
+          newUser = false;
         }
       });
+      if(newUser) {
+        this.addUser(this.currentUserName, "null");
+        currentUser = {
+          name: this.currentUserName,
+          entity: "null"
+        }
+      }
+      onDataLoaded(currentUser);
     });
   }
 
@@ -234,15 +262,15 @@ export class DatabaseService {
     this.loadDataFromRef(this.entitiesRef, onDataLoaded);
   }
 
-  loadCurrentEntity(onDataLoaded) {
-    this.users.subscribe(users => {
-      users.forEach(user => {
-        if (user.name == this.currentUserName) {
-          onDataLoaded(user.entity);
-        }
-      });
-    });
-  }
+  // loadCurrentEntity(onDataLoaded){
+  //   this.users.subscribe( users => {
+  //     users.forEach( user => {
+  //       if(user.name == this.currentUserName) {
+  //         onDataLoaded(user.entity);
+  //       }
+  //     });
+  //   });
+  // }
 
   setEntity(entity) {
     this.users.update(this.currentUser.$key, {

@@ -10,18 +10,18 @@ import { EntityDetailsAdminPage } from '../entity-details-admin/entity-details-a
   templateUrl: 'entity-admin.html'
 })
 export class EntityAdminPage {
-  currentUser = "";
-  currentEntity = "";
+  currentUserName = "";
+  currentUserEntity = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
-    this.db.loadCurrentEntity(this.onDataLoaded.bind(this));
-    this.currentUser = this.db.currentUserName;
+    this.db.loadCurrentUser(this.onDataLoaded.bind(this));
   }
 
   onDataLoaded(data) {
     this.zone.run(() => {
-      this.currentEntity = data;
+      this.currentUserName = data.name;
+      this.currentUserEntity = data.entity;
     });
   }
 
