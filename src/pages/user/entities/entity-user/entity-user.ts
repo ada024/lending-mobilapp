@@ -9,18 +9,18 @@ import { EntityListUserPage } from '../entity-list-user/entity-list-user';
   templateUrl: 'entity-user.html'
 })
 export class EntityUserPage {
-  currentUser = "";
-  currentEntity = "";
+  currentUserName = "";
+  currentUserEntity = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
-    this.db.loadCurrentEntity(this.onDataLoaded.bind(this));
-    this.currentUser = this.db.currentUserName;
+    this.db.loadCurrentUser(this.onDataLoaded.bind(this));
   }
 
   onDataLoaded(data) {
     this.zone.run(() => {
-      this.currentEntity = data;
+      this.currentUserName = data.name;
+      this.currentUserEntity = data.entity;
     });
   }
 

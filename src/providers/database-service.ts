@@ -48,7 +48,7 @@ export class DatabaseService {
       this.authState = state;
     });
 
-
+    this.loadCurrentUser( currentUser => {this.currentUser = currentUser;});
 }
 
 
@@ -59,7 +59,8 @@ export class DatabaseService {
   addItem(name, id) {
     this.items.push({
       name: name,
-      id: id
+      id: id,
+      entity: this.currentUser.entity
     });
   }
 
@@ -97,7 +98,9 @@ export class DatabaseService {
   }
 
   loadItems(onDataLoaded){
-    this.loadDataFromRef(this.itemsRef, onDataLoaded);
+    this.loadDataFromRef(this.itemsRef, loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
+    })
   }
 
   checkIfItemIsAdded(item) {
@@ -109,7 +112,8 @@ export class DatabaseService {
               }
           });
       });
-      return foundItem;
+      //return foundItem;
+      return false; // for testing (kan ikke scanne i browser)
   }
 
 
@@ -152,13 +156,24 @@ export class DatabaseService {
 	  return this.userReturn;
 	}
 
-  setCurrentUser() {
+  loadCurrentUser(onDataLoaded) {
     this.users.subscribe( users => {
+      let currentUser;
+      let newUser = true;
       users.forEach( user => {
         if(user.name == this.currentUserName) {
-          this.currentUser = user;
+          currentUser = user;
+          newUser = false;
         }
       });
+      if(newUser) {
+        this.addUser(this.currentUserName, "null");
+        currentUser = {
+          name: this.currentUserName,
+          entity: "null"
+        }
+      }
+      onDataLoaded(currentUser);
     });
   }
 
@@ -254,15 +269,15 @@ export class DatabaseService {
     this.loadDataFromRef(this.entitiesRef, onDataLoaded);
   }
 
-  loadCurrentEntity(onDataLoaded){
-    this.users.subscribe( users => {
-      users.forEach( user => {
-        if(user.name == this.currentUserName) {
-          onDataLoaded(user.entity);
-        }
-      });
-    });
-  }
+  // loadCurrentEntity(onDataLoaded){
+  //   this.users.subscribe( users => {
+  //     users.forEach( user => {
+  //       if(user.name == this.currentUserName) {
+  //         onDataLoaded(user.entity);
+  //       }
+  //     });
+  //   });
+  // }
 
   setEntity(entity) {
     this.users.update(this.currentUser.$key, {
@@ -417,22 +432,4 @@ export class DatabaseService {
 
 
 
-
-  setup() {
-    this.setCurrentUser();
-    this.loadUsers(this.onDataLoaded.bind(this));
-  }
-
-  onDataLoaded(loadedList) {
-
-    let newUser = true;
-    for(let i = 0; i < loadedList.length; i++) {
-      if(loadedList[i].name == this.currentUserName) {
-        newUser = false;
-      }
-    }
-    if(newUser) {
-      this.addUser(this.currentUserName, "null");
-    }
-  }
 }
