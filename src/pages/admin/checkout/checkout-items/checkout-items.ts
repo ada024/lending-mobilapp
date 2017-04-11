@@ -50,11 +50,12 @@ export class CheckoutItemsPage {
   
    
     onTagFound(nfcEvent) {
+		var alreadyAdded = false;
         if (!this.close) {
             this.zone.run(() => {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 var item = this.db.getItemByTag(tagId);
-				this.isThisTheRightItem(item);
+			   this.isThisTheRightItem(item);
             });
             this.close = true;
         }
@@ -77,8 +78,13 @@ export class CheckoutItemsPage {
   }
 
     goToCheckoutItemPickedPage(item) {
+		if(this.db.checkIfItemIsAdded(item)){
+		this.alreadyAddedAlert();
+		}
+		else{
         this.db.addTemporaryItems(item);
         this.navCtrl.push(CheckoutItemPickedPage, { self: this })
+		}		
 	}
 
 
@@ -109,7 +115,13 @@ export class CheckoutItemsPage {
 	let customAlert = this.modalCtrl.create(CustomAlertPage, {item: item});
 	 customAlert.onDidDismiss(data => {
 		 if(data!=null){
+			 if(this.db.checkIfItemIsAdded(data)){
+				 this.alreadyAddedAlert();
+				 this.close = false;
+			 }
+			 else{
      this.goToCheckoutItemPickedPage(data);
+			 }
 		 }
 		 else{
 			 this.close = false;
@@ -117,6 +129,15 @@ export class CheckoutItemsPage {
    });
 	customAlert.present();
 	}
+	
+	alreadyAddedAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Already added',
+    subTitle: 'This item is already added',
+    buttons: ['Dismiss']
+  });
+  alert.present();
+}
 	
     
 }

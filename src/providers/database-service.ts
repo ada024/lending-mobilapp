@@ -91,6 +91,7 @@ export class DatabaseService {
       return foundItem;
   }
 
+  
   removeItem(item) {
       return this.items.remove(item);
   }
@@ -99,7 +100,17 @@ export class DatabaseService {
     this.loadDataFromRef(this.itemsRef, onDataLoaded);
   }
 
-
+  checkIfItemIsAdded(item) {
+      var foundItem = false;
+      this.temporaryItems.subscribe(items => {
+          items.forEach(tempItem => {
+              if (tempItem.id == item.id) {
+                  foundItem = true;
+              }
+          });
+      });
+      return foundItem;
+  }
 
 
   //Methods to add and get users
