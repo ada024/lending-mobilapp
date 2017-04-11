@@ -468,11 +468,12 @@ export class DatabaseService {
     return toast.present();
   }
 
+  /*
   setup() {
     this.setCurrentUser();
     this.loadUsers(this.onDataLoaded.bind(this));
   }
-
+*/
   onDataLoaded(loadedList) {
 
     let newUser = true;
