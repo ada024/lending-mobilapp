@@ -13,7 +13,7 @@ import { CheckoutItemsPage } from '../checkout-items/checkout-items';
 @Component({
   selector: 'page-checkout-item-picked',
   templateUrl: 'checkout-item-picked.html',
-  providers: [DatabaseService]
+  providers: [DatabaseService],
 })
 export class CheckoutItemPickedPage {
 	itemList;

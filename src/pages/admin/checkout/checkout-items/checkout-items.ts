@@ -50,14 +50,18 @@ export class CheckoutItemsPage {
   
    
     onTagFound(nfcEvent) {
-		var alreadyAdded = false;
+		var item;
         if (!this.close) {
             this.zone.run(() => {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
-                var item = this.db.getItemByTag(tagId);
+                item = this.db.getItemByTag(tagId);
+				if(item!=null){
 			   this.isThisTheRightItem(item);
+				}
             });
+			if(item!=null){
             this.close = true;
+		}
         }
     }
 
@@ -83,6 +87,7 @@ export class CheckoutItemsPage {
 		}
 		else{
         this.db.addTemporaryItems(item);
+		this.close = true;
         this.navCtrl.push(CheckoutItemPickedPage, { self: this })
 		}		
 	}
