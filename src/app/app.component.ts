@@ -1,6 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import {Component} from '@angular/core';
 import {Platform, ToastController} from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {ChooseAccountTypePage} from "../pages/choose-account-type/choose-account-type";
 import {LoginPage} from "../pages/login/login";
@@ -17,16 +17,17 @@ export class MyApp {
   private authState: FirebaseAuthState;
   public firebase: any;
   rootPage;
+
   constructor(platform: Platform, public af: AngularFire, private db: DatabaseService) {
 
 
     this.af.auth.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
 
-// Based on user login , sets root page og write user to db
+// Based on user login , sets root page and write user to db
       if (this.authState) {
         this.rootPage = ChooseAccountTypePage;
-        this.db.writeDbUser();
+        this.db.existInDb();
       } else {
         this.rootPage = LoginPage;
       }

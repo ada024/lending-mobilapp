@@ -14,8 +14,9 @@ export class LoginPage {
   }
 
   loginWithFacebook(): void {
-    this.auth.loginWithFacebook().subscribe((success) => {
-      console.log(success);
+    this.auth.loginWithFacebook().subscribe(() => {
+     let success = "success";
+      console.log("Login: "+success);
     }, err => {
       console.log(err);
     });

@@ -23,6 +23,7 @@ export class DatabaseService {
   itemsRef: any;
   entitiesRef: any;
 
+
   usersRef: any;
   usersList: any;
   userReturn: any;
@@ -397,18 +398,19 @@ export class DatabaseService {
   }
 
 
-  writeDbUser() {
-    // TODO Find a way to add user again if user is removed from db
-    let existInDb;
-    existInDb = JSON.parse(window.localStorage.getItem('savedExist'));
-    if (existInDb == true) {
-      console.log("lagret exist er sann i writeIDbUser: " + existInDb)
-      this.existInDb(existInDb);
+  existInDb() {
+    let user = this.authState.auth.uid;
+    let usersReff = firebase.database().ref('/users');
+    usersReff.child(user).once('value', (snapshot) => {
+      let exist = (snapshot.val() != null);
+      this.writeDbUser(exist);
+    }, function (error) {
+      console.error(error);
+    });
+  }
 
-    }
-    this.existInDb(existInDb);
-    console.log("savedExist in writeIDbUser: " + existInDb)
-    if (!existInDb) {
+  writeDbUser(exist) {
+    if (!exist) {
       console.log("User added in db");
       let user = this.authState.auth;
       //splits fullname into an array
@@ -427,37 +429,7 @@ export class DatabaseService {
     } else {
       console.log("User exist in db");
     }
-  }
 
-  existInDb(exist) {
-    // let exist: boolean;
-    let user = this.authState.auth.uid;
-    let usersReff = firebase.database().ref('/users');
-
-    usersReff.child(user).once('value', function (snapshot) {
-      exist = (snapshot.val() != null);
-      console.log("value exist is: " + exist);
-      console.log("savedExist in exisitDB: " + exist);
-      window.localStorage.setItem('savedExist', JSON.stringify(exist));
-    });
-
-    // user has reinstalled app ,aka cleared localstorage
-    if (exist == null) {
-      usersReff.child(user).once('value', function (snapshot) {
-        exist = (snapshot.val() != null);
-        console.log("User has reinstall app : " + exist);
-        window.localStorage.setItem('savedExist', JSON.stringify(exist));
-      });
-    }
-
-// rerun check
-    if (exist == false) {
-      usersReff.child(user).once('value', function (snapshot) {
-        exist = (snapshot.val() != null);
-        console.log("User hase reinstall app : " + exist);
-        window.localStorage.setItem('savedExist', JSON.stringify(exist));
-      });
-    }
   }
 
   msgToast(msg) {
@@ -469,11 +441,11 @@ export class DatabaseService {
   }
 
   /*
-  setup() {
-    this.setCurrentUser();
-    this.loadUsers(this.onDataLoaded.bind(this));
-  }
-*/
+   setup() {
+   this.setCurrentUser();
+   this.loadUsers(this.onDataLoaded.bind(this));
+   }
+   */
   onDataLoaded(loadedList) {
 
     let newUser = true;
