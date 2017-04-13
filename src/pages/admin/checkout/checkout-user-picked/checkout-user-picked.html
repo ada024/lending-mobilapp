@@ -14,10 +14,14 @@
 
 
 <ion-content padding>
-<h1>You have chosen to lend these items to {{user.name}}</h1>
+<h1 class="centerText">Check out to</h1><br>
+<ion-icon name="image" class="user-image"></ion-icon><br>
+<p class="someText">{{user.name}} </p><br>
+
+<p class="someText">Item(s) you are checking out</p>
 <ion-list>
-    <ion-item *ngFor="let item of itemList">
-      <div class="name">{{item.name}}</div>
+    <ion-item *ngFor="let item of itemList" class="listProps">
+      <div class="name"><ion-icon name="image" class="item-image"></ion-icon> {{item.name}}</div>
     </ion-item>
   </ion-list>
   
