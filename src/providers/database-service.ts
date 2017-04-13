@@ -102,7 +102,7 @@ export class DatabaseService {
   }
 
   loadItems(onDataLoaded) {
-    this.loadDataFromRef(this.itemsRef, loadedList => {
+    this.loadData(this.items, loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
     })
   }
@@ -140,7 +140,7 @@ export class DatabaseService {
   }
 
   loadUsers(onDataLoaded) {
-    this.loadDataFromRef(this.usersRef, onDataLoaded);
+    this.loadData(this.users, onDataLoaded);
   }
 
 
@@ -207,7 +207,7 @@ export class DatabaseService {
   }
 
   loadPendingLoans(onDataLoaded) {
-    this.loadDataFromRef(this.pendingLoans.$ref, loadedList => {
+    this.loadData(this.pendingLoans, loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
     })
   }
@@ -228,7 +228,7 @@ export class DatabaseService {
   }
 
   deletePendingLoan(pendingLoan) {
-    this.pendingLoans.remove(pendingLoan.$key);
+    this.pendingLoans.remove(pendingLoan);
   }
 
 
@@ -246,7 +246,7 @@ export class DatabaseService {
   }
 
   loadLoans(onDataLoaded) {
-    this.loadDataFromRef(this.loans.$ref, loadedList => {
+    this.loadData(this.loans, loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
     })
   }
@@ -266,7 +266,7 @@ export class DatabaseService {
   }
 
   loadEntities(onDataLoaded) {
-    this.loadDataFromRef(this.entitiesRef, onDataLoaded);
+    this.loadData(this.entities, onDataLoaded);
   }
 
   setEntity(entity) {
@@ -304,20 +304,9 @@ export class DatabaseService {
 
   //fetches firebase data and sends it to the onDataLoaded function
 
-  loadDataFromRef(ref, onDataLoaded) {
-    ref.once('value', (snapshot) => {
-      if (snapshot.val() !== null) {
-        ref.on('value', (data) => {
-          let list = [];
-          data.forEach(node => {
-            list.push(node.val());
-            onDataLoaded(list);
-          });
-        });
-      }
-      else {
-        onDataLoaded([]);
-      }
+  loadData(list, onDataLoaded) {
+    list.subscribe(list => {
+      onDataLoaded(list)
     });
   }
 
