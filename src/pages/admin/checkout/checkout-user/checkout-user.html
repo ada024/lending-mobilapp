@@ -16,7 +16,7 @@
   </ion-searchbar>
 <ion-list *ngIf="showList">
     <ion-item *ngFor="let user of usersList">
-      <div class="name" (click)="goToCheckoutUserPickedPage(user)">{{user.fullname}}</div>
+      <div class="name" (click)="goToCheckoutUserPickedPage(user)"><img style="width:23px;height:23px;" [src]="user.photoURL" />{{user.fullname}}</div>
     </ion-item>
   </ion-list>
 
