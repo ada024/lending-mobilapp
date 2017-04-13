@@ -52,6 +52,7 @@ export class DatabaseService {
     this.loadCurrentUser(currentUser => {
       this.currentUser = currentUser;
     });
+
   }
 
 
@@ -157,7 +158,7 @@ export class DatabaseService {
       let currentUser;
       let newUser = true;
       users.forEach(user => {
-        if (user.name == this.currentUserName) {
+        if (user.fullname == this.currentUserName) {
           currentUser = user;
           newUser = false;
         }
@@ -195,7 +196,7 @@ export class DatabaseService {
 
   addPendingLoan(item, user) {
     this.pendingLoans.push({
-      userName: user.uid,////////////////////////////////////////////////////////
+      userUid: user.uid,////////////////////////////////////////////////////////
       itemName: item.name,
       itemOwner: this.currentUserName////////////////////////////////////////////////////////
     });
@@ -207,7 +208,7 @@ export class DatabaseService {
 
   loadPendingLoans(onDataLoaded) {
     this.loadDataFromRef(this.pendingLoans.$ref, loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUserName, "v.fullname"));////////////////////////////////////////////////////////
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));////////////////////////////////////////////////////////
     })
   }
 
@@ -236,7 +237,7 @@ export class DatabaseService {
   addLoan(itemName) {
     this.loans.push({
       itemName: itemName,
-      userName: this.currentUser.uid
+      userUid: this.currentUser.uid
     });
   }
 
@@ -246,7 +247,7 @@ export class DatabaseService {
 
   loadLoans(onDataLoaded) {
     this.loadDataFromRef(this.loans.$ref, loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUserName, "v.fullname"));////////////////////////////////////////////////////////
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));////////////////////////////////////////////////////////
     })
   }
 
@@ -295,8 +296,11 @@ export class DatabaseService {
     this.addItem("camera", "876ur5htr");
     this.addPendingUser("John smith", "Faculty of Art, Bergen");
     this.addPendingUser("John fisher", "Faculty of Art, Bergen");
-    this.addLoan("HDMI cable");
-    this.addLoan("Macbook charger");
+    this.addPendingLoan({
+      name: "zz",
+      id: "0",
+      entity: this.currentUser.entity
+    }, this.currentUser);
     //this.addItemToPendingLoan({name: "ipad 7", id: "324t3t43"});
     //this.addItemToPendingLoan({name: "ipad 8", id: "65745yhhh"})
   }

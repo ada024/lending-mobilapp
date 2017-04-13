@@ -19,7 +19,7 @@ export class EntityUserPage {
 
   onDataLoaded(data) {
     this.zone.run(() => {
-      this.currentUserName = data.name;
+      this.currentUserName = data.fullname;
       this.currentUserEntity = data.entity;
     });
   }
