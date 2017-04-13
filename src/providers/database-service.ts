@@ -281,7 +281,7 @@ export class DatabaseService {
 
   setEntity(entity) {
     this.users.update(this.currentUser.$key, {
-      name: this.currentUser.name,
+      name: this.currentUser.fullname,
       entity: entity.name
     });
   }

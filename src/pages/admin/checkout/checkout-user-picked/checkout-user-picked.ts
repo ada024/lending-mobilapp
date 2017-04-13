@@ -49,9 +49,9 @@ export class CheckoutUserPickedPage {
     }
 
     goToHomeAdminPage() {
-
+		if(this.platform.is('cordova')){
         this.showToast('Loan added to list. Waiting for approval from ' + this.user.fullname, 'bottom');
-
+		}
         for (let item of this.itemList) {
             this.db.addPendingLoan(item, this.user);
         }
