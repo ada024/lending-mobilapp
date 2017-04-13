@@ -68,7 +68,7 @@ export class CheckoutUserPage {
             this.showTagInfo = false;
             this.toggleText = "Show tag info"
         }
-        this.usersList = this.db.search(this.loadedUserList, this.searchUserString, "v.name");
+        this.usersList = this.db.search(this.loadedUserList, this.searchUserString, "v.fullname");
     }
 
     goToCheckoutUserPickedPage(user) {

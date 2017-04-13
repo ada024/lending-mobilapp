@@ -32,7 +32,9 @@
     </div>
   </button><br><br>
   
-<p class="someText">Items you are checking out</p>
+
+  <div class="placeBottom">
+        <p class="someText">Items you are checking out</p>
 <ion-list>
     <ion-item-sliding *ngFor="let item of itemList | async">
       <ion-item  class="listProps">
@@ -44,5 +46,9 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  </div>
+   
 
+  
 </ion-content>
+

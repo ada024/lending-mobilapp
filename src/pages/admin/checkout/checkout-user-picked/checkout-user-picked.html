@@ -14,10 +14,11 @@
 
 
 <ion-content padding>
-<h1 class="centerText">Check out to</h1><br>
-<ion-icon name="image" class="user-image"></ion-icon><br>
-<p class="someText">{{user.name}} </p><br>
+<p class="titleText">Check out to</p>
+<ion-icon name="image" class="user-image"></ion-icon>
+<p class="someText">{{user.fullname}} </p>
 
+<div class="placeBottom">
 <p class="someText">Item(s) you are checking out</p>
 <ion-list>
     <ion-item *ngFor="let item of itemList" class="listProps">
@@ -30,4 +31,5 @@
       <b>Confirm</b>
     </div>
   </button>
-</ion-content>
+  </div>
+  </ion-content>
