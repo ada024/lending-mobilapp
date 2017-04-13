@@ -164,7 +164,7 @@ export class DatabaseService {
         }
       });
       if (newUser) {
-        this.writeDbUser(false);////////////////////////////////////////////////////////
+        this.writeDbUser(false);
       }
       onDataLoaded(currentUser);
     });
@@ -196,9 +196,9 @@ export class DatabaseService {
 
   addPendingLoan(item, user) {
     this.pendingLoans.push({
-      userUid: user.uid,////////////////////////////////////////////////////////
+      userUid: user.uid,
       itemName: item.name,
-      itemOwner: this.currentUserName////////////////////////////////////////////////////////
+      itemOwner: this.currentUserName
     });
   }
 
@@ -208,7 +208,7 @@ export class DatabaseService {
 
   loadPendingLoans(onDataLoaded) {
     this.loadDataFromRef(this.pendingLoans.$ref, loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));////////////////////////////////////////////////////////
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
     })
   }
 
@@ -247,7 +247,7 @@ export class DatabaseService {
 
   loadLoans(onDataLoaded) {
     this.loadDataFromRef(this.loans.$ref, loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));////////////////////////////////////////////////////////
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
     })
   }
 
@@ -269,19 +269,8 @@ export class DatabaseService {
     this.loadDataFromRef(this.entitiesRef, onDataLoaded);
   }
 
-  // loadCurrentEntity(onDataLoaded){
-  //   this.users.subscribe( users => {
-  //     users.forEach( user => {
-  //       if(user.name == this.currentUserName) {
-  //         onDataLoaded(user.entity);
-  //       }
-  //     });
-  //   });
-  // }
-
   setEntity(entity) {
     this.users.update(this.currentUser.$key, {
-      name: this.currentUser.fullname,
       entity: entity.name
     });
   }
@@ -301,8 +290,6 @@ export class DatabaseService {
       id: "0",
       entity: this.currentUser.entity
     }, this.currentUser);
-    //this.addItemToPendingLoan({name: "ipad 7", id: "324t3t43"});
-    //this.addItemToPendingLoan({name: "ipad 8", id: "65745yhhh"})
   }
 
   clearDatabase() {
@@ -423,9 +410,9 @@ export class DatabaseService {
       //splits fullname into an array
       let narr = this.authState.auth.displayName.split(" ");
       this.usersRef.child(user.uid).set({
-        uid: user.uid,////////////////////////////////////////////////////////
+        uid: user.uid,
         isAdmin: "false",
-        entity: "null",////////////////////////////////////////////////////////
+        entity: "null",
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",
@@ -449,23 +436,5 @@ export class DatabaseService {
     return toast.present();
   }
 
-  /*
-   setup() {
-   this.setCurrentUser();
-   this.loadUsers(this.onDataLoaded.bind(this));
-  }
-  
-  onDataLoaded(loadedList) {
 
-    let newUser = true;
-    for (let i = 0; i < loadedList.length; i++) {
-      if (loadedList[i].name == this.currentUserName) {
-        newUser = false;
-      }
-    }
-    if (newUser) {
-      this.addUser(this.currentUserName, "null");
-    }
-  }
-  */
 }
