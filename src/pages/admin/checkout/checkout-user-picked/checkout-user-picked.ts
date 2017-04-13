@@ -50,7 +50,7 @@ export class CheckoutUserPickedPage {
 
     goToHomeAdminPage() {
 
-        this.showToast('Loan added to list. Waiting for approval from ' + this.user.name, 'bottom');
+        this.showToast('Loan added to list. Waiting for approval from ' + this.user.fullname, 'bottom');
 
         for (let item of this.itemList) {
             this.db.addPendingLoan(item, this.user);
