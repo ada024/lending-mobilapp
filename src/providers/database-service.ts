@@ -122,13 +122,6 @@ export class DatabaseService {
 
   //Methods to add and get users
 
-  addUser(name, entity) {
-    this.users.push({
-      name: name,
-      entity: entity
-    });
-  }
-
   getUsers() {
     return this.users;
   }
@@ -170,11 +163,7 @@ export class DatabaseService {
         }
       });
       if (newUser) {
-        this.addUser(this.currentUserName, "null");
-        currentUser = {
-          name: this.currentUserName,
-          entity: "null"
-        }
+        this.writeDbUser(false);////////////////////////////////////////////////////////
       }
       onDataLoaded(currentUser);
     });
@@ -206,14 +195,20 @@ export class DatabaseService {
 
   addPendingLoan(item, user) {
     this.pendingLoans.push({
+      userName: user.uid,////////////////////////////////////////////////////////
       itemName: item.name,
-      itemId: item.id,
-      userName: user.name
+      itemOwner: this.currentUserName////////////////////////////////////////////////////////
     });
   }
 
   getPendingLoans() {
     return this.pendingLoans;
+  }
+
+  loadPendingLoans(onDataLoaded) {
+    this.loadDataFromRef(this.pendingLoans.$ref, loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUserName, "v.fullname"));////////////////////////////////////////////////////////
+    })
   }
 
   getPendingLoansByUserId(userId) {
@@ -232,7 +227,7 @@ export class DatabaseService {
   }
 
   deletePendingLoan(pendingLoan) {
-    this.pendingLoans.remove(pendingLoan);
+    this.pendingLoans.remove(pendingLoan.$key);
   }
 
 
@@ -241,11 +236,18 @@ export class DatabaseService {
   addLoan(itemName) {
     this.loans.push({
       itemName: itemName,
+      userName: this.currentUser.uid
     });
   }
 
   getLoans() {
     return this.loans;
+  }
+
+  loadLoans(onDataLoaded) {
+    this.loadDataFromRef(this.loans.$ref, loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUserName, "v.fullname"));////////////////////////////////////////////////////////
+    })
   }
 
 
@@ -417,7 +419,9 @@ export class DatabaseService {
       //splits fullname into an array
       let narr = this.authState.auth.displayName.split(" ");
       this.usersRef.child(user.uid).set({
+        uid: user.uid,////////////////////////////////////////////////////////
         isAdmin: "false",
+        entity: "null",////////////////////////////////////////////////////////
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",
@@ -445,8 +449,8 @@ export class DatabaseService {
    setup() {
    this.setCurrentUser();
    this.loadUsers(this.onDataLoaded.bind(this));
-   }
-   */
+  }
+  
   onDataLoaded(loadedList) {
 
     let newUser = true;
@@ -459,4 +463,5 @@ export class DatabaseService {
       this.addUser(this.currentUserName, "null");
     }
   }
+  */
 }
