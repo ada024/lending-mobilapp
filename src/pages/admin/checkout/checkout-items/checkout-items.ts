@@ -25,16 +25,13 @@ export class CheckoutItemsPage {
 
     close: boolean;
     dataReceived: boolean;
-    toggleText = "Show item list";
     showList: boolean;
-    showTagInfo: boolean;
 	item: any;
 
 	
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
         this.showList = false;
-        this.showTagInfo = true;
         db.loadItems(this.onDataLoaded.bind(this));
        
 
@@ -72,11 +69,6 @@ export class CheckoutItemsPage {
   }
 
   searchItems() {
-      if (this.searchItemString != " ") {
-          this.showList = true;
-          this.showTagInfo = false;
-          this.toggleText = "Show tag info"
-      }
           this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
    
   }
@@ -91,22 +83,6 @@ export class CheckoutItemsPage {
         this.navCtrl.push(CheckoutItemPickedPage, { self: this })
 		}		
 	}
-
-
-    toggleView() {
-        if (this.toggleText == "Show item list") {
-            this.toggleText = "Show tag info";
-            this.showList = true;
-            this.showTagInfo = false
-            this.searchItemString = "";
-        }
-        else if (this.toggleText == "Show tag info") {
-            this.toggleText = "Show item list";
-            this.showList = false;
-            this.showTagInfo = true;
-        }
-
-    }
 
 
     goHome() {
@@ -143,8 +119,14 @@ export class CheckoutItemsPage {
   });
   alert.present();
 }
+
+	hideList(){
+		this.showList = false;
+	}
 	
-    
+	appearList(){
+		this.showList = true;
+	}
 }
 
 

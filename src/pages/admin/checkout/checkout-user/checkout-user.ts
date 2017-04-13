@@ -22,14 +22,11 @@ export class CheckoutUserPage {
     //tag: Tag;
     close = false;
     dataReceived: boolean;
-    toggleText = "Show user list";
     showList: boolean;
-    showTagInfo: boolean;
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
         this.showList = false;
-        this.showTagInfo = true;
         db.loadUsers(this.onDataLoaded.bind(this));
 
         //this.tag = new Tag();
@@ -63,11 +60,6 @@ export class CheckoutUserPage {
     }
 
     searchUsers() {
-        if (this.searchUserString != " ") {
-            this.showList = true;
-            this.showTagInfo = false;
-            this.toggleText = "Show tag info"
-        }
         this.usersList = this.db.search(this.loadedUserList, this.searchUserString, "v.fullname");
     }
 
@@ -75,17 +67,11 @@ export class CheckoutUserPage {
         this.navCtrl.push(CheckoutUserPickedPage, { user: user });
     }
 
-    toggleView() {
-        if (this.toggleText == "Show user list") {
-            this.toggleText = "Show tag info";
-            this.showList = true;
-            this.showTagInfo = false;
-        }
-        else if (this.toggleText == "Show tag info") {
-            this.toggleText = "Show user list";
-            this.showList = false;
-            this.showTagInfo = true;
-        }
-
-    }
+	hideList(){
+		this.showList = false;
+	}
+	
+	appearList(){
+		this.showList = true;
+	}
 }
