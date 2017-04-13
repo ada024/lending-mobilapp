@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { EntityUserPage } from '../entities/entity-user/entity-user';
@@ -14,18 +14,31 @@ export class HomeUserPage {
   loans;
   //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public zone: NgZone, public db: DatabaseService) {
     this.currentUser = this.db.currentUserName;
-    this.pendingLoans = db.getPendingLoans();
-    this.loans = db.getLoans();
+    db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
+    db.loadLoans(this.onLoansLoaded.bind(this));
   }
 
-  acceptLoan(event, pendingLoan) {
+  acceptLoan(pendingLoan) {
     this.db.deletePendingLoan(pendingLoan);
     this.db.addLoan(pendingLoan.itemName);
   }
 
   goToEntityUserPage() {
     this.navCtrl.push(EntityUserPage);
+  }
+
+  onPendingLoansLoaded(loadedList) {
+    this.zone.run(() => {
+      this.pendingLoans = loadedList;
+    });
+  }
+
+  onLoansLoaded(loadedList) {
+    this.zone.run(() => {
+      this.loans = loadedList;
+    });
   }
 }
