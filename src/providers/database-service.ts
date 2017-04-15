@@ -154,20 +154,22 @@ export class DatabaseService {
   }
 
   loadCurrentUser(onDataLoaded) {
-    this.users.subscribe(users => {
-      let currentUser;
-      let newUser = true;
-      users.forEach(user => {
-        if (user.fullname == this.currentUserName) {
-          currentUser = user;
-          newUser = false;
+    if(this.authState != null) {
+      this.users.subscribe(users => {
+        let currentUser;
+        let newUser = true;
+        users.forEach(user => {
+          if(user.fullname == this.currentUserName) {
+            currentUser = user;
+            newUser = false;
+          }
+        });
+        if(newUser) {
+          this.writeDbUser(false);
         }
+        onDataLoaded(currentUser);
       });
-      if (newUser) {
-        this.writeDbUser(false);
-      }
-      onDataLoaded(currentUser);
-    });
+    }
   }
 
 
@@ -414,7 +416,9 @@ export class DatabaseService {
     } else {
       console.log("User exist in db");
     }
-
+    this.loadCurrentUser(currentUser => {
+      this.currentUser = currentUser;
+    });
   }
 
   msgToast(msg) {
