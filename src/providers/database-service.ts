@@ -5,6 +5,9 @@ import {AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, A
 import firebase from 'firebase';
 import {Observable} from "rxjs/Observable";
 
+import {PopoverController} from 'ionic-angular';
+import {DropdownMenuPage} from '../pages/dropdown-menu/dropdown-menu';
+
 import {Platform, ToastController} from 'ionic-angular';
 import {Facebook} from 'ionic-native';
 import {auth} from 'firebase'; //needed for the FacebookAuthProvider
@@ -30,7 +33,8 @@ export class DatabaseService {
 
   currentUser: any;
 
-  constructor(public http: Http, public af: AngularFire, private platform: Platform, private  toastCtrl: ToastController) {
+  constructor(public http: Http, public af: AngularFire, private platform: Platform, 
+  private  toastCtrl: ToastController, public popoverCtrl: PopoverController) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
     this.loans = af.database.list('/loans');
@@ -427,6 +431,20 @@ export class DatabaseService {
       duration: 3500
     });
     return toast.present();
+  }
+
+
+
+
+  //dropdown menu stuff
+  openDropdownMenu(event) {
+    let popover = this.popoverCtrl.create(DropdownMenuPage, {
+      userName: this.currentUserName, 
+      logoutFunc: this.logout.bind(this)
+    });
+    popover.present({
+      ev: event
+    });
   }
 
 

@@ -1,7 +1,11 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{currentUser}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -10,9 +14,9 @@
 <ion-content padding>
 
   <!---------------------------- Testing, userinfo from FB -------------------------->
-  <div *ngIf="auth.authState">current user is {{auth.currentUserName}}</div>
-  <div *ngIf="auth.authState">current user Email: {{auth.currentUserEmail}}</div>
-  <div *ngIf="auth.authState"><img [src]="auth.currentUserPhotoURI"/></div>
+  <div *ngIf="db.authState">current user is {{db.currentUserName}}</div>
+  <div *ngIf="db.authState">current user Email: {{db.currentUserEmail}}</div>
+  <div *ngIf="db.authState"><img [src]="db.currentUserPhotoURI"/></div>
   <!-- ---------------------------------  -->
 
   <p class=title-text>

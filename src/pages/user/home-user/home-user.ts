@@ -41,4 +41,8 @@ export class HomeUserPage {
       this.loans = loadedList;
     });
   }
+
+  openDropdownMenu(event) {
+    this.db.openDropdownMenu(event);
+  }
 }

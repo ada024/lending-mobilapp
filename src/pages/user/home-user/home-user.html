@@ -1,9 +1,13 @@
 ﻿<ion-header>
 
   <ion-navbar>
-    <ion-title>{{currentUser}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-  
+
 </ion-header>
 
 
