@@ -28,5 +28,12 @@ export class ChooseAccountTypePage {
     this.db.openDropdownMenu(event);
   }
 
+  customButton(): void {
+    this.db.msgToast("Check console.log");
+    this.db.listUsers();
+  }
+
+
+
 }
 

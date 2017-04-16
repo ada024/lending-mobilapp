@@ -33,8 +33,8 @@ export class DatabaseService {
 
   currentUser: any;
 
-  constructor(public http: Http, public af: AngularFire, private platform: Platform, 
-  private  toastCtrl: ToastController, public popoverCtrl: PopoverController) {
+  constructor(public http: Http, public af: AngularFire, private platform: Platform,
+              private  toastCtrl: ToastController, public popoverCtrl: PopoverController) {
     this.items = af.database.list('/items');
     this.users = af.database.list('/users');
     this.loans = af.database.list('/loans');
@@ -100,7 +100,6 @@ export class DatabaseService {
   }
 
 
-
   removeItem(item) {
     return this.items.remove(item);
   }
@@ -158,17 +157,17 @@ export class DatabaseService {
   }
 
   loadCurrentUser(onDataLoaded) {
-    if(this.authState != null) {
+    if (this.authState != null) {
       this.users.subscribe(users => {
         let currentUser;
         let newUser = true;
         users.forEach(user => {
-          if(user.fullname == this.currentUserName) {
+          if (user.fullname == this.currentUserName) {
             currentUser = user;
             newUser = false;
           }
         });
-        if(newUser) {
+        if (newUser) {
           this.writeDbUser(false);
         }
         onDataLoaded(currentUser);
@@ -388,10 +387,10 @@ export class DatabaseService {
 
 
   existInDb() {
-    let user = this.authState.auth.uid;
-    let usersReff = firebase.database().ref('/users');
-    usersReff.child(user).once('value', (snapshot) => {
-      let exist = (snapshot.val() != null);
+    let userUid = this.authState.auth.uid;
+    let fullUsersRef = firebase.database().ref('/users/'+userUid);
+    fullUsersRef.once('value', (snapshot) => {
+      let exist = snapshot.exists();
       this.writeDbUser(exist);
     }, function (error) {
       console.error(error);
@@ -407,14 +406,14 @@ export class DatabaseService {
       this.usersRef.child(user.uid).set({
         uid: user.uid,
         isAdmin: "false",
+        isPending: "true",
         entity: "null",
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",
         name: {
           first: narr[0] || "",
-          middle: narr[1] || "",
-          last: narr[2] || "",
+          last: narr[1] || "",
         },
       });
     } else {
@@ -425,6 +424,7 @@ export class DatabaseService {
     });
   }
 
+
   msgToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
@@ -434,18 +434,50 @@ export class DatabaseService {
   }
 
 
+  listPendingUsers() {
+    console.log("All pending users...............");
+    let pendingQuery = firebase.database().ref('/users').orderByChild("isPending").equalTo("true");
+    pendingQuery.once("value")
+      .then(function (snapshot) {
+        let total = snapshot.numChildren();
+        snapshot.forEach(function (childSnapshot) {
+          let usersUid = childSnapshot.key;
+          let userName = childSnapshot.child("fullname").val();
+          let isPending = childSnapshot.child("isPending").val();
+          var pending = isPending === true? 'Yes' : 'No';
+          console.log('UsersUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
+        });
+        console.log('Total: '+total);
+      });
+  }
+
+
+  listUsers() {
+    console.log("List all users alphabetical...............");
+    let userQuery = firebase.database().ref('/users').orderByKey();
+    userQuery.once("value")
+      .then(function (snapshot) {
+        let total = snapshot.numChildren();
+        snapshot.forEach(function (childSnapshot) {
+          let usersUid = childSnapshot.key;
+          let userName = childSnapshot.child("fullname").val();
+          let isAdmin = childSnapshot.child("isAdmin").val();
+          var admin = isAdmin === "true"? 'Yes' : 'No';
+          console.log('Name: '+userName+' Admin: '+admin);
+        });
+        console.log('Total: '+total);
+      });
+  }
 
 
   //dropdown menu stuff
   openDropdownMenu(event) {
     let popover = this.popoverCtrl.create(DropdownMenuPage, {
-      userName: this.currentUserName, 
+      userName: this.currentUserName,
       logoutFunc: this.logout.bind(this)
     });
     popover.present({
       ev: event
     });
   }
-
-
 }
