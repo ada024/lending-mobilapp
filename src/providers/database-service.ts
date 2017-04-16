@@ -388,8 +388,8 @@ export class DatabaseService {
 
   existInDb() {
     let userUid = this.authState.auth.uid;
-    let fullUsersRef = firebase.database().ref('/users/'+userUid);
-    fullUsersRef.once('value', (snapshot) => {
+    let fullUserRef = firebase.database().ref('/users/'+userUid);
+    fullUserRef.once('value', (snapshot) => {
       let exist = snapshot.exists();
       this.writeDbUser(exist);
     }, function (error) {
@@ -444,8 +444,8 @@ export class DatabaseService {
           let usersUid = childSnapshot.key;
           let userName = childSnapshot.child("fullname").val();
           let isPending = childSnapshot.child("isPending").val();
-          var pending = isPending === true? 'Yes' : 'No';
-          console.log('UsersUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
+          let pending = isPending === "true"? 'Yes':'No';
+          console.log('UserUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
         });
         console.log('Total: '+total);
       });
@@ -461,9 +461,10 @@ export class DatabaseService {
         snapshot.forEach(function (childSnapshot) {
           let usersUid = childSnapshot.key;
           let userName = childSnapshot.child("fullname").val();
+          let entity = childSnapshot.child("entity").val();
           let isAdmin = childSnapshot.child("isAdmin").val();
-          var admin = isAdmin === "true"? 'Yes' : 'No';
-          console.log('Name: '+userName+' Admin: '+admin);
+          let admin = isAdmin === "true"? 'Yes' : 'No';
+          console.log('Name: '+userName+' Entity: '+entity+' Admin: '+admin);
         });
         console.log('Total: '+total);
       });
