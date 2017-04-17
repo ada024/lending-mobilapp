@@ -6,7 +6,6 @@ import { EntityUserPage } from '../entities/entity-user/entity-user';
 @Component({
   selector: 'page-home-user',
   templateUrl: 'home-user.html',
-  providers: [DatabaseService]
 })
 export class HomeUserPage {
   currentUser = "";
@@ -16,7 +15,7 @@ export class HomeUserPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
-    this.currentUser = this.db.currentUserName;
+    this.currentUser = db.currentUserName;
     db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
     db.loadLoans(this.onLoansLoaded.bind(this));
   }

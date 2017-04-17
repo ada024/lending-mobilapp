@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>entity-change-user</ion-title>
+    <ion-title>users-list-admin</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,9 +15,9 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let entity of entitiesList">
-      <ion-item (click)="changeEntity(entity)">
-        {{entity.name}}
+    <ion-item-sliding *ngFor="let user of usersList">
+      <ion-item>
+        {{user.fullname}}
       </ion-item>
       <ion-item-options>
         <button danger (click)="removeItem(item)"> Delete</button>

@@ -1,0 +1,44 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>users-admin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="big-icon">
+    <ion-icon name="logo-freebsd-devil"></ion-icon>
+  </div>
+
+  <p class=title>
+    <b>Users</b>
+  </p>
+
+  <ion-searchbar>
+  </ion-searchbar>
+
+  <div class="button-container">
+   <button class="blue-button" (click)="goToUsersListAdminPage()">
+      <ion-icon name="ios-list-box-outline" class="button-icon"></ion-icon>
+      <div class="button-with-icon-text">
+        <b>List all users</b>
+      </div>
+    </button>
+
+    <button class="red-button" (click)="goToUsersPendingAdminPage()">
+     <div class="red-button-text-container">
+        <div class="red-button-text-title">
+          Pending users
+        </div><br>
+        <div class="red-button-text-info">
+          26 awaiting your approval
+        </div>
+      </div>
+   </button>
+  </div>
+
+</ion-content>

@@ -1,9 +1,4 @@
-<!--
-  Generated template for the EntityJoinUser page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +9,29 @@
 
 
 <ion-content padding>
+
+  <p class=title>
+    <b>{{entity.name}}</b>
+  </p>
+
+  <div *ngIf="!isPending && !hasJoined">
+    <button class="blue-button" (click)="sendRequest()">
+    <div class="button-text">
+      <b>Send request to joine entity</b>
+    </div>
+   </button>
+  </div>
+
+  <div *ngIf="isPending">
+    <div class="info-text-1">
+      <b>Waiting for {{entity.owner}} to accept request</b>
+    </div>
+  </div>
+
+  <div *ngIf="hasJoined">
+    <div class="info-text-2">
+      <b>You have allready joined this entity</b>
+    </div>
+  </div>
 
 </ion-content>

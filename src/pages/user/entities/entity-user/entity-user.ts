@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { EntityListUserPage } from '../entity-list-user/entity-list-user';
+import { EntityChangeUserPage } from '../entity-change-user/entity-change-user';
 
 
 @Component({
@@ -22,6 +23,10 @@ export class EntityUserPage {
       this.currentUserName = data.fullname;
       this.currentUserEntity = data.entity;
     });
+  }
+
+  goToEntityChangeUserPage() {
+    this.navCtrl.push(EntityChangeUserPage);
   }
 
   goToEntityListUserPage() {

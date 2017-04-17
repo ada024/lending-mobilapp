@@ -16,7 +16,7 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let entity of entitiesList">
-      <ion-item (click)="changeEntity(entity)">
+      <ion-item (click)="goToEntityJoinUserPage(entity)">
         {{entity.name}}
         <br/>
         {{entity.owner}}

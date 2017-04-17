@@ -20,6 +20,10 @@ import { ItemsAddSuccessAdminPage } from '../pages/admin/items/items-add-success
 import { ItemsListAdminPage } from '../pages/admin/items/items-list-admin/items-list-admin';
 import { ItemsDetailsAdminPage } from '../pages/admin/items/items-details-admin/items-details-admin';
 
+import { UsersAdminPage } from '../pages/admin/users/users-admin/users-admin';
+import { UsersListAdminPage } from '../pages/admin/users/users-list-admin/users-list-admin';
+import { UsersPendingAdminPage } from '../pages/admin/users/users-pending-admin/users-pending-admin';
+
 import { EntityAdminPage } from '../pages/admin/entities/entity-admin/entity-admin';
 import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/entity-add-admin';
 import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
@@ -34,7 +38,9 @@ import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-ale
 
 import { EntityUserPage } from '../pages/user/entities/entity-user/entity-user';
 import { EntityListUserPage } from '../pages/user/entities/entity-list-user/entity-list-user';
+import { EntityChangeUserPage } from '../pages/user/entities/entity-change-user/entity-change-user';
 import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-user/entity-details-user';
+import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/entity-join-user';
 
 
 
@@ -67,6 +73,10 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
 
+    UsersAdminPage,
+    UsersListAdminPage,
+    UsersPendingAdminPage,
+
     EntityAdminPage,
     EntityAddAdminPage,
     EntityListAdminPage,
@@ -80,7 +90,9 @@ export const firebaseConfig = {
 
     EntityUserPage,
     EntityListUserPage,
-    EntityDetailsUserPage
+    EntityChangeUserPage,
+    EntityDetailsUserPage,
+    EntityJoinUserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -105,6 +117,10 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
 
+    UsersAdminPage,
+    UsersListAdminPage,
+    UsersPendingAdminPage,
+
     EntityAdminPage,
     EntityAddAdminPage,
     EntityListAdminPage,
@@ -118,7 +134,9 @@ export const firebaseConfig = {
 
     EntityUserPage,
     EntityListUserPage,
-    EntityDetailsUserPage
+    EntityChangeUserPage,
+    EntityDetailsUserPage,
+    EntityJoinUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })

@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>entity-change-user</ion-title>
+    <ion-title>users-pending-admin</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,9 +15,12 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let entity of entitiesList">
-      <ion-item (click)="changeEntity(entity)">
-        {{entity.name}}
+    <ion-item-sliding *ngFor="let pendingUser of pendingUsers">
+      <ion-item>
+        {{pendingUser.fullname}}
+        <button class="accept-button" (click)="acceptUser(pendingUser)">
+        Accept
+      </button>
       </ion-item>
       <ion-item-options>
         <button danger (click)="removeItem(item)"> Delete</button>

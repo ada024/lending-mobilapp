@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { CheckoutItemsPage } from '../checkout/checkout-items/checkout-items';
 import { ItemsAdminPage } from '../items/items-admin/items-admin';
+import { UsersAdminPage } from '../users/users-admin/users-admin';
 import { EntityAdminPage } from '../entities/entity-admin/entity-admin';
 import { DeveloperToolsPage } from '../developer-tools/developer-tools';
 
@@ -14,7 +15,7 @@ export class HomeAdminPage {
   currentUser = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-    this.currentUser = this.db.currentUserName;
+    this.currentUser = db.currentUserName;
   }
 
   goToCheckOut() {
@@ -23,6 +24,10 @@ export class HomeAdminPage {
 
   goToItemsAdminPage() {
     this.navCtrl.push(ItemsAdminPage);
+  }
+
+  goToUsersAdminPage() {
+    this.navCtrl.push(UsersAdminPage);
   }
 
   goToEntityAdminPage() {

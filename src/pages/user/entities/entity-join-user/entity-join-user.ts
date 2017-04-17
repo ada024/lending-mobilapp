@@ -1,22 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../../../providers/database-service';
 
-/*
-  Generated class for the EntityJoinUser page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-entity-join-user',
   templateUrl: 'entity-join-user.html'
 })
 export class EntityJoinUserPage {
+  entity;
+  isPending = false;
+  hasJoined = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EntityJoinUserPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+   public zone: NgZone, public db: DatabaseService) {
+    this.entity = navParams.get("entity");
+    db.isPending(this.entity, this.onAnswerLoaded1.bind(this));
+    db.hasJoined(this.entity, this.onAnswerLoaded2.bind(this));
   }
 
+  onAnswerLoaded1(answer) {
+    this.zone.run(() => {
+      this.isPending = answer;
+    });
+  }
+
+  onAnswerLoaded2(answer) {
+    this.zone.run(() => {
+      this.hasJoined = answer;
+    });
+  }
+
+  sendRequest() {
+    this.db.addPendingUser(this.entity);
+  }
 }

@@ -1,5 +1,6 @@
 ﻿import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
+import Rx from "rxjs/Rx"
 import 'rxjs/add/operator/map';
 import {AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, AuthMethods} from 'angularfire2';
 import firebase from 'firebase';
@@ -20,6 +21,7 @@ export class DatabaseService {
   entities: FirebaseListObservable<any>;
   pendingLoans: FirebaseListObservable<any>;
   pendingUsers: FirebaseListObservable<any>;
+  usersEntityMap: FirebaseListObservable<any>;
   temporaryItems: FirebaseListObservable<any>;
   public firebase: any;
   private authState: FirebaseAuthState;
@@ -41,6 +43,7 @@ export class DatabaseService {
     this.entities = af.database.list('/entities');
     this.pendingLoans = af.database.list('/pendingLoans');
     this.pendingUsers = af.database.list('/pendingUsers');
+    this.usersEntityMap = af.database.list('/usersEntityMap');
     this.temporaryItems = af.database.list('/temporaryItems');
     this.firebase = firebase;  //Add reference to native firebase SDK
     this.itemsRef = firebase.database().ref('/items');
@@ -56,7 +59,6 @@ export class DatabaseService {
     this.loadCurrentUser(currentUser => {
       this.currentUser = currentUser;
     });
-
   }
 
 
@@ -105,7 +107,7 @@ export class DatabaseService {
   }
 
   loadItems(onDataLoaded) {
-    this.loadData(this.items, loadedList => {
+    this.items.subscribe(loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
     })
   }
@@ -143,9 +145,22 @@ export class DatabaseService {
   }
 
   loadUsers(onDataLoaded) {
-    this.loadData(this.users, onDataLoaded);
+    this.users.subscribe(loadedList => {
+      onDataLoaded(loadedList)
+    });
   }
 
+  loadUsersInThisEntity(onDataLoaded) {
+    Rx.Observable.combineLatest(this.users, this.usersEntityMap, (loadedUsers, loadedMap) => {
+      let filteredMap = this.search(loadedMap, this.currentUser.entity, "v.entity");
+      let users = [];
+      filteredMap.forEach(element => {
+        let user = this.search(loadedUsers, element.userUid, "v.uid");
+        users.push(user[0]);
+      });
+      return users;
+    }).subscribe(users => onDataLoaded(users));
+  }
 
   getUserByName(name) {
     this.usersList.forEach(user => {
@@ -212,7 +227,7 @@ export class DatabaseService {
   }
 
   loadPendingLoans(onDataLoaded) {
-    this.loadData(this.pendingLoans, loadedList => {
+    this.pendingLoans.subscribe(loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
     })
   }
@@ -221,15 +236,48 @@ export class DatabaseService {
     //todo
   }
 
-  addPendingUser(userId, entityId) {
+  addPendingUser(entity) {
     this.pendingUsers.push({
-      userId: userId,
-      entityId: entityId
+      userUid: this.currentUser.uid,
+      fullname: this.currentUser.fullname,
+      entity: entity.name
     });
   }
 
   getPendingUsers() {
     return this.pendingUsers;
+  }
+
+  loadPendingUsers(onDataLoaded) {
+    this.pendingUsers.subscribe(loadedList => {
+      onDataLoaded(loadedList);
+    })
+  }
+
+  loadPendingUsersInThisEntity(onDataLoaded) {
+    this.pendingUsers.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
+    })
+  }
+
+  acceptPendingUser(pendingUser) {
+    this.pendingUsers.remove(pendingUser);
+    this.usersEntityMap.push({
+      userUid: pendingUser.userUid,
+      entity: pendingUser.entity
+    });
+  }
+
+  isPending(entity, onAnswerLoaded) {
+    this.loadPendingUsers(loadedUsers => {
+      let isPending = false;
+      loadedUsers.forEach(pendingUser => {
+        if(pendingUser.userUid == this.currentUser.uid && pendingUser.entity == entity.name) {
+          isPending = true;
+        }
+      });
+      onAnswerLoaded(isPending);
+    });
   }
 
   deletePendingLoan(pendingLoan) {
@@ -251,13 +299,13 @@ export class DatabaseService {
   }
 
   loadLoans(onDataLoaded) {
-    this.loadData(this.loans, loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
-    })
+    this.loans.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"))
+    });
   }
 
 
-  //Methods to add and get entitys
+  //Methods to add and get entities
 
   addEntity(name) {
     this.entities.push({
@@ -271,7 +319,33 @@ export class DatabaseService {
   }
 
   loadEntities(onDataLoaded) {
-    this.loadData(this.entities, onDataLoaded);
+    this.entities.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.fullname, "v.owner"))
+    });
+  }
+
+  loadJoinedEntities(onDataLoaded) {
+    Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
+      let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
+      let entities = [];
+      filteredMap.forEach(element => {
+        let entity = this.search(loadedEntities, element.entity, "v.name");
+        entities.push(entity[0]);
+      });
+      return entities;
+    }).subscribe(entities => onDataLoaded(entities));
+  }
+
+  hasJoined(entity, onAnswerLoaded) {
+    this.loadUserEntityMap(loadedMap => {
+      let hasJoined = false;
+      loadedMap.forEach(element => {
+        if(element.userUid == this.currentUser.uid && element.entity == entity.name) {
+          hasJoined = true;
+        }
+      });
+      onAnswerLoaded(hasJoined);
+    });
   }
 
   setEntity(entity) {
@@ -280,39 +354,28 @@ export class DatabaseService {
     });
   }
 
+  loadUserEntityMap(onDataLoaded){
+    this.usersEntityMap.subscribe(loadedList => {
+      onDataLoaded(loadedList);
+    });
+  }
+
 
   //Developer tools
 
   populateDatabase() {
-    this.addEntity("Faculty of Art, Bergen");
     this.addItem("iphone lader", "1gf13gf1");
     this.addItem("android lader", "6554y5hh");
     this.addItem("camera", "876ur5htr");
-    this.addPendingUser("John smith", "Faculty of Art, Bergen");
-    this.addPendingUser("John fisher", "Faculty of Art, Bergen");
-    this.addPendingLoan({
-      name: "zz",
-      id: "0",
-      entity: this.currentUser.entity
-    }, this.currentUser);
   }
 
   clearDatabase() {
     this.entities.remove();
     this.items.remove();
-    this.users.remove();
+    //this.users.remove();
     this.loans.remove();
     this.pendingUsers.remove();
     this.pendingLoans.remove();
-  }
-
-
-  //fetches firebase data and sends it to the onDataLoaded function
-
-  loadData(list, onDataLoaded) {
-    list.subscribe(list => {
-      onDataLoaded(list)
-    });
   }
 
 

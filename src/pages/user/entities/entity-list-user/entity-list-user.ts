@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { EntityJoinUserPage } from '../entity-join-user/entity-join-user';
 
 
 @Component({
@@ -27,9 +28,8 @@ export class EntityListUserPage {
     this.entitiesList = this.db.search(this.loadedEntitiesList, this.searchString, "v.name");
   }
 
-  changeEntity(entity) {
-    this.db.setEntity(entity);
-    this.navCtrl.pop();
+  goToEntityJoinUserPage(entity) {
+    this.navCtrl.push(EntityJoinUserPage, {entity: entity});
   }
 
 }
