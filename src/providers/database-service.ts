@@ -225,7 +225,8 @@ export class DatabaseService {
     this.pendingLoans.push({
       userUid: user.uid,
       itemName: item.name,
-      itemOwner: this.currentUserName
+	  itemOwnerName: this.currentUser.fullname,
+      itemOwnerUid: this.currentUser.uid
     });
   }
 
@@ -242,6 +243,22 @@ export class DatabaseService {
   getPendingLoansByUserId(userId) {
     //todo
   }
+  
+  /*  Funker, men blir tungvint
+  getUsernameByUserId(userId){
+	    var foundUser;
+    this.users.subscribe(users => {
+      users.forEach(user => {
+        if (user.uid == userId) {
+          foundUser = user;
+        }
+      });
+    });
+    return foundUser.fullname;
+  }
+	  */
+	  
+  
 
   addPendingUser(entity) {
     this.pendingUsers.push({
@@ -294,10 +311,12 @@ export class DatabaseService {
 
   //Methods to add and get loans
 
-  addLoan(itemName) {
+  addLoan(itemName, itemOwnerName, itemOwnerUid) {
     this.loans.push({
       itemName: itemName,
-      userUid: this.currentUser.uid
+      userUid: this.currentUser.uid,
+	  itemOwnerName: itemOwnerName,
+	  itemOwnerUid: itemOwnerUid
     });
   }
 
@@ -311,6 +330,11 @@ export class DatabaseService {
     });
   }
 
+  loadLoansForCheckin(onDataLoaded) {
+    this.loans.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.itemOwnerUid"))
+    });
+  }
 
   //Methods to add and get entities
 

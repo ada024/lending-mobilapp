@@ -2,6 +2,7 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { CheckoutItemsPage } from '../checkout/checkout-items/checkout-items';
+import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
 import { ItemsAdminPage } from '../items/items-admin/items-admin';
 import { UsersAdminPage } from '../users/users-admin/users-admin';
 import { EntityAdminPage } from '../entities/entity-admin/entity-admin';
@@ -21,7 +22,11 @@ export class HomeAdminPage {
   goToCheckOut() {
     this.navCtrl.push(CheckoutItemsPage);
   }
-
+  
+  goToCheckIn() {
+    this.navCtrl.push(CheckinFirstPage);
+  }
+  
   goToItemsAdminPage() {
     this.navCtrl.push(ItemsAdminPage);
   }

@@ -2,7 +2,6 @@
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
-import firebase from 'firebase';
 import { Toast } from 'ionic-native';
 
 declare var window: any;

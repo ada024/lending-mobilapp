@@ -22,7 +22,7 @@ export class HomeUserPage {
 
   acceptLoan(pendingLoan) {
     this.db.deletePendingLoan(pendingLoan);
-    this.db.addLoan(pendingLoan.itemName);
+    this.db.addLoan(pendingLoan.itemName, pendingLoan.itemOwnerName, pendingLoan.itemOwnerUid);
   }
 
   goToEntityUserPage() {
@@ -44,4 +44,5 @@ export class HomeUserPage {
   openDropdownMenu(event) {
     this.db.openDropdownMenu(event);
   }
+  
 }

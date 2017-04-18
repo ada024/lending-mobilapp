@@ -36,6 +36,9 @@ import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-pi
 import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
 import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-alert';
 
+import { CheckinFirstPage } from '../pages/admin/checkin/checkin-first/checkin-first';
+import { CheckinConfirmPage } from '../pages/admin/checkin/checkin-confirm/checkin-confirm';
+
 import { EntityUserPage } from '../pages/user/entities/entity-user/entity-user';
 import { EntityListUserPage } from '../pages/user/entities/entity-list-user/entity-list-user';
 import { EntityChangeUserPage } from '../pages/user/entities/entity-change-user/entity-change-user';
@@ -87,6 +90,9 @@ export const firebaseConfig = {
 	  CheckoutItemPickedPage,
     CheckoutUserPickedPage,
     CustomAlertPage,
+	
+	CheckinFirstPage,
+	CheckinConfirmPage,
 
     EntityUserPage,
     EntityListUserPage,
@@ -132,6 +138,9 @@ export const firebaseConfig = {
     CheckoutUserPickedPage,
     CustomAlertPage,
 
+	CheckinFirstPage,
+	CheckinConfirmPage,
+	
     EntityUserPage,
     EntityListUserPage,
     EntityChangeUserPage,
