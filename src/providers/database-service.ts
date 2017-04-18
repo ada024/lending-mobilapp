@@ -194,12 +194,19 @@ export class DatabaseService {
   addTemporaryItems(item) {
     this.temporaryItems.push({
       name: item.name,
-      id: item.id
+      id: item.id,
+	  userUid: this.currentUser.uid
     });
   }
 
   getTemporaryItems() {
     return this.temporaryItems;
+  }
+  
+   loadTemporaryItems(onDataLoaded) {
+    this.temporaryItems.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
+    })
   }
 
   removeTemporaryItems() {

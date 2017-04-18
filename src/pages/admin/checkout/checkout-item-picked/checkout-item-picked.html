@@ -36,7 +36,7 @@
   <div class="placeBottom">
         <p class="someText">Item(s) you are checking out</p>
 <ion-list>
-    <ion-item-sliding *ngFor="let item of itemList | async">
+    <ion-item-sliding *ngFor="let item of itemList">
       <ion-item  class="listProps">
         <ion-icon name="image" class="item-image"></ion-icon> {{item.name}}
       </ion-item>

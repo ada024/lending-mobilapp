@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { CheckoutUserPage } from '../checkout-user/checkout-user';
@@ -18,8 +18,8 @@ import { CheckoutItemsPage } from '../checkout-items/checkout-items';
 export class CheckoutItemPickedPage {
 	itemList;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-	  this.itemList = this.db.getTemporaryItems();
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
+	 db.loadTemporaryItems(this.onTemporaryLoansLoaded.bind(this));
 	  
   }
   
@@ -45,6 +45,13 @@ export class CheckoutItemPickedPage {
   removeItem(item) {
               this.db.removeTemporaryItem(item);
           }
+		  
+		  
+  onTemporaryLoansLoaded(loadedList) {
+    this.zone.run(() => {
+      this.itemList = loadedList;
+    });
+  }
 
 
 }

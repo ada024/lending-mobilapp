@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
@@ -26,27 +26,24 @@ export class CheckoutUserPickedPage {
     itemList: any;
     itemRef: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform, public zone: NgZone) {
         this.user = navParams.get('user');
-        //this.itemListShow = this.db.getPendingItems();
+		
+		db.loadTemporaryItems(this.onTemporaryLoansLoaded.bind(this));
 
-        this.itemRef = firebase.database().ref('/temporaryItems');
-        this.itemRef.on('value', itemList => {
-            let itemsFire = [];
-            itemList.forEach(item => {
-                itemsFire.push(item.val());
-            });
-
-            this.itemList = itemsFire;
-
-
-        });
+       
 
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad CheckoutUserPickedPage');
     }
+	
+	onTemporaryLoansLoaded(loadedList) {
+    this.zone.run(() => {
+      this.itemList = loadedList;
+    });
+  }
 
     goToHomeAdminPage() {
 		if(this.platform.is('cordova')){

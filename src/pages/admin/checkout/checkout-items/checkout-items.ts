@@ -111,6 +111,9 @@ export class CheckoutItemsPage {
 	customAlert.present();
 	}
 	
+	
+	
+	
 	alreadyAddedAlert() {
   let alert = this.alertCtrl.create({
     title: 'Already added',
