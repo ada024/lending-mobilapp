@@ -76,6 +76,18 @@ export class DatabaseService {
     return this.items;
   }
 
+  loadItems(onDataLoaded) {
+    this.items.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
+    })
+  }
+
+  loadNumberOfItems(onDataLoaded) {
+    Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+      return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
+    }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
+  }
+
   getItem(name, id) {
     let foundItem;
     this.items.subscribe(items => {
@@ -104,12 +116,6 @@ export class DatabaseService {
 
   removeItem(item) {
     return this.items.remove(item);
-  }
-
-  loadItems(onDataLoaded) {
-    this.items.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
-    })
   }
 
   checkIfItemIsAdded(item) {
@@ -350,6 +356,12 @@ export class DatabaseService {
   }
 
   loadEntities(onDataLoaded) {
+    this.entities.subscribe(loadedList => {
+      onDataLoaded(loadedList)
+    });
+  }
+
+  loadEntitiesYouOwn(onDataLoaded) {
     this.entities.subscribe(loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.fullname, "v.owner"))
     });

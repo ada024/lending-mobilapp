@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { CheckoutItemsPage } from '../checkout/checkout-items/checkout-items';
@@ -13,10 +13,25 @@ import { DeveloperToolsPage } from '../developer-tools/developer-tools';
   templateUrl: 'home-admin.html'
 })
 export class HomeAdminPage {
-  currentUser = "";
+  numberOfUsers;
+  numberOfItems;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-    this.currentUser = db.currentUserName;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public zone: NgZone, public db: DatabaseService) {
+    db.loadUsersInThisEntity(this.onUsersLoaded.bind(this));
+    db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
+  }
+
+  onNumberOfItemsLoaded(numberOfItems) {
+    this.zone.run(() => {
+      this.numberOfItems = numberOfItems;
+    });
+  }
+
+  onUsersLoaded(users) {
+    this.zone.run(() => {
+      this.numberOfUsers = users.length;
+    });
   }
 
   goToCheckOut() {

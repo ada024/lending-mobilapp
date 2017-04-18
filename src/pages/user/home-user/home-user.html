@@ -37,10 +37,10 @@
        <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
         <div class="grey-button-text-container">
           <div class="grey-button-text-title">
-            Items
+            Full list of items
           </div><br>
           <div class="grey-button-text-info">
-            167 items registered
+            {{numberOfItems}} items you can borrow
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
             Entity
           </div><br>
           <div class="grey-button-text-info">
-            Faculty of Art, Music and Design, Bergen
+            {{db.currentUser.entity}}
           </div>
         </div>
       </div>

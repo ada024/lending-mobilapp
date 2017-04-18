@@ -14,7 +14,7 @@ export class EntityListAdminPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
-    this.db.loadEntities(this.onDataLoaded.bind(this));
+    this.db.loadEntitiesYouOwn(this.onDataLoaded.bind(this));
   }
 
   onDataLoaded(loadedList) {
