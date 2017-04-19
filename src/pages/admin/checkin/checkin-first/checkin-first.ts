@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
 import { NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
@@ -19,7 +19,7 @@ import {CheckinConfirmPage} from '../checkin-confirm/checkin-confirm';
   providers: [DatabaseService]
 })
 export class CheckinFirstPage {
-	itemsList: any;
+	loansList: any;
 	loadedItemList: any;
     searchItemString = '';
     
@@ -65,17 +65,18 @@ export class CheckinFirstPage {
 
   onDataLoaded(loadedList) {
       this.zone.run(() => {
-          this.itemsList = this.loadedItemList = loadedList;
+          this.loansList = this.loadedItemList = loadedList;
       });
   }
 
   searchItems() {
-          this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
+          this.loansList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
    
   }
 
-    goToCheckinConfirmPage(item) {
-        this.navCtrl.push(CheckinConfirmPage);
+  goToCheckinConfirmPage(loan) {
+     var user = this.db.getUsernameByUserId(loan.userUid);
+     this.navCtrl.push(CheckinConfirmPage, {loan: loan, user: user});
 		}		
 	
 
@@ -94,7 +95,7 @@ export class CheckinFirstPage {
 	 customAlert.onDidDismiss(data => {
 		 if(data!=null){
 			 if(this.db.checkIfItemIsAdded(data)){
-				 this.alreadyAddedAlert();
+				 //this.alreadyAddedAlert();
 				 this.close = false;
 			 }
 			 else{
@@ -110,7 +111,7 @@ export class CheckinFirstPage {
 	
 	
 	
-	
+	/* En alert for å scanne en item som allerede ligger inne?
 	alreadyAddedAlert() {
   let alert = this.alertCtrl.create({
     title: 'Already added',
@@ -119,7 +120,7 @@ export class CheckinFirstPage {
   });
   alert.present();
 }
-
+    */
 	hideList(){
 		this.showList = false;
 	}

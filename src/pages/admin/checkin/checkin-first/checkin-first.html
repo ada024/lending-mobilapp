@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the CheckoutItems page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
@@ -20,8 +20,8 @@
                 (ionInput)="searchItems($event)">
   </ion-searchbar>
   <ion-list *ngIf="showList" class="listProps">
-    <ion-item *ngFor="let item of itemsList">
-      <div class="name" (click)="goToCheckinConfirmPage(item)">{{item.itemName}}</div>
+    <ion-item *ngFor="let loan of loansList">
+      <div class="name" (click)="goToCheckinConfirmPage(loan)">{{loan.itemName}}</div>
     </ion-item>
   </ion-list>
   

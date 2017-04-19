@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
+    "\\src\\assets",
     "\\src\\pages",
     "\\src\\pages\\checkout-item-picked",
     "\\src\\pages\\checkout-items",
     "\\src\\pages\\choose-account-type",
     "\\src\\pages\\items-add-tag-admin",
-    "\\src\\pages\\items-add-tag-scann-admin",
-    "\\src\\pages\\items-list-admin"
+    "\\src\\pages\\login"
   ],
-  "SelectedNode": "\\src\\pages\\checkout-item-picked\\checkout-item-picked.ts",
+  "SelectedNode": "\\src\\app\\app.component.ts",
   "PreviewInSolutionExplorer": false
 }

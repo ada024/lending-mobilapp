@@ -250,7 +250,7 @@ export class DatabaseService {
     //todo
   }
   
-  /*  Funker, men blir tungvint
+  
   getUsernameByUserId(userId){
 	    var foundUser;
     this.users.subscribe(users => {
@@ -260,9 +260,9 @@ export class DatabaseService {
         }
       });
     });
-    return foundUser.fullname;
+    return foundUser;
   }
-	  */
+	  
 	  
   
 
@@ -324,6 +324,10 @@ export class DatabaseService {
 	  itemOwnerName: itemOwnerName,
 	  itemOwnerUid: itemOwnerUid
     });
+  }
+
+  removeLoan(loan) {
+      this.loans.remove(loan);
   }
 
   getLoans() {

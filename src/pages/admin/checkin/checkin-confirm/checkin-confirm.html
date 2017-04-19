@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the CheckinConfirm page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
@@ -14,5 +14,20 @@
 
 
 <ion-content padding>
+ <p class="titleText">Check in</p>
+  <ion-icon name="image" class="item-image"></ion-icon>
+    <p class="someText">{{loan.itemName}} </p>
 
+    <div class="placeBottom">
+      <p class="someText">Currently borrowed by</p>
+
+      <div class="userName"><img class="user-image" [src]="user.photoURL" /> {{user.fullname}}</div>
+
+
+      <button class="blue-button" (click)="goToHomeAdminPage()">
+        <div class="blue-button-text">
+          <b>Check In</b>
+        </div>
+      </button>
+    </div>
 </ion-content>
