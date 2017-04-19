@@ -27,7 +27,7 @@ export class CheckoutUserPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
         this.showList = false;
-        db.loadUsers(this.onDataLoaded.bind(this));
+        db.loadUsersInThisEntity(this.onDataLoaded.bind(this));
 
         //this.tag = new Tag();
         /*
