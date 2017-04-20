@@ -1,7 +1,8 @@
-import { Component, NgZone } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { EntityUserPage } from '../entities/entity-user/entity-user';
+import { ItemListUserPage } from '../items/item-list-user/item-list-user';
 
 @Component({
   selector: 'page-home-user',
@@ -27,6 +28,10 @@ export class HomeUserPage {
 
   goToEntityUserPage() {
     this.navCtrl.push(EntityUserPage);
+  }
+
+  goToItemlistUserPage() {
+      this.navCtrl.push(ItemListUserPage);
   }
 
   onPendingLoansLoaded(loadedList) {

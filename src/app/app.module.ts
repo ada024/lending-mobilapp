@@ -46,6 +46,8 @@ import { EntityChangeUserPage } from '../pages/user/entities/entity-change-user/
 import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-user/entity-details-user';
 import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/entity-join-user';
 
+import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-user';
+
 
 
 
@@ -100,7 +102,9 @@ export const firebaseConfig = {
     EntityListUserPage,
     EntityChangeUserPage,
     EntityDetailsUserPage,
-    EntityJoinUserPage
+      EntityJoinUserPage,
+
+      ItemListUserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -148,7 +152,9 @@ export const firebaseConfig = {
     EntityListUserPage,
     EntityChangeUserPage,
     EntityDetailsUserPage,
-    EntityJoinUserPage
+      EntityJoinUserPage,
+
+      ItemListUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })
