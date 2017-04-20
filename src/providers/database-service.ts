@@ -334,6 +334,18 @@ export class DatabaseService {
     return this.loans;
   }
 
+  getLoanByItem(item) {
+      var foundLoan;
+      this.loans.subscribe(loans => {
+          loans.forEach(loan => {
+              if (loan.itemName == item.name) {
+                  foundLoan = loan;
+              }
+          });
+      });
+      return foundLoan;
+  }
+
   loadLoans(onDataLoaded) {
     this.loans.subscribe(loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"))

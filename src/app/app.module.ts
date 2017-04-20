@@ -38,6 +38,7 @@ import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-ale
 
 import { CheckinFirstPage } from '../pages/admin/checkin/checkin-first/checkin-first';
 import { CheckinConfirmPage } from '../pages/admin/checkin/checkin-confirm/checkin-confirm';
+import { CustomAlertCheckinPage } from '../pages/admin/checkin/custom-alert-checkin/custom-alert-checkin';
 
 import { EntityUserPage } from '../pages/user/entities/entity-user/entity-user';
 import { EntityListUserPage } from '../pages/user/entities/entity-list-user/entity-list-user';
@@ -92,7 +93,8 @@ export const firebaseConfig = {
     CustomAlertPage,
 	
 	CheckinFirstPage,
-	CheckinConfirmPage,
+      CheckinConfirmPage,
+      CustomAlertCheckinPage,
 
     EntityUserPage,
     EntityListUserPage,
@@ -139,7 +141,8 @@ export const firebaseConfig = {
     CustomAlertPage,
 
 	CheckinFirstPage,
-	CheckinConfirmPage,
+      CheckinConfirmPage,
+      CustomAlertCheckinPage,
 	
     EntityUserPage,
     EntityListUserPage,

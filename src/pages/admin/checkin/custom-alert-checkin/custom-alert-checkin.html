@@ -1,5 +1,5 @@
-<!--
-  Generated template for the CustomAlert page.
+﻿<!--
+  Generated template for the CustomAlertCheckin page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -14,13 +14,13 @@
 
 
 <ion-content>
-<p class="centerText"><b>{{item.name}}</b></p><br>
+<p class="centerText"><b>{{loan.itemName}}</b></p><br>
 <ion-icon name="image" class="item-image"></ion-icon><br>
 <p  class="centerText">Is this the item you wanted to scan? </p><br>
  <button class="blue-button1" (click)="noClicked()">
  <div class="blue-button-text">No</div>
       </button>
-	   <button class="blue-button2" (click)="yesClicked(item)">
+	   <button class="blue-button2" (click)="yesClicked(loan)">
         <div class="blue-button-text">Yes</div>
       </button>
 </ion-content>

@@ -2,7 +2,7 @@
 import { DatabaseService } from '../../../../providers/database-service';
 import { NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
-import { CustomAlertPage } from '../custom-alert/custom-alert';
+import {CustomAlertCheckinPage } from '../custom-alert-checkin/custom-alert-checkin';
 import {CheckinConfirmPage} from '../checkin-confirm/checkin-confirm';
 
 
@@ -27,7 +27,7 @@ export class CheckinFirstPage {
     close: boolean;
     dataReceived: boolean;
     showList: boolean;
-	item: any;
+	loan: any;
 
 	
 
@@ -48,16 +48,18 @@ export class CheckinFirstPage {
   
    
     onTagFound(nfcEvent) {
-		var item;
+        var item;
+        var loan;
         if (!this.close) {
             this.zone.run(() => {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 item = this.db.getItemByTag(tagId);
-				if(item!=null){
-			   this.isThisTheRightItem(item);
+                loan = this.db.getLoanByItem(item);
+				if(loan!=null){
+			   this.isThisTheRightLoan(loan);
 				}
             });
-			if(item!=null){
+            if (loan != null) {
             this.close = true;
 		}
         }
@@ -89,18 +91,12 @@ export class CheckinFirstPage {
 	*/
 	
 	
-	isThisTheRightItem(item){
-		this.item = item;
-	let customAlert = this.modalCtrl.create(CustomAlertPage, {item: item});
+	isThisTheRightLoan(loan){
+		this.loan = loan;
+	let customAlert = this.modalCtrl.create(CustomAlertCheckinPage, {loan: loan});
 	 customAlert.onDidDismiss(data => {
 		 if(data!=null){
-			 if(this.db.checkIfItemIsAdded(data)){
-				 //this.alreadyAddedAlert();
-				 this.close = false;
-			 }
-			 else{
      this.goToCheckinConfirmPage(data);
-			 }
 		 }
 		 else{
 			 this.close = false;

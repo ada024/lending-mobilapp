@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform} from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { Toast } from 'ionic-native';
 
