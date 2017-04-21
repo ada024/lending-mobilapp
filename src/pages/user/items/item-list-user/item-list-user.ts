@@ -1,6 +1,8 @@
 ﻿import { Component, NgZone  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { ItemPickedUserPage } from '../item-picked-user/item-picked-user';
+
 
 /*
   Generated class for the ItemListUser page.
@@ -33,6 +35,10 @@ export class ItemListUserPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemListUserPage');
+  }
+
+  goToItemPickedUserPage(item) {
+      this.navCtrl.push(ItemPickedUserPage, { item: item });
   }
 
 }

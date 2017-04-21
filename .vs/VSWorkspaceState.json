@@ -2,15 +2,17 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
     "\\src\\pages",
     "\\src\\pages\\admin",
-    "\\src\\pages\\admin\\checkin",
-    "\\src\\pages\\admin\\checkin\\custom-alert-checkin",
-    "\\src\\pages\\admin\\checkout",
-    "\\src\\pages\\admin\\checkout\\checkout-items",
-    "\\src\\pages\\admin\\checkout\\custom-alert"
+    "\\src\\pages\\admin\\items",
+    "\\src\\pages\\admin\\items\\items-list-admin",
+    "\\src\\pages\\user",
+    "\\src\\pages\\user\\entities",
+    "\\src\\pages\\user\\home-user",
+    "\\src\\pages\\user\\items",
+    "\\src\\pages\\user\\items\\item-list-user",
+    "\\src\\providers"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\checkin\\custom-alert-checkin\\custom-alert-checkin.ts",
+  "SelectedNode": "\\src\\pages\\user\\items\\item-list-user\\item-list-user.html",
   "PreviewInSolutionExplorer": false
 }

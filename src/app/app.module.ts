@@ -47,6 +47,10 @@ import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-use
 import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/entity-join-user';
 
 import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-user';
+import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-picked-user';
+import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
+
+import { NgCalendarModule } from 'ionic2-calendar';
 
 
 
@@ -104,11 +108,14 @@ export const firebaseConfig = {
     EntityDetailsUserPage,
       EntityJoinUserPage,
 
-      ItemListUserPage
+      ItemListUserPage,
+      ItemPickedUserPage,
+      ItemCalendarUserPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+      NgCalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -154,7 +161,9 @@ export const firebaseConfig = {
     EntityDetailsUserPage,
       EntityJoinUserPage,
 
-      ItemListUserPage
+      ItemListUserPage,
+      ItemPickedUserPage,
+      ItemCalendarUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })
