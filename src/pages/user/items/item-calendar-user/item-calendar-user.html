@@ -13,18 +13,23 @@
 
 
 <ion-content class="has-header">
-  <p class="title-text">Select your pickup date</p>
-  <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
+  
+    <p class="title-text">Select your pickup date</p>
+  <div>
+    <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
     <calendar [currentDate]="calendar.currentDate"
-               autoSelect ="false"
+              autoSelect="false"
+              noEventsLabel=""
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"
               (onTimeSelected)="onTimeSelected($event)"
               step="30">
     </calendar>
-  <div class="placeBottom">
-    <p class="item-borrow">Item you want to borrow</p>
-    <div class="item-info"><ion-icon name="image" class="item-image"></ion-icon> {{item.name}}</div>
+    <div class="item">
+      <p class="item-borrow">Item you want to borrow</p>
+      <div class="item-info"><ion-icon name="image" class="item-image"></ion-icon> {{item.name}}</div>
+    </div>
   </div>
+  
 </ion-content>

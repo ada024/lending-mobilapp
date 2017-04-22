@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ItemsAddTagAdminPage } from '../items-add-tag-admin/items-add-tag-admin';
 import { Platform } from 'ionic-angular';
@@ -13,10 +13,10 @@ export class ItemsAddPhotoAdminPage {
   photoURI;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public platform: Platform, public camera: Camera) {
+      public platform: Platform, public camera: Camera) {
     this.itemName = navParams.get("itemName");
   }
-
+ 
   getPicture(useCamera) {
     if(this.platform.is('cordova')) {
       var srcType;
