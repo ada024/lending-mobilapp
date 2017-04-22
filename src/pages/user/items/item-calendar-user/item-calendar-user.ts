@@ -1,5 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NgCalendarModule } from 'ionic2-calendar';
+import { ItemConfirmPickupPage } from '../item-confirm-pickup/item-confirm-pickup'; 
 
 /*
   Generated class for the ItemCalendarUser page.
@@ -15,10 +17,12 @@ export class ItemCalendarUserPage {
     eventSource;
     viewTitle;
     isToday: boolean;
+    loadedFirstTime: boolean;
 
     item: any;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule) {
         this.item = navParams.get("item");
+        this.loadedFirstTime = false;
     }
 
   ionViewDidLoad() {
@@ -27,7 +31,7 @@ export class ItemCalendarUserPage {
 
   calendar = {
       mode: 'month',
-      currentDate: new Date()
+      currentDate: new Date(),
   }; // these are the variable used by the calendar.
 
   loadEvents() {
@@ -39,22 +43,38 @@ export class ItemCalendarUserPage {
   onEventSelected(event) {
       console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
-  changeMode(mode) {
-      this.calendar.mode = mode;
-  }
   today() {
       this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
           (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+
   }
   onCurrentDateChanged(event: Date) {
       var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
+      console.log("date " + today.getUTCDate());
+      console.log("eventdate " + event.getDate());
+      console.log("eventmonth " + event.getUTCMonth());
       this.isToday = today.getTime() === event.getTime();
+      if (this.loadedFirstTime) {
+          this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item } );
+      }
+      this.loadedFirstTime = true;
   }
+
+  nextMonth() {
+      this.loadedFirstTime = false;
+      this.calendar.currentDate = new Date(this.calendar.currentDate.setMonth(this.calendar.currentDate.getMonth() + 1));
+      
+  }
+  previousMonth() {
+      this.loadedFirstTime = false;
+      this.calendar.currentDate = new Date(this.calendar.currentDate.setMonth(this.calendar.currentDate.getMonth() - 1));
+  }
+
   createRandomEvents() {
       var events = [];
       for (var i = 0; i < 50; i += 1) {

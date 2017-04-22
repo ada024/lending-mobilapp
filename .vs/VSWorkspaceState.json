@@ -1,18 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\resources",
     "\\src",
+    "\\src\\app",
     "\\src\\pages",
-    "\\src\\pages\\admin",
-    "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-list-admin",
+    "\\src\\pages\\admin\\checkin",
+    "\\src\\pages\\admin\\checkin\\checkin-confirm",
     "\\src\\pages\\user",
-    "\\src\\pages\\user\\entities",
-    "\\src\\pages\\user\\home-user",
     "\\src\\pages\\user\\items",
-    "\\src\\pages\\user\\items\\item-list-user",
-    "\\src\\providers"
+    "\\src\\pages\\user\\items\\item-calendar-user"
   ],
-  "SelectedNode": "\\src\\pages\\user\\items\\item-list-user\\item-list-user.html",
+  "SelectedNode": "\\src\\providers",
   "PreviewInSolutionExplorer": false
 }

@@ -6,32 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar><ion-title>{{viewTitle}}</ion-title>
-<ion-buttons end>
-  
-</ion-buttons>
+  <ion-navbar><ion-title>ItemCalendarUser</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="has-header">
-  <h1>Select your pickup date</h1>
-  <button ion-button [disabled]="isToday" (click)="today()">Today</button>
-  <button ion-button (click)="loadEvents()">Load Events</button>
-    <calendar [eventSource]="eventSource"
-              [calendarMode]="calendar.mode"
-              [currentDate]="calendar.currentDate"
+  <p class="title-text">Select your pickup date</p>
+  <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
+    <calendar [currentDate]="calendar.currentDate"
+               autoSelect ="false"
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"
               (onTimeSelected)="onTimeSelected($event)"
               step="30">
     </calendar>
-  <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
-  </ion-item>
   <div class="placeBottom">
     <p class="item-borrow">Item you want to borrow</p>
     <div class="item-info"><ion-icon name="image" class="item-image"></ion-icon> {{item.name}}</div>

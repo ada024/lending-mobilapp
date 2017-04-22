@@ -49,6 +49,7 @@ import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/enti
 import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-user';
 import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-picked-user';
 import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
+import { ItemConfirmPickupPage } from '../pages/user/items/item-confirm-pickup/item-confirm-pickup';
 
 import { NgCalendarModule } from 'ionic2-calendar';
 
@@ -110,7 +111,8 @@ export const firebaseConfig = {
 
       ItemListUserPage,
       ItemPickedUserPage,
-      ItemCalendarUserPage
+      ItemCalendarUserPage,
+      ItemConfirmPickupPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -163,7 +165,8 @@ export const firebaseConfig = {
 
       ItemListUserPage,
       ItemPickedUserPage,
-      ItemCalendarUserPage
+      ItemCalendarUserPage,
+      ItemConfirmPickupPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
 })
