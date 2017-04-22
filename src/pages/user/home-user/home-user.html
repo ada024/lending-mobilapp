@@ -13,23 +13,43 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item *ngFor="let pendingLoan of pendingLoans">
-      <p> {{pendingLoan.itemOwnerName}} wants to loan you</p>
-      {{pendingLoan.itemName}}
-      <button class="accept-button" (click)="acceptLoan(pendingLoan)">
-        Accept
-      </button>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="pendingLoans && pendingLoans.length != 0" class="scroll-bar">
+    <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
+      <h6>{{pendingLoan.itemOwnerName}} wants to lend you</h6>
+      <div class="item-container">
+        <ion-icon name="image" class="item-image"></ion-icon>
+        <div class="item-name">
+          {{pendingLoan.itemName}}
+        </div>
+      </div>
+      <div class="item-container-buttons">
+        <button class="dismiss-button">
+          <div class="button-text">
+            <b>Dismiss</b>
+          </div>
+        </button>
+        <button class="confirm-button" (click)="acceptLoan(pendingLoan)">
+          <div class="button-text">
+            <b>Confirm</b>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 
-  <p>You are currently barrowing</p>
 
-  <ion-list>
-    <ion-item *ngFor="let loan of loans">
-      <div>{{loan.itemName}}</div>
-    </ion-item>
-  </ion-list>
+  <h3 style="margin-top: 20px;">You are currently barrowing</h3>
+
+  <div *ngIf="loans && loans.length != 0" class="scroll-bar">
+    <div *ngFor="let loan of loans" class="scroll-bar-element">
+      <div class="item-container">
+        <ion-icon name="image" class="item-image"></ion-icon>
+        <div class="item-name">
+          {{loan.itemName}}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="button-container">
     <button class="grey-button" (click)="goToItemlistUserPage()">
@@ -60,5 +80,6 @@
       </div>
     </button>
   </div>
+
 
 </ion-content>

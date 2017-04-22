@@ -11,9 +11,11 @@ export class ItemsAddSuccessAdminPage {
   titleText = "Success. Added"
   itemName = "";
   tagId = "0";
+  photoURI;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
     this.itemName = navParams.get("itemName");
+    this.photoURI = navParams.get("photoURI");
     let tagId = navParams.get("tagId");
     if(tagId != null) {
       this.tagId = tagId;
