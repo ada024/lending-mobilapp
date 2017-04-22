@@ -8,14 +8,16 @@ import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-s
   templateUrl: 'items-add-tag-scann-admin.html'
 })
 export class ItemsAddTagScannAdminPage {
-  close = false;
   itemName = "";
+  photoURI;
+  close = false;
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
   public zone: NgZone,
   public platform: Platform) {
       this.itemName = navParams.get("itemName");
+      this.photoURI = navParams.get("photoURI");
       platform.registerBackButtonAction(this.onBackPressed.bind(this));
       if ((<any>window).nfc != null) {
           (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
@@ -29,6 +31,7 @@ export class ItemsAddTagScannAdminPage {
         var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
         this.navCtrl.push(ItemsAddSuccessAdminPage,{
           itemName: this.itemName,
+          photoURI: this.photoURI,
           tagId: tagId
         });
       });

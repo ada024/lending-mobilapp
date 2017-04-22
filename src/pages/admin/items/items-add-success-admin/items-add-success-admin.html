@@ -13,7 +13,8 @@
     <b>{{titleText}}</b>
   </p>
 
-  <ion-icon name="image" class="item-image"></ion-icon>
+  <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
+  <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
 
   <p class="item-name">
     <b>{{itemName}}</b>

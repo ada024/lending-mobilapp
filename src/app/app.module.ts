@@ -51,6 +51,7 @@ import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-pi
 import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
 
 import { NgCalendarModule } from 'ionic2-calendar';
+import { Camera } from '@ionic-native/camera';
 
 
 
@@ -115,7 +116,7 @@ export const firebaseConfig = {
   imports: [
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-      NgCalendarModule
+    NgCalendarModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -165,6 +166,6 @@ export const firebaseConfig = {
       ItemPickedUserPage,
       ItemCalendarUserPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService, Camera]
 })
 export class AppModule {}

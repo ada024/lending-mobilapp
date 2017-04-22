@@ -14,17 +14,23 @@
   </p>
 
   <div class="button-container">
-    <button class="blue-button" (click)="goToItemsAddTagAdminPage()">
+    <button class="blue-button" (click)="getPicture(true)">
       <ion-icon name="camera" class="button-icon"></ion-icon>
       <div class="button-with-icon-text">
         <b>Take a photo</b>
       </div>
     </button>
 
-    <button class="blue-button" (click)="goToItemsAddTagAdminPage()">
+    <button class="blue-button" (click)="getPicture(false)">
       <ion-icon name="image" class="button-icon"></ion-icon>
       <div class="button-with-icon-text">
         <b>Add from gallery</b>
+      </div>
+    </button>
+
+    <button *ngIf="photoURI" class="blue-button" (click)="goToItemsAddTagAdminPage()">
+      <div class="button-text">
+        <b>next</b>
       </div>
     </button>
   </div>
@@ -38,10 +44,12 @@
   </p>
 
   <div class="item-container">
-    <ion-icon name="image" class="item-image"></ion-icon>
+    <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
+    <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
     <div class="item-name">
       {{itemName}}
     </div>
   </div>
+
 
 </ion-content>
