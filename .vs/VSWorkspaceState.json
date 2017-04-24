@@ -3,14 +3,14 @@
     "",
     "\\resources",
     "\\src",
-    "\\src\\app",
     "\\src\\pages",
-    "\\src\\pages\\admin\\checkin",
-    "\\src\\pages\\admin\\checkin\\checkin-confirm",
-    "\\src\\pages\\user",
-    "\\src\\pages\\user\\items",
-    "\\src\\pages\\user\\items\\item-calendar-user"
+    "\\src\\pages\\admin",
+    "\\src\\pages\\admin\\items",
+    "\\src\\pages\\admin\\items\\items-add-photo-admin",
+    "\\src\\pages\\user\\home-user",
+    "\\src\\pages\\user\\items\\item-confirm-pickup",
+    "\\src\\pages\\user\\items\\item-picked-user"
   ],
-  "SelectedNode": "\\src\\providers",
+  "SelectedNode": "\\src\\pages\\admin\\items\\items-add-photo-admin\\items-add-photo-admin.html",
   "PreviewInSolutionExplorer": false
 }

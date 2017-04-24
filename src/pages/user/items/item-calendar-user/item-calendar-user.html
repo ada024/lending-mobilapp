@@ -17,7 +17,9 @@
     <p class="title-text">Select your pickup date</p>
   <div>
     <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
-    <calendar [currentDate]="calendar.currentDate"
+    <calendar (swipe)="swipeEvent()"
+              [markDisabled]="markDisabled"
+              [currentDate]="calendar.currentDate"
               autoSelect="false"
               noEventsLabel=""
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
@@ -26,9 +28,11 @@
               (onTimeSelected)="onTimeSelected($event)"
               step="30">
     </calendar>
-    <div class="item">
-      <p class="item-borrow">Item you want to borrow</p>
-      <div class="item-info"><ion-icon name="image" class="item-image"></ion-icon> {{item.name}}</div>
+    <div>
+      <div class="item">
+        <p class="item-borrow">Item you want to borrow</p>
+        <div class="item-info"><ion-icon name="image" class="item-image"></ion-icon> <span class="item-name">{{item.name}}</span></div>
+      </div>
     </div>
   </div>
   

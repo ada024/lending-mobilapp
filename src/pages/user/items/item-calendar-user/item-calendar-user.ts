@@ -23,6 +23,8 @@ export class ItemCalendarUserPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule) {
         this.item = navParams.get("item");
         this.loadedFirstTime = false;
+        
+
     }
 
   ionViewDidLoad() {
@@ -55,8 +57,8 @@ export class ItemCalendarUserPage {
       var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
-      console.log("date " + today.getUTCDate());
-      console.log("eventdate " + event.getDate());
+      console.log("eventdate1 " + event.getUTCDate());
+      console.log("eventdate2 " + event.getDate());
       console.log("eventmonth " + event.getUTCMonth());
       this.isToday = today.getTime() === event.getTime();
       if (this.loadedFirstTime) {
@@ -73,6 +75,10 @@ export class ItemCalendarUserPage {
   previousMonth() {
       this.loadedFirstTime = false;
       this.calendar.currentDate = new Date(this.calendar.currentDate.setMonth(this.calendar.currentDate.getMonth() - 1));
+  }
+
+  swipeEvent() {
+      this.loadedFirstTime = false;
   }
 
   createRandomEvents() {
@@ -117,8 +123,11 @@ export class ItemCalendarUserPage {
   markDisabled = (date: Date) => {
       var current = new Date();
       current.setHours(0, 0, 0);
-      return date < current;
+      return date.getDay() != 1 && date.getDay() != 3 || date<current;
+     
+     
   };
+  
 
 }
 

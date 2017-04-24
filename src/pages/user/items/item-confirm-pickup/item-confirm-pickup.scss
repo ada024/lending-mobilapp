@@ -1,29 +1,95 @@
 ﻿page-item-confirm-pickup {
-  .blue-button1 {
-    width: 11em;
-    height: 4em;
-    background-color: #40afce;
-    margin-left: 4%;
+
+  .pUpInfo {
+    border: 0.4em solid dimgrey;
+    height: 8em;
+    width: 100%;
   }
 
-  .blue-button2 {
+  .pUpDate {
+    font-size: 2em;
+    font-weight: bold;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: -0.4em;
+  }
+
+  .date {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: -1em;
+  }
+
+  .borrowing-info {
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  .dayAndOpeningInfo {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    color: grey;
+  }
+
+  .hrstyle {
+    height: 0.4em;
+    background-color: dimgrey;
+  }
+
+  .cancel-button {
     width: 11em;
     height: 4em;
-    background-color: #40afce;
-    margin-left: 3%;
+    margin-right: 20px;
+    background-color: #f28282;
+  }
+
+
+  .confirm-button {
+    width: 11em;
+    height: 4em;
+    background-color: #7cd87b;
   }
 
   .placeBottom {
     position: absolute;
-    bottom: 0px;
-    width: 90%
+    bottom: 0em;
+    width: 90%;
+    left: 0em;
+  }
+
+  .item {
+    width: 90%;
+  }
+
+  .item-image {
+    font-size: 3em;
   }
 
   .item-borrow {
+    vertical-align: top;
     font-size: 1.5em;
+    margin-left: 1em;
+    position: relative;
+    bottom: 1em;
   }
 
   .item-info {
-    font-size: 1.5em;
+    vertical-align: top;
+    font-size: 1.3em;
+    margin-left: 1em;
+    border: 0.2em solid dimgrey;
+    position: relative;
+    bottom: 1.8em;
+  }
+
+  .item-name {
+    position: relative;
+    bottom: 0.8em;
+    left: 0.8em;
   }
 }

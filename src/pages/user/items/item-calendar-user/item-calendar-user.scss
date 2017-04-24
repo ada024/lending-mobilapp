@@ -1,25 +1,47 @@
 ﻿page-item-calendar-user {
-  .title-text{
-    text-align:center;
-    font-size:2em;
+  .title-text {
+    text-align: center;
+    font-size: 2em;
   }
-  .calendar-title{
-    text-align:center;
-    font-size:1.5em;
+
+  .calendar-title {
+    text-align: center;
+    font-size: 1.5em;
   }
-  .month{
-    margin-left:3em;
-    margin-right:3em;
+
+  .month {
+    margin-left: 3em;
+    margin-right: 3em;
   }
+
   .item {
     width: 90%;
   }
 
-  .item-borrow{
-    font-size:1.5em;
+  .item-image {
+    font-size: 3em;
   }
 
-  .item-info{
-    font-size:1.5em;
+  .item-borrow {
+    vertical-align: top;
+    font-size: 1.5em;
+    margin-left: 1em;
+    position: relative;
+    bottom: 1em;
+  }
+
+  .item-info {
+    vertical-align: top;
+    font-size: 1.3em;
+    margin-left: 1em;
+    border: 0.2em solid dimgrey;
+    position: relative;
+    bottom: 1.8em;
+  }
+
+  .item-name {
+    position: relative;
+    bottom: 0.8em;
+    left: 0.8em;
   }
 }
