@@ -9,16 +9,17 @@
 
 <ion-content padding>
 
-  <p class=title>
+  <div class=title>
     <b>{{titleText}}</b>
-  </p>
+  </div>
 
-  <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
-  <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
-
-  <p class="item-name">
-    <b>{{itemName}}</b>
-  </p>
+  <div class="item-container">
+    <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
+    <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
+    <div class="item-name">
+      <b>{{itemName}}</b>
+    </div>
+  </div>
 
   <div class="bar">
     <div class="progress"></div>

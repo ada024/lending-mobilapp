@@ -27,12 +27,6 @@
         <b>Add from gallery</b>
       </div>
     </button>
-
-    <button *ngIf="photoURI" class="blue-button" (click)="goToItemsAddTagAdminPage()">
-      <div class="button-text">
-        <b>next</b>
-      </div>
-    </button>
   </div>
 
   <div class="bar">
@@ -44,8 +38,8 @@
   </p>
 
   <div class="item-container">
-    <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
-    <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
+    <ion-icon *ngIf="!scaledPhotoURI" name="image" class="item-image"></ion-icon>
+    <img *ngIf="scaledPhotoURI" [src]="scaledPhotoURI" class="item-image"/>
     <div class="item-name">
       {{itemName}}
     </div>

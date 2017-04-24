@@ -1,30 +1,30 @@
 page-items-add-success-admin {
 
+  .item-container {
+    text-align: center;
+  }
+
   .item-image {
-    position: absolute;
-    font-size: 300px;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
+    margin: 0 auto;
+    font-size: 200px;
   }
 
   .item-name {
     text-align: center;
+    margin-bottom: 10px;
     font-size: 25px;
   }
 
   .blue-button {
-    position: absolute;
     width: 100%;
     height: 70px;
-    bottom: 20px;
     background-color: #40afce;
   }
 
   .bar {
-    position: absolute;
-    width: 90%;
-    top: 70%;
+    width: 100%;
+    margin-top: 30px;
     background-color: #ddd;
   }
 
@@ -35,10 +35,7 @@ page-items-add-success-admin {
   }
 
   .progress-text {
-    position: absolute;
     font-size: 25px;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
   }
 }

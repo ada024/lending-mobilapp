@@ -1,5 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsAddTagAdminPage } from '../items-add-tag-admin/items-add-tag-admin';
 import { Platform } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
@@ -11,9 +12,10 @@ import { Camera } from '@ionic-native/camera';
 export class ItemsAddPhotoAdminPage {
   itemName = "";
   photoURI;
+  scaledPhotoURI;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-      public platform: Platform, public camera: Camera) {
+      public platform: Platform, public camera: Camera, public db: DatabaseService) {
     this.itemName = navParams.get("itemName");
   }
  
@@ -28,16 +30,20 @@ export class ItemsAddPhotoAdminPage {
       }
       var options = {
         quality: 50,
-        targetHeight: 100,
-        targetWidth: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
+        targetHeight: 200,
+        targetWidth: 200,
         sourceType: srcType,
+        destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
-        correctOrientation: true
+        correctOrientation: true,
+        allowEdit: true,
       }
       this.camera.getPicture(options).then(uri => {
-        this.photoURI = uri;
+        this.photoURI = "data:image/jpeg;base64," + uri;
+        this.db.resizeImage(65, this.photoURI, uri => {
+          this.scaledPhotoURI = uri;
+        })
         this.goToItemsAddTagAdminPage();
       });
     }

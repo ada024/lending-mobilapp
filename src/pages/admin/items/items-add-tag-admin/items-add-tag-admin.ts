@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsAddTagScannAdminPage } from '../items-add-tag-scann-admin/items-add-tag-scann-admin';
 import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-success-admin';
 
@@ -10,10 +11,17 @@ import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-s
 export class ItemsAddTagAdminPage {
   itemName = "";
   photoURI;
+  scaledPhotoURI;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
     this.itemName = navParams.get("itemName");
-    this.photoURI = navParams.get("photoURI");
+    let photoURI = navParams.get("photoURI");
+    if(photoURI != null) {
+      this.photoURI = photoURI;
+      db.resizeImage(65, photoURI, uri => {
+        this.scaledPhotoURI = uri;
+      })
+    }
   }
 
   goToItemsAddTagScannAdminPage(){
@@ -23,5 +31,4 @@ export class ItemsAddTagAdminPage {
   goToItemsAddSuccessAdminPage(){
     this.navCtrl.push(ItemsAddSuccessAdminPage,{itemName: this.itemName, photoURI: this.photoURI});
   }
-
 }

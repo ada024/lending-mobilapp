@@ -37,7 +37,7 @@ export class DeveloperToolsPage {
   }
 
   add() {
-    this.db.addItem(this.input, this.id);
+    //this.db.addItem(this.input, this.id);
     this.showInputs = false;
     this.input = "";
     this.id = "Scan tag..";

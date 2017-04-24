@@ -1,14 +1,12 @@
 page-items-add-name-admin {
 
   .info-text {
-    text-align: center;
     margin-bottom: 50px;
   }
 
   .bar {
-    position: absolute;
-    width: 90%;
-    top: 70%;
+    width: 100%;
+    margin-top: 50px;
     background-color: #ddd;
   }
 
@@ -19,10 +17,7 @@ page-items-add-name-admin {
   }
 
   .progress-text {
-    position: absolute;
     font-size: 25px;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
   }
 }
