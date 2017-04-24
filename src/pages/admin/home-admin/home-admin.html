@@ -1,4 +1,4 @@
-<ion-header>
+﻿<ion-header>
 
   <ion-navbar>
     <ion-buttons end>
@@ -42,6 +42,7 @@
         </div><br>
         <div class="grey-button-text-info">
           {{numberOfItems}} items registered
+          <!--<div class="notification-text" [class.hideShow]="numberOfPendingUsers==0">{{numberOfReservations}} reservations awaiting approval</div>-->
         </div>
       </div>
     </div>
@@ -70,6 +71,7 @@
         </div><br>
         <div class="grey-button-text-info">
           {{numberOfUsers}} registered
+          <div class="notification-text" [class.hideShow]="numberOfPendingUsers==0">{{numberOfPendingUsers}} pending</div>
         </div>
       </div>
     </div>

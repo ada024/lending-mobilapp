@@ -1,4 +1,4 @@
-page-home-admin {
+﻿page-home-admin {
 
   .button-container {
     margin-top: 20px;
@@ -72,7 +72,15 @@ page-home-admin {
     float: left;
   }
 
+  .notification-text {
+    color: red;
+    position: relative;
+    left: -0.5em;
+  }
 
+  .hideShow {
+    display: none;
+  }
 
   .developer-tools-button {
     top: 90%;

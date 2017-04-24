@@ -72,6 +72,25 @@ export class DatabaseService {
     });
   }
 
+  addReservation(reservation, item) {
+      this.items.update(item.$key, {
+          reservation: reservation
+      });
+  }
+
+  loadReservationsInThisEntity(onDataLoaded, loadedItems) {
+      loadedItems.subscribe(loadedList => {
+          onDataLoaded(this.search(loadedList, this!=null, "v.reservation"));
+      })
+  }
+
+
+  removeReservation(item){
+      this.items.update(item.$key, {
+          reservation: null
+      });
+}
+
   getItems() {
     return this.items;
   }

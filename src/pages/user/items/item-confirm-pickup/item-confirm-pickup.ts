@@ -1,5 +1,8 @@
 ﻿import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+import { Reservation } from '../../../../app/models/reservation';
+import { DatabaseService } from '../../../../providers/database-service';
+import { Toast } from 'ionic-native';
 
 /*
   Generated class for the ItemConfirmPickup page.
@@ -15,7 +18,7 @@ export class ItemConfirmPickupPage {
     eventDate: any;
     item: any;
     pickupDate: any;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
         this.eventDate = navParams.get("event");
         this.item = navParams.get("item");
         var year = this.eventDate.getFullYear();
@@ -66,7 +69,22 @@ export class ItemConfirmPickupPage {
   }
 
   confirmClicked() {
-
+      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate);
+      this.db.addReservation(reservation, this.item);
+      if (this.platform.is('cordova')) {
+          this.showToast("You have reserved " + this.item.name, "center");
+      }
+      this.navCtrl.remove(2, 5);
+      this.navCtrl.pop();
   }
+
+  showToast(message, position) {
+      this.platform.ready().then(() => Toast.show(message, "long", position).subscribe(
+          toast => {
+              console.log(toast);
+          }
+      ));
+  }
+
 
 }

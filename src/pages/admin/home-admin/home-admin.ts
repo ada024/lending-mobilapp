@@ -15,11 +15,36 @@ import { DeveloperToolsPage } from '../developer-tools/developer-tools';
 export class HomeAdminPage {
   numberOfUsers;
   numberOfItems;
+  numberOfPendingUsers;
+  //numberOfReservations;
+  items;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
     db.loadUsersInThisEntity(this.onUsersLoaded.bind(this));
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
+    db.loadPendingUsersInThisEntity(this.onNumberOfPendingUsersLoaded.bind(this));
+    db.loadItems(this.onItemsLoaded.bind(this));
+    //db.loadReservationsInThisEntity(this.onReservationsLoaded.bind(this), this.items);
+  }
+
+
+  onItemsLoaded(loadedList) {
+      this.zone.run(() => {
+          this.items = loadedList;
+      });
+  }
+    /*
+  onReservationsLoaded(loadedList) {
+      this.zone.run(() => {
+          this.numberOfReservations = loadedList;
+      });
+  }
+*/
+  onNumberOfPendingUsersLoaded(pendingUsers) {
+      this.zone.run(() => {
+          this.numberOfPendingUsers = pendingUsers.length;
+      });
   }
 
   onNumberOfItemsLoaded(numberOfItems) {
