@@ -37,8 +37,8 @@
   </p>
 
   <div class="item-container">
-    <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
-    <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
+    <ion-icon *ngIf="!scaledPhotoURI" name="image" class="item-image"></ion-icon>
+    <img *ngIf="scaledPhotoURI" [src]="scaledPhotoURI" class="item-image"/>
     <div class="item-name">
       {{itemName}}
     </div>

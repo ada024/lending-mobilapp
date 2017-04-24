@@ -1,19 +1,14 @@
 page-items-admin {
 
   .add-icon {
-    font-size: 80px;
-    top: 80%;
-    left: 50%;
     color: green;
-    position: absolute;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 80px;
+    margin-top: 20px;
   }
 
   .add-item-text {
+    text-align: center;
     font-size: 25px;
-    top: 90%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
   }
 }

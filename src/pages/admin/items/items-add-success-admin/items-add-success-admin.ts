@@ -15,12 +15,16 @@ export class ItemsAddSuccessAdminPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
     this.itemName = navParams.get("itemName");
-    this.photoURI = navParams.get("photoURI");
+    let photoURI = navParams.get("photoURI");
     let tagId = navParams.get("tagId");
     if(tagId != null) {
       this.tagId = tagId;
+      this.titleText = "Success. Added and Encoded";
     }
-    this.db.addItem(this.itemName, this.tagId);
+    if(photoURI != null) {
+      this.photoURI = photoURI;
+    }
+    this.db.addItem(this.itemName, this.tagId, this.photoURI);
     this.navCtrl.remove(3, 10);
   }
 

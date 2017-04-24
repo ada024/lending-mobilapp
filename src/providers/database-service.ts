@@ -64,12 +64,14 @@ export class DatabaseService {
 
   //Methods to add and get items
 
-  addItem(name, id) {
+  addItem(name, id, photoURI) {
     this.items.push({
       name: name,
       id: id,
       entity: this.currentUser.entity
-    });
+    }).then(resolve => {
+      this.uploadImage(photoURI, resolve.key)
+    })
   }
 
   addReservation(reservation, item) {
@@ -442,9 +444,9 @@ export class DatabaseService {
   //Developer tools
 
   populateDatabase() {
-    this.addItem("iphone lader", "1gf13gf1");
-    this.addItem("android lader", "6554y5hh");
-    this.addItem("camera", "876ur5htr");
+    // this.addItem("iphone lader", "1gf13gf1");
+    // this.addItem("android lader", "6554y5hh");
+    // this.addItem("camera", "876ur5htr");
   }
 
   clearDatabase() {
@@ -621,5 +623,30 @@ export class DatabaseService {
     popover.present({
       ev: event
     });
+  }
+
+
+  //image stuff
+
+  uploadImage(photoURI, itemKey) {
+    if(photoURI != null) {
+      //firebase.storage().ref('images/' + this.authState.uid + "/" + itemKey + ".jpg").putString(photoURI, 'base64');
+    }
+  }
+
+  downloadImage(itemKey) {
+
+  }
+
+  resizeImage(size, uri, callback) {
+  var tempImg = new Image();
+  tempImg.src = uri;
+  tempImg.onload = function() {
+    var canvas = document.createElement('canvas');
+    canvas.width = canvas.height = size;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(<HTMLImageElement>this, 0, 0, tempImg.width, tempImg.height, 0, 0, size, size);
+    callback(canvas.toDataURL("image/jpeg"));
+    };
   }
 }
