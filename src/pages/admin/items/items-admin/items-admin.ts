@@ -1,8 +1,8 @@
-import { Component, NgZone } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsAddNameAdminPage } from '../items-add-name-admin/items-add-name-admin';
-import { ItemsListAdminPage } from '../items-list-admin/items-list-admin';
+import { ItemsTabsPage } from '../items-tabs/items-tabs';
 
 @Component({
   selector: 'page-items-admin',
@@ -24,7 +24,7 @@ export class ItemsAdminPage {
   }
 
   goToItemsListAdminPage() {
-     this.navCtrl.push(ItemsListAdminPage);
+     this.navCtrl.push(ItemsTabsPage);
   }
 
   goToItemsAddNameAdminPage(){

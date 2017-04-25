@@ -41,8 +41,8 @@
           Items
         </div><br>
         <div class="grey-button-text-info">
-          {{numberOfItems}} items registered
-          <!--<div class="notification-text" [class.hideShow]="numberOfPendingUsers==0">{{numberOfReservations}} reservations awaiting approval</div>-->
+          <div class="items-registered">{{numberOfItems}} items registered</div>
+          <div class="notification-reservation" [class.hideShow]="numberOfReservations==0">{{numberOfReservations}} reservation request(s)</div>
         </div>
       </div>
     </div>
@@ -70,8 +70,8 @@
           Users
         </div><br>
         <div class="grey-button-text-info">
-          {{numberOfUsers}} registered
-          <div class="notification-text" [class.hideShow]="numberOfPendingUsers==0">{{numberOfPendingUsers}} pending</div>
+          <div class="users-registered">{{numberOfUsers}} registered</div>
+          <div class="notification-pending" [class.hideShow]="numberOfPendingUsers==0">{{numberOfPendingUsers}} pending</div>
         </div>
       </div>
     </div>

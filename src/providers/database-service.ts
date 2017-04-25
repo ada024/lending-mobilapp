@@ -476,6 +476,8 @@ export class DatabaseService {
     return list;
   }
 
+  
+
 
   //FACEBOOK AUTH
   loginWithFacebook() {

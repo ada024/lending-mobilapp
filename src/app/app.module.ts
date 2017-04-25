@@ -19,6 +19,9 @@ import { ItemsAddTagScannAdminPage } from '../pages/admin/items/items-add-tag-sc
 import { ItemsAddSuccessAdminPage } from '../pages/admin/items/items-add-success-admin/items-add-success-admin';
 import { ItemsListAdminPage } from '../pages/admin/items/items-list-admin/items-list-admin';
 import { ItemsDetailsAdminPage } from '../pages/admin/items/items-details-admin/items-details-admin';
+import { ItemsTabsPage } from '../pages/admin/items/items-tabs/items-tabs';
+import { ItemsReservedAdminPage } from '../pages/admin/items/items-reserved-admin/items-reserved-admin';
+import { ItemsLoanedAdminPage } from '../pages/admin/items/items-loaned-admin/items-loaned-admin';
 
 import { UsersAdminPage } from '../pages/admin/users/users-admin/users-admin';
 import { UsersListAdminPage } from '../pages/admin/users/users-list-admin/users-list-admin';
@@ -84,6 +87,9 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
+      ItemsTabsPage,
+      ItemsReservedAdminPage,
+      ItemsLoanedAdminPage,
 
     UsersAdminPage,
     UsersListAdminPage,
@@ -116,9 +122,9 @@ export const firebaseConfig = {
       ItemConfirmPickupPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+      IonicModule.forRoot(MyApp, { tabsPlacement: "top" }),
     AngularFireModule.initializeApp(firebaseConfig),
-    NgCalendarModule,
+      NgCalendarModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -137,7 +143,10 @@ export const firebaseConfig = {
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
-    ItemsDetailsAdminPage,
+    ItemsDetailsAdminPage, 
+      ItemsTabsPage,
+      ItemsReservedAdminPage,
+      ItemsLoanedAdminPage,
 
     UsersAdminPage,
     UsersListAdminPage,

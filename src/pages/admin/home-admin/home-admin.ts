@@ -16,16 +16,17 @@ export class HomeAdminPage {
   numberOfUsers;
   numberOfItems;
   numberOfPendingUsers;
-  //numberOfReservations;
+  numberOfReservations;
   items;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public zone: NgZone, public db: DatabaseService) {
+      public zone: NgZone, public db: DatabaseService) {
     db.loadUsersInThisEntity(this.onUsersLoaded.bind(this));
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingUsersInThisEntity(this.onNumberOfPendingUsersLoaded.bind(this));
     db.loadItems(this.onItemsLoaded.bind(this));
-    //db.loadReservationsInThisEntity(this.onReservationsLoaded.bind(this), this.items);
+   
+  
   }
 
 
@@ -33,14 +34,14 @@ export class HomeAdminPage {
       this.zone.run(() => {
           this.items = loadedList;
       });
+
+      this.numberOfReservations = this.items.filter(
+          item => item.reservation != null).length;
+
   }
-    /*
-  onReservationsLoaded(loadedList) {
-      this.zone.run(() => {
-          this.numberOfReservations = loadedList;
-      });
-  }
-*/
+      
+      
+ 
   onNumberOfPendingUsersLoaded(pendingUsers) {
       this.zone.run(() => {
           this.numberOfPendingUsers = pendingUsers.length;

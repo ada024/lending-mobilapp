@@ -1,11 +1,10 @@
 ﻿page-home-admin {
 
+  
   .button-container {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-
-
 
 
   .check-out-button {
@@ -72,10 +71,30 @@
     float: left;
   }
 
-  .notification-text {
+  .notification-pending {
     color: red;
-    position: relative;
-    left: -0.5em;
+    position: absolute;
+    left: 6.1em;
+    top: 28.1em
+  }
+
+  .notification-reservation {
+    color: red;
+    position: absolute;
+    left: 6.2em;
+    top: 17.6em;
+  }
+
+  .items-registered {
+    position: absolute;
+    left: 6.2em;
+    top: 16.6em;
+  }
+
+  .users-registered {
+    position: absolute;
+    left: 6.2em;
+    top: 27.1em;
   }
 
   .hideShow {
