@@ -1,5 +1,5 @@
 ﻿import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Tabs} from 'ionic-angular';
 import { ItemsListAdminPage } from '../items-list-admin/items-list-admin';
 import { ItemsReservedAdminPage } from '../items-reserved-admin/items-reserved-admin';
 import { ItemsLoanedAdminPage } from '../items-loaned-admin/items-loaned-admin';
@@ -18,31 +18,37 @@ export class ItemsTabsPage {
     AvailableItems = ItemsListAdminPage;
     ReservedItems = ItemsReservedAdminPage;
     LoanedItems = ItemsLoanedAdminPage;
-    @ViewChild('myTabs') tabRef;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+    @ViewChild('myTabs') tabRef: Tabs;
+    selectedIndex;
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.selectedIndex = 0;
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemsTabsPage');
   }
 
   swipeEvent(e) {
-      console.log("e :" + e + "tabref: " + this.tabRef);
-      if (e == 2 && this.tabRef == 1) {
+      if (e.direction == 4 && this.selectedIndex == 1) {
+          this.selectedIndex = 0;
       this.tabRef.select(0);
       }
 
-      else if (e == 2 && this.tabRef == 2) {
+      else if (e.direction == 4 && this.selectedIndex == 2) {
+          this.selectedIndex = 1;
           this.tabRef.select(1);
       }
 
-      else if (e == 4 && this.tabRef == 0) {
+      else if (e.direction == 2 && this.selectedIndex == 0) {
+          this.selectedIndex = 1;
           this.tabRef.select(1);
       }
 
-      else if (e == 4 && this.tabRef == 1) {
+      else if (e.direction == 2 && this.selectedIndex == 1) {
+          this.selectedIndex = 2;
           this.tabRef.select(2);
       }
-          
+       
   }
 
 }
