@@ -305,10 +305,16 @@ export class DatabaseService {
     })
   }
 
-  loadPendingUsersInThisEntity(onDataLoaded) {
+  loadPendingUsersInThisEntity2(onDataLoaded) {
     this.pendingUsers.subscribe(loadedList => {
       onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
     })
+  }
+
+  loadPendingUsersInThisEntity(onDataLoaded) {
+    Rx.Observable.combineLatest(this.pendingUsers, this.users, (loadedPendingUsers, loadedUsers) => {
+      return this.search(loadedPendingUsers, this.currentUser.entity, "v.entity");
+    }).subscribe(pendingUsersInThisEntity => onDataLoaded(pendingUsersInThisEntity));
   }
 
   acceptPendingUser(pendingUser) {

@@ -37,9 +37,4 @@ export class EntityAdminPage {
   goToEntityAddAdminPage() {
     this.navCtrl.push(EntityAddAdminPage);
   }
-
-  goHome() {
-      this.navCtrl.push(HomeAdminPage);
-      
-  }
 }
