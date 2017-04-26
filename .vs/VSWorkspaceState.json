@@ -6,11 +6,11 @@
     "\\src\\app\\models",
     "\\src\\pages",
     "\\src\\pages\\admin",
-    "\\src\\pages\\admin\\checkout\\checkout-item-picked",
+    "\\src\\pages\\admin\\entities",
     "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-reserved-admin",
-    "\\src\\pages\\admin\\items\\items-tabs"
+    "\\src\\pages\\admin\\items\\items-list-admin",
+    "\\src\\pages\\admin\\items\\items-reserved-admin"
   ],
-  "SelectedNode": "\\src\\pages\\login",
+  "SelectedNode": "\\src\\pages\\admin\\items\\items-list-admin\\items-list-admin.ts",
   "PreviewInSolutionExplorer": false
 }

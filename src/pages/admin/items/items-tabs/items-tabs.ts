@@ -29,6 +29,7 @@ export class ItemsTabsPage {
   }
 
   swipeEvent(e) {
+      console.log("selectedIndex "+this.selectedIndex);
       if (e.direction == 4 && this.selectedIndex == 1) {
           this.selectedIndex = 0;
       this.tabRef.select(0);
