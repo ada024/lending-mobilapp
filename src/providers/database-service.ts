@@ -91,7 +91,13 @@ export class DatabaseService {
       this.items.update(item.$key, {
           reservation: null
       });
-}
+  }
+
+  reservationConfirmed(item, reservation) {
+      this.items.update(item.$key, {
+          reserved: reservation
+      });
+  }
 
   getItems() {
     return this.items;
@@ -103,10 +109,50 @@ export class DatabaseService {
     })
   }
 
+
+  loadAvailableItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null);
+      }).subscribe(availableItems => onDataLoaded(availableItems));
+  }
+
+  loadNumberOfAvailableItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null).length;
+      }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems));
+  }
+
+  loadReservedItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null);
+      }).subscribe(reservedItems => onDataLoaded(reservedItems));
+  }
+
+  loadNumberOfReservedItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
+      }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems));
+  }
+
+
+  loadReservationRequests(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null);
+      }).subscribe(reservationRequests => onDataLoaded(reservationRequests));
+
+  }
+
   loadNumberOfItems(onDataLoaded) {
     Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
       return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
     }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
+  }
+
+  loadNumberOfReservationRequests(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null).length;
+      }).subscribe(numberOfReservationRequests => onDataLoaded(numberOfReservationRequests));
+      
   }
 
   getItem(name, id) {

@@ -1,4 +1,4 @@
-
+﻿
 <ion-header>
 
   <ion-navbar>
@@ -31,48 +31,59 @@
   </div>
 
 
-
-
-  <div *ngIf="modify">
-    <ion-icon name="checkbox-outline" class="edit-icon" (click)="modify = false"></ion-icon>
-
-    <p class=title>
-      <ion-input placeholder="{{item.name}}"  [(ngModel)]="newItemName"></ion-input>
-    </p>
-    
-    <ion-icon name="image" class="item-image"></ion-icon>
-    
-    <div class="image-button-container">
-      <button class="image-button">
-        <ion-icon name="camera" class="button-icon"></ion-icon>
+  <div class="notification-reservation" [class.hideShow]="item.reservation==null">{{requesterName.fullname}} wants to reserve this item with pickup date {{formattedDate}}
+      <button class="decline-button" (click)="declineClicked()">
+        <div class="button-text">Decline</div>
       </button>
-
-      <button class="image-button">
-        <ion-icon name="image" class="button-icon"></ion-icon>
+      <button class="accept-button" (click)="acceptClicked()">
+        <div class="button-text">Accept</div>
       </button>
     </div>
-    
 
-    <p class="description">
-      <b>Description</b><br>
-      <ion-input placeholder="bla bla bla"  [(ngModel)]="newItemDescription"></ion-input>
-    </p>
+  <div class="notification-reserved" [class.hideShow]="item.reserved==null">Reserved by {{requesterName.fullname}}.<br /> Pickup date: {{formattedDate}}</div>
 
-    <div class="button-container">
-      <button class="blue-button">
-        <ion-icon name="finger-print" class="button-icon"></ion-icon>
-        <div class="button-with-icon-text">
-          <b>Encode</b>
-        </div>
-      </button>
 
-      <button class="red-button">
-        <ion-icon name="nuclear" class="button-icon"></ion-icon>
-        <div class="button-with-icon-text">
-          <b>Delete item</b>
-        </div>
-      </button>
+
+    <div *ngIf="modify">
+      <ion-icon name="checkbox-outline" class="edit-icon" (click)="modify = false"></ion-icon>
+
+      <p class= title>
+        <ion-input placeholder="{{item.name}}" [(ngModel)]="newItemName"></ion-input>
+      </p>
+
+      <ion-icon name="image" class="item-image"></ion-icon>
+
+      <div class="image-button-container">
+        <button class="image-button">
+          <ion-icon name="camera" class="button-icon"></ion-icon>
+        </button>
+
+        <button class="image-button">
+          <ion-icon name="image" class="button-icon"></ion-icon>
+        </button>
+      </div>
+
+
+      <p class="description">
+        <b>Description</b><br>
+        <ion-input placeholder="bla bla bla" [(ngModel)]="newItemDescription"></ion-input>
+      </p>
+
+      <div class="button-container">
+        <button class="blue-button">
+          <ion-icon name="finger-print" class="button-icon"></ion-icon>
+          <div class="button-with-icon-text">
+            <b>Encode</b>
+          </div>
+        </button>
+
+        <button class="red-button">
+          <ion-icon name="nuclear" class="button-icon"></ion-icon>
+          <div class="button-with-icon-text">
+            <b>Delete item</b>
+          </div>
+        </button>
+      </div>
     </div>
-  </div>
 
 </ion-content>

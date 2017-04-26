@@ -1,11 +1,11 @@
-page-items-details-admin {
+﻿page-items-details-admin {
 
   .edit-icon {
     float: right;
     font-size: 50px;
   }
 
-  .item-image{
+  .item-image {
     position: absolute;
     font-size: 150px;
     top: 27%;
@@ -13,7 +13,7 @@ page-items-details-admin {
     transform: translate(-50%, -50%);
   }
 
-  .image-button-container{
+  .image-button-container {
     display: inline-block;
     position: absolute;
     top: 43%;
@@ -48,4 +48,40 @@ page-items-details-admin {
     background-color: red;
   }
 
+  .notification-reservation {
+    position: absolute;
+    top: 32em;
+    color: red;
+  }
+
+  .notification-reserved {
+    position: absolute;
+    top: 32em;
+    color: red;
+  }
+
+  .hideShow {
+    display: none;
+  }
+
+  .decline-button {
+    width: 8em;
+    height: 3em;
+    margin-right: 1.2em;
+    margin-left: 3.3em;
+    margin-top: 0.5em;
+    background-color: #f28282;
+  }
+
+
+  .accept-button {
+    width: 8em;
+    height: 3em;
+    background-color: #7cd87b;
+  }
+
+  .button-text {
+    font-size: 1.5em;
+    color: white;
+  }
 }

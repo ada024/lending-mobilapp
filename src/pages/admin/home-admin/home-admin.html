@@ -42,7 +42,7 @@
         </div><br>
         <div class="grey-button-text-info">
           <div class="items-registered">{{numberOfItems}} items registered</div>
-          <div class="notification-reservation" [class.hideShow]="numberOfReservations==0">{{numberOfReservations}} reservation request(s)</div>
+          <div class="notification-reservation" [class.hideShow]="numberOfReservationRequests==0||numberOfReservationRequests==null">{{numberOfReservationRequests}} reservation request(s)</div>
         </div>
       </div>
     </div>

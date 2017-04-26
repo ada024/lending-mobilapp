@@ -16,7 +16,7 @@ export class HomeAdminPage {
   numberOfUsers;
   numberOfItems;
   numberOfPendingUsers;
-  numberOfReservations;
+  numberOfReservationRequests;
   items;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -25,23 +25,24 @@ export class HomeAdminPage {
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingUsersInThisEntity(this.onNumberOfPendingUsersLoaded.bind(this));
     db.loadItems(this.onItemsLoaded.bind(this));
-   
-  
+    db.loadNumberOfReservationRequests(this.onNumberOfReservationRequestsLoaded.bind(this));
   }
 
 
   onItemsLoaded(loadedList) {
+      var loaded = false;
       this.zone.run(() => {
           this.items = loadedList;
+
       });
-
-      this.numberOfReservations = this.items.filter(
-          item => item.reservation != null).length;
-
+      
   }
+  onNumberOfReservationRequestsLoaded(numberOfReservationRequests){
+      this.zone.run(() => {
+          this.numberOfReservationRequests = numberOfReservationRequests;
+      });
+  } 
       
-      
- 
   onNumberOfPendingUsersLoaded(pendingUsers) {
       this.zone.run(() => {
           this.numberOfPendingUsers = pendingUsers.length;

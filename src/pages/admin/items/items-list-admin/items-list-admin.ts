@@ -11,11 +11,11 @@ import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admi
 export class ItemsListAdminPage {
 	itemsList: any;
 	loadedItemList: any;
-	searchString = '';
+    searchString = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
-    db.loadItems(this.onDataLoaded.bind(this));
+      db.loadAvailableItems(this.onDataLoaded.bind(this));
   }
 
   onDataLoaded(loadedList) {
@@ -23,6 +23,7 @@ export class ItemsListAdminPage {
       this.itemsList = this.loadedItemList = loadedList;
     });
   }
+ 
 
   search(){
     this.itemsList = this.db.search(this.loadedItemList, this.searchString, "v.name");

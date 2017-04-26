@@ -1,8 +1,10 @@
-﻿import { Component, ViewChild } from '@angular/core';
+﻿import { Component, ViewChild, NgZone } from '@angular/core';
 import { NavController, NavParams, Tabs} from 'ionic-angular';
 import { ItemsListAdminPage } from '../items-list-admin/items-list-admin';
 import { ItemsReservedAdminPage } from '../items-reserved-admin/items-reserved-admin';
 import { ItemsLoanedAdminPage } from '../items-loaned-admin/items-loaned-admin';
+import { DatabaseService } from '../../../../providers/database-service';
+
 
 /*
   Generated class for the ItemsTabs page.
@@ -12,7 +14,8 @@ import { ItemsLoanedAdminPage } from '../items-loaned-admin/items-loaned-admin';
 */
 @Component({
   selector: 'page-items-tabs',
-  templateUrl: 'items-tabs.html'
+  templateUrl: 'items-tabs.html',
+  providers: [DatabaseService]
 })
 export class ItemsTabsPage {
     AvailableItems = ItemsListAdminPage;
@@ -20,36 +23,31 @@ export class ItemsTabsPage {
     LoanedItems = ItemsLoanedAdminPage;
     @ViewChild('myTabs') tabRef: Tabs;
     selectedIndex;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    numberOfAvailable;
+    numberOfReserved;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
+        db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
+        db.loadNumberOfReservedItems(this.onNumberOfReservedLoaded.bind(this));
+
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemsTabsPage');
   }
 
-  swipeEvent(e) {
-      console.log("selectedIndex "+this.selectedIndex);
-      if (e.direction == 4 && this.selectedIndex == 1) {
-          this.selectedIndex = 0;
-      this.tabRef.select(0);
-      }
-
-      else if (e.direction == 4 && this.selectedIndex == 2) {
-          this.selectedIndex = 1;
-          this.tabRef.select(1);
-      }
-
-      else if (e.direction == 2 && this.selectedIndex == 0) {
-          this.selectedIndex = 1;
-          this.tabRef.select(1);
-      }
-
-      else if (e.direction == 2 && this.selectedIndex == 1) {
-          this.selectedIndex = 2;
-          this.tabRef.select(2);
-      }
-       
+  onNumberOfAvailableLoaded(numberOfAvailable) {
+      this.zone.run(() => {
+          this.numberOfAvailable = numberOfAvailable;
+      });
   }
+  onNumberOfReservedLoaded(numberOfReserved) {
+      this.zone.run(() => {
+          this.numberOfReserved = numberOfReserved;
+      });
+  }
+
 
 }

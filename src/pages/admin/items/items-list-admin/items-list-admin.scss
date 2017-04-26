@@ -1,3 +1,12 @@
-page-items-list-admin {
+﻿page-items-list-admin {
+  .hideShow {
+    display: none;
+  }
 
+  .notification-reservation {
+    color: red;
+    font-size: 0.8em;
+    position:absolute;
+    left:13.8em;
+  }
 }

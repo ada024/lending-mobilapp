@@ -69,7 +69,7 @@ export class ItemConfirmPickupPage {
   }
 
   confirmClicked() {
-      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate);
+      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate, this.pickupDate);
       this.db.addReservation(reservation, this.item);
       if (this.platform.is('cordova')) {
           this.showToast("You have reserved " + this.item.name, "center");

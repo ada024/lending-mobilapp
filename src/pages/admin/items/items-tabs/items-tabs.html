@@ -9,8 +9,8 @@
     <ion-title>Items</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-tabs (swipe)="swipeEvent($event)" #myTabs>
-  <ion-tab [root]="AvailableItems" tabTitle="Available"></ion-tab>
-  <ion-tab [root]="ReservedItems" tabTitle="Reserved"></ion-tab>
+<ion-tabs #myTabs>
+  <ion-tab [root]="AvailableItems" tabTitle="Available ({{numberOfAvailable}})"></ion-tab>
+  <ion-tab [root]="ReservedItems" tabTitle="Reserved ({{numberOfReserved}})"></ion-tab>
   <ion-tab [root]="LoanedItems" tabTitle="Loaned"></ion-tab>
 </ion-tabs>
