@@ -14,6 +14,7 @@ export class ItemsDetailsAdminPage {
   requesterName;
   pickupDate: any;
   formattedDate: any;
+  requesterId: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public events: Events) {
       var sentItem = navParams.get("item");
@@ -21,14 +22,14 @@ export class ItemsDetailsAdminPage {
       this.requesterName = this.item.name;
 
       if(this.item.reservation!=null){
-      var requesterId = this.item.reservation.userId;
-      this.requesterName = db.getUsernameByUserId(requesterId);
+       this.requesterId = this.item.reservation.userId;
+      this.requesterName = db.getUsernameByUserId(this.requesterId);
       this.pickupDate = this.item.reservation.pickupDate;
       this.formattedDate = this.item.reservation.formattedDate;
       }
       if (this.item.reserved != null) {
-          var requesterId = this.item.reserved.userId;
-          this.requesterName = db.getUsernameByUserId(requesterId);
+          this.requesterId = this.item.reserved.userId;
+          this.requesterName = db.getUsernameByUserId(this.requesterId);
           this.pickupDate = this.item.reserved.pickupDate;
           this.formattedDate = this.item.reserved.formattedDate;
       }
@@ -53,7 +54,7 @@ export class ItemsDetailsAdminPage {
 
   acceptClicked() {
       this.db.removeReservation(this.item);
-      var reservation = new Reservation(this.db.currentUser.uid, this.pickupDate, this.formattedDate);
+      var reservation = new Reservation(this.requesterId, this.pickupDate, this.formattedDate);
       this.db.reservationConfirmed(this.item, reservation);
       this.events.publish('reservation:accepted', this.item);
   }

@@ -6,11 +6,14 @@
     "\\src\\app\\models",
     "\\src\\pages",
     "\\src\\pages\\admin",
-    "\\src\\pages\\admin\\entities",
     "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-list-admin",
-    "\\src\\pages\\admin\\items\\items-reserved-admin"
+    "\\src\\pages\\admin\\items\\items-details-admin",
+    "\\src\\pages\\admin\\items\\items-tabs",
+    "\\src\\pages\\user",
+    "\\src\\pages\\user\\items",
+    "\\src\\pages\\user\\items\\item-confirm-pickup",
+    "\\src\\pages\\user\\items\\item-list-user"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\items\\items-list-admin\\items-list-admin.ts",
+  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.scss",
   "PreviewInSolutionExplorer": false
 }
