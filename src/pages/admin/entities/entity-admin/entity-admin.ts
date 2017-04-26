@@ -38,8 +38,8 @@ export class EntityAdminPage {
     this.navCtrl.push(EntityAddAdminPage);
   }
 
-  /*goHome() {
+  goHome() {
       this.navCtrl.push(HomeAdminPage);
       
-  }*/
+  }
 }
