@@ -22,7 +22,7 @@
       <ion-item (click)="goToItemsDetailsAdminPage(item)" *ngFor="let item of itemsList">
         {{item.name}}
         <br />
-        {{item.id}}  <span class="pickup-date">Pickup date: {{item.reserved.formattedDate}}</span>
+        {{item.id}}  <span class="pickup-date">Pickup: {{item.reserved.formattedDate}}</span>
       </ion-item>
   </ion-list>
 </ion-content>

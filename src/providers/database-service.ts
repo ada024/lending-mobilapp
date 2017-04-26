@@ -109,6 +109,19 @@ export class DatabaseService {
     })
   }
 
+  getItemByKey(itemKey) {
+      var foundItem;
+      this.items.subscribe(items => {
+          items.forEach(item => {
+              if (item.$key == itemKey) {
+                  foundItem = item;
+              }
+          });
+      });
+      return foundItem;
+  }
+
+ 
 
   loadAvailableItems(onDataLoaded) {
       Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
@@ -155,6 +168,7 @@ export class DatabaseService {
       
   }
 
+    //Trenger vi denne?
   getItem(name, id) {
     let foundItem;
     this.items.subscribe(items => {

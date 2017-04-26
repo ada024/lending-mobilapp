@@ -19,7 +19,7 @@
       <ion-item (click)="goToItemsDetailsAdminPage(item)">
         {{item.name}}
         <br/>
-        {{item.id}} <span class="notification-reservation" [class.hideShow]="item.reservation==null">reservation requested</span>    
+        {{item.id}} <span class="notification-reservation" [class.hideShow]="item.reservation==null">Reservation requested</span>    
       </ion-item>
       <ion-item-options>
         <button danger (click)="removeItem(item)"> Delete</button>

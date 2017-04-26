@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams} from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admin';
 
@@ -18,7 +18,6 @@ export class ItemsReservedAdminPage {
     itemsList: any;
     loadedItemList: any;
     searchString = '';
-    formattedDate;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone, public db: DatabaseService) {
