@@ -80,11 +80,13 @@ export class DatabaseService {
       });
   }
 
-  loadReservationsInThisEntity(onDataLoaded, loadedItems) {
-      loadedItems.subscribe(loadedList => {
-          onDataLoaded(this.search(loadedList, this!=null, "v.reservation"));
+  loadUsersReservations(onDataLoaded) {
+      this.items.subscribe(loadedList => {
+          onDataLoaded((this.items.filter(item => item.reserved != null)).filter(item => item.reserved.userId == this.currentUser.userId));
       })
   }
+
+  
 
 
 
@@ -334,7 +336,6 @@ export class DatabaseService {
   
   
   getUsernameByUserId(userId) {
-      console.log("does it go to db?");
 	    var foundUser;
     this.users.subscribe(users => {
       users.forEach(user => {

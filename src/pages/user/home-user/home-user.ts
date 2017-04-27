@@ -12,6 +12,7 @@ export class HomeUserPage {
   numberOfItems;
   pendingLoans;
   loans;
+  reservations;
   //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -19,6 +20,9 @@ export class HomeUserPage {
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
     db.loadLoans(this.onLoansLoaded.bind(this));
+    db.loadUsersReservations(this.onReservationsLoaded.bind(this));
+
+    
   }
 
   acceptLoan(pendingLoan) {
@@ -50,6 +54,14 @@ export class HomeUserPage {
     this.zone.run(() => {
       this.numberOfItems = numberOfItems;
     });
+  }
+
+  onReservationsLoaded(usersReservations) {
+      this.zone.run(() => {
+          this.reservations = usersReservations;
+      });
+      console.log("resLength: " + this.reservations.length);
+
   }
 
   openDropdownMenu(event) {
