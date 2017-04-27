@@ -19,6 +19,7 @@ export class ItemsDetailsAdminPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public events: Events) {
       var sentItem = navParams.get("item");
       this.item = db.getItemByKey(sentItem.$key);
+      console.log("initial itemname: " + this.item.name);
       this.requesterName = this.item.name;
 
       if(this.item.reservation!=null){
@@ -36,6 +37,7 @@ export class ItemsDetailsAdminPage {
 
       this.events.subscribe('reservation:accepted', item => {
           this.item = db.getItemByKey(this.item.$key);
+          console.log("itemname after change: " + this.item.name);
           var requesterId = this.item.reserved.userId;
           this.requesterName = this.db.getUsernameByUserId(requesterId);
           this.pickupDate = this.item.reserved.pickupDate;

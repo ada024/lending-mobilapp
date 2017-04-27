@@ -59,7 +59,7 @@ export class CheckinFirstPage {
 			   this.isThisTheRightLoan(loan);
 				}
             });
-            if (loan != null) {
+            if (loan!=null) {
             this.close = true;
 		}
         }
@@ -77,18 +77,18 @@ export class CheckinFirstPage {
   }
 
   goToCheckinConfirmPage(loan) {
-     var user = this.db.getUsernameByUserId(loan.userUid);
-     this.navCtrl.push(CheckinConfirmPage, {loan: loan, user: user});
+      var user = this.db.getUsernameByUserId(loan.userUid);
+     this.close = true;
+     this.navCtrl.push(CheckinConfirmPage, {loan: loan, user: user, self:this});
 		}		
 	
 
 
-    /*goHome() {
-        this.db.removeTemporaryItems();
+    goHome() {
         this.close = true;
         this.navCtrl.pop();
     }
-	*/
+	
 	
 	
 	isThisTheRightLoan(loan){
@@ -121,12 +121,8 @@ export class CheckinFirstPage {
 		this.showList = false;
 	}
 	
-	appearList(){
-		this.showList = true;
-	}
-	
-	goHome() {
-        this.navCtrl.pop();
+    appearList() {
+        this.showList = true;
     }
 }
 

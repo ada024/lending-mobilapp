@@ -22,6 +22,7 @@ export class CheckinConfirmPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
         this.loan = navParams.get('loan');
         this.user = navParams.get('user');
+        
     }
 
   ionViewDidLoad() {
@@ -45,6 +46,12 @@ export class CheckinConfirmPage {
               console.log(toast);
           }
       ));
+  }
+
+  goBack() {
+      var self = this.navParams.get('self');
+      self.close = false;
+      this.navCtrl.pop();
   }
 
 }

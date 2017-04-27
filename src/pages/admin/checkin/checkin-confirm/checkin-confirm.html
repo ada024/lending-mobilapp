@@ -6,12 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-title>CheckinConfirm</ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="goBack()">
+        <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
-</ion-header>
-
+  </ion-header>
 
 <ion-content padding>
  <p class="titleText">Check in</p>
