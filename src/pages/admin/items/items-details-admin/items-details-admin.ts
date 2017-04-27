@@ -1,7 +1,6 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { Reservation } from '../../../../app/models/reservation';
 
 @Component({
   selector: 'page-items-details-admin',
@@ -12,52 +11,36 @@ export class ItemsDetailsAdminPage {
   modify = false;
   item;
   requesterName;
-  pickupDate: any;
-  formattedDate: any;
-  requesterId: any;
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public events: Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService, public events: Events) {
       var sentItem = navParams.get("item");
-      this.item = db.getItemByKey(sentItem.$key);
-      console.log("initial itemname: " + this.item.name);
-      this.requesterName = this.item.name;
+      db.getItemForDetailsPage(this.onItemLoaded.bind(this), sentItem.$key);
 
-      if(this.item.reservation!=null){
-       this.requesterId = this.item.reservation.userId;
-      this.requesterName = db.getUsernameByUserId(this.requesterId);
-      this.pickupDate = this.item.reservation.pickupDate;
-      this.formattedDate = this.item.reservation.formattedDate;
+      if (this.item.reservation != null) {
+          this.requesterName = this.db.getUsernameByUserId(this.item.reservation.userId);
       }
-      if (this.item.reserved != null) {
-          this.requesterId = this.item.reserved.userId;
-          this.requesterName = db.getUsernameByUserId(this.requesterId);
-          this.pickupDate = this.item.reserved.pickupDate;
-          this.formattedDate = this.item.reserved.formattedDate;
+      else if (this.item.reserved != null) {
+          this.requesterName = this.db.getUsernameByUserId(this.item.reserved.userId);
       }
 
-      this.events.subscribe('reservation:accepted', item => {
-          this.item = db.getItemByKey(this.item.$key);
-          console.log("itemname after change: " + this.item.name);
-          var requesterId = this.item.reserved.userId;
-          this.requesterName = this.db.getUsernameByUserId(requesterId);
-          this.pickupDate = this.item.reserved.pickupDate;
-          this.formattedDate = this.item.reserved.formattedDate;
-      });
-
-      this.events.subscribe('reservation:declined', item => {
-          this.item = db.getItemByKey(this.item.$key);
-      });
   }
+
+  onItemLoaded(itemForDetail) {
+      this.zone.run(() => {
+          this.item = itemForDetail[0];
+      });
+      
+  }
+
 
   declineClicked() {
       this.db.removeReservation(this.item);
-      this.events.publish('reservation:declined', this.item);
   }
 
   acceptClicked() {
+      var reservation = this.item.reservation;
       this.db.removeReservation(this.item);
-      var reservation = new Reservation(this.requesterId, this.pickupDate, this.formattedDate);
       this.db.reservationConfirmed(this.item, reservation);
-      this.events.publish('reservation:accepted', this.item);
   }
 }

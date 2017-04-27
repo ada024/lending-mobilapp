@@ -3,14 +3,16 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\models",
     "\\src\\pages",
     "\\src\\pages\\admin",
+    "\\src\\pages\\admin\\checkin\\checkin-confirm",
+    "\\src\\pages\\admin\\checkin\\checkin-first",
+    "\\src\\pages\\admin\\checkout\\checkout-item-picked",
+    "\\src\\pages\\admin\\checkout\\checkout-items",
     "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-details-admin",
-    "\\src\\pages\\admin\\items\\items-tabs",
-    "\\src\\pages\\user"
+    "\\src\\pages\\admin\\items\\items-list-admin",
+    "\\src\\providers"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.scss",
+  "SelectedNode": "\\src\\pages\\admin\\items\\items-list-admin\\items-list-admin.ts",
   "PreviewInSolutionExplorer": false
 }

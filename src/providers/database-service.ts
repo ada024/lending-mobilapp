@@ -87,6 +87,8 @@ export class DatabaseService {
   }
 
 
+
+
   removeReservation(item){
       this.items.update(item.$key, {
           reservation: null
@@ -141,19 +143,18 @@ export class DatabaseService {
       }).subscribe(reservedItems => onDataLoaded(reservedItems));
   }
 
+  getItemForDetailsPage(onDataLoaded, itemKey) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.$key == itemKey);
+      }).subscribe(itemForDetail => onDataLoaded(itemForDetail));
+  }
+
   loadNumberOfReservedItems(onDataLoaded) {
       Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
           return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
       }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems));
   }
 
-
-  loadReservationRequests(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null);
-      }).subscribe(reservationRequests => onDataLoaded(reservationRequests));
-
-  }
 
   loadNumberOfItems(onDataLoaded) {
     Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
@@ -332,7 +333,8 @@ export class DatabaseService {
   }
   
   
-  getUsernameByUserId(userId){
+  getUsernameByUserId(userId) {
+      console.log("does it go to db?");
 	    var foundUser;
     this.users.subscribe(users => {
       users.forEach(user => {

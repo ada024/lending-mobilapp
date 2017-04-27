@@ -31,7 +31,7 @@
   </div>
 
 
-  <div class="notification-reservation" [class.hideShow]="item.reservation==null">{{requesterName.fullname}} wants to reserve this item with pickup date {{formattedDate}}
+  <div class="notification-reservation" [class.hideShow]="item.reservation==null" *ngIf="item.reservation!=null">{{requesterName.fullname}} wants to reserve this item with pickup date {{item.reservation.formattedDate}}
       <button class="decline-button" (click)="declineClicked()">
         <div class="button-text">Decline</div>
       </button>
@@ -40,7 +40,7 @@
       </button>
     </div>
 
-  <div class="notification-reserved" [class.hideShow]="item.reserved==null">Reserved by {{requesterName.fullname}}.<br /> Pickup date: {{formattedDate}}</div>
+  <div class="notification-reserved" [class.hideShow]="item.reserved==null"  *ngIf="item.reserved!=null">Reserved by {{requesterName.fullname}}.<br /> Pickup date: {{item.reserved.formattedDate}}</div>
 
 
 
