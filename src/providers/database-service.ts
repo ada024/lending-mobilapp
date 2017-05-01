@@ -97,22 +97,13 @@ export class DatabaseService {
   }
     */
 
-  loadUsersReservations() {
-      if (this.currentUser != null) {
-          var list = [];
-          this.items.subscribe(items => {
-              items.forEach(item => {
-                  if (item.reserved != null) {
-                      if (item.reserved.userId == this.currentUser.uid) {
-                          list.push(item);
-                      }
-                  }
-              });
+  loadUsersReservations(onDataLoaded) {
+      this.items.subscribe(itemsArray => {
+          itemsArray = itemsArray.filter(item => {
+              return (item.reserved != null && item.reserved.userId == this.currentUser.uid)
           });
-          return list;
-      }
-      else
-      this.setCurrentUser(this.loadUsersReservations.bind(this), ()=>{});
+          onDataLoaded(itemsArray)
+      });
   }
 
 

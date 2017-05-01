@@ -9,7 +9,6 @@ import { ItemListUserPage } from '../items/item-list-user/item-list-user';
   templateUrl: 'home-user.html',
 })
 export class HomeUserPage {
-  currentEntity;
   numberOfItems;
   pendingLoans;
   loans;
@@ -21,18 +20,16 @@ export class HomeUserPage {
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
     db.loadLoans(this.onLoansLoaded.bind(this));
-    db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
-    this.reservations = db.loadUsersReservations();
-    console.log("resLength: " + this.reservations.length); 
+    db.loadUsersReservations(this.onReservationsLoaded.bind(this));
    
+
+    
   }
 
-  onCurrentEntityLoaded(currentUser) {
-    this.zone.run(() => {
-      this.currentEntity = currentUser.entity;
-    });
-  }
 
+  onReservationsLoaded(usersReservations) {
+      this.reservations = usersReservations;
+  }
   acceptLoan(pendingLoan) {
     this.db.deletePendingLoan(pendingLoan);
     this.db.addLoan(pendingLoan.itemName, pendingLoan.itemOwnerName, pendingLoan.itemOwnerUid);
