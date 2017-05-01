@@ -54,10 +54,11 @@ export class DatabaseService {
 // CURREMT USER INFO
     this.af.auth.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
-    });
-
-    this.loadCurrentUser(currentUser => {
-      this.currentUser = currentUser;
+      if(state) {
+        this.loadCurrentUser((currentUser)=>{
+          this.currentUser = currentUser;
+        });
+      }
     });
   }
 
@@ -69,8 +70,8 @@ export class DatabaseService {
       name: name,
       id: id,
       entity: this.currentUser.entity
-    }).then(resolve => {
-      this.uploadImage(photoURI, resolve.key)
+    }).then((resolve) => {
+      this.uploadImage(photoURI, this.currentUser.entity, name, resolve.key)
     })
   }
 
@@ -110,8 +111,8 @@ export class DatabaseService {
           });
           return list;
       }
-      //else
-      //this.setCurrentUser(this.loadUsersReservations.bind(this), onDataLoaded)
+      else
+      this.setCurrentUser(this.loadUsersReservations.bind(this), ()=>{});
   }
 
 
@@ -132,9 +133,13 @@ export class DatabaseService {
   }
 
   loadItems(onDataLoaded) {
-    this.items.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
-    })
+    if(this.currentUser != null) {
+      this.items.subscribe(loadedList => {
+        onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
+      })
+    }
+    else
+      this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
   }
 
   getItemByKey(itemKey) {
@@ -183,19 +188,25 @@ export class DatabaseService {
 
 
   loadNumberOfItems(onDataLoaded) {
-    Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-      return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
-    }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
+    if(this.currentUser != null) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+        return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
+      }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
+    }
+    else
+      this.setCurrentUser(this.loadNumberOfItems.bind(this), onDataLoaded)
   }
 
   loadNumberOfReservationRequests(onDataLoaded) {
+    if(this.currentUser != null) {
       Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
           return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null).length;
       }).subscribe(numberOfReservationRequests => onDataLoaded(numberOfReservationRequests));
-      
+    }
+    else
+      this.setCurrentUser(this.loadNumberOfReservationRequests.bind(this), onDataLoaded)
   }
 
-    //Trenger vi denne?
   getItem(name, id) {
     let foundItem;
     this.items.subscribe(items => {
@@ -265,15 +276,20 @@ export class DatabaseService {
   }
 
   loadUsersInThisEntity(onDataLoaded) {
-    Rx.Observable.combineLatest(this.users, this.usersEntityMap, (loadedUsers, loadedMap) => {
-      let filteredMap = this.search(loadedMap, this.currentUser.entity, "v.entity");
-      let users = [];
-      filteredMap.forEach(element => {
-        let user = this.search(loadedUsers, element.userUid, "v.uid");
-        users.push(user[0]);
-      });
-      return users;
-    }).subscribe(users => onDataLoaded(users));
+    if(this.currentUser != null) {
+      Rx.Observable.combineLatest(this.users, this.usersEntityMap, (loadedUsers, loadedMap) => {
+        let filteredMap = this.search(loadedMap, this.currentUser.entity, "v.entity");
+        let users = [];
+        filteredMap.forEach(element => {
+          let user = this.search(loadedUsers, element.userUid, "v.uid");
+          users.push(user[0]);
+        });
+        return users;
+      }).subscribe(users => onDataLoaded(users));
+    }
+    else {
+      this.setCurrentUser(this.loadUsersInThisEntity.bind(this), onDataLoaded)
+    }
   }
 
   getUserByName(name) {
@@ -286,22 +302,28 @@ export class DatabaseService {
   }
 
   loadCurrentUser(onDataLoaded) {
-    if (this.authState != null) {
+    if(this.currentUser != null) {
       this.users.subscribe(users => {
-        let currentUser;
-        let newUser = true;
         users.forEach(user => {
-          if (user.fullname == this.currentUserName) {
-            currentUser = user;
-            newUser = false;
+          if(user.fullname == this.currentUserName) {
+            onDataLoaded(user)
           }
-        });
-        if (newUser) {
-          this.writeDbUser(false);
-        }
-        onDataLoaded(currentUser);
-      });
+        })
+      })
     }
+    else
+      this.setCurrentUser(this.loadCurrentUser.bind(this), onDataLoaded)
+  }
+
+  setCurrentUser(callback, parameter) {
+    this.users.subscribe(users => {
+      users.forEach(user => {
+        if(user.$key == this.authState.auth.uid) {
+          this.currentUser = user;
+        }
+      })
+      callback(parameter);
+    }).unsubscribe;
   }
 
 
@@ -339,7 +361,7 @@ export class DatabaseService {
     this.pendingLoans.push({
       userUid: user.uid,
       itemName: item.name,
-	  itemOwnerName: this.currentUser.fullname,
+	    itemOwnerName: this.currentUser.fullname,
       itemOwnerUid: this.currentUser.uid
     });
   }
@@ -349,15 +371,14 @@ export class DatabaseService {
   }
 
   loadPendingLoans(onDataLoaded) {
-    this.pendingLoans.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
-    })
+    if(this.currentUser != null) {
+      this.pendingLoans.subscribe(loadedList => {
+        onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
+      })
+    }
+    else
+      this.setCurrentUser(this.loadPendingLoans.bind(this), onDataLoaded)
   }
-
-  getPendingLoansByUserId(userId) {
-    //todo
-  }
-  
   
   getUsernameByUserId(userId) {
 	    var foundUser;
@@ -378,7 +399,8 @@ export class DatabaseService {
     this.pendingUsers.push({
       userUid: this.currentUser.uid,
       fullname: this.currentUser.fullname,
-      entity: entity.name
+      entity: entity.name,
+      photoURL: this.currentUser.photoURL
     });
   }
 
@@ -392,16 +414,14 @@ export class DatabaseService {
     })
   }
 
-  loadPendingUsersInThisEntity2(onDataLoaded) {
-    this.pendingUsers.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
-    })
-  }
-
   loadPendingUsersInThisEntity(onDataLoaded) {
-    Rx.Observable.combineLatest(this.pendingUsers, this.users, (loadedPendingUsers, loadedUsers) => {
-      return this.search(loadedPendingUsers, this.currentUser.entity, "v.entity");
-    }).subscribe(pendingUsersInThisEntity => onDataLoaded(pendingUsersInThisEntity));
+    if(this.currentUser != null) {
+      Rx.Observable.combineLatest(this.pendingUsers, this.users, (loadedPendingUsers, loadedUsers) => {
+        return this.search(loadedPendingUsers, this.currentUser.entity, "v.entity");
+      }).subscribe(pendingUsersInThisEntity => onDataLoaded(pendingUsersInThisEntity));
+    }
+    else
+      this.setCurrentUser(this.loadPendingUsersInThisEntity.bind(this), onDataLoaded)
   }
 
   acceptPendingUser(pendingUser) {
@@ -461,9 +481,13 @@ export class DatabaseService {
   }
 
   loadLoans(onDataLoaded) {
-    this.loans.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"))
-    });
+    if(this.currentUser != null) {
+      this.loans.subscribe(loadedList => {
+        onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"))
+      });
+    }
+    else
+      this.setCurrentUser(this.loadLoans.bind(this), onDataLoaded)
   }
 
   loadLoansForCheckin(onDataLoaded) {
@@ -657,9 +681,6 @@ export class DatabaseService {
     } else {
       console.log("User exist in db");
     }
-    this.loadCurrentUser(currentUser => {
-      this.currentUser = currentUser;
-    });
   }
 
 
@@ -722,20 +743,28 @@ export class DatabaseService {
 
 
   //image stuff
-
-  uploadImage(photoURI, itemKey) {
+  uploadImage(photoURI, entity, name, key) {
     if(photoURI != null) {
-      //firebase.storage().ref('images/' + this.authState.uid + "/" + itemKey + ".jpg").putString(photoURI, 'base64');
+      firebase.storage().ref('images/' + entity + "/" + name + "-" + key)
+      .putString(photoURI.split(",")[1], 'base64').then(function(snapshot) {
+        this.items.update(key, {
+          photoURL: snapshot.downloadURL
+        });
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+      }.bind(this))
     }
   }
 
-  downloadImage(itemKey) {
-
+  downloadImage(item, onDataLoaded) {
+    firebase.storage().ref('images/' + item.entity + "/" + item.name + "-" + item.$key).getDownloadURL().then(url => {
+      onDataLoaded(url);  
+    }, ()=>{})
   }
 
   resizeImage(size, uri, callback) {
   var tempImg = new Image();
   tempImg.src = uri;
+  tempImg.setAttribute('crossOrigin', 'anonymous');
   tempImg.onload = function() {
     var canvas = document.createElement('canvas');
     canvas.width = canvas.height = size;
