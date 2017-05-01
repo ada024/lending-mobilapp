@@ -15,11 +15,13 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let item of itemsList">
+    <ion-item-sliding *ngFor="let item of itemsList; let i = index">
       <ion-item (click)="goToItemsDetailsAdminPage(item)">
-        {{item.name}}
-        <br/>
-        {{item.id}} <span class="notification-reservation" [class.hideShow]="item.reservation==null">Reservation requested</span>    
+        <img [src]="item.photoURL" class="item-image"/>
+        <div class="item-name">
+          {{item.name}}
+        </div>
+        <span class="notification-reservation" [class.hideShow]="item.reservation==null">Reservation requested</span>    
       </ion-item>
       <ion-item-options>
         <button danger (click)="removeItem(item)"> Delete</button>

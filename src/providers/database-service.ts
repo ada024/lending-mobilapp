@@ -80,6 +80,7 @@ export class DatabaseService {
       });
   }
 
+    /*
   loadUsersReservations() {
       var list = [];
       this.items.subscribe(items => {
@@ -93,8 +94,25 @@ export class DatabaseService {
       });
       return list;
   }
+    */
 
-
+  loadUsersReservations() {
+      if (this.currentUser != null) {
+          var list = [];
+          this.items.subscribe(items => {
+              items.forEach(item => {
+                  if (item.reserved != null) {
+                      if (item.reserved.userId == this.currentUser.uid) {
+                          list.push(item);
+                      }
+                  }
+              });
+          });
+          return list;
+      }
+      //else
+      //this.setCurrentUser(this.loadUsersReservations.bind(this), onDataLoaded)
+  }
 
 
   removeReservation(item){

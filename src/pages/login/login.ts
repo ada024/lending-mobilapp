@@ -9,12 +9,12 @@ import { DatabaseService } from '../../providers/database-service';
 export class LoginPage {
   userProfile: any = null;
 
-  constructor(public navCtrl: NavController, private auth: DatabaseService) {
+  constructor(public navCtrl: NavController, public db: DatabaseService) {
 
   }
 
   loginWithFacebook(): void {
-    this.auth.loginWithFacebook().subscribe(() => {
+    this.db.loginWithFacebook().subscribe(() => {
      let success = "success";
       console.log("Login: "+success);
     }, err => {
