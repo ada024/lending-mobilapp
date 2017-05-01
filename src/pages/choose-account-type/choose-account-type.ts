@@ -10,7 +10,7 @@ import { HomeUserPage } from '../user/home-user/home-user';
   templateUrl: 'choose-account-type.html'
 })
 export class ChooseAccountTypePage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, private db: DatabaseService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {}
 
   goToHomeAdminPage() {
     this.navCtrl.push(HomeAdminPage);

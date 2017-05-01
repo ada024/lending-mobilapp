@@ -19,10 +19,10 @@ export class EntityAdminPage {
     this.db.loadCurrentUser(this.onDataLoaded.bind(this));
   }
 
-  onDataLoaded(data) {
+  onDataLoaded(currentUser) {
     this.zone.run(() => {
-      this.currentUserName = data.fullname;
-      this.currentUserEntity = data.entity;
+      this.currentUserName = currentUser.fullname;
+      this.currentUserEntity = currentUser.entity;
     });
   }
 

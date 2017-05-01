@@ -11,7 +11,7 @@ import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admi
 export class ItemsListAdminPage {
 	itemsList: any;
 	loadedItemList: any;
-    searchString = '';
+  searchString = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {

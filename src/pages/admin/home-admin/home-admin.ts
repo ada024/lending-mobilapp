@@ -13,6 +13,7 @@ import { DeveloperToolsPage } from '../developer-tools/developer-tools';
   templateUrl: 'home-admin.html'
 })
 export class HomeAdminPage {
+  currentEntity;
   numberOfUsers;
   numberOfItems;
   numberOfPendingUsers;
@@ -20,12 +21,19 @@ export class HomeAdminPage {
   items;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-      public zone: NgZone, public db: DatabaseService) {
+  public zone: NgZone, public db: DatabaseService) {
     db.loadUsersInThisEntity(this.onUsersLoaded.bind(this));
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingUsersInThisEntity(this.onNumberOfPendingUsersLoaded.bind(this));
     db.loadItems(this.onItemsLoaded.bind(this));
     db.loadNumberOfReservationRequests(this.onNumberOfReservationRequestsLoaded.bind(this));
+    db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
+  }
+
+  onCurrentEntityLoaded(currentUser) {
+    this.zone.run(() => {
+      this.currentEntity = currentUser.entity;
+    });
   }
 
 

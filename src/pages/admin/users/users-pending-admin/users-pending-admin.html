@@ -10,22 +10,27 @@
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="searchString"
-                 (ionInput)="search()">
-  </ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchString" (ionInput)="search()"></ion-searchbar>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let pendingUser of pendingUsers">
-      <ion-item>
+  <div class="user-container" *ngFor="let pendingUser of pendingUsers">
+    <img class="facebook-image" [src]="pendingUser.photoURL"/>
+    <div class="a">
+      <div class="user-name">
         {{pendingUser.fullname}}
-        <button class="accept-button" (click)="acceptUser(pendingUser)">
-        Accept
-      </button>
-      </ion-item>
-      <ion-item-options>
-        <button danger (click)="removeItem(item)"> Delete</button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+      </div>
+      <div>
+        <button class="dismiss-button">
+          <div class="button-text">
+            <b>Dismiss</b>
+          </div>
+        </button>
+        <button class="confirm-button" (click)="acceptUser(pendingUser)">
+          <div class="button-text">
+            <b>Confirm</b>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 
 </ion-content>

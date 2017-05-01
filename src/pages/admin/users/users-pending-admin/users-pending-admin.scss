@@ -1,3 +1,43 @@
 page-users-pending-admin {
 
+    .user-container {
+        height: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 5px;
+        border: 5px solid #f28282;
+    }
+
+    .facebook-image {
+        float: left;
+        height: 4em;
+	    width: 4em;
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+
+    .user-name {
+        font-size: 20px;
+        margin-top: 12px;
+    }
+
+  .dismiss-button {
+    float: left;
+    width: 80px;
+    height: 35px;
+    margin-top: 5px;
+    margin-right: 20px;
+    background-color: #f28282;
+  }
+
+  .confirm-button {
+    width: 80px;
+    height: 35px;
+    margin-top: 5px;
+    background-color: #7cd87b;
+  }
+
+  .button-text {
+      font-size: 15px;
+  }
 }

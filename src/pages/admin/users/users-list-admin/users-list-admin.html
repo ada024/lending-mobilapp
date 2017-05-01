@@ -10,19 +10,13 @@
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="searchString"
-                 (ionInput)="search()">
-  </ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchString" (ionInput)="search()"></ion-searchbar>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let user of usersList">
-      <ion-item>
-        {{user.fullname}}
-      </ion-item>
-      <ion-item-options>
-        <button danger (click)="removeItem(item)"> Delete</button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+  <div class="user-container" *ngFor="let user of usersList">
+    <img class="facebook-image" [src]="user.photoURL"/>
+    <div class="user-name">
+      {{user.fullname}}
+    </div>
+  </div>
 
 </ion-content>

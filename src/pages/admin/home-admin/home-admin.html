@@ -42,7 +42,9 @@
         </div><br>
         <div class="grey-button-text-info">
           <div class="items-registered">{{numberOfItems}} items registered</div>
-          <div class="notification-reservation" [class.hideShow]="numberOfReservationRequests==0||numberOfReservationRequests==null">{{numberOfReservationRequests}} reservation request(s)</div>
+          <div class="notification-reservation" *ngIf="numberOfReservationRequests && numberOfReservationRequests!=0">
+            {{numberOfReservationRequests}} reservation request(s)
+          </div>
         </div>
       </div>
     </div>
@@ -56,7 +58,7 @@
           Entity
         </div><br>
         <div class="grey-button-text-info">
-          {{db.currentUser.entity}}
+          {{currentEntity}}
         </div>
       </div>
     </div>
@@ -71,7 +73,9 @@
         </div><br>
         <div class="grey-button-text-info">
           <div class="users-registered">{{numberOfUsers}} registered</div>
-          <div class="notification-pending" [class.hideShow]="numberOfPendingUsers==0">{{numberOfPendingUsers}} pending</div>
+          <div class="notification-pending" *ngIf="numberOfPendingUsers && numberOfPendingUsers!=0">
+            {{numberOfPendingUsers}} pending
+          </div>
         </div>
       </div>
     </div>
