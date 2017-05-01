@@ -80,13 +80,28 @@ export class DatabaseService {
       });
   }
 
-  loadUsersReservations(onDataLoaded) {
+  loadUsersReservations() {
+      /*Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this!=null, "v.reserved");
+      }).subscribe(reservedItems => onDataLoaded(reservedItems));
+      
       this.items.subscribe(loadedList => {
           onDataLoaded((this.items.filter(item => item.reserved != null)).filter(item => item.reserved.userId == this.currentUser.userId));
       })
+      */
+      var list=[];
+      this.items.subscribe(items => {
+          items.forEach(item => {
+              if (item.reserved != null) {
+                  if (item.reserved.userId == this.currentUser.uid) {
+                      list.push(item);
+                  }
+              }
+          });
+      });
+      return list;
+      
   }
-
-  
 
 
 

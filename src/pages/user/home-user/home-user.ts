@@ -20,7 +20,10 @@ export class HomeUserPage {
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
     db.loadLoans(this.onLoansLoaded.bind(this));
-    //db.loadUsersReservations(this.onReservationsLoaded.bind(this));
+    this.reservations = db.loadUsersReservations();
+    //this.reservations = db.getItems().filter(item => item.reserved != null);
+    console.log("resLength: " + this.reservations.length); 
+   
 
     
   }
@@ -62,8 +65,8 @@ export class HomeUserPage {
       });
       console.log("resLength: " + this.reservations.length);
 
-  }*/
-
+  }
+    */
   openDropdownMenu(event) {
     this.db.openDropdownMenu(event);
   }
