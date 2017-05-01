@@ -81,7 +81,7 @@ export class DatabaseService {
   }
 
   loadUsersReservations() {
-      var list=[];
+      var list = [];
       this.items.subscribe(items => {
           items.forEach(item => {
               if (item.reserved != null) {
@@ -92,7 +92,6 @@ export class DatabaseService {
           });
       });
       return list;
-      
   }
 
 
