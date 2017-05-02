@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\resources",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\models",
     "\\src\\pages",
     "\\src\\pages\\admin",
     "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-details-admin",
-    "\\src\\pages\\user",
     "\\src\\pages\\user\\home-user",
+    "\\src\\pages\\user\\items",
+    "\\src\\pages\\user\\items\\item-calendar-user",
+    "\\src\\pages\\user\\items\\item-confirm-pickup",
     "\\src\\providers"
   ],
   "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.ts",

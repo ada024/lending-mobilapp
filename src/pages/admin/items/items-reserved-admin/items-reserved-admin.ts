@@ -31,7 +31,7 @@ export class ItemsReservedAdminPage {
   onDataLoaded(loadedList) {
       this.zone.run(() => {
           this.itemsList = this.loadedItemList = loadedList;
-          console.log("reserved length: " + this.itemsList.length);
+          this.itemsList.sort((date1, date2) => date1.reserved.pickupDate - date2.reserved.pickupDate);
       });
   }
 

@@ -25,7 +25,6 @@ export class ItemConfirmPickupPage {
         var month = this.eventDate.getMonth()+1;
         var monthAsText = this.getMonthAsText(month);
         var date = this.eventDate.getDate();
-        console.log("date after addition: " + date + "date before addition: " + this.eventDate.getUTCDate());
         var suffix = this.getDayOfMonthSuffix(date);
         this.pickupDate = date + suffix + " of " + monthAsText + " " + year;
     }
@@ -69,7 +68,7 @@ export class ItemConfirmPickupPage {
   }
 
   confirmClicked() {
-      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate, this.pickupDate);
+      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate.getTime(), this.pickupDate);
       this.db.addReservation(reservation, this.item);
       if (this.platform.is('cordova')) {
           this.showToast("You have reserved " + this.item.name, "center");

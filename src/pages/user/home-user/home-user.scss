@@ -1,7 +1,7 @@
-page-home-user {
+﻿page-home-user {
 
   .scroll-bar {
-    overflow-x: scroll; 
+    overflow-x: scroll;
     white-space: nowrap;
   }
 
@@ -18,6 +18,12 @@ page-home-user {
     border: 5px solid grey;
   }
 
+  .reservations-container {
+    width: 90%;
+    height: 70px;
+    border: 5px solid mediumseagreen;
+  }
+
   .item-image {
     font-size: 70px;
     margin-left: 15px;
@@ -27,8 +33,15 @@ page-home-user {
 
   .item-name {
     font-size: 25px;
-    margin-top: 15px;
+    position:relative;
+    margin-top: -2.4em;
+    margin-left: 3.5em;
     float: left;
+  }
+
+  .dueDate {
+    font-size: 0.6em;
+    color:mediumseagreen
   }
 
   .item-container-buttons {
@@ -50,7 +63,7 @@ page-home-user {
     background-color: #7cd87b;
   }
 
-    .grey-button {
+  .grey-button {
     width: 100%;
     height: 60px;
     margin-top: 5px;

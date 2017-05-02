@@ -57,9 +57,6 @@ export class ItemCalendarUserPage {
       var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
-      console.log("eventdate1 " + event.getUTCDate());
-      console.log("eventdate2 " + event.getDate());
-      console.log("eventmonth " + event.getUTCMonth());
       this.isToday = today.getTime() === event.getTime();
       if (this.loadedFirstTime) {
           this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item } );
