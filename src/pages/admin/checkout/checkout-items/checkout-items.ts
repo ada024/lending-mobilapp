@@ -78,7 +78,7 @@ export class CheckoutItemsPage {
 		this.alreadyAddedAlert();
 		}
 		else{
-        this.db.addTemporaryItems(item);
+        this.db.addTemporaryItems(item, item.$key);
 		this.close = true;
         this.navCtrl.push(CheckoutItemPickedPage, { self: this })
 		}		

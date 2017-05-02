@@ -15,11 +15,11 @@
 
   <div *ngIf="pendingLoans && pendingLoans.length != 0" class="scroll-bar">
     <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
-      <h6>{{pendingLoan.itemOwnerName}} wants to lend you</h6>
+      <h6>{{pendingLoan.pendingLoan.itemOwnerName}} wants to lend you</h6>
       <div class="item-container">
         <ion-icon name="image" class="item-image"></ion-icon>
         <div class="item-name">
-          {{pendingLoan.itemName}}
+          {{pendingLoan.name}}
         </div>
       </div>
       <div class="item-container-buttons">
@@ -77,7 +77,7 @@
         <ion-icon name="image" class="item-image"></ion-icon>
         <div class="item-name">
           {{reservation.name}}
-          <div class="dueDate">Pickup in {{dueDate(reservation)}} days</div>
+          <div class="dueDate">Pick up in {{dueDate(reservation)}} days</div>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
       <div class="item-container">
         <ion-icon name="image" class="item-image"></ion-icon>
         <div class="item-name">
-          {{loan.itemName}}
+          {{loan.name}}
         </div>
       </div>
     </div>

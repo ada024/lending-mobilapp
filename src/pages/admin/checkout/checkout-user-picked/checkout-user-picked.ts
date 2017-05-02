@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
 import { Toast } from 'ionic-native';
+import { Loan } from '../../../../app/models/loan';
 
 declare var window: any;
 
@@ -49,9 +50,10 @@ export class CheckoutUserPickedPage {
         this.showToast('Loan added to list. Waiting for approval from ' + this.user.fullname, 'center');
 		}
 		
-	 
+
+        var loan = new Loan(this.user.uid, this.db.currentUser.fullname);
         for (let item of this.itemList) {
-            this.db.addPendingLoan(item, this.user);
+            this.db.addPendingLoan(loan, item.itemKey);
         }
 
         this.db.removeTemporaryItems();

@@ -53,6 +53,8 @@ import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-u
 import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-picked-user';
 import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
 import { ItemConfirmPickupPage } from '../pages/user/items/item-confirm-pickup/item-confirm-pickup';
+import { ItemsTabsUserPage } from '../pages/user/items/items-tabs-user/items-tabs-user';
+import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-user/items-unavailable-user';
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { Camera } from '@ionic-native/camera';
@@ -119,7 +121,9 @@ export const firebaseConfig = {
       ItemListUserPage,
       ItemPickedUserPage,
       ItemCalendarUserPage,
-      ItemConfirmPickupPage
+      ItemConfirmPickupPage,
+      ItemsTabsUserPage,
+      ItemsUnavailableUserPage
   ],
   imports: [
       IonicModule.forRoot(MyApp, { tabsPlacement: "top" }),
@@ -176,7 +180,9 @@ export const firebaseConfig = {
       ItemListUserPage,
       ItemPickedUserPage,
       ItemCalendarUserPage,
-      ItemConfirmPickupPage
+      ItemConfirmPickupPage,
+      ItemsTabsUserPage,
+      ItemsUnavailableUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService, Camera]
 })

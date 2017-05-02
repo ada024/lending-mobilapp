@@ -19,7 +19,7 @@ export class CheckoutItemPickedPage {
 	itemList;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
-	 db.loadTemporaryItems(this.onTemporaryLoansLoaded.bind(this));
+	 db.loadTemporaryItems(this.onTemporaryItemsLoaded.bind(this));
 	  
   }
   
@@ -47,7 +47,7 @@ export class CheckoutItemPickedPage {
           }
 		  
 		  
-  onTemporaryLoansLoaded(loadedList) {
+  onTemporaryItemsLoaded(loadedList) {
     this.zone.run(() => {
       this.itemList = loadedList;
     });

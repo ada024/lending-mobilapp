@@ -77,7 +77,7 @@ export class CheckinFirstPage {
   }
 
   goToCheckinConfirmPage(loan) {
-      var user = this.db.getUsernameByUserId(loan.userUid);
+      var user = this.db.getUsernameByUserId(loan.loan.loaner);
      this.close = true;
      this.navCtrl.push(CheckinConfirmPage, {loan: loan, user: user, self:this});
 		}		

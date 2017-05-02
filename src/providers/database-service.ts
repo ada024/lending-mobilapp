@@ -318,10 +318,10 @@ export class DatabaseService {
   }
 
 
-  addTemporaryItems(item) {
+  addTemporaryItems(item, itemKey) {
     this.temporaryItems.push({
-      name: item.name,
-      id: item.id,
+        item,
+        itemKey,
 	  userUid: this.currentUser.uid
     });
   }
@@ -347,13 +347,10 @@ export class DatabaseService {
 
   //Pending stuff
 
-
-  addPendingLoan(item, user) {
-    this.pendingLoans.push({
-      userUid: user.uid,
-      itemName: item.name,
-	    itemOwnerName: this.currentUser.fullname,
-      itemOwnerUid: this.currentUser.uid
+  
+  addPendingLoan(loan, itemKey) {
+    this.items.update(itemKey, {
+       pendingLoan:loan
     });
   }
 
@@ -363,13 +360,18 @@ export class DatabaseService {
 
   loadPendingLoans(onDataLoaded) {
     if(this.currentUser != null) {
-      this.pendingLoans.subscribe(loadedList => {
-        onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
-      })
+        this.items.subscribe(itemsArray => {
+            itemsArray = itemsArray.filter(item => {
+                return (item.pendingLoan != null && item.pendingLoan.loaner == this.currentUser.uid)
+            });
+            onDataLoaded(itemsArray)
+        });
     }
     else
       this.setCurrentUser(this.loadPendingLoans.bind(this), onDataLoaded)
   }
+
+   
   
   getUsernameByUserId(userId) {
 	    var foundUser;
@@ -436,23 +438,26 @@ export class DatabaseService {
   }
 
   deletePendingLoan(pendingLoan) {
-    this.pendingLoans.remove(pendingLoan);
+      this.items.update(pendingLoan.$key, {
+          pendingLoan:null
+      })
   }
 
 
   //Methods to add and get loans
 
-  addLoan(itemName, itemOwnerName, itemOwnerUid) {
-    this.loans.push({
-      itemName: itemName,
-      userUid: this.currentUser.uid,
-	  itemOwnerName: itemOwnerName,
-	  itemOwnerUid: itemOwnerUid
+  addLoan(loan, item) {
+      this.items.update(item.$key, {
+      loan: loan
     });
   }
+  
+
 
   removeLoan(loan) {
-      this.loans.remove(loan);
+      this.items.update(loan.$key, {
+          loan: null
+      });
   }
 
   getLoans() {
@@ -472,19 +477,26 @@ export class DatabaseService {
   }
 
   loadLoans(onDataLoaded) {
-    if(this.currentUser != null) {
-      this.loans.subscribe(loadedList => {
-        onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"))
-      });
-    }
-    else
-      this.setCurrentUser(this.loadLoans.bind(this), onDataLoaded)
+      if (this.currentUser != null) {
+          this.items.subscribe(itemsArray => {
+              itemsArray = itemsArray.filter(item => {
+                  return (item.loan != null && item.loan.loaner == this.currentUser.uid)
+              });
+              onDataLoaded(itemsArray)
+          });
+      }
+      else
+          this.setCurrentUser(this.loadPendingLoans.bind(this), onDataLoaded)
   }
 
   loadLoansForCheckin(onDataLoaded) {
-    this.loans.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.itemOwnerUid"))
-    });
+      if (this.currentUser != null) {
+          Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+              return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
+          }).subscribe(loansForCheckin => onDataLoaded(loansForCheckin));
+      }
+      else
+          this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
   }
 
   //Methods to add and get entities

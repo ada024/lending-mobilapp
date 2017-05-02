@@ -2,7 +2,8 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { EntityUserPage } from '../entities/entity-user/entity-user';
-import { ItemListUserPage } from '../items/item-list-user/item-list-user';
+import { ItemsTabsUserPage } from '../items/items-tabs-user/items-tabs-user';
+import { Loan } from '../../../app/models/loan';
 
 @Component({
     selector: 'page-home-user',
@@ -44,9 +45,12 @@ export class HomeUserPage {
         });
     }
 
-  acceptLoan(pendingLoan) {
-    this.db.deletePendingLoan(pendingLoan);
-    this.db.addLoan(pendingLoan.itemName, pendingLoan.itemOwnerName, pendingLoan.itemOwnerUid);
+    acceptLoan(pendingLoan) {
+        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.itemOwnerName);
+        console.log("pendItem: " + pendingLoan.name);
+        console.log("pendItemKey: " + pendingLoan.$key);
+        this.db.addLoan(loan, pendingLoan);
+       this.db.deletePendingLoan(pendingLoan);
   }
 
   goToEntityUserPage() {
@@ -54,7 +58,7 @@ export class HomeUserPage {
   }
 
   goToItemlistUserPage() {
-      this.navCtrl.push(ItemListUserPage);
+      this.navCtrl.push(ItemsTabsUserPage);
   }
 
   onPendingLoansLoaded(loadedList) {

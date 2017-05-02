@@ -21,7 +21,7 @@ export class ItemListUserPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public zone: NgZone, public db: DatabaseService) {
-      db.loadItems(this.onDataLoaded.bind(this));
+      db.loadAvailableItems(this.onDataLoaded.bind(this));
   }
 
   onDataLoaded(loadedList) {
