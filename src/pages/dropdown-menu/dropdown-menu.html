@@ -2,8 +2,8 @@
 <ion-content>
 
   <ion-list>
-    <ion-list-header>{{userName}}</ion-list-header>
-    <button ion-item detail-none>Settings</button>
+    <ion-list-header>{{db.currentUserName}}</ion-list-header>
+    <button ion-item detail-none (click)="goToSettingsPage()">Settings</button>
     <button ion-item detail-none (click)="logout()">Logout</button>
   </ion-list>
 

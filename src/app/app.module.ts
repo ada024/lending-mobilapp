@@ -2,7 +2,7 @@
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
-import { DatabaseService} from '../providers/database-service'
+import { DatabaseService} from '../providers/database-service';
 import { DeveloperToolsPage } from '../pages/admin/developer-tools/developer-tools';
 import { DropdownMenuPage } from '../pages/dropdown-menu/dropdown-menu';
 
@@ -10,6 +10,7 @@ import { LoginPage } from '../pages/login/login';
 import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
 import { HomeAdminPage } from '../pages/admin/home-admin/home-admin';
 import { HomeUserPage } from '../pages/user/home-user/home-user';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { ItemsAdminPage } from '../pages/admin/items/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
@@ -80,6 +81,7 @@ export const firebaseConfig = {
     HomeUserPage,
     DeveloperToolsPage,
     DropdownMenuPage,
+    SettingsPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -89,9 +91,9 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
-      ItemsTabsPage,
-      ItemsReservedAdminPage,
-      ItemsLoanedAdminPage,
+    ItemsTabsPage,
+    ItemsReservedAdminPage,
+    ItemsLoanedAdminPage,
 
     UsersAdminPage,
     UsersListAdminPage,
@@ -108,26 +110,26 @@ export const firebaseConfig = {
     CheckoutUserPickedPage,
     CustomAlertPage,
 	
-	CheckinFirstPage,
-      CheckinConfirmPage,
-      CustomAlertCheckinPage,
+	  CheckinFirstPage,
+    CheckinConfirmPage,
+    CustomAlertCheckinPage,
 
     EntityUserPage,
     EntityListUserPage,
     EntityChangeUserPage,
     EntityDetailsUserPage,
-      EntityJoinUserPage,
+    EntityJoinUserPage,
 
-      ItemListUserPage,
-      ItemPickedUserPage,
-      ItemCalendarUserPage,
-      ItemConfirmPickupPage,
-      ItemsTabsUserPage,
-      ItemsUnavailableUserPage
+    ItemListUserPage,
+    ItemPickedUserPage,
+    ItemCalendarUserPage,
+    ItemConfirmPickupPage,
+    ItemsTabsUserPage,
+    ItemsUnavailableUserPage
   ],
   imports: [
       IonicModule.forRoot(MyApp, { tabsPlacement: "top" }),
-    AngularFireModule.initializeApp(firebaseConfig),
+      AngularFireModule.initializeApp(firebaseConfig),
       NgCalendarModule,
   ],
   bootstrap: [IonicApp],
@@ -139,6 +141,7 @@ export const firebaseConfig = {
     HomeUserPage,
     DeveloperToolsPage,
     DropdownMenuPage,
+    SettingsPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -148,9 +151,9 @@ export const firebaseConfig = {
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
     ItemsDetailsAdminPage, 
-      ItemsTabsPage,
-      ItemsReservedAdminPage,
-      ItemsLoanedAdminPage,
+    ItemsTabsPage,
+    ItemsReservedAdminPage,
+    ItemsLoanedAdminPage,
 
     UsersAdminPage,
     UsersListAdminPage,
@@ -167,22 +170,22 @@ export const firebaseConfig = {
     CheckoutUserPickedPage,
     CustomAlertPage,
 
-	CheckinFirstPage,
-      CheckinConfirmPage,
-      CustomAlertCheckinPage,
+	  CheckinFirstPage,
+    CheckinConfirmPage,
+    CustomAlertCheckinPage,
 	
     EntityUserPage,
     EntityListUserPage,
     EntityChangeUserPage,
     EntityDetailsUserPage,
-      EntityJoinUserPage,
+    EntityJoinUserPage,
 
-      ItemListUserPage,
-      ItemPickedUserPage,
-      ItemCalendarUserPage,
-      ItemConfirmPickupPage,
-      ItemsTabsUserPage,
-      ItemsUnavailableUserPage
+    ItemListUserPage,
+    ItemPickedUserPage,
+    ItemCalendarUserPage,
+    ItemConfirmPickupPage,
+    ItemsTabsUserPage,
+    ItemsUnavailableUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService, Camera]
 })
