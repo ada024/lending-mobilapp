@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+﻿import { Component, NgZone  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../../../providers/database-service';
+import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admin';
 
 /*
   Generated class for the ItemsLoanedAdmin page.
@@ -9,14 +11,31 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-items-loaned-admin',
-  templateUrl: 'items-loaned-admin.html'
+  templateUrl: 'items-loaned-admin.html',
+  providers: [DatabaseService]
 })
 export class ItemsLoanedAdminPage {
+    itemsList: any;
+    loadedItemList: any;
+    searchString = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public zone: NgZone, public db: DatabaseService) {
+        db.loadLoanedItems(this.onDataLoaded.bind(this));
+    }
+
+ionViewDidLoad() {
     console.log('ionViewDidLoad ItemsLoanedAdminPage');
   }
+    onDataLoaded(loadedList) {
+        this.zone.run(() => {
+            this.itemsList = this.loadedItemList = loadedList;
+        });
+    }
+  
+    goToItemsDetailsAdminPage(item) {
+        this.navCtrl.push(ItemsDetailsAdminPage, { item: item });
 
+    }
 }

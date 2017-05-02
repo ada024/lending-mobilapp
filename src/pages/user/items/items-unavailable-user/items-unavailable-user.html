@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the ItemsUnavailableUser page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
@@ -14,5 +14,14 @@
 
 
 <ion-content padding>
+  <ion-searchbar [(ngModel)]="searchString"
+  (ionInput)="search()">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item (click)="goToItemPickedUserPage(item)" *ngFor="let item of unavailableItems">
+      {{item.name}}
+    </ion-item>
+  </ion-list>
 
 </ion-content>

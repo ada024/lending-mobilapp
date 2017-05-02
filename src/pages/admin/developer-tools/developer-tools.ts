@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 
@@ -32,8 +32,8 @@ export class DeveloperToolsPage {
     this.items = db.getItems();
     this.users = db.getUsers();
     this.pendingUsers = db.getPendingUsers();
-    this.loans = db.getLoans();
-    this.pendingLoans = db.getPendingLoans();
+    db.getLoans(this.onLoansLoaded.bind(this));
+    db.getPendingLoans(this.onPendingLoaded.bind(this));
   }
 
   add() {
@@ -43,6 +43,13 @@ export class DeveloperToolsPage {
     this.id = "Scan tag..";
   }
 
+  onPendingLoaded(pending) {
+      this.pendingLoans = pending;
+  }
+
+  onLoansLoaded(loansList) {
+      this.loans = loansList;
+  }
   populateDatabase() {
     this.db.populateDatabase();
   }

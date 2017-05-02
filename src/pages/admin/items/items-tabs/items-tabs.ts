@@ -25,12 +25,14 @@ export class ItemsTabsPage {
     selectedIndex;
     numberOfAvailable;
     numberOfReserved;
+    numberOfLoaned
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
         db.loadNumberOfReservedItems(this.onNumberOfReservedLoaded.bind(this));
+        db.loadNumberOfLoanedItems(this.onNumberOfLoanedLoaded.bind(this));
 
     }
 
@@ -46,6 +48,12 @@ export class ItemsTabsPage {
   onNumberOfReservedLoaded(numberOfReserved) {
       this.zone.run(() => {
           this.numberOfReserved = numberOfReserved;
+      });
+  }
+
+  onNumberOfLoanedLoaded(numberOfLoaned) {
+      this.zone.run(() => {
+          this.numberOfLoaned = numberOfLoaned;
       });
   }
 

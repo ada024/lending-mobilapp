@@ -149,14 +149,38 @@ export class DatabaseService {
 
   loadAvailableItems(onDataLoaded) {
       Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null);
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan == null);
+      }).subscribe(availableItems => onDataLoaded(availableItems));
+  }
+
+  loadUnavailableItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null);
+      }).subscribe(availableItems => onDataLoaded(availableItems));
+  }
+
+  loadLoanedItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
+      }).subscribe(availableItems => onDataLoaded(availableItems));
+  }
+
+  loadNumberOfUnavailableItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null).length;
       }).subscribe(availableItems => onDataLoaded(availableItems));
   }
 
   loadNumberOfAvailableItems(onDataLoaded) {
       Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null).length;
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan==null).length;
       }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems));
+  }
+
+  loadNumberOfLoanedItems(onDataLoaded) {
+      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null).length;
+      }).subscribe(availableItems => onDataLoaded(availableItems));
   }
 
   loadReservedItems(onDataLoaded) {
@@ -354,8 +378,13 @@ export class DatabaseService {
     });
   }
 
-  getPendingLoans() {
-    return this.pendingLoans;
+  getPendingLoans(onDataLoaded) {
+      this.items.subscribe(itemsArray => {
+          itemsArray = itemsArray.filter(item => {
+              return (item.pendingLoan != null)
+          });
+          onDataLoaded(itemsArray)
+      });
   }
 
   loadPendingLoans(onDataLoaded) {
@@ -460,8 +489,13 @@ export class DatabaseService {
       });
   }
 
-  getLoans() {
-    return this.loans;
+  getLoans(onDataLoaded) {
+      this.items.subscribe(itemsArray => {
+          itemsArray = itemsArray.filter(item => {
+              return (item.loan != null)
+          });
+          onDataLoaded(itemsArray)
+      });
   }
 
   getLoanByItem(item) {

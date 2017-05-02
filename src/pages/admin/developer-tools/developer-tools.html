@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the DeveloperTools page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
@@ -78,16 +78,16 @@
   <p>Loans (item name)</p>
 
   <ion-list>
-    <ion-item *ngFor="let loan of loans | async">
-      <div class="name">{{loan.itemName}}</div>
+    <ion-item *ngFor="let loan of loans">
+      <div class="name">{{loan.name}}</div>
     </ion-item>
   </ion-list>
 
   <p>Pending Loans (item name)</p>
 
   <ion-list>
-    <ion-item *ngFor="let pendingLoan of pendingLoans | async">
-      <div class="name">{{pendingLoan.itemName}}</div>
+    <ion-item *ngFor="let pendingLoan of pendingLoans">
+      <div class="name">{{pendingLoan.name}}</div>
     </ion-item>
   </ion-list>
 

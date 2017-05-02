@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the ItemsLoanedAdmin page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
@@ -14,5 +14,13 @@
 
 
 <ion-content padding>
+  <ion-searchbar [(ngModel)]="searchString"
+                 (ionInput)="search()">
+  </ion-searchbar>
 
+  <ion-list>
+    <ion-item (click)="goToItemsDetailsAdminPage(item)" *ngFor="let item of itemsList">
+      {{item.name}}
+    </ion-item>
+  </ion-list>
 </ion-content>

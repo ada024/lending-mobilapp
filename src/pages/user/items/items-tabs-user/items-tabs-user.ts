@@ -22,13 +22,13 @@ export class ItemsTabsUserPage {
     @ViewChild('myTabs') tabRef: Tabs;
     selectedIndex;
     numberOfAvailable;
-    numberOfReserved;
+    numberOfUnavailable
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
-        db.loadNumberOfReservedItems(this.onNumberOfReservedLoaded.bind(this));
+        db.loadNumberOfUnavailableItems(this.onNumberOfUnavailableLoaded.bind(this));
 
     }
 
@@ -41,9 +41,9 @@ export class ItemsTabsUserPage {
           this.numberOfAvailable = numberOfAvailable;
       });
   }
-  onNumberOfReservedLoaded(numberOfReserved) {
+  onNumberOfUnavailableLoaded(numberOfUnavailable) {
       this.zone.run(() => {
-          this.numberOfReserved = numberOfReserved;
+          this.numberOfUnavailable = numberOfUnavailable;
       });
   }
 
