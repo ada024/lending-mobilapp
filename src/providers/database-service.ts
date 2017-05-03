@@ -370,7 +370,9 @@ export class DatabaseService {
   
 
   removeTemporaryItem(item) {
-    this.temporaryItems.remove(item);
+      this.items.update(item.$key, {
+          tempAddedBy: null
+      })
   }
 
 
