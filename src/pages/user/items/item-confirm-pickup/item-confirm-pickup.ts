@@ -63,7 +63,7 @@ export class ItemConfirmPickupPage {
   }
 
   cancelClicked() {
-      this.navCtrl.remove(2, 5);
+      this.navCtrl.remove(1, 5);
       this.navCtrl.pop();
   }
 
@@ -73,7 +73,7 @@ export class ItemConfirmPickupPage {
       if (this.platform.is('cordova')) {
           this.showToast("You have reserved " + this.item.name, "center");
       }
-      this.navCtrl.remove(2, 5);
+      this.navCtrl.remove(1, 5);
       this.navCtrl.pop();
   }
 

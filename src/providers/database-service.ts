@@ -81,21 +81,7 @@ export class DatabaseService {
       });
   }
 
-    /*
-  loadUsersReservations() {
-      var list = [];
-      this.items.subscribe(items => {
-          items.forEach(item => {
-              if (item.reserved != null) {
-                  if (item.reserved.userId == this.currentUser.uid) {
-                      list.push(item);
-                  }
-              }
-          });
-      });
-      return list;
-  }
-    */
+
 
   loadUsersReservations(onDataLoaded) {
       this.items.subscribe(itemsArray => {
@@ -110,6 +96,12 @@ export class DatabaseService {
   removeReservation(item){
       this.items.update(item.$key, {
           reservation: null
+      });
+  }
+
+  removeReserved(item) {
+      this.items.update(item.$key, {
+          reserved: null
       });
   }
 
@@ -343,10 +335,8 @@ export class DatabaseService {
 
 
   addTemporaryItems(item, itemKey) {
-    this.temporaryItems.push({
-        item,
-        itemKey,
-	  userUid: this.currentUser.uid
+    this.items.update(itemKey, {
+	  tempAddedBy: this.currentUser.uid
     });
   }
 
@@ -355,14 +345,29 @@ export class DatabaseService {
   }
   
    loadTemporaryItems(onDataLoaded) {
-    this.temporaryItems.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.userUid"));
+    this.items.subscribe(loadedList => {
+      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.tempAddedBy"));
     })
-  }
+   }
 
-  removeTemporaryItems() {
-    this.temporaryItems.remove();
+   checkIfConfirmed(onDataLoaded) {
+       if (this.currentUser != null) {
+           Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+               return this.search(loadedItems, this.currentUser.uid, "v.tempAddedBy").filter(item => item.loan != null);
+           }).subscribe(loansForCheckin => onDataLoaded(loansForCheckin));
+       }
+       else
+           this.setCurrentUser(this.loadItems.bind(this), onDataLoaded);
+   }
+
+   removeTemporaryItems(items) {
+       for (let item of items){
+       this.items.update(item.$key, {
+           tempAddedBy: null
+       })
+   }
   }
+  
 
   removeTemporaryItem(item) {
     this.temporaryItems.remove(item);

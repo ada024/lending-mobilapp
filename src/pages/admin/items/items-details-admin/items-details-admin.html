@@ -40,8 +40,10 @@
       </button>
     </div>
 
-  <div class="notification-reserved" [class.hideShow]="item.reserved==null"  *ngIf="item.reserved!=null">Reserved by {{requesterName.fullname}}.<br /> Pickup date: {{item.reserved.formattedDate}}</div>
-
+  <div class="notification-reserved" [class.hideShow]="item.reserved==null"  *ngIf="item.reserved!=null">Reserved by {{requesterName.fullname}}.<br /> Pickup date: {{item.reserved.formattedDate}} </div>
+  <button class="cancel-res-button" (click)="cancelResClicked()" *ngIf="item.reserved!=null">
+    <div class="cancel-res-button-text" >Cancel reservation</div>
+  </button>
 
 
     <div *ngIf="modify">

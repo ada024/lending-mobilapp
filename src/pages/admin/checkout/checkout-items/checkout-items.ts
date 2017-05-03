@@ -2,7 +2,7 @@
 import { DatabaseService } from '../../../../providers/database-service';
 import { NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
-import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
+import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
 import { CustomAlertPage } from '../custom-alert/custom-alert';
 
 
@@ -25,42 +25,19 @@ export class CheckoutItemsPage {
 
     close: boolean;
     dataReceived: boolean;
-    showList: boolean;
 	item: any;
 
 	
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
-        this.showList = false;
-        db.loadItems(this.onDataLoaded.bind(this));
-       
 
-        if ((<any>window).nfc != null) {
-            (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
-            (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
-        }
-		}
+        db.loadItems(this.onDataLoaded.bind(this));
+    }
 
     ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutItemsPage');
     }
   
-   
-    onTagFound(nfcEvent) {
-		var item;
-        if (!this.close) {
-            this.zone.run(() => {
-                var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
-                item = this.db.getItemByTag(tagId);
-				if(item!=null){
-			   this.isThisTheRightItem(item);
-				}
-            });
-			if(item!=null){
-            this.close = true;
-		}
-        }
-    }
 
   onDataLoaded(loadedList) {
       this.zone.run(() => {
@@ -80,38 +57,16 @@ export class CheckoutItemsPage {
 		else{
         this.db.addTemporaryItems(item, item.$key);
 		this.close = true;
-        this.navCtrl.push(CheckoutItemPickedPage, { self: this })
+        this.navCtrl.push(CheckoutConfirmItemPage, { self: this, item: item })
 		}		
 	}
 
 
     goHome() {
-        this.db.removeTemporaryItems();
+        //this.db.removeTemporaryItems();
         this.close = true;
         this.navCtrl.pop();
     }
-	
-	isThisTheRightItem(item){
-		this.item = item;
-	let customAlert = this.modalCtrl.create(CustomAlertPage, {item: item});
-	 customAlert.onDidDismiss(data => {
-		 if(data!=null){
-			 if(this.db.checkIfItemIsAdded(data)){
-				 this.alreadyAddedAlert();
-				 this.close = false;
-			 }
-			 else{
-     this.goToCheckoutItemPickedPage(data);
-			 }
-		 }
-		 else{
-			 this.close = false;
-		 }
-   });
-	customAlert.present();
-	}
-	
-	
 	
 	
 	alreadyAddedAlert() {
@@ -123,13 +78,6 @@ export class CheckoutItemsPage {
   alert.present();
 }
 
-	hideList(){
-		this.showList = false;
-	}
-	
-	appearList(){
-		this.showList = true;
-	}
 }
 
 

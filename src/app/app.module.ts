@@ -33,10 +33,15 @@ import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/e
 import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
 
 
+import { CheckoutFirstPage } from '../pages/admin/checkout/checkout-first/checkout-first';
+import { CheckoutScanItemPage } from '../pages/admin/checkout/checkout-scan-item/checkout-scan-item';
+import { CheckoutScanUserPage } from '../pages/admin/checkout/checkout-scan-user/checkout-scan-user';
 import { CheckoutItemsPage } from '../pages/admin/checkout/checkout-items/checkout-items';
+import { CheckoutConfirmItemPage } from '../pages/admin/checkout/checkout-confirm-item/checkout-confirm-item';
 import { CheckoutUserPage } from '../pages/admin/checkout/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-picked/checkout-item-picked';
 import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
+import { CheckoutAwaitingConfirmationPage } from '../pages/admin/checkout/checkout-awaiting-confirmation/checkout-awaiting-confirmation';
 import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-alert';
 
 import { CheckinFirstPage } from '../pages/admin/checkin/checkin-first/checkin-first';
@@ -102,10 +107,15 @@ export const firebaseConfig = {
     EntityListAdminPage,
     EntityDetailsAdminPage,
 
-    CheckoutItemsPage,
+      CheckoutFirstPage,
+      CheckoutScanItemPage,
+      CheckoutScanUserPage,
+      CheckoutItemsPage,
+      CheckoutConfirmItemPage,
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
-    CheckoutUserPickedPage,
+      CheckoutUserPickedPage,
+      CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
 	
 	CheckinFirstPage,
@@ -126,7 +136,7 @@ export const firebaseConfig = {
       ItemsUnavailableUserPage
   ],
   imports: [
-      IonicModule.forRoot(MyApp, { tabsPlacement: "top" }),
+      IonicModule.forRoot(MyApp, { tabsPlacement: "top", tabsHideOnSubPages: true }),
     AngularFireModule.initializeApp(firebaseConfig),
       NgCalendarModule,
   ],
@@ -161,10 +171,15 @@ export const firebaseConfig = {
     EntityListAdminPage,
     EntityDetailsAdminPage,
 
-    CheckoutItemsPage,
+      CheckoutFirstPage,
+      CheckoutScanItemPage,
+      CheckoutScanUserPage,
+      CheckoutItemsPage,
+      CheckoutConfirmItemPage,
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
-    CheckoutUserPickedPage,
+      CheckoutUserPickedPage,
+      CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
 
 	CheckinFirstPage,

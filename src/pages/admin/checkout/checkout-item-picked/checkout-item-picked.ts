@@ -2,7 +2,7 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { CheckoutUserPage } from '../checkout-user/checkout-user';
-import { CheckoutItemsPage } from '../checkout-items/checkout-items';
+import { CheckoutScanUserPage } from '../checkout-scan-user/checkout-scan-user';
 
 /*
   Generated class for the CheckoutItemPicked page.
@@ -27,18 +27,16 @@ export class CheckoutItemPickedPage {
     console.log('ionViewDidLoad CheckoutItemPickedPage');
   }
   
-  goToCheckoutItemsPage() {
-      var self = this.navParams.get("self");
-      self.close = false;
-      this.navCtrl.pop();
-  }
  
   goToCheckoutUserPage() {
       this.navCtrl.push(CheckoutUserPage);
   }
 
+  goToCheckoutScanUserPage() {
+      this.navCtrl.push(CheckoutScanUserPage);
+  }
+
   goHome() {
-      this.db.removeTemporaryItems();
       this.navCtrl.remove(2, 3);
       this.navCtrl.pop();
   }

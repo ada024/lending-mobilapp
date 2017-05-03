@@ -19,18 +19,18 @@
 
 
 <ion-content padding>
+  <div class="title-text">Who are you borrowing to?</div>
 
-<button class="blue-button" (click)="goToCheckoutItemsPage()">
-    <div class="blue-button-text">
-      <b>Add more items</b>
+  <button class="checkout-button1" (click)="goToCheckoutScanUserPage()">
+    <div class="checkout-button-text">
+      Scan users NFC tag
     </div>
   </button>
-
-<button class="blue-button" (click)="goToCheckoutUserPage()">
-    <div class="blue-button-text">
-      <b>Find user</b>
+  <button class="checkout-button2" (click)="goToCheckoutUserPage()">
+    <div class="checkout-button-text">
+      Search for user
     </div>
-  </button><br><br>
+  </button>
   
 
   <div class="placeBottom">
@@ -38,7 +38,7 @@
 <ion-list>
     <ion-item-sliding *ngFor="let item of itemList">
       <ion-item  class="listProps">
-        <ion-icon name="image" class="item-image"></ion-icon> {{item.item.name}}
+        <ion-icon name="image" class="item-image"></ion-icon> {{item.name}}
       </ion-item>
 
       <ion-item-options>

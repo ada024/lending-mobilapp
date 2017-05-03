@@ -50,18 +50,32 @@
 
   .notification-reservation {
     position: absolute;
-    top: 27em;
+    top: 29em;
     color: red;
   }
 
   .notification-reserved {
     position: absolute;
-    top: 27em;
+    top: 29em;
     color: red;
   }
 
   .hideShow {
     display: none;
+  }
+
+  .cancel-res-button-text {
+    font-size: 0.9em;
+    color: white;
+  }
+
+  .cancel-res-button {
+    width: 6em;
+    height: 2em;
+    margin-right: 1.2em;
+    margin-left: 20em;
+    margin-top: 22.5em;
+    background-color: #f28282;
   }
 
   .decline-button {
@@ -72,7 +86,6 @@
     margin-top: 0.5em;
     background-color: #f28282;
   }
-
 
   .accept-button {
     width: 8em;

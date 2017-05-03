@@ -89,7 +89,17 @@ export class HomeUserPage {
       var itemDate = item.reserved.pickupDate;
       var oneDay = 24 * 60 * 60 * 1000;
       var diffDays = Math.round(Math.abs((itemDate - currentDate.getTime()) / (oneDay)));
-      return diffDays;
+      var returnText;
+      if (diffDays == 0) {
+          returnText = "today";
+      }
+      else if (diffDays == 1) {
+          returnText = " in " + diffDays + " day";
+      }
+      else if (diffDays > 1) {
+          returnText = " in " + diffDays + " days";
+      }
+      return returnText;
   }
   
 }

@@ -4,6 +4,7 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
 import { Toast } from 'ionic-native';
 import { Loan } from '../../../../app/models/loan';
+import { CheckoutAwaitingConfirmationPage } from '../checkout-awaiting-confirmation/checkout-awaiting-confirmation';
 
 declare var window: any;
 
@@ -46,30 +47,14 @@ export class CheckoutUserPickedPage {
   }
 
     goToHomeAdminPage() {
-		if(this.platform.is('cordova')){
-        this.showToast('Loan added to list. Waiting for approval from ' + this.user.fullname, 'center');
-		}
-		
-
+	
         var loan = new Loan(this.user.uid, this.db.currentUser.fullname);
         for (let item of this.itemList) {
-            this.db.addPendingLoan(loan, item.itemKey);
+            this.db.addPendingLoan(loan, item.$key);
         }
-
-        this.db.removeTemporaryItems();
-
-
-        this.navCtrl.remove(2, 3);
-        this.navCtrl.pop();
-        //this.navCtrl.push(HomeAdminPage);
+        this.navCtrl.push(CheckoutAwaitingConfirmationPage, { user: this.user });
     }
 
-        showToast(message, position) {
-            this.platform.ready().then(() => Toast.show(message, "long", position).subscribe(
-                toast => {
-                    console.log(toast);
-                }
-            ));
-        }
+      
     
 }

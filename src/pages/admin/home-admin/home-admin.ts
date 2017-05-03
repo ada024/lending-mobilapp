@@ -1,7 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
-import { CheckoutItemsPage } from '../checkout/checkout-items/checkout-items';
+import { CheckoutFirstPage } from '../checkout/checkout-first/checkout-first';
 import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
 import { ItemsAdminPage } from '../items/items-admin/items-admin';
 import { UsersAdminPage } from '../users/users-admin/users-admin';
@@ -70,7 +70,7 @@ export class HomeAdminPage {
   }
 
   goToCheckOut() {
-    this.navCtrl.push(CheckoutItemsPage);
+    this.navCtrl.push(CheckoutFirstPage);
   }
   
   goToCheckIn() {

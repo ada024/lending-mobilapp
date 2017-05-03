@@ -69,7 +69,7 @@
     </button>
   </div>
 
-  <h3 style="margin-top: 20px;">You have reserved</h3>
+  <h3 style="margin-top: 20px;" *ngIf="reservations && reservations.length != 0">You have reserved</h3>
 
   <div *ngIf="reservations && reservations.length != 0" class="scroll-bar">
     <div *ngFor="let reservation of reservations" class="scroll-bar-element">
@@ -77,13 +77,13 @@
         <ion-icon name="image" class="item-image"></ion-icon>
         <div class="item-name">
           {{reservation.name}}
-          <div class="dueDate">Pick up in {{dueDate(reservation)}} days</div>
+          <div class="dueDate">Pick up {{dueDate(reservation)}}</div>
         </div>
       </div>
     </div>
   </div>
 
-  <h3 style="margin-top: 20px;">You are currently borrowing</h3>
+  <h3 style="margin-top: 20px;" *ngIf="loans && loans.length != 0">You are currently borrowing</h3>
 
   <div *ngIf="loans && loans.length != 0" class="scroll-bar">
     <div *ngFor="let loan of loans" class="scroll-bar-element">

@@ -1,17 +1,20 @@
 {
   "ExpandedNodes": [
     "",
-    "\\resources",
     "\\src",
     "\\src\\pages",
     "\\src\\pages\\admin",
-    "\\src\\pages\\admin\\items",
-    "\\src\\pages\\user\\home-user",
-    "\\src\\pages\\user\\items",
-    "\\src\\pages\\user\\items\\item-calendar-user",
-    "\\src\\pages\\user\\items\\item-confirm-pickup",
-    "\\src\\providers"
+    "\\src\\pages\\admin\\checkout",
+    "\\src\\pages\\admin\\checkout\\checkout-awaiting-confirmation",
+    "\\src\\pages\\admin\\checkout\\checkout-confirm-item",
+    "\\src\\pages\\admin\\checkout\\checkout-item-picked",
+    "\\src\\pages\\admin\\checkout\\checkout-items",
+    "\\src\\pages\\admin\\checkout\\checkout-scan-item",
+    "\\src\\pages\\admin\\checkout\\checkout-scan-user",
+    "\\src\\pages\\admin\\checkout\\checkout-user",
+    "\\src\\pages\\admin\\checkout\\checkout-user-picked",
+    "\\src\\pages\\admin\\items"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.ts",
+  "SelectedNode": "\\src\\pages\\admin\\checkout\\checkout-awaiting-confirmation\\checkout-awaiting-confirmation.html",
   "PreviewInSolutionExplorer": false
 }

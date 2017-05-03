@@ -43,4 +43,8 @@ export class ItemsDetailsAdminPage {
       this.db.removeReservation(this.item);
       this.db.reservationConfirmed(this.item, reservation);
   }
+
+  cancelResClicked() {
+      this.db.removeReserved(this.item);
+  }
 }
