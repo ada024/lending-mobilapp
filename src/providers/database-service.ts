@@ -775,8 +775,7 @@ export class DatabaseService {
   //dropdown menu stuff
   openDropdownMenu(event) {
     let popover = this.popoverCtrl.create(DropdownMenuPage, {
-      userName: this.currentUserName,
-      logoutFunc: this.logout.bind(this)
+      db: this
     });
     popover.present({
       ev: event

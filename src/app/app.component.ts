@@ -16,7 +16,7 @@ export class MyApp {
 
   private authState: FirebaseAuthState;
   public firebase: any;
-  rootPage;
+  public rootPage;
 
   constructor(platform: Platform, public af: AngularFire, private db: DatabaseService) {
 
@@ -24,7 +24,7 @@ export class MyApp {
     this.af.auth.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
 
-// Based on user login , sets root page and write user to db
+      // Based on user login , sets root page and write user to db
       if (this.authState) {
         this.rootPage = ChooseAccountTypePage;
         this.db.existInDb();

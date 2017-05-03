@@ -27,9 +27,6 @@ export class HomeUserPage {
         db.loadLoans(this.onLoansLoaded.bind(this));
         db.loadUsersReservations(this.onReservationsLoaded.bind(this));
         db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
-
-
-
     }
 
     onCurrentEntityLoaded(currentUser) {
@@ -77,10 +74,6 @@ export class HomeUserPage {
     this.zone.run(() => {
       this.numberOfItems = numberOfItems;
     });
-  }
-
-  openDropdownMenu(event) {
-    this.db.openDropdownMenu(event);
   }
 
   dueDate(item) {

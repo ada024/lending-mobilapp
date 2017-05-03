@@ -92,8 +92,4 @@ export class HomeAdminPage {
   goToDeveloperToolsAdminPage() {
     this.navCtrl.push(DeveloperToolsPage);
   }
-
-  openDropdownMenu(event) {
-    this.db.openDropdownMenu(event);
-  }
 }
