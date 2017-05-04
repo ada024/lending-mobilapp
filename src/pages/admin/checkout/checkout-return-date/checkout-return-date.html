@@ -1,0 +1,32 @@
+﻿<!--
+  Generated template for the CheckoutReturnDate page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>CheckoutReturnDate</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p class="title-text">When should the items be returned?</p>
+  <div>
+    <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
+    <calendar (swipe)="swipeEvent()"
+              [markDisabled]="markDisabled"
+              [currentDate]="calendar.currentDate"
+              autoSelect="false"
+              noEventsLabel=""
+              (onCurrentDateChanged)="onCurrentDateChanged($event)"
+              (onEventSelected)="onEventSelected($event)"
+              (onTitleChanged)="onViewTitleChanged($event)"
+              (onTimeSelected)="onTimeSelected($event)"
+              step="30">
+    </calendar>
+  </div>
+</ion-content>

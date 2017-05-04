@@ -16,6 +16,7 @@ export class HomeUserPage {
     reservations;
     currentEntity;
     dueDays = [];
+    returnDate: any;
 
     resTest;
     //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
@@ -43,7 +44,7 @@ export class HomeUserPage {
     }
 
     acceptLoan(pendingLoan) {
-        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.itemOwnerName);
+        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.timeInMillis);
         this.db.addLoan(loan, pendingLoan);
        this.db.deletePendingLoan(pendingLoan);
   }
@@ -58,13 +59,14 @@ export class HomeUserPage {
 
   onPendingLoansLoaded(loadedList) {
     this.zone.run(() => {
-      this.pendingLoans = loadedList;
+        this.pendingLoans = loadedList;
     });
   }
 
   onLoansLoaded(loadedList) {
     this.zone.run(() => {
-      this.loans = loadedList;
+        this.loans = loadedList;
+        this.loans.sort((date1, date2) => date1.loan.timeInMillis - date2.loan.timeInMillis);
     });
   }
 
@@ -74,10 +76,9 @@ export class HomeUserPage {
     });
   }
 
-  dueDate(item) {
+  dueDate(itemDate) {
       var currentDate = new Date();
       currentDate.setHours(0o0, 0o0);
-      var itemDate = item.reserved.pickupDate;
       var oneDay = 24 * 60 * 60 * 1000;
       var diffDays = Math.round(Math.abs((itemDate - currentDate.getTime()) / (oneDay)));
       var returnText;

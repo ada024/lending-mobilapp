@@ -17,9 +17,10 @@
 <p class="titleText">Check out to</p>
 <img class="user-image" [src]="user.photoURL" />
 <p class="someText">{{user.fullname}} </p>
-
+  <p class="return-date" style="margin-bottom:-0.7em;margin-top:2em;">Return date:</p>
+  <p class="return-date">{{formattedReturnDate}}</p>
 <div class="placeBottom">
-<p class="someText">Item(s) you are checking out</p>
+<p class="someText">Items you are checking out</p>
 <ion-list>
     <ion-item *ngFor="let item of itemList">
       <div class="listProps"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span></div>

@@ -29,9 +29,15 @@ export class CheckoutItemsPage {
 
 	
 
-    constructor(public viewCtrl: ViewController ,public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
 
         db.loadItems(this.onDataLoaded.bind(this));
+
+        this.itemsList.sort((loan1, loan2): number => {
+            if (loan1.loan != null && loan2.loan == null) return 1;
+            if (loan1.loan == null && loan2.loan != null) return -1;
+            return 0;
+        });
     }
     ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutItemsPage');
@@ -49,10 +55,12 @@ export class CheckoutItemsPage {
    
   }
 
-    goToCheckoutItemPickedPage(item) {
-            this.close = true;
-            const index = this.viewCtrl.index;
-            this.navCtrl.push(CheckoutConfirmItemPage, { index: index, item: item });	
+  goToCheckoutItemPickedPage(item) {
+      if (item.loan == null) {
+          this.close = true;
+          const index = this.viewCtrl.index;
+          this.navCtrl.push(CheckoutConfirmItemPage, { index: index, item: item });
+      }
 	}
 
 

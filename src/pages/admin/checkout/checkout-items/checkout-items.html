@@ -26,9 +26,9 @@
                  (ionInput)="searchItems($event)">
   </ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let item of itemsList">
-    <div class="listProps" (click)="goToCheckoutItemPickedPage(item)"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span></div>
-    </ion-item>
+      <ion-item *ngFor="let item of itemsList" [class.hide-loans]="item.loan!=null">
+        <div class="listProps" (click)="goToCheckoutItemPickedPage(item)"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span><span class="checked-out" [class.hide-unchecked]="item.loan==null">Checked out</span></div>
+      </ion-item>
   </ion-list>
 
 </ion-content>

@@ -40,9 +40,24 @@
   }
 
   .item-name {
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin-left: 1em;
-    bottom: 0.25em;
-    position: relative;
+    bottom: 0.8em;
+    position: fixed;
+  }
+
+  .hide-loans {
+    background-color: gray;
+  }
+
+  .checked-out{
+    font-size:0.8em;
+    left:17em;
+    top:3.5em;
+    position:fixed;
+    color:red;
+  }
+  .hide-unchecked{
+    display:none;
   }
 }

@@ -24,6 +24,12 @@
     border: 5px solid mediumseagreen;
   }
 
+  .borrowed-container {
+    width: 90%;
+    height: 70px;
+    border: 5px solid indianred;
+  }
+
   .item-image {
     font-size: 70px;
     margin-left: 15px;
@@ -33,14 +39,20 @@
 
   .item-name {
     font-size: 25px;
-    margin-top:0.4em;
+    margin-top: 0.4em;
     float: left;
   }
 
   .dueDate {
     font-size: 0.6em;
-    margin-left:0.1em;
-    color:mediumseagreen
+    margin-left: 0.1em;
+    color: mediumseagreen
+  }
+
+  .dueDateBorrowed {
+    font-size: 0.6em;
+    margin-left: 0.1em;
+    color: indianred;
   }
 
   .item-container-buttons {
@@ -50,15 +62,16 @@
   }
 
   .dismiss-button {
-    width: 130px;
-    height: 60px;
+    margin-top: -1em;
+    width: 10em;
+    height: 4em;
     margin-right: 20px;
     background-color: #f28282;
   }
 
   .confirm-button {
-    width: 130px;
-    height: 60px;
+    width: 10em;
+    height: 4em;
     background-color: #7cd87b;
   }
 
@@ -89,5 +102,13 @@
 
   .grey-button-text-info {
     float: left;
+  }
+
+  .return-date {
+    color: indianred;
+    margin-top: 1em;
+    left: -2em;
+    text-align: center;
+    position: relative;
   }
 }

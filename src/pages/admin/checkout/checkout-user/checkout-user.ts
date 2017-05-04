@@ -1,7 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
 import { NavController, NavParams } from 'ionic-angular';
-import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
+import { CheckoutReturnDatePage } from '../checkout-return-date/checkout-return-date';
 
 /*
   Generated class for the CheckoutUser page.
@@ -40,7 +40,7 @@ export class CheckoutUserPage {
     }
 
     goToCheckoutUserPickedPage(user) {
-        this.navCtrl.push(CheckoutUserPickedPage, { user: user });
+        this.navCtrl.push(CheckoutReturnDatePage, { user: user });
     }
 
 

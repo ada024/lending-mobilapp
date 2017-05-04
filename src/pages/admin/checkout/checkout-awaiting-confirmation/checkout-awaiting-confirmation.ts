@@ -15,15 +15,15 @@ import { DatabaseService } from '../../../../providers/database-service';
 export class CheckoutAwaitingConfirmationPage {
     user: any;
     items: any;
-
     confirmCheck: any;
+    formattedDate: any;
 
-    usersLoansLength: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
         this.user = navParams.get("user");
+        this.formattedDate = navParams.get("formattedDate");
         this.items = db.getTemporaryItems();
-
+        
         db.checkIfConfirmed(this.items, this.onCheckConfLoaded.bind(this));
  
         

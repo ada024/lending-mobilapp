@@ -41,6 +41,7 @@ import { CheckoutItemsPage } from '../pages/admin/checkout/checkout-items/checko
 import { CheckoutConfirmItemPage } from '../pages/admin/checkout/checkout-confirm-item/checkout-confirm-item';
 import { CheckoutUserPage } from '../pages/admin/checkout/checkout-user/checkout-user';
 import { CheckoutItemPickedPage } from '../pages/admin/checkout/checkout-item-picked/checkout-item-picked';
+import { CheckoutReturnDatePage } from '../pages/admin/checkout/checkout-return-date/checkout-return-date';
 import { CheckoutUserPickedPage } from '../pages/admin/checkout/checkout-user-picked/checkout-user-picked';
 import { CheckoutAwaitingConfirmationPage } from '../pages/admin/checkout/checkout-awaiting-confirmation/checkout-awaiting-confirmation';
 import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-alert';
@@ -117,6 +118,7 @@ export const firebaseConfig = {
 	  CheckoutUserPage,
 	  CheckoutItemPickedPage,
       CheckoutUserPickedPage,
+      CheckoutReturnDatePage,
       CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
 	
@@ -182,6 +184,7 @@ export const firebaseConfig = {
 	  CheckoutUserPage,
   	CheckoutItemPickedPage,
       CheckoutUserPickedPage,
+      CheckoutReturnDatePage,
       CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
 
