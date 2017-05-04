@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { SendMailPage } from '../../../send-mail/send-mail';
 
 
 @Component({
@@ -27,4 +28,7 @@ export class UsersListAdminPage {
     this.usersList = this.db.search(this.loadedUserList, this.searchString, "v.name");
   }
 
+  goToSendMailPage(user) {
+    this.navCtrl.push(SendMailPage, {user: user});
+  }
 }

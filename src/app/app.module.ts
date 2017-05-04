@@ -11,6 +11,7 @@ import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-accou
 import { HomeAdminPage } from '../pages/admin/home-admin/home-admin';
 import { HomeUserPage } from '../pages/user/home-user/home-user';
 import { SettingsPage } from '../pages/settings/settings';
+import { SendMailPage } from '../pages/send-mail/send-mail';
 
 import { ItemsAdminPage } from '../pages/admin/items/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
@@ -65,7 +66,7 @@ import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-
 
 import { NgCalendarModule } from 'ionic2-calendar';
 import { Camera } from '@ionic-native/camera';
-
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 
@@ -88,6 +89,7 @@ export const firebaseConfig = {
     DeveloperToolsPage,
     DropdownMenuPage,
     SettingsPage,
+    SendMailPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -154,6 +156,7 @@ export const firebaseConfig = {
     DeveloperToolsPage,
     DropdownMenuPage,
     SettingsPage,
+    SendMailPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -205,6 +208,6 @@ export const firebaseConfig = {
     ItemsTabsUserPage,
     ItemsUnavailableUserPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService, Camera]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService, Camera, SocialSharing]
 })
 export class AppModule {}

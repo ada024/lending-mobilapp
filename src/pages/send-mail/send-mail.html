@@ -1,0 +1,36 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>sendMail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p class="title">
+    Send mail to 
+    <br>
+    {{user.fullname}}
+  </p>
+
+  <div class="image-container">
+    <img class="facebook-image" [src]="user.photoURL"/>
+  </div>
+
+  <form (ngSubmit)="send()">
+    <ion-item>
+      <ion-label>Subject</ion-label>
+      <ion-input type="text" [(ngModel)]="form.subject" name="subject" placeholder="Enter subject"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Message</ion-label>
+      <ion-textarea [(ngModel)]="form.message" name="message" placeholder="Enter message"></ion-textarea>
+    </ion-item>
+    <button ion-button type="submit">Send</button>
+  </form>
+
+
+</ion-content>

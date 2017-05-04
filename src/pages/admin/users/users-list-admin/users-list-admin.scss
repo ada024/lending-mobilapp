@@ -1,6 +1,7 @@
 page-users-list-admin {
 
     .user-container {
+        position: relative;
         height: 75px;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -19,5 +20,12 @@ page-users-list-admin {
     .user-name {
         font-size: 20px;
         margin-top: 12px;
+    }
+
+    .icon {
+        position: absolute;
+        font-size: 30px;
+        top: 2px;
+        right: 5px;
     }
 }
