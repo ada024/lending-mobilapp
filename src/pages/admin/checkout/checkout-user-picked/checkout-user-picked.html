@@ -21,8 +21,8 @@
 <div class="placeBottom">
 <p class="someText">Item(s) you are checking out</p>
 <ion-list>
-    <ion-item *ngFor="let item of itemList" class="listProps">
-      <div class="name"><ion-icon name="image" class="item-image"></ion-icon> {{item.name}}</div>
+    <ion-item *ngFor="let item of itemList">
+      <div class="listProps"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span></div>
     </ion-item>
   </ion-list>
   

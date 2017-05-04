@@ -53,9 +53,19 @@
 
   .item-name {
     font-size: 1.5em;
-    margin-top:-1.6em;
-    text-align:center;
+    margin-top: -1.6em;
+    text-align: center;
     color: white;
-    position:relative;
+    position: relative;
+  }
+
+  .customIcon {
+    font-size: 1.7em;
+  }
+
+  .already-added{
+    color:red;
+    margin-top:2em;
+    margin-left:5em;
   }
 }

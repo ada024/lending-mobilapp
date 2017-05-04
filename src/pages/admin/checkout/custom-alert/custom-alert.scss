@@ -1,29 +1,31 @@
-page-custom-alert {
+﻿page-custom-alert {
 
-.item-image {
-   font-size: 120px;
-    margin-left: 36%;
+  .item-image {
+    margin-left: -1.7em;
+    margin-bottom: -0.3em;
+    width: 2.4em;
+    height: 2.4em;
   }
-  
+
   .blue-button1 {
-   width: 80px;
-   height: 40px;
+    width: 80px;
+    height: 40px;
     background-color: #40afce;
-	margin-left: 23%;
+    margin-left: 23%;
   }
 
-   .blue-button2 {
-   width: 80px;
-   height: 40px;
+  .blue-button2 {
+    width: 80px;
+    height: 40px;
     background-color: #40afce;
-	margin-left: 5%;
+    margin-left: 5%;
   }
-  
+
   .blue-button-text {
     color: white;
   }
-  
-  .centerText{
-  text-align: center;
+
+  .centerText {
+    text-align: center;
   }
 }

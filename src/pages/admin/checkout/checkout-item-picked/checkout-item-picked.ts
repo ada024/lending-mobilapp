@@ -13,13 +13,12 @@ import { CheckoutScanUserPage } from '../checkout-scan-user/checkout-scan-user';
 @Component({
   selector: 'page-checkout-item-picked',
   templateUrl: 'checkout-item-picked.html',
-  providers: [DatabaseService],
 })
 export class CheckoutItemPickedPage {
-	itemList;
+	itemList:any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
-	 db.loadTemporaryItems(this.onTemporaryItemsLoaded.bind(this));
+        this.itemList = db.getTemporaryItems();
 	  
   }
   
@@ -36,20 +35,8 @@ export class CheckoutItemPickedPage {
       this.navCtrl.push(CheckoutScanUserPage);
   }
 
-  goHome() {
-      this.navCtrl.remove(2, 3);
-      this.navCtrl.pop();
-  }
+  
   removeItem(item) {
-              this.db.removeTemporaryItem(item);
-          }
-		  
-		  
-  onTemporaryItemsLoaded(loadedList) {
-    this.zone.run(() => {
-      this.itemList = loadedList;
-    });
+      this.db.removeTemporaryItem(item);
   }
-
-
 }

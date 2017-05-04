@@ -9,7 +9,7 @@
   .scann-icon {
     font-size: 250px;
     margin-left: 23%;
-	position: static;
+    position: static;
   }
 
 
@@ -26,11 +26,23 @@
   .customIcon {
     font-size: 1.7em;
   }
-  
-  .listProps{
-  background-color: #d3d3d3;
-  }
-  
-  
 
+  .listProps {
+    font-size: 1em;
+    padding: 0.2em 2em;
+  }
+
+  .item-image {
+    margin-left: -1.7em;
+    margin-bottom: -0.3em;
+    width: 2.4em;
+    height: 2.4em;
+  }
+
+  .item-name {
+    font-size: 1.4em;
+    margin-left: 1em;
+    bottom: 0.25em;
+    position: relative;
+  }
 }

@@ -4,7 +4,8 @@ import Rx from "rxjs/Rx"
 import 'rxjs/add/operator/map';
 import {AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, AuthMethods} from 'angularfire2';
 import firebase from 'firebase';
-import {Observable} from "rxjs/Observable";
+import { Observable } from "rxjs/Observable";
+import {Tempitems} from '../app/models/tempItems';
 
 import {PopoverController} from 'ionic-angular';
 import {DropdownMenuPage} from '../pages/dropdown-menu/dropdown-menu';
@@ -15,364 +16,363 @@ import {auth} from 'firebase'; //needed for the FacebookAuthProvider
 
 @Injectable()
 export class DatabaseService {
-  items: FirebaseListObservable<any>;
-  users: FirebaseListObservable<any>;
-  loans: FirebaseListObservable<any>;
-  entities: FirebaseListObservable<any>;
-  pendingLoans: FirebaseListObservable<any>;
-  pendingUsers: FirebaseListObservable<any>;
-  usersEntityMap: FirebaseListObservable<any>;
-  temporaryItems: FirebaseListObservable<any>;
-  public firebase: any;
-  private authState: FirebaseAuthState;
-  itemsRef: any;
-  entitiesRef: any;
+    items: FirebaseListObservable<any>;
+    users: FirebaseListObservable<any>;
+    loans: FirebaseListObservable<any>;
+    entities: FirebaseListObservable<any>;
+    pendingLoans: FirebaseListObservable<any>;
+    pendingUsers: FirebaseListObservable<any>;
+    usersEntityMap: FirebaseListObservable<any>;
+    temporaryItems: FirebaseListObservable<any>;
+    public firebase: any;
+    private authState: FirebaseAuthState;
+    itemsRef: any;
+    entitiesRef: any;
+    tempItems: Tempitems;
 
 
-  usersRef: any;
-  usersList: any;
-  userReturn: any;
 
-  currentUser: any;
+    usersRef: any;
+    usersList: any;
+    userReturn: any;
 
-  constructor(public http: Http, public af: AngularFire, private platform: Platform,
-              private  toastCtrl: ToastController, public popoverCtrl: PopoverController) {
-    this.items = af.database.list('/items');
-    this.users = af.database.list('/users');
-    this.loans = af.database.list('/loans');
-    this.entities = af.database.list('/entities');
-    this.pendingLoans = af.database.list('/pendingLoans');
-    this.pendingUsers = af.database.list('/pendingUsers');
-    this.usersEntityMap = af.database.list('/usersEntityMap');
-    this.temporaryItems = af.database.list('/temporaryItems');
-    this.firebase = firebase;  //Add reference to native firebase SDK
-    this.itemsRef = firebase.database().ref('/items');
-    this.usersRef = firebase.database().ref('/users');
-    this.entitiesRef = firebase.database().ref('/entities');
+    currentUser: any;
 
+    constructor(public http: Http, public af: AngularFire, private platform: Platform,
+        private toastCtrl: ToastController, public popoverCtrl: PopoverController) {
+        this.items = af.database.list('/items');
+        this.users = af.database.list('/users');
+        this.loans = af.database.list('/loans');
+        this.entities = af.database.list('/entities');
+        this.pendingLoans = af.database.list('/pendingLoans');
+        this.pendingUsers = af.database.list('/pendingUsers');
+        this.usersEntityMap = af.database.list('/usersEntityMap');
+        this.temporaryItems = af.database.list('/temporaryItems');
+        this.firebase = firebase;  //Add reference to native firebase SDK
+        this.itemsRef = firebase.database().ref('/items');
+        this.usersRef = firebase.database().ref('/users');
+        this.entitiesRef = firebase.database().ref('/entities');
+        this.tempItems = new Tempitems();
 
-// CURREMT USER INFO
-    this.af.auth.subscribe((state: FirebaseAuthState) => {
-      this.authState = state;
-      if(state) {
-        this.loadCurrentUser((currentUser)=>{
-          this.currentUser = currentUser;
+        // CURREMT USER INFO
+        this.af.auth.subscribe((state: FirebaseAuthState) => {
+            this.authState = state;
+            if (state) {
+                this.loadCurrentUser((currentUser) => {
+                    this.currentUser = currentUser;
+                });
+            }
         });
-      }
-    });
-  }
-
-
-  //Methods to add and get items
-
-  addItem(name, id, photoURI) {
-    this.items.push({
-      name: name,
-      id: id,
-      entity: this.currentUser.entity
-    }).then((resolve) => {
-      this.uploadImage(photoURI, this.currentUser.entity, name, resolve.key)
-    })
-  }
-
-  addReservation(reservation, item) {
-      this.items.update(item.$key, {
-          reservation: reservation
-      });
-  }
-
-
-
-  loadUsersReservations(onDataLoaded) {
-      this.items.subscribe(itemsArray => {
-          itemsArray = itemsArray.filter(item => {
-              return (item.reserved != null && item.reserved.userId == this.currentUser.uid)
-          });
-          onDataLoaded(itemsArray)
-      });
-  }
-
-
-  removeReservation(item){
-      this.items.update(item.$key, {
-          reservation: null
-      });
-  }
-
-  removeReserved(item) {
-      this.items.update(item.$key, {
-          reserved: null
-      });
-  }
-
-  reservationConfirmed(item, reservation) {
-      this.items.update(item.$key, {
-          reserved: reservation
-      });
-  }
-
-  getItems() {
-    return this.items;
-  }
-
-  loadItems(onDataLoaded) {
-    if(this.currentUser != null) {
-      this.items.subscribe(loadedList => {
-        onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
-      })
     }
-    else
-      this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
-  }
-
-  getItemByKey(itemKey) {
-      var foundItem;
-      this.items.subscribe(items => {
-          items.forEach(item => {
-              if (item.$key == itemKey) {
-                  foundItem = item;
-              }
-          });
-      });
-      return foundItem;
-  }
-
- 
-
-  loadAvailableItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan == null);
-      }).subscribe(availableItems => onDataLoaded(availableItems));
-  }
-
-  loadUnavailableItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null);
-      }).subscribe(availableItems => onDataLoaded(availableItems));
-  }
-
-  loadLoanedItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
-      }).subscribe(availableItems => onDataLoaded(availableItems));
-  }
-
-  loadNumberOfUnavailableItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null).length;
-      }).subscribe(availableItems => onDataLoaded(availableItems));
-  }
-
-  loadNumberOfAvailableItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan==null).length;
-      }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems));
-  }
-
-  loadNumberOfLoanedItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null).length;
-      }).subscribe(availableItems => onDataLoaded(availableItems));
-  }
-
-  loadReservedItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null);
-      }).subscribe(reservedItems => onDataLoaded(reservedItems));
-  }
-
-  getItemForDetailsPage(onDataLoaded, itemKey) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.$key == itemKey);
-      }).subscribe(itemForDetail => onDataLoaded(itemForDetail));
-  }
-
-  loadNumberOfReservedItems(onDataLoaded) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
-      }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems));
-  }
 
 
-  loadNumberOfItems(onDataLoaded) {
-    if(this.currentUser != null) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-        return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
-      }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
-    }
-    else
-      this.setCurrentUser(this.loadNumberOfItems.bind(this), onDataLoaded)
-  }
+    //Methods to add and get items
 
-  loadNumberOfReservationRequests(onDataLoaded) {
-    if(this.currentUser != null) {
-      Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-          return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null).length;
-      }).subscribe(numberOfReservationRequests => onDataLoaded(numberOfReservationRequests));
-    }
-    else
-      this.setCurrentUser(this.loadNumberOfReservationRequests.bind(this), onDataLoaded)
-  }
-
-  getItem(name, id) {
-    let foundItem;
-    this.items.subscribe(items => {
-      items.forEach(item => {
-        if (item.name == name && item.id == id) {
-          foundItem = item;
-          console.log(foundItem.name);
-        }
-      });
-    });
-    return foundItem;
-  }
-
-  getItemByTag(id) {
-    var foundItem;
-    this.items.subscribe(items => {
-      items.forEach(item => {
-        if (item.id == id) {
-          foundItem = item;
-        }
-      });
-    });
-    return foundItem;
-  }
-
-
-  removeItem(item) {
-    return this.items.remove(item);
-  }
-
-  checkIfItemIsAdded(item) {
-    var foundItem = false;
-    this.temporaryItems.subscribe(items => {
-      items.forEach(tempItem => {
-        if (tempItem.id == item.id) {
-          foundItem = true;
-        }
-      });
-    });
-    //return foundItem;
-    return false; // for testing (kan ikke scanne i browser)
-  }
-
-
-  //Methods to add and get users
-
-  getUsers() {
-    return this.users;
-  }
-
-  getUserByTag(id) {
-    let foundUser;
-    this.users.subscribe(users => {
-      users.forEach(user => {
-        if (user.id == id) {
-          foundUser = user;
-        }
-      });
-    });
-    return foundUser;
-  }
-
-  loadUsers(onDataLoaded) {
-    this.users.subscribe(loadedList => {
-      onDataLoaded(loadedList)
-    });
-  }
-
-  loadUsersInThisEntity(onDataLoaded) {
-    if(this.currentUser != null) {
-      Rx.Observable.combineLatest(this.users, this.usersEntityMap, (loadedUsers, loadedMap) => {
-        let filteredMap = this.search(loadedMap, this.currentUser.entity, "v.entity");
-        let users = [];
-        filteredMap.forEach(element => {
-          let user = this.search(loadedUsers, element.userUid, "v.uid");
-          users.push(user[0]);
-        });
-        return users;
-      }).subscribe(users => onDataLoaded(users));
-    }
-    else {
-      this.setCurrentUser(this.loadUsersInThisEntity.bind(this), onDataLoaded)
-    }
-  }
-
-  getUserByName(name) {
-    this.usersList.forEach(user => {
-      if (user.name == name) {
-        this.userReturn = user;
-      }
-    });
-    return this.userReturn;
-  }
-
-  loadCurrentUser(onDataLoaded) {
-    if(this.currentUser != null) {
-      this.users.subscribe(users => {
-        users.forEach(user => {
-          if(user.fullname == this.currentUserName) {
-            onDataLoaded(user)
-          }
+    addItem(name, id, photoURI) {
+        this.items.push({
+            name: name,
+            id: id,
+            entity: this.currentUser.entity
+        }).then((resolve) => {
+            this.uploadImage(photoURI, this.currentUser.entity, name, resolve.key)
         })
-      })
     }
-    else
-      this.setCurrentUser(this.loadCurrentUser.bind(this), onDataLoaded)
-  }
 
-  setCurrentUser(callback, parameter) {
-    this.users.subscribe(users => {
-      users.forEach(user => {
-        if(user.$key == this.authState.auth.uid) {
-          this.currentUser = user;
+    addReservation(reservation, item) {
+        this.items.update(item.$key, {
+            reservation: reservation
+        });
+    }
+
+
+
+    loadUsersReservations(onDataLoaded) {
+        this.items.subscribe(itemsArray => {
+            itemsArray = itemsArray.filter(item => {
+                return (item.reserved != null && item.reserved.userId == this.currentUser.uid)
+            });
+            onDataLoaded(itemsArray)
+        });
+    }
+
+
+    removeReservation(item) {
+        this.items.update(item.$key, {
+            reservation: null
+        });
+    }
+
+    removeReserved(item) {
+        this.items.update(item.$key, {
+            reserved: null
+        });
+    }
+
+    reservationConfirmed(item, reservation) {
+        this.items.update(item.$key, {
+            reserved: reservation
+        });
+    }
+
+    getItems() {
+        return this.items;
+    }
+
+    loadItems(onDataLoaded) {
+        if (this.currentUser != null) {
+            this.items.subscribe(loadedList => {
+                onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
+            })
         }
-      })
-      callback(parameter);
-    }).unsubscribe;
-  }
+        else
+            this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
+    }
+
+    getItemByKey(itemKey) {
+        var foundItem;
+        this.items.subscribe(items => {
+            items.forEach(item => {
+                if (item.$key == itemKey) {
+                    foundItem = item;
+                }
+            });
+        });
+        return foundItem;
+    }
 
 
-  addTemporaryItems(item, itemKey) {
-    this.items.update(itemKey, {
-	  tempAddedBy: this.currentUser.uid
-    });
-  }
 
-  getTemporaryItems() {
-    return this.temporaryItems;
+    loadAvailableItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan == null);
+        }).subscribe(availableItems => onDataLoaded(availableItems));
+    }
+
+    loadUnavailableItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null);
+        }).subscribe(availableItems => onDataLoaded(availableItems));
+    }
+
+    loadLoanedItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
+        }).subscribe(availableItems => onDataLoaded(availableItems));
+    }
+
+    loadNumberOfUnavailableItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null).length;
+        }).subscribe(availableItems => onDataLoaded(availableItems));
+    }
+
+    loadNumberOfAvailableItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan == null).length;
+        }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems));
+    }
+
+    loadNumberOfLoanedItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null).length;
+        }).subscribe(availableItems => onDataLoaded(availableItems));
+    }
+
+    loadReservedItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null);
+        }).subscribe(reservedItems => onDataLoaded(reservedItems));
+    }
+
+    getItemForDetailsPage(onDataLoaded, itemKey) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.$key == itemKey);
+        }).subscribe(itemForDetail => onDataLoaded(itemForDetail));
+    }
+
+    loadNumberOfReservedItems(onDataLoaded) {
+        Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
+        }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems));
+    }
+
+
+    loadNumberOfItems(onDataLoaded) {
+        if (this.currentUser != null) {
+            Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+                return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
+            }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
+        }
+        else
+            this.setCurrentUser(this.loadNumberOfItems.bind(this), onDataLoaded)
+    }
+
+    loadNumberOfReservationRequests(onDataLoaded) {
+        if (this.currentUser != null) {
+            Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
+                return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null).length;
+            }).subscribe(numberOfReservationRequests => onDataLoaded(numberOfReservationRequests));
+        }
+        else
+            this.setCurrentUser(this.loadNumberOfReservationRequests.bind(this), onDataLoaded)
+    }
+
+
+    //trenger vi denne metoden?
+    getItem(name, id) {
+        let foundItem;
+        this.items.subscribe(items => {
+            items.forEach(item => {
+                if (item.name == name && item.id == id) {
+                    foundItem = item;
+                    console.log(foundItem.name);
+                }
+            });
+        });
+        return foundItem;
+    }
+
+    getItemByTag(id) {
+        var foundItem;
+        this.items.subscribe(items => {
+            items.forEach(item => {
+                if (item.entity == this.currentUser.entity && item.id == id) {
+                    foundItem = item;
+                }
+            });
+        });
+        return foundItem;
+    }
+
+
+    removeItem(item) {
+        return this.items.remove(item);
+    }
+
+    checkIfItemIsAdded(item) {
+        var foundItem = false;
+        var temporaryItems = this.tempItems.getItems();
+        temporaryItems.forEach(tempItem => {
+                if (tempItem.$key == item.$key) {
+                    foundItem = true;
+                }
+            });
+        //return foundItem;
+        return foundItem; // for testing (kan ikke scanne i browser)
+    }
+
+
+    //Methods to add and get users
+
+    getUsers() {
+        return this.users;
+    }
+
+    getUserByTag(id) {
+        let foundUser;
+        this.users.subscribe(users => {
+            users.forEach(user => {
+                if (user.id == id) {
+                    foundUser = user;
+                }
+            });
+        });
+        return foundUser;
+    }
+
+    loadUsers(onDataLoaded) {
+        this.users.subscribe(loadedList => {
+            onDataLoaded(loadedList)
+        });
+    }
+
+    loadUsersInThisEntity(onDataLoaded) {
+        if (this.currentUser != null) {
+            Rx.Observable.combineLatest(this.users, this.usersEntityMap, (loadedUsers, loadedMap) => {
+                let filteredMap = this.search(loadedMap, this.currentUser.entity, "v.entity");
+                let users = [];
+                filteredMap.forEach(element => {
+                    let user = this.search(loadedUsers, element.userUid, "v.uid");
+                    users.push(user[0]);
+                });
+                return users;
+            }).subscribe(users => onDataLoaded(users));
+        }
+        else {
+            this.setCurrentUser(this.loadUsersInThisEntity.bind(this), onDataLoaded)
+        }
+    }
+
+    getUserByName(name) {
+        this.usersList.forEach(user => {
+            if (user.name == name) {
+                this.userReturn = user;
+            }
+        });
+        return this.userReturn;
+    }
+
+    loadCurrentUser(onDataLoaded) {
+        if (this.currentUser != null) {
+            this.users.subscribe(users => {
+                users.forEach(user => {
+                    if (user.fullname == this.currentUserName) {
+                        onDataLoaded(user)
+                    }
+                })
+            })
+        }
+        else
+            this.setCurrentUser(this.loadCurrentUser.bind(this), onDataLoaded)
+    }
+
+    setCurrentUser(callback, parameter) {
+        this.users.subscribe(users => {
+            users.forEach(user => {
+                if (user.$key == this.authState.auth.uid) {
+                    this.currentUser = user;
+                }
+            })
+            callback(parameter);
+        }).unsubscribe;
+    }
+
+
+    addTemporaryItems(item, itemKey) {
+        this.tempItems.addItem(item);
+    }
+
+    getTemporaryItems() {
+        return this.tempItems.getItems();
+    }
+
+
+    checkIfConfirmed(sentItems, onDataLoaded) {
+        this.items.subscribe(items => {
+            var foundItem = 0;
+            for (let sItem of sentItems) {
+                for (let item of items) {
+                    if (item.$key == sItem.$key) {
+                        if (item.loan != null) {
+                            foundItem++;
+                        }
+                    }
+
+                }
+                }
+            onDataLoaded(foundItem);
+        });
+               
+}
+   
+
+   removeTemporaryItems() {
+       this.tempItems.deleteAllItems();
   }
   
-   loadTemporaryItems(onDataLoaded) {
-    this.items.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.uid, "v.tempAddedBy"));
-    })
-   }
 
-   checkIfConfirmed(onDataLoaded) {
-       if (this.currentUser != null) {
-           Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-               return this.search(loadedItems, this.currentUser.uid, "v.tempAddedBy").filter(item => item.loan != null);
-           }).subscribe(loansForCheckin => onDataLoaded(loansForCheckin));
-       }
-       else
-           this.setCurrentUser(this.loadItems.bind(this), onDataLoaded);
-   }
-
-   removeTemporaryItems(items) {
-       for (let item of items){
-       this.items.update(item.$key, {
-           tempAddedBy: null
-       })
-   }
-  }
-  
-
-  removeTemporaryItem(item) {
-      this.items.update(item.$key, {
-          tempAddedBy: null
-      })
+   removeTemporaryItem(item) {
+       this.tempItems.deleteItem(item);
   }
 
 

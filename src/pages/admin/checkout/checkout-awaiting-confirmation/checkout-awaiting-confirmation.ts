@@ -15,32 +15,37 @@ import { DatabaseService } from '../../../../providers/database-service';
 export class CheckoutAwaitingConfirmationPage {
     user: any;
     items: any;
-    itemsLength: any;
 
     confirmCheck: any;
 
+    usersLoansLength: any;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
         this.user = navParams.get("user");
-        db.loadTemporaryItems(this.onTempLoaded.bind(this));
-        db.checkIfConfirmed(this.onCheckConfLoaded.bind(this));
-        this.itemsLength = this.items.length;
+        this.items = db.getTemporaryItems();
+
+        db.checkIfConfirmed(this.items, this.onCheckConfLoaded.bind(this));
+ 
+        
+        
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutAwaitingConfirmationPage');
   }
 
-  onTempLoaded(tempItems) {
-      this.items = tempItems;
-  }
 
   onCheckConfLoaded(checkItems){
       this.confirmCheck = checkItems;
   }
 
+
+
   done() {
-      this.db.removeTemporaryItems(this.items);
-      this.navCtrl.remove(2, 8);
+      this.db.removeTemporaryItems();
+          this.navCtrl.remove(2, 7);
+      
+      
       this.navCtrl.pop();
   }
 

@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { ViewController, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { CustomAlertPage } from '../custom-alert/custom-alert';
 import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
@@ -18,7 +18,7 @@ export class CheckoutScanItemPage {
     close: boolean;
     item: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
+    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
         if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
             (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
@@ -37,7 +37,8 @@ export class CheckoutScanItemPage {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 item = this.db.getItemByTag(tagId);
                 if (item != null) {
-                    this.isThisTheRightItem(item);
+                    this.goToCheckoutConfirmItemPage(item);
+                    //this.isThisTheRightItem(item);
                 }
             });
             if (item != null) {
@@ -52,13 +53,7 @@ export class CheckoutScanItemPage {
         let customAlert = this.modalCtrl.create(CustomAlertPage, { item: item });
         customAlert.onDidDismiss(data => {
             if (data != null) {
-                if (this.db.checkIfItemIsAdded(data)) {
-                    this.alreadyAddedAlert();
-                    this.close = false;
-                }
-                else {
                     this.goToCheckoutConfirmItemPage(data);
-                }
             }
             else {
                 this.close = false;
@@ -67,23 +62,11 @@ export class CheckoutScanItemPage {
         customAlert.present();
     }
  
-    alreadyAddedAlert() {
-        let alert = this.alertCtrl.create({
-            title: 'Already added',
-            subTitle: 'This item is already added',
-            buttons: ['Dismiss']
-        });
-        alert.present();
-    }
 
     goToCheckoutConfirmItemPage(item) {
-        if (this.db.checkIfItemIsAdded(item)) {
-            this.alreadyAddedAlert();
-        }
-        else {
-            this.db.addTemporaryItems(item, item.$key);
             this.close = true;
-            this.navCtrl.push(CheckoutConfirmItemPage, { self: this, item: item })
-        }
+            const index = this.viewCtrl.index;
+            this.navCtrl.push(CheckoutConfirmItemPage, { index: index, item: item })
+        
     }
 }

@@ -24,13 +24,11 @@
     border: solid black;
   }
 
-  .customIcon {
-    font-size: 1.7em;
-  }
 
   .listProps {
     background-color: #d3d3d3;
-    font-size: 15px;
+    font-size: 1em;
+    padding: 0.2em 2em;
   }
 
   .someText {
@@ -40,12 +38,30 @@
   }
 
   .item-image {
-    font-size: 25px;
+    margin-left:-1.7em;
+    margin-bottom: -0.3em;
+    width: 2.4em;
+    height: 2.4em;
+  }
+
+  .item-name {
+    font-size: 1.4em;
+    margin-left: 1em;
+    bottom: 0.25em;
+    position: relative;
   }
 
   .placeBottom {
     position: absolute;
     bottom: 0px;
     width: 90%
+  }
+
+  .close-icon{
+    font-weight:bold;
+    font-size:1.5em;
+    left: 3.5em;
+    bottom: 0.2em;
+    position:relative;
   }
 }

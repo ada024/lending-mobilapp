@@ -44,8 +44,6 @@ export class HomeUserPage {
 
     acceptLoan(pendingLoan) {
         var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.itemOwnerName);
-        console.log("pendItem: " + pendingLoan.name);
-        console.log("pendItemKey: " + pendingLoan.$key);
         this.db.addLoan(loan, pendingLoan);
        this.db.deletePendingLoan(pendingLoan);
   }

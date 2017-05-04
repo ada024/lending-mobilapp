@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>CheckoutConfirmItem</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title>CheckoutItemPicked</ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="goHome()">
+        <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -17,6 +22,7 @@
   <img [src]="item.photoURL" class="item-image" />
     <div class="inner-wrapper"></div>
     <div class="item-name">{{item.name}}</div>
+  <div class="already-added" *ngIf="allreadyAdded">This item is allready added</div>
   <button class="checkout-button1" (click)="goToCheckoutScanItemPage()">
     <div class="checkout-button-text">
       Scan more items

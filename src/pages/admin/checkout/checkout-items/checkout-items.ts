@@ -1,9 +1,10 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
-import { NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
+import { ViewController, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
 import { CustomAlertPage } from '../custom-alert/custom-alert';
+import { Tempitems } from '../../../../app/models/tempItems';
 
 
 /*
@@ -14,14 +15,13 @@ import { CustomAlertPage } from '../custom-alert/custom-alert';
 */
 @Component({
   selector: 'page-checkout-items',
-  templateUrl: 'checkout-items.html',
-  providers: [DatabaseService]
+  templateUrl: 'checkout-items.html'
 })
 export class CheckoutItemsPage {
 	itemsList: any;
 	loadedItemList: any;
     searchItemString = '';
-    
+    tempItems: any;
 
     close: boolean;
     dataReceived: boolean;
@@ -29,11 +29,10 @@ export class CheckoutItemsPage {
 
 	
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+    constructor(public viewCtrl: ViewController ,public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
 
         db.loadItems(this.onDataLoaded.bind(this));
     }
-
     ionViewDidLoad() {
     console.log('ionViewDidLoad CheckoutItemsPage');
     }
@@ -51,14 +50,9 @@ export class CheckoutItemsPage {
   }
 
     goToCheckoutItemPickedPage(item) {
-		if(this.db.checkIfItemIsAdded(item)){
-		this.alreadyAddedAlert();
-		}
-		else{
-        this.db.addTemporaryItems(item, item.$key);
-		this.close = true;
-        this.navCtrl.push(CheckoutConfirmItemPage, { self: this, item: item })
-		}		
+            this.close = true;
+            const index = this.viewCtrl.index;
+            this.navCtrl.push(CheckoutConfirmItemPage, { index: index, item: item });	
 	}
 
 
@@ -68,15 +62,6 @@ export class CheckoutItemsPage {
         this.navCtrl.pop();
     }
 	
-	
-	alreadyAddedAlert() {
-  let alert = this.alertCtrl.create({
-    title: 'Already added',
-    subTitle: 'This item is already added',
-    buttons: ['Dismiss']
-  });
-  alert.present();
-}
 
 }
 

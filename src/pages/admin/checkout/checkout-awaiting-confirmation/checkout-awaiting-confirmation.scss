@@ -39,8 +39,20 @@
 
   .listProps {
     background-color: #d3d3d3;
-    font-size: 15px;
+    font-size: 1em;
+    padding: 0.2em 2em;
   }
+
+  .userListProps {
+    background-color: #d3d3d3;
+    font-size: 1em;
+    width:21em;
+    height:3em;
+    margin-left: 1.3em;
+    margin-top: 1em;
+    position:relative;
+  }
+
 
   .user-item-title {
     font-size: 1.3em;
@@ -55,19 +67,33 @@
   }
 
   .item-image {
-    font-size: 25px;
+    margin-left: -1.7em;
+    margin-bottom: -0.3em;
+    width: 2.4em;
+    height: 2.4em;
+  }
+
+  .item-name {
+    font-size: 1.2em;
+    margin-left: 1em;
+    bottom: 0.25em;
+    position: relative;
   }
 
   .user-name {
-    text-align: center;
-    padding: 0.20em 4em;
-    background-color: #d3d3d3;
+    font-size: 1em;
+    margin-left: 2em;
+    bottom: 0.4em;
+    position: relative;
   }
 
   .user-image {
-    width: 2em;
-    height: 2em;
+    left: 1em;
+    bottom: -0.3em;
+    width: 2.4em;
+    height: 2.4em;
     border-radius: 50%;
+    position:relative
   }
 
   .done-button {

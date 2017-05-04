@@ -18,9 +18,22 @@ import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-pi
 })
 export class CheckoutConfirmItemPage {
     item;
-
+    itemList: any;
+    tempItems: any;
+    allreadyAdded: boolean;
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
+        this.allreadyAdded = false;
         this.item = navParams.get("item");
+        var index = navParams.get("index");
+        navCtrl.remove(index);
+
+
+        if (this.db.checkIfItemIsAdded(this.item)) {
+            this.allreadyAdded = true;
+        }
+        else {
+            this.db.addTemporaryItems(this.item, this.item.$key);
+        }
 
     }
 
@@ -39,6 +52,11 @@ export class CheckoutConfirmItemPage {
       this.navCtrl.push(CheckoutItemPickedPage);
   }
 
+  goHome() {
+      this.db.removeTemporaryItems();
+      this.navCtrl.remove(2, 1);
+      this.navCtrl.pop();
+  }
  
   }
 

@@ -16,8 +16,7 @@ declare var window: any;
 */
 @Component({
     selector: 'page-checkout-user-picked',
-    templateUrl: 'checkout-user-picked.html',
-    providers: [DatabaseService]
+    templateUrl: 'checkout-user-picked.html'
 })
 export class CheckoutUserPickedPage {
     item: any;
@@ -30,7 +29,7 @@ export class CheckoutUserPickedPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform, public zone: NgZone) {
         this.user = navParams.get('user');
 		
-		db.loadTemporaryItems(this.onTemporaryLoansLoaded.bind(this));
+		this.itemList = db.getTemporaryItems();
 
        
 
@@ -40,11 +39,6 @@ export class CheckoutUserPickedPage {
         console.log('ionViewDidLoad CheckoutUserPickedPage');
     }
 	
-	onTemporaryLoansLoaded(loadedList) {
-    this.zone.run(() => {
-      this.itemList = loadedList;
-    });
-  }
 
     goToHomeAdminPage() {
 	

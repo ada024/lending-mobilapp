@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the CustomAlert page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
@@ -15,7 +15,7 @@
 
 <ion-content>
 <p class="centerText"><b>{{item.name}}</b></p><br>
-<ion-icon name="image" class="item-image"></ion-icon><br>
+  <img [src]="item.photoURL" class="item-image" /><br>
 <p  class="centerText">Is this the item you wanted to scan? </p><br>
  <button class="blue-button1" (click)="noClicked()">
  <div class="blue-button-text">No</div>
