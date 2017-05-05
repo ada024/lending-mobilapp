@@ -17,18 +17,21 @@
   <div class="pUpInfo">
     <p class="pUpDate">Pickup date</p>
     <p class="date">{{pickupDate}}</p>
+    <p class="returnDate">Return date</p>
+    <p class="rDate">{{returnDate}}</p>
   </div>
-  <p class="borrowing-info">Borrowing office location:</p>
-  <p class="dayAndOpeningInfo">Hvl Avdeling Kronstad</p>
-  <hr class="hrstyle"/>
-  <p class="borrowing-info">Borrowing office opening hours:</p>
+  <p class="officeInfo">Hvl Avdeling Kronstad</p>
+  <p class="roomAndTimeInfo">Room E454</p>
   <p class="dayAndOpeningInfo">Mondays and Wednesdays</p>
-  <button class="cancel-button" (click)="cancelClicked()">
-    <div class="button-text">Cancel</div>
-  </button>
-  <button class="confirm-button" (click)="confirmClicked()">
-    <div class="button-text">Confirm</div>
-  </button>
+  <p class="roomAndTimeInfo">09:00 - 16:00</p>
+  <div class="buttons-placement">
+    <button class="cancel-button" (click)="cancelClicked()">
+      <div class="button-text">Cancel</div>
+    </button>
+    <button class="confirm-button" (click)="confirmClicked()">
+      <div class="button-text">Confirm</div>
+    </button>
+  </div>
   <div class="placeBottom">
     <p class="item-borrow">Item you want to borrow</p>
     <div class="item-info"><ion-icon name="image" class="item-image"></ion-icon><span class="item-name">{{item.name}}</span></div>

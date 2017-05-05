@@ -59,6 +59,7 @@ import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/enti
 import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-user';
 import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-picked-user';
 import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
+import { ItemCalendarReturnUserPage } from '../pages/user/items/item-calendar-return-user/item-calendar-return-user';
 import { ItemConfirmPickupPage } from '../pages/user/items/item-confirm-pickup/item-confirm-pickup';
 import { ItemsTabsUserPage } from '../pages/user/items/items-tabs-user/items-tabs-user';
 import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-user/items-unavailable-user';
@@ -134,7 +135,8 @@ export const firebaseConfig = {
 
     ItemListUserPage,
     ItemPickedUserPage,
-    ItemCalendarUserPage,
+      ItemCalendarUserPage,
+      ItemCalendarReturnUserPage,
     ItemConfirmPickupPage,
     ItemsTabsUserPage,
     ItemsUnavailableUserPage
@@ -200,7 +202,8 @@ export const firebaseConfig = {
 
     ItemListUserPage,
     ItemPickedUserPage,
-    ItemCalendarUserPage,
+      ItemCalendarUserPage,
+      ItemCalendarReturnUserPage,
     ItemConfirmPickupPage,
     ItemsTabsUserPage,
     ItemsUnavailableUserPage

@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule } from 'ionic2-calendar';
-import { ItemConfirmPickupPage } from '../item-confirm-pickup/item-confirm-pickup'; 
+import { ItemCalendarReturnUserPage } from '../item-calendar-return-user/item-calendar-return-user'; 
 
 /*
   Generated class for the ItemCalendarUser page.
@@ -59,7 +59,7 @@ export class ItemCalendarUserPage {
       event.setHours(0, 0, 0, 0);
       this.isToday = today.getTime() === event.getTime();
       if (this.loadedFirstTime) {
-          this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item } );
+          this.navCtrl.push(ItemCalendarReturnUserPage, { event: event, item: this.item } );
       }
       this.loadedFirstTime = true;
   }

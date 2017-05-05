@@ -20,7 +20,12 @@
 
   <ion-list>
     <ion-item (click)="goToItemPickedUserPage(item)" *ngFor="let item of unavailableItems">
-      {{item.name}}
+      <img [src]="item.photoURL" class="item-image" />
+      <div class="item-name">
+        {{item.name}}
+      </div>
+      <div class="available-date" *ngIf="item.reserved!=null">Available {{item.reserved.formattedRetDate}}</div>
+      <div class="available-date" *ngIf="item.loan!=null">Available {{item.loan.formattedDate}}</div>
     </ion-item>
   </ion-list>
 

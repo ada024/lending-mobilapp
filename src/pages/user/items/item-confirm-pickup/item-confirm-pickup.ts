@@ -18,8 +18,11 @@ export class ItemConfirmPickupPage {
     eventDate: any;
     item: any;
     pickupDate: any;
+
+    eventDate2;
+    returnDate;
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
-        this.eventDate = navParams.get("event");
+        this.eventDate = navParams.get("pickupDate");
         this.item = navParams.get("item");
         var year = this.eventDate.getFullYear();
         var month = this.eventDate.getMonth()+1;
@@ -27,6 +30,14 @@ export class ItemConfirmPickupPage {
         var date = this.eventDate.getDate();
         var suffix = this.getDayOfMonthSuffix(date);
         this.pickupDate = date + suffix + " of " + monthAsText + " " + year;
+
+        this.eventDate2 = navParams.get("event");
+        var year2 = this.eventDate2.getFullYear();
+        var month2 = this.eventDate2.getMonth() + 1;
+        var monthAsText2 = this.getMonthAsText(month2);
+        var date2 = this.eventDate2.getDate();
+        var suffix2 = this.getDayOfMonthSuffix(date2);
+        this.returnDate = date2 + suffix2 + " of " + monthAsText2 + " " + year2;
     }
 
   ionViewDidLoad() {
@@ -68,12 +79,12 @@ export class ItemConfirmPickupPage {
   }
 
   confirmClicked() {
-      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate.getTime(), this.pickupDate);
+      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate.getTime(), this.pickupDate, this.eventDate2.getTime(), this.returnDate);
       this.db.addReservation(reservation, this.item);
       if (this.platform.is('cordova')) {
-          this.showToast("You have reserved " + this.item.name, "center");
+          this.showToast("You have requester reservation of " + this.item.name, "center");
       }
-      this.navCtrl.remove(1, 5);
+      this.navCtrl.remove(1, 6);
       this.navCtrl.pop();
   }
 

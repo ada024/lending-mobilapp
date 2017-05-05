@@ -19,10 +19,12 @@
                  (ionInput)="search()">
   </ion-searchbar>
 
-  <ion-list >
-      <ion-item (click)="goToItemPickedUserPage(item)" *ngFor="let item of itemsList">
-        {{item.name}}
+  <ion-list>
+      <ion-item (click)="goToItemPickedUserPage(item)" *ngFor="let item of itemsList" >
+        <img [src]="item.photoURL" class="item-image" />
+        <div class="item-name">
+          {{item.name}}
+        </div>
       </ion-item>
   </ion-list>
-
 </ion-content>

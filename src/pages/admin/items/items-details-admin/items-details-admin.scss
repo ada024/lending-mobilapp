@@ -81,16 +81,19 @@
   .decline-button {
     width: 8em;
     height: 3em;
-    margin-right: 1.2em;
-    margin-left: 3.3em;
-    margin-top: 0.5em;
+    left: 3em;
+    top: 5.5em;
     background-color: #f28282;
+    position: absolute;
   }
 
   .accept-button {
     width: 8em;
     height: 3em;
     background-color: #7cd87b;
+    top: 5.5em;
+    left: 13em;
+    position: absolute;
   }
 
   .button-text {

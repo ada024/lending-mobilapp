@@ -3,19 +3,11 @@
   .pUpInfo {
     border: 0.4em solid dimgrey;
     height: 8em;
-    width: 100%;
+    width: 70%;
+    margin-left:4em;
   }
 
   .pUpDate {
-    font-size: 2em;
-    font-weight: bold;
-    color: grey;
-    text-align: center;
-    position: relative;
-    top: -0.4em;
-  }
-
-  .date {
     font-size: 1.5em;
     font-weight: bold;
     color: grey;
@@ -24,21 +16,62 @@
     top: -1em;
   }
 
-  .borrowing-info {
-    font-size: 1.4em;
+  .date {
+    font-size: 1em;
+    font-weight: bold;
+    color: grey;
     text-align: center;
+    position: relative;
+    top: -3em;
+  }
+
+  .returnDate {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: -2.3em;
+  }
+
+  .rDate {
+    font-size: 1em;
+    font-weight: bold;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: -5.1em;
+  }
+
+  .officeInfo {
+    margin-top: 3em;
+    font-size: 1.3em;
+    text-align: center;
+    color: grey;
   }
 
   .dayAndOpeningInfo {
+    margin-top: 3em;
     font-size: 1.3em;
-    font-weight: bold;
     text-align: center;
+    color: grey;
+  }
+
+  .roomAndTimeInfo {
+    text-align: center;
+    font-size: 2em;
+    margin-top: -0.5em;
     color: grey;
   }
 
   .hrstyle {
     height: 0.4em;
     background-color: dimgrey;
+  }
+
+  .buttons-placement {
+    position: absolute;
+    top: 28em;
   }
 
   .cancel-button {
