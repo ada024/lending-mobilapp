@@ -1,6 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
+import { DropDownMenuService} from '../../../providers/drop-down-menu-service';
 import { CheckoutFirstPage } from '../checkout/checkout-first/checkout-first';
 import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
 import { ItemsAdminPage } from '../items/items-admin/items-admin';
@@ -21,7 +22,7 @@ export class HomeAdminPage {
   items;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public zone: NgZone, public db: DatabaseService) {
+  public zone: NgZone, public db: DatabaseService, public menu: DropDownMenuService) {
     db.loadUsersInThisEntity(this.onUsersLoaded.bind(this));
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingUsersInThisEntity(this.onNumberOfPendingUsersLoaded.bind(this));
