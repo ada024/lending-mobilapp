@@ -1,0 +1,47 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p class=title>
+    <b>Your Settings</b>
+  </p>
+
+  <div class="account-type">
+    <button class="blue-button" (click)="goToChooseAccountTypePage()">
+      <div class="button-text">
+        <b>Change account type</b>
+      </div>
+    </button>
+  </div>
+
+  <button class="blue-button" (click)="showNFCSettings()">
+    <div class="button-text">
+      <b>Enable / Disable NFC</b>
+    </div>
+  </button>
+
+  <button class="blue-button" (click)="goToSettingsAddUserTagPage()">
+    <div class="button-text">
+      <b>Add user tag</b>
+    </div>
+  </button>
+
+  <button class="blue-button" (click)="goToSettingsTagMakeReadOnlyPage()">
+    <div class="button-text">
+      <b>Lock NFC tag</b>
+    </div>
+  </button>
+
+</ion-content>

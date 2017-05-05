@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, App } from 'ionic-angular';
-import { SettingsPage } from '../settings/settings';
+import { DatabaseService } from '../../providers/database-service';
+import { SettingsPage } from '../settings/settings/settings';
 
 
 @Component({
@@ -8,11 +9,9 @@ import { SettingsPage } from '../settings/settings';
   templateUrl: 'dropdown-menu.html'
 })
 export class DropdownMenuPage {
-  db;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public viewCtrl: ViewController, public app: App) {
-    this.db = navParams.get("db");
+  public viewCtrl: ViewController, public app: App, public db: DatabaseService) {
   }
 
   goToSettingsPage() {

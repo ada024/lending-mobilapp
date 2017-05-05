@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { DatabaseService} from '../providers/database-service';
+import { DropDownMenuService} from '../providers/drop-down-menu-service';
 import { DeveloperToolsPage } from '../pages/admin/developer-tools/developer-tools';
 import { DropdownMenuPage } from '../pages/dropdown-menu/dropdown-menu';
 
@@ -10,8 +11,11 @@ import { LoginPage } from '../pages/login/login';
 import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-account-type';
 import { HomeAdminPage } from '../pages/admin/home-admin/home-admin';
 import { HomeUserPage } from '../pages/user/home-user/home-user';
-import { SettingsPage } from '../pages/settings/settings';
 import { SendMailPage } from '../pages/send-mail/send-mail';
+
+import { SettingsPage } from '../pages/settings/settings/settings';
+import { SettingsAddUserTagPage } from '../pages/settings/settings-add-user-tag/settings-add-user-tag';
+import { SettingsTagMakeReadOnlyPage } from '../pages/settings/settings-tag-make-read-only/settings-tag-make-read-only';
 
 import { ItemsAdminPage } from '../pages/admin/items/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
@@ -88,8 +92,11 @@ export const firebaseConfig = {
     HomeUserPage,
     DeveloperToolsPage,
     DropdownMenuPage,
-    SettingsPage,
     SendMailPage,
+
+    SettingsPage,
+    SettingsAddUserTagPage,
+    SettingsTagMakeReadOnlyPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -155,8 +162,11 @@ export const firebaseConfig = {
     HomeUserPage,
     DeveloperToolsPage,
     DropdownMenuPage,
-    SettingsPage,
     SendMailPage,
+
+    SettingsPage,
+    SettingsAddUserTagPage,
+    SettingsTagMakeReadOnlyPage,
 
     ItemsAdminPage,
     ItemsAddNameAdminPage,
@@ -208,6 +218,7 @@ export const firebaseConfig = {
     ItemsTabsUserPage,
     ItemsUnavailableUserPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DatabaseService, Camera, SocialSharing]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, 
+  DatabaseService, DropDownMenuService, Camera, SocialSharing]
 })
 export class AppModule {}

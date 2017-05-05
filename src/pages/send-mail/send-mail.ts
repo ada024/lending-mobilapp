@@ -17,10 +17,10 @@ export class SendMailPage {
     }
 
   send() {
-    this.socialSharing.canShareViaEmail().then(() => {
+    if (this.platform.is('cordova')) {
       this.socialSharing.canShareViaEmail().then(() => {
         this.socialSharing.shareViaEmail(this.form.message, this.form.subject, [this.user.email])
       })
-    })
+    }
   }
 }

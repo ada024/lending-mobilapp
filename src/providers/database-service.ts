@@ -7,9 +7,6 @@ import firebase from 'firebase';
 import { Observable } from "rxjs/Observable";
 import {Tempitems} from '../app/models/tempItems';
 
-import {PopoverController} from 'ionic-angular';
-import {DropdownMenuPage} from '../pages/dropdown-menu/dropdown-menu';
-
 import {Platform, ToastController} from 'ionic-angular';
 import {Facebook} from 'ionic-native';
 import {auth} from 'firebase'; //needed for the FacebookAuthProvider
@@ -39,7 +36,7 @@ export class DatabaseService {
     currentUser: any;
 
     constructor(public http: Http, public af: AngularFire, private platform: Platform,
-        private toastCtrl: ToastController, public popoverCtrl: PopoverController) {
+        private toastCtrl: ToastController) {
         this.items = af.database.list('/items');
         this.users = af.database.list('/users');
         this.loans = af.database.list('/loans');
@@ -218,7 +215,6 @@ export class DatabaseService {
     }
 
 
-    //trenger vi denne metoden?
     getItem(name, id) {
         let foundItem;
         this.items.subscribe(items => {
@@ -337,6 +333,11 @@ export class DatabaseService {
         }).unsubscribe;
     }
 
+    setUserTag(tagId) {
+        return this.users.update(this.currentUser.$key, {
+          tagId: tagId
+      })
+    }
 
     addTemporaryItems(item, itemKey) {
         this.tempItems.addItem(item);
@@ -771,17 +772,6 @@ export class DatabaseService {
         });
         console.log('Total: '+total);
       });
-  }
-
-
-  //dropdown menu stuff
-  openDropdownMenu(event) {
-    let popover = this.popoverCtrl.create(DropdownMenuPage, {
-      db: this
-    });
-    popover.present({
-      ev: event
-    });
   }
 
 
