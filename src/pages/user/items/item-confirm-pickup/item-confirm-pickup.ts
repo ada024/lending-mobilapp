@@ -74,7 +74,7 @@ export class ItemConfirmPickupPage {
   }
 
   cancelClicked() {
-      this.navCtrl.remove(1, 5);
+      this.navCtrl.remove(2, 7);
       this.navCtrl.pop();
   }
 
@@ -84,7 +84,7 @@ export class ItemConfirmPickupPage {
       if (this.platform.is('cordova')) {
           this.showToast("You have requester reservation of " + this.item.name, "center");
       }
-      this.navCtrl.remove(1, 6);
+      this.navCtrl.remove(2, 7);
       this.navCtrl.pop();
   }
 

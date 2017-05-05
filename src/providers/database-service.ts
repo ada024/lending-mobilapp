@@ -506,17 +506,6 @@ export class DatabaseService {
       });
   }
 
-  getLoanByItem(item) {
-      var foundLoan;
-      this.loans.subscribe(loans => {
-          loans.forEach(loan => {
-              if (loan.itemName == item.name) {
-                  foundLoan = loan;
-              }
-          });
-      });
-      return foundLoan;
-  }
 
   loadLoans(onDataLoaded) {
       if (this.currentUser != null) {

@@ -4,7 +4,7 @@
     border: 0.4em solid dimgrey;
     height: 8em;
     width: 70%;
-    margin-left:4em;
+    margin-left: 4em;
   }
 
   .pUpDate {
@@ -99,9 +99,6 @@
     width: 90%;
   }
 
-  .item-image {
-    font-size: 3em;
-  }
 
   .item-borrow {
     vertical-align: top;
@@ -111,14 +108,22 @@
     bottom: 1em;
   }
 
+  .item-image {
+    width: 3.3em;
+    height: 3.3em;
+    position: relative;
+  }
+
   .item-info {
     vertical-align: top;
     font-size: 1.3em;
     margin-left: 1em;
+    height: 3.7em;
     border: 0.2em solid dimgrey;
     position: relative;
     bottom: 1.8em;
   }
+
 
   .item-name {
     position: relative;

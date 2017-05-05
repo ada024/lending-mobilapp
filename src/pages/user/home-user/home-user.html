@@ -17,7 +17,7 @@
     <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
       <h6>{{pendingLoan.pendingLoan.itemOwnerName}} wants to lend you</h6>
       <div class="item-container">
-        <ion-icon name="image" class="item-image"></ion-icon>
+        <img [src]="pendingLoan.photoURL" class="item-image" />
         <div class="item-name">
           {{pendingLoan.name}}
         </div>
@@ -75,7 +75,7 @@
   <div *ngIf="reservations && reservations.length != 0" class="scroll-bar">
     <div *ngFor="let reservation of reservations" class="scroll-bar-element">
       <div class="reservations-container">
-        <ion-icon name="image" class="item-image"></ion-icon>
+        <img [src]="reservation.photoURL" class="item-image" />
         <div class="item-name">
           {{reservation.name}}
           <div class="dueDate">Pick up {{dueDate(reservation.reserved.pickupDate)}}</div>
@@ -89,7 +89,7 @@
   <div *ngIf="loans && loans.length != 0" class="scroll-bar">
     <div *ngFor="let loan of loans" class="scroll-bar-element">
       <div class="borrowed-container">
-        <ion-icon name="image" class="item-image"></ion-icon>
+        <img [src]="loan.photoURL" class="item-image" />
         <div class="item-name">
           {{loan.name}}
           <div class="dueDateBorrowed">Due {{dueDate(loan.loan.timeInMillis)}}</div>

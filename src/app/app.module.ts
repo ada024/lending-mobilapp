@@ -52,6 +52,8 @@ import { CheckoutAwaitingConfirmationPage } from '../pages/admin/checkout/checko
 import { CustomAlertPage } from '../pages/admin/checkout/custom-alert/custom-alert';
 
 import { CheckinFirstPage } from '../pages/admin/checkin/checkin-first/checkin-first';
+import { CheckinScanPage } from '../pages/admin/checkin/checkin-scan/checkin-scan';
+import { CheckinListPage } from '../pages/admin/checkin/checkin-list/checkin-list';
 import { CheckinConfirmPage } from '../pages/admin/checkin/checkin-confirm/checkin-confirm';
 import { CustomAlertCheckinPage } from '../pages/admin/checkin/custom-alert-checkin/custom-alert-checkin';
 
@@ -61,6 +63,7 @@ import { EntityChangeUserPage } from '../pages/user/entities/entity-change-user/
 import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-user/entity-details-user';
 import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/entity-join-user';
 
+import { ItemsDetailsUserPage } from '../pages/user/items/items-details-user/items-details-user';
 import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-user';
 import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-picked-user';
 import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
@@ -132,7 +135,9 @@ export const firebaseConfig = {
       CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
 	
-	  CheckinFirstPage,
+      CheckinFirstPage,
+      CheckinScanPage,
+      CheckinListPage,
     CheckinConfirmPage,
     CustomAlertCheckinPage,
 
@@ -142,6 +147,7 @@ export const firebaseConfig = {
     EntityDetailsUserPage,
     EntityJoinUserPage,
 
+      ItemsDetailsUserPage,
     ItemListUserPage,
     ItemPickedUserPage,
       ItemCalendarUserPage,
@@ -203,7 +209,9 @@ export const firebaseConfig = {
       CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
 
-	  CheckinFirstPage,
+      CheckinFirstPage,
+      CheckinScanPage,
+      CheckinListPage,
     CheckinConfirmPage,
     CustomAlertCheckinPage,
 	
@@ -213,6 +221,7 @@ export const firebaseConfig = {
     EntityDetailsUserPage,
     EntityJoinUserPage,
 
+     ItemsDetailsUserPage,
     ItemListUserPage,
     ItemPickedUserPage,
       ItemCalendarUserPage,

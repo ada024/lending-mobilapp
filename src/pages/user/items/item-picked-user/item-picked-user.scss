@@ -1,20 +1,27 @@
 ﻿page-item-picked-user {
- 
-  .title-text{
-    text-align:center;
-    font-size:2em;
+
+  .title-text {
+    text-align: center;
+    font-size: 2em;
   }
 
   .item-image {
-    font-size: 12em;
-    text-align: center;
-    margin-left: 33%;
+    position: fixed;
+    width: 13em;
+    height: 13em;
+    top: 17em;
+    left: 12.7em;
+    transform: translate(-50%, -50%);
   }
-  .item-name{
-    text-align:center;
+
+  .item-name {
+    text-align: center;
     font-size: 1.5em;
-  } 
+    margin-top:10em;
+  }
+
   .blue-button1 {
+    margin-top:2em;
     width: 11em;
     height: 4em;
     background-color: #40afce;
@@ -27,7 +34,7 @@
     background-color: #40afce;
     margin-left: 3%;
   }
-  
+
   .blue-button-text {
     color: white;
     font-size: 2em;

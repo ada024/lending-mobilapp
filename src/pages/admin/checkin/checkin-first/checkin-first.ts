@@ -2,8 +2,8 @@
 import { DatabaseService } from '../../../../providers/database-service';
 import { NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
-import {CustomAlertCheckinPage } from '../custom-alert-checkin/custom-alert-checkin';
-import {CheckinConfirmPage} from '../checkin-confirm/checkin-confirm';
+import { CheckinScanPage } from '../checkin-scan/checkin-scan';
+import { CheckinListPage } from '../checkin-list/checkin-list';
 
 
 
@@ -19,112 +19,26 @@ import {CheckinConfirmPage} from '../checkin-confirm/checkin-confirm';
   providers: [DatabaseService]
 })
 export class CheckinFirstPage {
-	loansList: any;
-	loadedItemList: any;
-    searchItemString = '';
-    
-
-    close: boolean;
-    dataReceived: boolean;
-    showList: boolean;
-	loan: any;
+	
 
 	
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
-        this.showList = false;
-        db.loadLoansForCheckin(this.onDataLoaded.bind(this));
-       
 
-        if ((<any>window).nfc != null) {
-            (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
-            (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
-        }
-		}
 
-    ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutItemsPage');
-    }
-  
-   
-    onTagFound(nfcEvent) {
-        var item;
-        var loan;
-        if (!this.close) {
-            this.zone.run(() => {
-                var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
-                item = this.db.getItemByTag(tagId);
-                loan = this.db.getLoanByItem(item);
-				if(loan!=null){
-			   this.isThisTheRightLoan(loan);
-				}
-            });
-            if (loan!=null) {
-            this.close = true;
-		}
-        }
+
     }
 
-  onDataLoaded(loadedList) {
-      this.zone.run(() => {
-          this.loansList = this.loadedItemList = loadedList;
-      });
-  }
-
-  searchItems() {
-          this.loansList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
-   
-  }
-
-  goToCheckinConfirmPage(loan) {
-      var user = this.db.getUsernameByUserId(loan.loan.loaner);
-     this.close = true;
-     this.navCtrl.push(CheckinConfirmPage, {loan: loan, user: user, self:this});
-		}		
-	
-
-
-    goHome() {
-        this.close = true;
-        this.navCtrl.pop();
+    goToCheckinScanPage() {
+        this.navCtrl.push(CheckinScanPage);
     }
-	
-	
-	
-	isThisTheRightLoan(loan){
-		this.loan = loan;
-	let customAlert = this.modalCtrl.create(CustomAlertCheckinPage, {loan: loan});
-	 customAlert.onDidDismiss(data => {
-		 if(data!=null){
-     this.goToCheckinConfirmPage(data);
-		 }
-		 else{
-			 this.close = false;
-		 }
-   });
-	customAlert.present();
-	}
-	
-	
-	
-	/* En alert for å scanne en item som allerede ligger inne?
-	alreadyAddedAlert() {
-  let alert = this.alertCtrl.create({
-    title: 'Already added',
-    subTitle: 'This item is already added',
-    buttons: ['Dismiss']
-  });
-  alert.present();
-}
-    */
-	hideList(){
-		this.showList = false;
-	}
-	
-    appearList() {
-        this.showList = true;
+
+    goToCheckinListPage() {
+        this.navCtrl.push(CheckinListPage);
     }
-}
+
+
+    }
 
 
 

@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <p class="title-text">Want to reserve this item?</p>
-  <ion-icon name="image" class="item-image"></ion-icon>
+  <img [src]="item.photoURL" class="item-image" />
   <p class="item-name">{{item.name}}</p>
   <button class="blue-button1" (click)="noClicked()">
     <div class="blue-button-text">No</div>

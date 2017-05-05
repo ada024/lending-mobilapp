@@ -2,17 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\app",
     "\\src\\pages",
     "\\src\\pages\\admin",
     "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-details-admin",
-    "\\src\\pages\\admin\\items\\items-list-admin",
-    "\\src\\pages\\admin\\items\\items-reserved-admin",
-    "\\src\\pages\\user\\home-user",
+    "\\src\\pages\\user",
     "\\src\\pages\\user\\items",
     "\\src\\pages\\user\\items\\item-list-user",
-    "\\src\\pages\\user\\items\\items-unavailable-user"
+    "\\src\\pages\\user\\items\\items-details-user"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.html",
+  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.ts",
   "PreviewInSolutionExplorer": false
 }

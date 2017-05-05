@@ -1,0 +1,30 @@
+﻿page-items-details-user {
+  .description {
+    position: absolute;
+    top: 50%;
+  }
+
+  .status {
+    position: absolute;
+    top: 60%;
+  }
+
+  .item-image {
+    position: absolute;
+    width:8em;
+    height:8em;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .blue-button{
+    height:3em;
+    width:10em;
+    margin-top:28em;
+    margin-left:8em;
+  }
+  .button-text{
+    font-size:1.5em;
+  }
+}

@@ -1,6 +1,6 @@
 ﻿page-item-calendar-user {
   .title-text {
-    margin-top:0.4em;
+    margin-top: 0.4em;
     text-align: center;
     font-size: 2em;
   }
@@ -20,7 +20,9 @@
   }
 
   .item-image {
-    font-size: 3em;
+    width: 3.3em;
+    height: 3.3em;
+    position: relative;
   }
 
   .item-borrow {
@@ -31,10 +33,12 @@
     bottom: 1em;
   }
 
+
   .item-info {
     vertical-align: top;
     font-size: 1.3em;
     margin-left: 1em;
+    height: 3.7em;
     border: 0.2em solid dimgrey;
     position: relative;
     bottom: 1.8em;
@@ -42,7 +46,7 @@
 
   .item-name {
     position: relative;
-    bottom: 0.8em;
+    bottom: 1em;
     left: 0.8em;
   }
 }

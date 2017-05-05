@@ -6,35 +6,22 @@
 -->
 <ion-header (click)="appearList()">
 
-  <ion-navbar hideBackButton>
+  <ion-navbar >
     <ion-title>CheckinItems</ion-title>
-    <ion-buttons left>
-      <button ion-button (click)="goHome()">
-        <ion-icon class="customIcon" name="arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
-
- 
-<ion-searchbar [(ngModel)]="searchItemString"
-                (ionInput)="searchItems($event)">
-  </ion-searchbar>
-  <ion-list *ngIf="showList" class="listProps">
-    <ion-item *ngFor="let loan of loansList">
-      <div class="name" (click)="goToCheckinConfirmPage(loan)">{{loan.name}}</div>
-    </ion-item>
-  </ion-list>
-  
 </ion-header>
 
 
-<ion-content padding (click)="hideList()">
-  
-<div style="position:float;">
-  <p class="title-text">
-    <b>Place your device on the items NFC tag</b>
-  </p>
-
-  <ion-icon name="finger-print" class="scann-icon"></ion-icon>
-</div>
+<ion-content padding>
+  <div class="title-text">Check In</div>
+  <button class="checkin-button" (click)="goToCheckinScanPage()">
+    <div class="checkin-button-text">
+      Scan a NFC tag
+    </div>
+  </button>
+  <button class="checkin-button" (click)="goToCheckinListPage()">
+    <div class="checkin-button-text">
+      Search for item
+    </div>
+  </button>
 </ion-content>

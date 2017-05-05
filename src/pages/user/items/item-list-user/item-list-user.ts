@@ -1,7 +1,7 @@
 ﻿import { Component, NgZone  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { ItemPickedUserPage } from '../item-picked-user/item-picked-user';
+import { ItemsDetailsUserPage } from '../items-details-user/items-details-user';
 
 
 /*
@@ -38,7 +38,7 @@ export class ItemListUserPage {
   }
 
   goToItemPickedUserPage(item) {
-      this.navCtrl.push(ItemPickedUserPage, { item: item });
+      this.navCtrl.push(ItemsDetailsUserPage, { item: item });
   }
 
 }

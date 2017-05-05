@@ -20,7 +20,10 @@
 
   <ion-list>
     <ion-item (click)="goToItemsDetailsAdminPage(item)" *ngFor="let item of itemsList">
-      {{item.name}}
+      <img [src]="item.photoURL" class="item-image" />
+      <div class="item-name">
+        {{item.name}}
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>
