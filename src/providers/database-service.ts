@@ -339,6 +339,12 @@ export class DatabaseService {
       })
     }
 
+    setUserIsAdmin(isAdmin) {
+        this.users.update(this.currentUser.$key, {
+          isAdmin: isAdmin
+      })
+    }
+
     addTemporaryItems(item, itemKey) {
         this.tempItems.addItem(item);
     }
@@ -701,9 +707,8 @@ export class DatabaseService {
       let narr = this.authState.auth.displayName.split(" ");
       this.usersRef.child(user.uid).set({
         uid: user.uid,
-        isAdmin: "false",
         isPending: "true",
-        entity: "null",
+        entity: "No Entity",
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",

@@ -3,6 +3,8 @@ import {Platform, ToastController} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {ChooseAccountTypePage} from "../pages/choose-account-type/choose-account-type";
+import {HomeAdminPage} from '../pages/admin/home-admin/home-admin';
+import {HomeUserPage} from '../pages/user/home-user/home-user';
 import {LoginPage} from "../pages/login/login";
 import {AngularFire, FirebaseAuthState} from "angularfire2";
 import {DatabaseService} from "../providers/database-service";
@@ -26,8 +28,18 @@ export class MyApp {
 
       // Based on user login , sets root page and write user to db
       if (this.authState) {
-        this.rootPage = ChooseAccountTypePage;
         this.db.existInDb();
+        this.db.loadCurrentUser((currentUser) => {
+          if(currentUser.isAdmin) {
+            this.rootPage = HomeAdminPage;
+          }
+          else if(currentUser.isAdmin == false) {
+            this.rootPage = HomeUserPage;
+          }
+          else {
+            this.rootPage = ChooseAccountTypePage;
+          }
+        });
       } else {
         this.rootPage = LoginPage;
       }

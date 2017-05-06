@@ -17,7 +17,7 @@ export class SettingsPage {
   }
 
   goToChooseAccountTypePage() {
-    this.navCtrl.setRoot(ChooseAccountTypePage);
+    this.navCtrl.push(ChooseAccountTypePage);
   }
 
   goToSettingsAddUserTagPage() {
