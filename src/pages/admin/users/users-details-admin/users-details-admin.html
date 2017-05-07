@@ -1,0 +1,32 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>usersDetailsAdmin</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p class="title">
+    User 
+  </p>
+
+  <div class="image-container">
+    <img class="facebook-image" [src]="user.photoURL"/>
+  </div>
+
+  <p class="name">
+    {{user.fullname}}
+  </p>
+
+  <button class="red-button" (click)="kickUser()">
+    <ion-icon name="nuclear" class="button-icon"></ion-icon>
+    <div class="button-with-icon-text">
+      <b>Kick user</b>
+    </div>
+  </button>
+
+</ion-content>
