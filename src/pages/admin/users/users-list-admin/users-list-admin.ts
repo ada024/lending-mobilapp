@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { SendMailPage } from '../../../send-mail/send-mail';
+import { UsersDetailsAdminPage } from '../users-details-admin/users-details-admin';
 
 
 @Component({
@@ -30,5 +31,9 @@ export class UsersListAdminPage {
 
   goToSendMailPage(user) {
     this.navCtrl.push(SendMailPage, {user: user});
+  }
+
+  goToUsersDetailsAdminPage(user) {
+    this.navCtrl.push(UsersDetailsAdminPage, {user: user});
   }
 }

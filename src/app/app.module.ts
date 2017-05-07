@@ -32,12 +32,12 @@ import { ItemsLoanedAdminPage } from '../pages/admin/items/items-loaned-admin/it
 import { UsersAdminPage } from '../pages/admin/users/users-admin/users-admin';
 import { UsersListAdminPage } from '../pages/admin/users/users-list-admin/users-list-admin';
 import { UsersPendingAdminPage } from '../pages/admin/users/users-pending-admin/users-pending-admin';
+import { UsersDetailsAdminPage } from '../pages/admin/users/users-details-admin/users-details-admin';
 
 import { EntityAdminPage } from '../pages/admin/entities/entity-admin/entity-admin';
 import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/entity-add-admin';
 import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
-
 
 import { CheckoutFirstPage } from '../pages/admin/checkout/checkout-first/checkout-first';
 import { CheckoutScanItemPage } from '../pages/admin/checkout/checkout-scan-item/checkout-scan-item';
@@ -117,6 +117,7 @@ export const firebaseConfig = {
     UsersAdminPage,
     UsersListAdminPage,
     UsersPendingAdminPage,
+    UsersDetailsAdminPage,
 
     EntityAdminPage,
     EntityAddAdminPage,
@@ -191,6 +192,7 @@ export const firebaseConfig = {
     UsersAdminPage,
     UsersListAdminPage,
     UsersPendingAdminPage,
+    UsersDetailsAdminPage,
 
     EntityAdminPage,
     EntityAddAdminPage,

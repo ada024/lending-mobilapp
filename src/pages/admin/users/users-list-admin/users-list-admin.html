@@ -12,7 +12,7 @@
 
   <ion-searchbar [(ngModel)]="searchString" (ionInput)="search()"></ion-searchbar>
 
-  <div class="user-container" *ngFor="let user of usersList">
+  <div class="user-container" *ngFor="let user of usersList" (click)="goToUsersDetailsAdminPage(user)">
     <img class="facebook-image" [src]="user.photoURL"/>
     <div class="user-name">
       {{user.fullname}}
