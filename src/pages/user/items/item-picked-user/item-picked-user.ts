@@ -15,11 +15,25 @@ import { ItemCalendarUserPage } from '../item-calendar-user/item-calendar-user';
 })
 export class ItemPickedUserPage {
     item: any;
+    hideTabBar;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.item = navParams.get("item");
+        this.hideTabBar = document.querySelector('#myTabs ion-navbar-section');
     }
 
-  ionViewDidLoad() {
+
+    ionViewWillEnter() {
+        this.hideTabBar.style.displar = "none";
+    }
+    onPageDidEnter() {
+
+        this.hideTabBar.style.display = 'none';
+
+    }
+
+
+    ionViewDidLoad() {
+        this.hideTabBar.style.displar = "none";
     console.log('ionViewDidLoad ItemPickedUserPage');
   }
 

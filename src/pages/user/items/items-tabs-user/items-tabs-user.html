@@ -9,7 +9,9 @@
     <ion-title>Items</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-tabs #myTabs>
+<ion-tabs>
   <ion-tab [root]="AvailableItems" tabTitle="Available ({{numberOfAvailable}})"></ion-tab>
   <ion-tab [root]="UnavailableItems" tabTitle="Unavailable ({{numberOfUnavailable}})"></ion-tab>
 </ion-tabs>
+
+

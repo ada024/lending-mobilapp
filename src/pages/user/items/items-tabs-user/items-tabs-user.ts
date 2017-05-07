@@ -23,12 +23,13 @@ export class ItemsTabsUserPage {
     selectedIndex;
     numberOfAvailable;
     numberOfUnavailable
+    
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone,public db: DatabaseService) {
-        this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
         db.loadNumberOfUnavailableItems(this.onNumberOfUnavailableLoaded.bind(this));
+
 
     }
 
@@ -46,6 +47,9 @@ export class ItemsTabsUserPage {
           this.numberOfUnavailable = numberOfUnavailable;
       });
   }
+
+
+
 
 
 }

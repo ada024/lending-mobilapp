@@ -22,7 +22,7 @@ export class EntityAdminPage {
   onDataLoaded(currentUser) {
     this.zone.run(() => {
       this.currentUserName = currentUser.fullname;
-      this.currentUserEntity = currentUser.entity;
+      this.currentUserEntity = currentUser.entityName;
     });
   }
 

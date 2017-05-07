@@ -69,9 +69,10 @@ export class DatabaseService {
         this.items.push({
             name: name,
             id: id,
-            entity: this.currentUser.entity
+            entity: this.currentUser.entity,
+            entityName: this.currentUser.entityName
         }).then((resolve) => {
-            this.uploadImage(photoURI, this.currentUser.entity, name, resolve.key)
+            this.uploadImage(photoURI, this.currentUser.entityName, name, resolve.key)
         })
     }
 
@@ -435,7 +436,8 @@ export class DatabaseService {
     this.pendingUsers.push({
       userUid: this.currentUser.uid,
       fullname: this.currentUser.fullname,
-      entity: entity.name,
+      entity: entity.$key,
+      entityName: entity.name,
       photoURL: this.currentUser.photoURL
     });
   }
@@ -464,7 +466,8 @@ export class DatabaseService {
     this.pendingUsers.remove(pendingUser);
     this.usersEntityMap.push({
       userUid: pendingUser.userUid,
-      entity: pendingUser.entity
+      entity: pendingUser.entity,
+      entityName: pendingUser.entityName
     });
   }
 
@@ -472,7 +475,7 @@ export class DatabaseService {
     this.loadPendingUsers(loadedUsers => {
       let isPending = false;
       loadedUsers.forEach(pendingUser => {
-        if(pendingUser.userUid == this.currentUser.uid && pendingUser.entity == entity.name) {
+        if(pendingUser.userUid == this.currentUser.uid && pendingUser.entity == entity.$key) {
           isPending = true;
         }
       });
@@ -566,7 +569,7 @@ export class DatabaseService {
       let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
       let entities = [];
       filteredMap.forEach(element => {
-        let entity = this.search(loadedEntities, element.entity, "v.name");
+        let entity = this.search(loadedEntities, element.entity, "v.$key");
         entities.push(entity[0]);
       });
       return entities;
@@ -587,8 +590,16 @@ export class DatabaseService {
 
   setEntity(entity) {
     this.users.update(this.currentUser.$key, {
-      entity: entity.name
+        entity: entity.$key,
+        entityName: entity.name
     });
+  }
+
+  setEntityNull() {
+      this.users.update(this.currentUser.$key, {
+          entity: "No entity",
+          entityName: "No entity"
+      });
   }
 
   loadUserEntityMap(onDataLoaded){

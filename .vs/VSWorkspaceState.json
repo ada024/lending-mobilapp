@@ -2,15 +2,18 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
     "\\src\\pages",
     "\\src\\pages\\admin",
+    "\\src\\pages\\admin\\checkin\\checkin-first",
+    "\\src\\pages\\admin\\checkin\\checkin-list",
+    "\\src\\pages\\admin\\checkin\\checkin-scan",
+    "\\src\\pages\\admin\\checkout\\checkout-first",
+    "\\src\\pages\\admin\\checkout\\checkout-items",
+    "\\src\\pages\\admin\\checkout\\checkout-scan-item",
     "\\src\\pages\\admin\\items",
-    "\\src\\pages\\user",
-    "\\src\\pages\\user\\items",
-    "\\src\\pages\\user\\items\\item-list-user",
-    "\\src\\pages\\user\\items\\items-details-user"
+    "\\src\\pages\\admin\\items\\items-details-admin",
+    "\\src\\pages\\user"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.ts",
+  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.scss",
   "PreviewInSolutionExplorer": false
 }

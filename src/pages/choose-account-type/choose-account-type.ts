@@ -16,13 +16,13 @@ export class ChooseAccountTypePage {
 
   goToHomeAdminPage() {
     this.db.setUserIsAdmin(true);
-    this.db.setEntity({name: "No entity"});
+    this.db.setEntityNull();
     this.navCtrl.setRoot(HomeAdminPage);
   }
 
   goToHomeUserPage() {
     this.db.setUserIsAdmin(false);
-    this.db.setEntity({name: "No entity"});
+    this.db.setEntityNull();
     this.navCtrl.setRoot(HomeUserPage);
   }
 

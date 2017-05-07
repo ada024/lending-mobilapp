@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { EntityListUserPage } from '../entity-list-user/entity-list-user';
@@ -21,7 +21,7 @@ export class EntityUserPage {
   onDataLoaded(data) {
     this.zone.run(() => {
       this.currentUserName = data.fullname;
-      this.currentUserEntity = data.entity;
+      this.currentUserEntity = data.entityName;
     });
   }
 

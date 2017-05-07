@@ -1,7 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { ItemsDetailsUserPage } from '../items-details-user/items-details-user';
 
 /*
   Generated class for the ItemsUnavailableUser page.
@@ -19,7 +19,7 @@ export class ItemsUnavailableUserPage {
     searchString = '';
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService,
-        public zone: NgZone) {
+        public zone: NgZone, public appCtrl: App) {
         db.loadUnavailableItems(this.onDataLoaded.bind(this));
     }
 
@@ -43,6 +43,10 @@ export class ItemsUnavailableUserPage {
 
     search() {
         this.unavailableItems = this.db.search(this.loadedItemList, this.searchString, "v.name");
-  }
+    }
+
+    goToItemPickedUserPage(item) {
+        this.appCtrl.getRootNav().push(ItemsDetailsUserPage, { item: item });
+    }
 
 }

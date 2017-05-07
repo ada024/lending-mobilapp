@@ -17,11 +17,11 @@
   .item-name {
     text-align: center;
     font-size: 1.5em;
-    margin-top:10em;
+    margin-top: 10em;
   }
 
   .blue-button1 {
-    margin-top:2em;
+    margin-top: 2em;
     width: 11em;
     height: 4em;
     background-color: #40afce;
@@ -38,5 +38,9 @@
   .blue-button-text {
     color: white;
     font-size: 2em;
+  }
+
+  .hideShowNavBar {
+    display: none;
   }
 }

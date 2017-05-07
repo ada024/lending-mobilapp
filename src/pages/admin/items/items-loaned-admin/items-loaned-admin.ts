@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone  } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admin';
 
@@ -21,7 +21,7 @@ export class ItemsLoanedAdminPage {
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-        public zone: NgZone, public db: DatabaseService) {
+        public zone: NgZone, public db: DatabaseService, public appCtrl:App) {
         db.loadLoanedItems(this.onDataLoaded.bind(this));
     }
 
@@ -35,7 +35,7 @@ ionViewDidLoad() {
     }
   
     goToItemsDetailsAdminPage(item) {
-        this.navCtrl.push(ItemsDetailsAdminPage, { item: item });
+        this.appCtrl.getRootNav().push(ItemsDetailsAdminPage, { item: item });
 
     }
 }

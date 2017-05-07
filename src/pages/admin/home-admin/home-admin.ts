@@ -33,7 +33,7 @@ export class HomeAdminPage {
 
   onCurrentEntityLoaded(currentUser) {
     this.zone.run(() => {
-      this.currentEntity = currentUser.entity;
+      this.currentEntity = currentUser.entityName;
     });
   }
 

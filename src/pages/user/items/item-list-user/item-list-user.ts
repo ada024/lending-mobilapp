@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone  } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {  App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsDetailsUserPage } from '../items-details-user/items-details-user';
 
@@ -20,7 +20,7 @@ export class ItemListUserPage {
   searchString = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-      public zone: NgZone, public db: DatabaseService) {
+      public zone: NgZone, public db: DatabaseService, public appCtrl: App) {
       db.loadAvailableItems(this.onDataLoaded.bind(this));
   }
 
@@ -38,7 +38,7 @@ export class ItemListUserPage {
   }
 
   goToItemPickedUserPage(item) {
-      this.navCtrl.push(ItemsDetailsUserPage, { item: item });
+      this.appCtrl.getRootNav().push(ItemsDetailsUserPage, { item: item });
   }
 
 }
