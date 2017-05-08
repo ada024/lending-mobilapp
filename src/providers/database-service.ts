@@ -571,11 +571,12 @@ export class DatabaseService {
 
   //Methods to add and get entities
 
-  addEntity(name) {
+  addEntity(name, office) {
     this.entities.push({
       name: name,
       owner: this.currentUser.uid,
-      ownerName: this.currentUser.fullname
+      ownerName: this.currentUser.fullname,
+      office: office
     });
   }
 

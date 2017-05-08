@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { SendMailPage } from '../../../send-mail/send-mail';
 
@@ -10,7 +10,8 @@ import { SendMailPage } from '../../../send-mail/send-mail';
 export class UsersDetailsAdminPage {
   user;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  public alertCtrl: AlertController, public db: DatabaseService) {
     this.user = navParams.get("user");
   }
 
@@ -19,10 +20,39 @@ export class UsersDetailsAdminPage {
   }
 
   giveAdminAccess() {
-    this.db.giveUserAdminAccess(this.user);
+    this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to give this user admin access? This will allow the user to control the entity',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          this.db.giveUserAdminAccess(this.user);
+        }
+      }
+      ] 
+    }).present();
   }
 
   kickUser() {
-    this.db.kickUser(this.user);
+    this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to kick this user from the entity?',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          this.db.kickUser(this.user);
+          this.navCtrl.pop();
+        }
+      }
+      ]
+    }).present();
   }
 }
