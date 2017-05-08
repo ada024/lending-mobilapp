@@ -18,12 +18,23 @@ export class ItemConfirmPickupPage {
     eventDate: any;
     item: any;
     pickupDate: any;
+    currentEntity: any;
+    officeLocation: any;
+    officeRoom: any;
+    officeHours: any;
+    officeDays: any;
 
     eventDate2;
     returnDate;
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
         this.eventDate = navParams.get("pickupDate");
         this.item = navParams.get("item");
+        this.currentEntity = navParams.get("entity");
+        this.officeLocation = this.currentEntity.office.location;
+        this.officeRoom = this.currentEntity.office.room;
+        this.officeHours = this.currentEntity.office.hours;
+        this.officeDays = this.getWeekDays(this.currentEntity.office.days.length);
+
         var year = this.eventDate.getFullYear();
         var month = this.eventDate.getMonth()+1;
         var monthAsText = this.getMonthAsText(month);
@@ -56,6 +67,44 @@ export class ItemConfirmPickupPage {
     }
   }
 
+  getWeekDays(n) {
+      var weekday = new Array(7);
+      weekday[0] = "Sundays";
+      weekday[1] = "Mondays";
+      weekday[2] = "Tuesdays";
+      weekday[3] = "Wednesdays";
+      weekday[4] = "Thursdays";
+      weekday[5] = "Fridays";
+      weekday[6] = "Saturdays";
+
+      var days = this.currentEntity.office.days;
+
+      var dayInfo = null;
+      if (n == 1) {
+          dayInfo = weekday[days[0]];
+      }
+      if (n == 2) {
+          dayInfo = weekday[days[0]] + " and " +  weekday[days[1]];
+      }
+      if (n == 3) {
+          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + " and " + weekday[days[2]];
+      }
+      if (n == 4) {
+          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + ", " + weekday[days[2]] + " and " + weekday[days[3]];
+      }
+      if (n == 5) {
+          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + ", " + weekday[days[2]] + ", " + weekday[days[3]] + " and " + weekday[days[4]];
+      }
+      if (n == 6) {
+          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + ", " + weekday[days[2]] + ", " + weekday[days[3]] + ", " + weekday[days[4]] + " and " + weekday[days[5]];
+      }
+      if (n == 7) {
+          dayInfo = "Everyday"
+      }
+
+      return dayInfo;
+  }
+
   getMonthAsText(n) {
       switch (n) {
           case 1: return "January";
@@ -73,8 +122,9 @@ export class ItemConfirmPickupPage {
       }
   }
 
+
   cancelClicked() {
-      this.navCtrl.remove(2, 7);
+      this.navCtrl.remove(2, 4);
       this.navCtrl.pop();
   }
 
@@ -84,7 +134,7 @@ export class ItemConfirmPickupPage {
       if (this.platform.is('cordova')) {
           this.showToast("You have requester reservation of " + this.item.name, "center");
       }
-      this.navCtrl.remove(2, 7);
+      this.navCtrl.remove(2, 4);
       this.navCtrl.pop();
   }
 

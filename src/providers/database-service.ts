@@ -541,9 +541,10 @@ export class DatabaseService {
 
   //Methods to add and get entities
 
-  addEntity(name) {
+  addEntity(name, office) {
     this.entities.push({
-      name: name,
+        name: name,
+        office: office,
       owner: this.currentUserName
     });
   }
@@ -586,6 +587,16 @@ export class DatabaseService {
       });
       onAnswerLoaded(hasJoined);
     });
+  }
+
+
+  getEntity(onDataLoaded) {
+      this.entities.subscribe(entityArray => {
+          entityArray = entityArray.filter(entity => {
+              return (entity.$key == this.currentUser.entity)
+          });
+          onDataLoaded(entityArray)
+      });
   }
 
   setEntity(entity) {

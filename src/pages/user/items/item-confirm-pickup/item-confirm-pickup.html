@@ -20,10 +20,10 @@
     <p class="returnDate">Return date</p>
     <p class="rDate">{{returnDate}}</p>
   </div>
-  <p class="officeInfo">Hvl Avdeling Kronstad</p>
-  <p class="roomAndTimeInfo">Room E454</p>
-  <p class="dayAndOpeningInfo">Mondays and Wednesdays</p>
-  <p class="roomAndTimeInfo">09:00 - 16:00</p>
+  <p class="officeInfo">{{officeLocation}}</p>
+  <p class="roomAndTimeInfo">{{officeRoom}}</p>
+  <p class="dayAndOpeningInfo">{{officeDays}}</p>
+  <p class="roomAndTimeInfo">{{officeHours}}</p>
   <div class="buttons-placement">
     <button class="cancel-button" (click)="cancelClicked()">
       <div class="button-text">Cancel</div>

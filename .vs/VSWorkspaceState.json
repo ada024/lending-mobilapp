@@ -2,18 +2,18 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\app",
+    "\\src\\app\\models",
     "\\src\\pages",
     "\\src\\pages\\admin",
-    "\\src\\pages\\admin\\checkin\\checkin-first",
-    "\\src\\pages\\admin\\checkin\\checkin-list",
-    "\\src\\pages\\admin\\checkin\\checkin-scan",
-    "\\src\\pages\\admin\\checkout\\checkout-first",
-    "\\src\\pages\\admin\\checkout\\checkout-items",
-    "\\src\\pages\\admin\\checkout\\checkout-scan-item",
-    "\\src\\pages\\admin\\items",
-    "\\src\\pages\\admin\\items\\items-details-admin",
-    "\\src\\pages\\user"
+    "\\src\\pages\\admin\\entities",
+    "\\src\\pages\\admin\\entities\\entity-add-admin",
+    "\\src\\pages\\admin\\entities\\entity-office-admin",
+    "\\src\\pages\\admin\\entities\\entity-opening-time-admin",
+    "\\src\\pages\\user\\entities",
+    "\\src\\pages\\user\\entities\\entity-join-user",
+    "\\src\\providers"
   ],
-  "SelectedNode": "\\src\\pages\\admin\\items\\items-details-admin\\items-details-admin.scss",
+  "SelectedNode": "\\src\\providers\\database-service.ts",
   "PreviewInSolutionExplorer": false
 }

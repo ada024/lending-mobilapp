@@ -1,7 +1,8 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule } from 'ionic2-calendar';
-import { ItemCalendarReturnUserPage } from '../item-calendar-return-user/item-calendar-return-user'; 
+import { ItemCalendarReturnUserPage } from '../item-calendar-return-user/item-calendar-return-user';
+import { DatabaseService } from '../../../../providers/database-service';
 
 /*
   Generated class for the ItemCalendarUser page.
@@ -18,12 +19,18 @@ export class ItemCalendarUserPage {
     viewTitle;
     isToday: boolean;
     loadedFirstTime: boolean;
+    currentEntity;
+    openingInfo;
 
     item: any;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule, public db: DatabaseService, public zone: NgZone) {
         this.item = navParams.get("item");
         this.loadedFirstTime = false;
+        this.currentEntity = navParams.get("entity");
+        this.openingInfo = "Opening hours: " + this.currentEntity.office.hours;
         
+
+       
 
     }
 
@@ -31,14 +38,16 @@ export class ItemCalendarUserPage {
     console.log('ionViewDidLoad ItemCalendarUserPage');
   }
 
+
+      
+  
+
   calendar = {
       mode: 'month',
       currentDate: new Date(),
   }; // these are the variable used by the calendar.
 
-  loadEvents() {
-      this.eventSource = this.createRandomEvents();
-  }
+ 
   onViewTitleChanged(title) {
       this.viewTitle = title;
   }
@@ -59,7 +68,7 @@ export class ItemCalendarUserPage {
       event.setHours(0, 0, 0, 0);
       this.isToday = today.getTime() === event.getTime();
       if (this.loadedFirstTime) {
-          this.navCtrl.push(ItemCalendarReturnUserPage, { event: event, item: this.item } );
+          this.navCtrl.push(ItemCalendarReturnUserPage, { event: event, item: this.item, entity: this.currentEntity });
       }
       this.loadedFirstTime = true;
   }
@@ -77,52 +86,39 @@ export class ItemCalendarUserPage {
   swipeEvent() {
       this.loadedFirstTime = false;
   }
-
-  createRandomEvents() {
-      var events = [];
-      for (var i = 0; i < 50; i += 1) {
-          var date = new Date();
-          var eventType = Math.floor(Math.random() * 2);
-          var startDay = Math.floor(Math.random() * 90) - 45;
-          var endDay = Math.floor(Math.random() * 2) + startDay;
-          var startTime;
-          var endTime;
-          if (eventType === 0) {
-              startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-              if (endDay === startDay) {
-                  endDay += 1;
-              }
-              endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-              events.push({
-                  title: 'All Day - ' + i,
-                  startTime: startTime,
-                  endTime: endTime,
-                  allDay: true
-              });
-          } else {
-              var startMinute = Math.floor(Math.random() * 24 * 60);
-              var endMinute = Math.floor(Math.random() * 180) + startMinute;
-              startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-              endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-              events.push({
-                  title: 'Event - ' + i,
-                  startTime: startTime,
-                  endTime: endTime,
-                  allDay: false
-              });
-          }
-      }
-      return events;
-  }
+    
   onRangeChanged(ev) {
       console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
+   
   markDisabled = (date: Date) => {
-      var current = new Date();
-      current.setHours(0, 0, 0);
-      return date.getDay() != 1 && date.getDay() != 3 || date<current;
-     
-     
+    
+      var officeDays = this.currentEntity.office.days;
+          var current = new Date();
+          current.setHours(0, 0, 0);
+          if (officeDays.length == 1) {
+          return date != officeDays[0] && date < current;
+      }
+          if (officeDays.length == 2) {
+          return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] || date < current;
+      }
+          if (officeDays.length == 3) {
+          return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] || date < current;
+      }
+          if (officeDays.length == 4) {
+          return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] || date < current;
+      }
+          if (officeDays.length == 5) {
+          return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] && date.getDay() != officeDays[4]|| date < current;
+      }
+          if (officeDays.length == 6) {
+          return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] && date.getDay() != officeDays[4] && date.getDay() != officeDays[5] || date < current;
+      }
+          if (officeDays.length == 7) {
+          return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] && date.getDay() != officeDays[4] && date.getDay() != officeDays[5] && date.getDay() != officeDays[6] || date < current;
+      }
+      else { return date < current; }
+    
   };
   
 

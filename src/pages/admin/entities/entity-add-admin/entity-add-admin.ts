@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { EntityOfficeAdminPage } from '../entity-office-admin/entity-office-admin';
 
 
 @Component({
@@ -16,8 +17,7 @@ export class EntityAddAdminPage {
   }
 
   addNewEntity() {
-    this.db.addEntity(this.entityName);
-    this.navCtrl.pop();
+      this.navCtrl.push(EntityOfficeAdminPage, { entityName: this.entityName });
   }
 
 }

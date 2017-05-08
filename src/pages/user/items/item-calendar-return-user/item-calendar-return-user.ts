@@ -18,14 +18,17 @@ export class ItemCalendarReturnUserPage {
     viewTitle;
     isToday: boolean;
     loadedFirstTime: boolean;
-
+    currentEntity: any;
     pickupDate: any;
+    openingInfo: any;
 
     item: any;
     constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule) {
         this.item = navParams.get("item");
         this.pickupDate = navParams.get("event");
+        this.currentEntity = navParams.get("entity");
         this.loadedFirstTime = false;
+        this.openingInfo = "Opening hours: " + this.currentEntity.office.hours;
 
 
     }
@@ -39,9 +42,6 @@ export class ItemCalendarReturnUserPage {
         currentDate: new Date(),
     }; // these are the variable used by the calendar.
 
-    loadEvents() {
-        this.eventSource = this.createRandomEvents();
-    }
     onViewTitleChanged(title) {
         this.viewTitle = title;
     }
@@ -62,7 +62,7 @@ export class ItemCalendarReturnUserPage {
         event.setHours(0, 0, 0, 0);
         this.isToday = today.getTime() === event.getTime();
         if (this.loadedFirstTime) {
-            this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, pickupDate: this.pickupDate });
+            this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, pickupDate: this.pickupDate, entity:this.currentEntity });
         }
         this.loadedFirstTime = true;
     }
@@ -81,48 +81,36 @@ export class ItemCalendarReturnUserPage {
         this.loadedFirstTime = false;
     }
 
-    createRandomEvents() {
-        var events = [];
-        for (var i = 0; i < 50; i += 1) {
-            var date = new Date();
-            var eventType = Math.floor(Math.random() * 2);
-            var startDay = Math.floor(Math.random() * 90) - 45;
-            var endDay = Math.floor(Math.random() * 2) + startDay;
-            var startTime;
-            var endTime;
-            if (eventType === 0) {
-                startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-                if (endDay === startDay) {
-                    endDay += 1;
-                }
-                endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-                events.push({
-                    title: 'All Day - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: true
-                });
-            } else {
-                var startMinute = Math.floor(Math.random() * 24 * 60);
-                var endMinute = Math.floor(Math.random() * 180) + startMinute;
-                startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-                endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-                events.push({
-                    title: 'Event - ' + i,
-                    startTime: startTime,
-                    endTime: endTime,
-                    allDay: false
-                });
-            }
-        }
-        return events;
-    }
     onRangeChanged(ev) {
         console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
     }
     markDisabled = (date: Date) => {
-        return date.getDay() != 1 && date.getDay() != 3 || date <= this.pickupDate;
 
+        var officeDays = this.currentEntity.office.days;
+        var current = new Date();
+        current.setHours(0, 0, 0);
+        if (officeDays.length == 1) {
+            return date != officeDays[0] && date < current;
+        }
+        if (officeDays.length == 2) {
+            return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] || date <= this.pickupDate;;
+        }
+        if (officeDays.length == 3) {
+            return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] || date <= this.pickupDate;;
+        }
+        if (officeDays.length == 4) {
+            return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] || date <= this.pickupDate;;
+        }
+        if (officeDays.length == 5) {
+            return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] && date.getDay() != officeDays[4] || date <= this.pickupDate;;
+        }
+        if (officeDays.length == 6) {
+            return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] && date.getDay() != officeDays[4] && date.getDay() != officeDays[5] || date <= this.pickupDate;;
+        }
+        if (officeDays.length == 7) {
+            return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] && date.getDay() != officeDays[2] && date.getDay() != officeDays[3] && date.getDay() != officeDays[4] && date.getDay() != officeDays[5] && date.getDay() != officeDays[6] || date <= this.pickupDate;;
+        }
+        else { return date <= this.pickupDate;; }
 
     };
 

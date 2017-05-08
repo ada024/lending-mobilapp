@@ -21,7 +21,7 @@
               [markDisabled]="markDisabled"
               [currentDate]="calendar.currentDate"
               autoSelect="false"
-              noEventsLabel=""
+              noEventsLabel={{openingInfo}}
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"

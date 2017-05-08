@@ -1,4 +1,4 @@
-
+﻿
 <ion-header>
 
   <ion-navbar>
@@ -17,20 +17,20 @@
   <div *ngIf="!isPending && !hasJoined">
     <button class="blue-button" (click)="sendRequest()">
     <div class="button-text">
-      <b>Send request to joine entity</b>
+      <b>Send request to join entity</b>
     </div>
    </button>
   </div>
 
   <div *ngIf="isPending">
     <div class="info-text-1">
-      <b>Waiting for {{entity.owner}} to accept request</b>
+      <b>Waiting for the owner of {{entity.name}} to accept request</b>
     </div>
   </div>
 
   <div *ngIf="hasJoined">
     <div class="info-text-2">
-      <b>You have allready joined this entity</b>
+      <b>You have already joined this entity</b>
     </div>
   </div>
 

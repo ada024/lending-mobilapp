@@ -1,7 +1,9 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { ItemCalendarUserPage } from '../item-calendar-user/item-calendar-user';
+import { DatabaseService } from '../../../../providers/database-service';
+
 
 /*
   Generated class for the ItemPickedUser page.
@@ -16,24 +18,25 @@ import { ItemCalendarUserPage } from '../item-calendar-user/item-calendar-user';
 export class ItemPickedUserPage {
     item: any;
     hideTabBar;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    currentEntity;
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
         this.item = navParams.get("item");
         this.hideTabBar = document.querySelector('#myTabs ion-navbar-section');
+        db.getEntity(this.onEntityLoaded.bind(this));
     }
 
 
-    ionViewWillEnter() {
-        this.hideTabBar.style.displar = "none";
+
+    onEntityLoaded(entities) {
+        this.zone.run(() => {
+            this.currentEntity= entities[0];
+        });
+
+
     }
-    onPageDidEnter() {
-
-        this.hideTabBar.style.display = 'none';
-
-    }
-
+  
 
     ionViewDidLoad() {
-        this.hideTabBar.style.displar = "none";
     console.log('ionViewDidLoad ItemPickedUserPage');
   }
 
@@ -41,7 +44,7 @@ export class ItemPickedUserPage {
       this.navCtrl.pop();
   }
   yesClicked(item) {
-      this.navCtrl.push(ItemCalendarUserPage, { item: item });
+      this.navCtrl.push(ItemCalendarUserPage, { item: item, entity: this.currentEntity });
   }
 
 }
