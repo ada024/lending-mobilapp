@@ -14,7 +14,15 @@ export class UsersDetailsAdminPage {
     this.user = navParams.get("user");
   }
 
+  goToSendMailPage() {
+    this.navCtrl.push(SendMailPage, {user: this.user});
+  }
+
+  giveAdminAccess() {
+    this.db.giveUserAdminAccess(this.user);
+  }
+
   kickUser() {
-    
+    this.db.kickUser(this.user);
   }
 }

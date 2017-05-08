@@ -22,6 +22,18 @@
     {{user.fullname}}
   </p>
 
+  <button class="blue-button" (click)="goToSendMailPage()">
+    <div class="button-text">
+      <b>Send email</b>
+    </div>
+  </button>
+
+  <button class="blue-button" (click)="giveAdminAccess()">
+    <div class="button-text">
+      <b>Give Admin Access</b>
+    </div>
+  </button>
+
   <button class="red-button" (click)="kickUser()">
     <ion-icon name="nuclear" class="button-icon"></ion-icon>
     <div class="button-with-icon-text">

@@ -30,4 +30,8 @@ export class UsersPendingAdminPage {
   acceptUser(pendingUser) {
     this.db.acceptPendingUser(pendingUser);
   }
+
+  declineUser(pendingUser) {
+    this.db.declinePendingUser(pendingUser);
+  }
 }

@@ -50,7 +50,7 @@
     </div>
   </button>
 
-  <button class="grey-button" (click)="goToEntityAdminPage()">
+  <button [ngClass]="currentEntity != 'No entity' ? 'grey-button' : 'grey-button-glowing'" (click)="goToEntityAdminPage()">
     <div>
       <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
       <div class="grey-button-text-container">

@@ -72,7 +72,7 @@ export class DatabaseService {
             entity: this.currentUser.entity,
             entityName: this.currentUser.entityName
         }).then((resolve) => {
-            this.uploadImage(photoURI, this.currentUser.entityName, name, resolve.key)
+           this.uploadImage(photoURI, name, resolve.key)
         })
     }
 
@@ -313,7 +313,7 @@ export class DatabaseService {
         if (this.currentUser != null) {
             this.users.subscribe(users => {
                 users.forEach(user => {
-                    if (user.fullname == this.currentUserName) {
+                    if (user.fullname == this.currentUser.fullname) {
                         onDataLoaded(user)
                     }
                 })
@@ -343,6 +343,32 @@ export class DatabaseService {
     setUserIsAdmin(isAdmin) {
         this.users.update(this.currentUser.$key, {
           isAdmin: isAdmin
+      })
+    }
+
+    giveUserAdminAccess(user) {
+        this.usersEntityMap.subscribe(map => {
+            map.forEach(element => {
+                if(element.userUid == user.uid && element.entity == this.currentUser.entity) {
+                    this.usersEntityMap.update(element.$key, {
+                        adminAccess: true
+                    })
+                }
+            });
+        });
+    }
+
+    kickUser(user) {
+        this.usersEntityMap.subscribe(map => {
+            map.forEach(element => {
+                if(element.userUid == user.uid && element.entity == this.currentUser.entity) {
+                    this.usersEntityMap.remove(element.$key)
+                }
+            });
+        });
+        this.users.update(user.$key, {
+          entity: "No entity",
+          entityName: "No entity"
       })
     }
 
@@ -471,6 +497,10 @@ export class DatabaseService {
     });
   }
 
+  declinePendingUser(pendingUser) {
+    this.pendingUsers.remove(pendingUser);
+  }
+
   isPending(entity, onAnswerLoaded) {
     this.loadPendingUsers(loadedUsers => {
       let isPending = false;
@@ -541,11 +571,11 @@ export class DatabaseService {
 
   //Methods to add and get entities
 
-  addEntity(name, office) {
+  addEntity(name) {
     this.entities.push({
-        name: name,
-        office: office,
-      owner: this.currentUserName
+      name: name,
+      owner: this.currentUser.uid,
+      ownerName: this.currentUser.fullname
     });
   }
 
@@ -560,9 +590,17 @@ export class DatabaseService {
   }
 
   loadEntitiesYouOwn(onDataLoaded) {
-    this.entities.subscribe(loadedList => {
-      onDataLoaded(this.search(loadedList, this.currentUser.fullname, "v.owner"))
-    });
+    Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
+        let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
+        let entities = this.search(loadedEntities, this.currentUser.uid, "v.owner");
+        filteredMap.forEach(element => {
+            if(element.adminAccess != null && element.adminAccess == true) {
+                let entity = this.search(loadedEntities, element.entity, "v.$key");
+                entities.push(entity[0]);
+            }
+        });
+        return entities;
+    }).subscribe(entities => onDataLoaded(entities));
   }
 
   loadJoinedEntities(onDataLoaded) {
@@ -731,6 +769,7 @@ export class DatabaseService {
         uid: user.uid,
         isPending: "true",
         entity: "No Entity",
+        entityName: "No Entity",
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",
@@ -792,9 +831,9 @@ export class DatabaseService {
 
 
   //image stuff
-  uploadImage(photoURI, entity, name, key) {
+  uploadImage(photoURI, name, key) {
     if(photoURI != null) {
-      firebase.storage().ref('images/' + entity + "/" + name + "-" + key)
+      firebase.storage().ref('images/' + this.currentUser.entityName + "-" + this.currentUser.entity + "/" + name + "-" + key)
       .putString(photoURI.split(",")[1], 'base64').then(function(snapshot) {
         this.items.update(key, {
           photoURL: snapshot.downloadURL
@@ -804,11 +843,11 @@ export class DatabaseService {
     }
   }
 
-  downloadImage(item, onDataLoaded) {
-    firebase.storage().ref('images/' + item.entity + "/" + item.name + "-" + item.$key).getDownloadURL().then(url => {
-      onDataLoaded(url);  
-    }, ()=>{})
-  }
+//   downloadImage(item, onDataLoaded) {
+//     firebase.storage().ref('images/' + item.entity + "/" + item.name + "-" + item.$key).getDownloadURL().then(url => {
+//       onDataLoaded(url);  
+//     }, ()=>{})
+//   }
 
   resizeImage(size, uri, callback) {
   var tempImg = new Image();
