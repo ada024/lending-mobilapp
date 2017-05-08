@@ -14,8 +14,10 @@ import { EntityOpeningTimeAdminPage } from '../entity-opening-time-admin/entity-
 })
 export class EntityOfficeAdminPage {
     entityName;
-    entityLocation;
-    entityRoom;
+    entityLocation = "";
+    entityRoom = "";
+    notAdded1: boolean;
+    notAdded2: boolean;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.entityName = navParams.get("entityName");
 
@@ -26,8 +28,17 @@ export class EntityOfficeAdminPage {
   }
 
   goToEntityOpeningTime() {
-      this.navCtrl.push(EntityOpeningTimeAdminPage, { entityName: this.entityName, entityLocation: this.entityLocation, entityRoom: this.entityRoom });
-
+      if (this.entityLocation.length != 0 && this.entityRoom.length != 0) {
+          this.navCtrl.push(EntityOpeningTimeAdminPage, { entityName: this.entityName, entityLocation: this.entityLocation, entityRoom: this.entityRoom });
+      }
+      if (this.entityLocation.length == 0) {
+          this.notAdded1 = true;
+      }
+      else this.notAdded1 = false;
+      if (this.entityRoom.length == 0) {
+          this.notAdded2 = true;
+      }
+      else this.notAdded2 = false;
   }
 
 }

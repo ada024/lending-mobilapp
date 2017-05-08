@@ -20,9 +20,11 @@
   </p>
 
   <div>
+    <div class="alert-text" *ngIf="notAdded1">You have to name a location</div>
     <ion-item>
       <ion-input placeholder="Location" [(ngModel)]="entityLocation"></ion-input>
     </ion-item>
+    <div class="alert-text" *ngIf="notAdded2">You have to name a room</div>
     <ion-item>
       <ion-input placeholder="Room" [(ngModel)]="entityRoom"></ion-input>
     </ion-item>

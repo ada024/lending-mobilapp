@@ -97,7 +97,7 @@ export class ItemCalendarUserPage {
           var current = new Date();
           current.setHours(0, 0, 0);
           if (officeDays.length == 1) {
-          return date != officeDays[0] && date < current;
+          return date.getDay() != officeDays[0] || date < current;
       }
           if (officeDays.length == 2) {
           return date.getDay() != officeDays[0] && date.getDay() != officeDays[1] || date < current;

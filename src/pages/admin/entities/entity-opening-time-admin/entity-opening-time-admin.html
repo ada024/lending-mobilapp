@@ -21,6 +21,7 @@
   </p>
 
   <div>
+    <div class="alert-text" *ngIf="notAdded1">You have to select days open</div>
     <ion-item>
       <ion-label>Opening days</ion-label>
       <ion-select  multiple="true" [(ngModel)]="entityDays">
@@ -34,11 +35,12 @@
       </ion-select>
     </ion-item>
    
+    <div class="alert-text" *ngIf="notAdded2">You have to select opening hours</div>
     <ion-item>
       <ion-label>Open from</ion-label>
       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursFrom" ></ion-datetime>
     </ion-item>
-
+    <div class="alert-text" *ngIf="notAdded3">You have to select closing hours</div>
     <ion-item>
       <ion-label>Open to</ion-label>
       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursTo"></ion-datetime>

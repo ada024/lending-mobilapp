@@ -13,7 +13,7 @@
   <p class=title>
     <b>New Entity</b>
   </p>
-
+  <div class="alert-text" *ngIf="notAdded">You have to give your entity a name</div>
   <div>
     <ion-item>
       <ion-input placeholder="Entity name"  [(ngModel)]="entityName"></ion-input>

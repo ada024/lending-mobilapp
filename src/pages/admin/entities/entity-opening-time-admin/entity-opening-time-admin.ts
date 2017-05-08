@@ -16,10 +16,13 @@ export class EntityOpeningTimeAdminPage {
     entityName;
     entityLocation;
     entityRoom;
-    entityDays;
-    entityHoursFrom;
-    entityHoursTo;
+    entityDays = "";
+    entityHoursFrom = "";
+    entityHoursTo = "";
     entityHours;
+    notAdded1: boolean;
+    notAdded2: boolean;
+    notAdded3: boolean;
 
     officeInfo;
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
@@ -35,10 +38,23 @@ export class EntityOpeningTimeAdminPage {
   addEntity() {
       this.entityHours = this.entityHoursFrom + " - " + this.entityHoursTo;
       this.officeInfo = new EntityOffice(this.entityLocation, this.entityRoom, this.entityDays, this.entityHours);
-      console.log("entityoffice: " + this.entityLocation + " entityroom: " + this.entityRoom + " entitydays: " + this.entityDays[0] + " entityhoursfrom: " + this.entityHoursFrom + " entityhoursto: " + this.entityHoursTo + " entityHoursTot: " + this.entityHours);
-      this.db.addEntity(this.entityName, this.officeInfo);
-      this.navCtrl.remove(2, 3);
-      
+      if (this.entityDays.length != 0 && this.entityHoursTo.length != 0 && this.entityHours != 0) {
+          this.db.addEntity(this.entityName, this.officeInfo);
+          this.navCtrl.remove(2, 3);
+      }
+      if (this.entityDays.length == 0) {
+          this.notAdded1 = true;
+      }
+      else this.notAdded1 = false;
+      if (this.entityHoursFrom.length == 0) {
+          this.notAdded2 = true;
+      }
+      else this.notAdded2 = false;
+      if (this.entityHoursTo.length == 0) {
+          this.notAdded3 = true;
+      }
+      else this.notAdded3 = false;
+     
   }
 
 

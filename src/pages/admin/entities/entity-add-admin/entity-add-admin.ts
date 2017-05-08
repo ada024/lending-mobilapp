@@ -11,13 +11,17 @@ import { EntityOfficeAdminPage } from '../entity-office-admin/entity-office-admi
 export class EntityAddAdminPage {
   currentUser = "";
   entityName = "";
+  notAdded: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-    this.currentUser = this.db.currentUserName;
+      this.currentUser = this.db.currentUserName;
   }
 
   addNewEntity() {
-      this.navCtrl.push(EntityOfficeAdminPage, { entityName: this.entityName });
+      if (this.entityName.length!=0) {
+          this.navCtrl.push(EntityOfficeAdminPage, { entityName: this.entityName });
+      }
+      else this.notAdded = true;
   }
 
 }
