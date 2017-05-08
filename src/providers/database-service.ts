@@ -620,7 +620,7 @@ export class DatabaseService {
     this.loadUserEntityMap(loadedMap => {
       let hasJoined = false;
       loadedMap.forEach(element => {
-        if(element.userUid == this.currentUser.uid && element.entity == entity.name) {
+        if(element.userUid == this.currentUser.uid && element.entity == entity.$key) {
           hasJoined = true;
         }
       });

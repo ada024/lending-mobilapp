@@ -14,7 +14,7 @@
     <b>{{entity.name}}</b>
   </p>
 
-  <div *ngIf="!isPending && !hasJoined">
+  <div *ngIf="!isPending && !hasJoined && bothAnswersLoaded">
     <button class="blue-button" (click)="sendRequest()">
     <div class="button-text">
       <b>Send request to join entity</b>
@@ -22,13 +22,13 @@
    </button>
   </div>
 
-  <div *ngIf="isPending">
+  <div *ngIf="isPending && bothAnswersLoaded">
     <div class="info-text-1">
       <b>Waiting for the owner of {{entity.name}} to accept request</b>
     </div>
   </div>
 
-  <div *ngIf="hasJoined">
+  <div *ngIf="hasJoined && bothAnswersLoaded">
     <div class="info-text-2">
       <b>You have already joined this entity</b>
     </div>

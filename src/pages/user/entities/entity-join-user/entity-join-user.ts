@@ -11,6 +11,8 @@ export class EntityJoinUserPage {
   entity;
   isPending = false;
   hasJoined = false;
+  firstAnswerLoaded = false;
+  bothAnswersLoaded = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
    public zone: NgZone, public db: DatabaseService) {
@@ -22,12 +24,20 @@ export class EntityJoinUserPage {
   onAnswerLoaded1(answer) {
     this.zone.run(() => {
       this.isPending = answer;
+      if(!this.firstAnswerLoaded)
+        this.firstAnswerLoaded = true;
+      else
+        this.bothAnswersLoaded = true;
     });
   }
 
   onAnswerLoaded2(answer) {
     this.zone.run(() => {
       this.hasJoined = answer;
+      if(!this.firstAnswerLoaded)
+        this.firstAnswerLoaded = true;
+      else
+        this.bothAnswersLoaded = true;
     });
   }
 
