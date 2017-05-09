@@ -38,7 +38,7 @@ export class EntityOpeningTimeAdminPage {
   addEntity() {
       this.entityHours = this.entityHoursFrom + " - " + this.entityHoursTo;
       this.officeInfo = new EntityOffice(this.entityLocation, this.entityRoom, this.entityDays, this.entityHours);
-      if (this.entityDays.length != 0 && this.entityHoursTo.length != 0 && this.entityHours != 0) {
+      if (this.entityDays.length != 0 && this.entityHoursTo.length != 0 && this.entityHours.length != 0) {
           this.db.addEntity(this.entityName, this.officeInfo);
           this.navCtrl.remove(2, 3);
       }

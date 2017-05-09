@@ -9,5 +9,46 @@
 
 
 <ion-content padding>
-
+<div class="title-text">{{currentEntity.name}}</div>
+<div class="office-and-opening">Borrowing office location:</div>
+<div class="location-and-days" *ngIf="!modifyLocation">{{currentEntityLocation}}</div><ion-item *ngIf="modifyLocation">
+      <ion-input placeholder="Location" [(ngModel)]="entityLocation"></ion-input>
+    </ion-item>
+<ion-icon name="md-create" class="edit-icon" (click)="modifyLocation = true" *ngIf="!modifyLocation"></ion-icon> 
+<ion-icon name="checkbox-outline" class="edit-icon" (click)="editLocation()" *ngIf="modifyLocation"></ion-icon>
+<div class="room-and-hours" *ngIf="!modifyRoom">{{currentEntityRoom}}</div><ion-item *ngIf="modifyRoom">
+      <ion-input placeholder="Room" [(ngModel)]="entityRoom"></ion-input>
+    </ion-item>
+<ion-icon name="md-create" class="edit-icon2" (click)="modifyRoom = true" *ngIf="!modifyRoom">
+</ion-icon> <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editRoom()" *ngIf="modifyRoom"></ion-icon>
+<br>
+<br>
+<hr style="color:gray;height:0.5em;">
+<div class="office-and-opening">Opening hours:</div>
+<div class="alert-text" *ngIf="notAdded1">You have to select days open</div>
+<div class="location-and-days" *ngIf="!modifyDays">{{currentEntityDays}}</div><ion-item *ngIf="modifyDays">
+      <ion-label>Opening days</ion-label>
+      <ion-select  multiple="true" [(ngModel)]="entityDays">
+        <ion-option value="1">Monday</ion-option>
+        <ion-option value="2">Tuesday</ion-option>
+        <ion-option value="3">Wednesday</ion-option>
+        <ion-option value="4">Thursday</ion-option>
+        <ion-option value="5">Friday</ion-option>
+        <ion-option value="6">Saturday</ion-option>
+        <ion-option value="0">Sunday</ion-option>
+      </ion-select>
+    </ion-item>
+<ion-icon name="md-create" class="edit-icon" (click)="modifyDays = true" *ngIf="!modifyDays"></ion-icon>
+ <ion-icon name="checkbox-outline" class="edit-icon" (click)="editDays()" *ngIf="modifyDays"></ion-icon>
+  <div class="alert-text" *ngIf="notAdded2">You have to select opening hours</div>
+<div class="room-and-hours" *ngIf="!modifyHours">{{currentEntityHours}}</div> <ion-item *ngIf="modifyHours">
+      <ion-label>Open from</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursFrom" ></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="modifyHours">
+      <ion-label>Open to</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursTo"></ion-datetime>
+    </ion-item>
+<ion-icon name="md-create" class="edit-icon2" (click)="modifyHours = true" *ngIf="!modifyHours">
+  </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editHours()" *ngIf="modifyHours"></ion-icon>
 </ion-content>

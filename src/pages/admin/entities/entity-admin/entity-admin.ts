@@ -13,10 +13,12 @@ import { HomeAdminPage } from '../../home-admin/home-admin';
 export class EntityAdminPage {
   currentUserName = "";
   currentUserEntity = "";
+  currentEntity;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
     this.db.loadCurrentUser(this.onDataLoaded.bind(this));
+    this.db.getEntity(this.onEntityLoaded.bind(this));
   }
 
   onDataLoaded(currentUser) {
@@ -26,8 +28,16 @@ export class EntityAdminPage {
     });
   }
 
+
+onEntityLoaded(entities){
+  this.zone.run(() => {
+      this.currentEntity = entities[0];
+    });
+}
+
+
   goToEntityDetailsAdminPage() {
-    this.navCtrl.push(EntityDetailsAdminPage);
+    this.navCtrl.push(EntityDetailsAdminPage, {entity:this.currentEntity});
   }
 
   goToEntityListAdminPage() {

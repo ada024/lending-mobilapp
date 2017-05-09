@@ -658,6 +658,33 @@ export class DatabaseService {
     });
   }
 
+editLocation(location){
+    var officeRef = this.entitiesRef.child(this.currentUser.entity + "/office")
+    officeRef.update({
+  "location": location
+});
+}
+
+editRoom(room){
+    var officeRef = this.entitiesRef.child(this.currentUser.entity + "/office")
+    officeRef.update({
+  "room": room
+});
+}
+
+editDays(days){
+    var officeRef = this.entitiesRef.child(this.currentUser.entity + "/office")
+    officeRef.update({
+  "days": days
+});
+}
+
+editHours(hours){
+    var officeRef = this.entitiesRef.child(this.currentUser.entity + "/office")
+    officeRef.update({
+  "hours": hours
+});
+}
 
   //Developer tools
 

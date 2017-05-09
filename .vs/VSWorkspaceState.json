@@ -5,15 +5,9 @@
     "\\src\\pages",
     "\\src\\pages\\admin",
     "\\src\\pages\\admin\\entities",
-    "\\src\\pages\\admin\\entities\\entity-list-admin",
-    "\\src\\pages\\user",
-    "\\src\\pages\\user\\entities",
-    "\\src\\pages\\user\\entities\\entity-change-user",
-    "\\src\\pages\\user\\home-user",
-    "\\src\\pages\\user\\items\\item-calendar-return-user",
-    "\\src\\pages\\user\\items\\item-confirm-pickup",
-    "\\src\\pages\\user\\items\\item-picked-user"
+    "\\src\\pages\\admin\\entities\\entity-admin",
+    "\\src\\pages\\admin\\entities\\entity-list-admin"
   ],
-  "SelectedNode": "\\src\\pages\\user\\items",
+  "SelectedNode": "\\src\\pages\\admin\\entities\\entity-admin\\entity-admin.scss",
   "PreviewInSolutionExplorer": false
 }
