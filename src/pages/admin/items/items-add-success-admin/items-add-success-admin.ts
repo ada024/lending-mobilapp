@@ -25,7 +25,7 @@ export class ItemsAddSuccessAdminPage {
       this.photoURI = photoURI;
     }
     this.db.addItem(this.itemName, this.tagId, this.photoURI);
-    this.navCtrl.remove(3, 10);
+    this.navCtrl.remove(2, 10);
   }
 
 

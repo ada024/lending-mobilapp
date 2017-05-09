@@ -37,7 +37,9 @@ onEntityLoaded(entities){
 
 
   goToEntityDetailsAdminPage() {
+    if(this.currentUserEntity!="No entity"){
     this.navCtrl.push(EntityDetailsAdminPage, {entity:this.currentEntity});
+    }
   }
 
   goToEntityListAdminPage() {

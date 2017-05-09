@@ -26,6 +26,7 @@ entityHoursFrom="";
 entityHoursTo="";
 entityDays="";
 entityHours="";
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
      //this.currentEntity = navParams.get("entity");

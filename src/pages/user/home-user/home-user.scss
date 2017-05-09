@@ -1,15 +1,18 @@
 ﻿page-home-user {
 
   .scroll-bar {
-    overflow-x: scroll;
+    overflow: auto;
+    overflow-x: hidden;
     white-space: nowrap;
+    height:7em;
+    width:24em;
   }
 
   .scroll-bar-element {
-    display: inline-block;
-    white-space: normal;
     margin-right: 30px;
-    width: 100%;
+    margin-bottom:1em;
+    width: 25em;
+  
   }
 
   .item-container {
@@ -39,7 +42,7 @@
   }
 
   .item-name {
-    font-size: 25px;
+    font-size: 1.3em;
     margin-top: 0.4em;
     float: left;
   }

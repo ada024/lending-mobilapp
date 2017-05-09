@@ -798,7 +798,6 @@ editHours(hours){
       let narr = this.authState.auth.displayName.split(" ");
       this.usersRef.child(user.uid).set({
         uid: user.uid,
-        isPending: "true",
         entity: "No Entity",
         entityName: "No Entity",
         email: user.email || "",
