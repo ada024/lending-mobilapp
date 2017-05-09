@@ -70,7 +70,8 @@ export class DatabaseService {
             name: name,
             id: id,
             entity: this.currentUser.entity,
-            entityName: this.currentUser.entityName
+            entityName: this.currentUser.entityName,
+            status:"Available"
         }).then((resolve) => {
            this.uploadImage(photoURI, name, resolve.key)
         })
@@ -524,7 +525,8 @@ export class DatabaseService {
 
   addLoan(loan, item) {
       this.items.update(item.$key, {
-      loan: loan
+      loan: loan,
+      status: "Out"
     });
   }
   
@@ -532,7 +534,8 @@ export class DatabaseService {
 
   removeLoan(loan) {
       this.items.update(loan.$key, {
-          loan: null
+          loan: null,
+          status: "Available"
       });
   }
 
