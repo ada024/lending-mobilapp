@@ -38,6 +38,7 @@ import { EntityAdminPage } from '../pages/admin/entities/entity-admin/entity-adm
 import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/entity-add-admin';
 import { EntityOfficeAdminPage } from '../pages/admin/entities/entity-office-admin/entity-office-admin';
 import { EntityOpeningTimeAdminPage } from '../pages/admin/entities/entity-opening-time-admin/entity-opening-time-admin';
+import { EntityStandardReservationPage } from '../pages/admin/entities/entity-standard-reservation/entity-standard-reservation';
 import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
 
@@ -69,8 +70,8 @@ import { ItemsDetailsUserPage } from '../pages/user/items/items-details-user/ite
 import { ItemListUserPage } from '../pages/user/items/item-list-user/item-list-user';
 import { ItemPickedUserPage } from '../pages/user/items/item-picked-user/item-picked-user';
 import { ItemCalendarUserPage } from '../pages/user/items/item-calendar-user/item-calendar-user';
-import { ItemCalendarReturnUserPage } from '../pages/user/items/item-calendar-return-user/item-calendar-return-user';
 import { ItemConfirmPickupPage } from '../pages/user/items/item-confirm-pickup/item-confirm-pickup';
+import { ItemConfirmConfirmPickupPage } from '../pages/user/items/item-confirm-confirm-pickup/item-confirm-confirm-pickup';
 import { ItemsTabsUserPage } from '../pages/user/items/items-tabs-user/items-tabs-user';
 import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-user/items-unavailable-user';
 
@@ -125,6 +126,7 @@ export const firebaseConfig = {
       EntityAddAdminPage,
       EntityOfficeAdminPage,
       EntityOpeningTimeAdminPage,
+      EntityStandardReservationPage,
     EntityListAdminPage,
     EntityDetailsAdminPage,
 
@@ -156,8 +158,8 @@ export const firebaseConfig = {
     ItemListUserPage,
     ItemPickedUserPage,
       ItemCalendarUserPage,
-      ItemCalendarReturnUserPage,
     ItemConfirmPickupPage,
+    ItemConfirmConfirmPickupPage,
     ItemsTabsUserPage,
     ItemsUnavailableUserPage
   ],
@@ -202,6 +204,7 @@ export const firebaseConfig = {
       EntityAddAdminPage,
       EntityOfficeAdminPage,
       EntityOpeningTimeAdminPage,
+      EntityStandardReservationPage,
     EntityListAdminPage,
     EntityDetailsAdminPage,
 
@@ -233,8 +236,8 @@ export const firebaseConfig = {
     ItemListUserPage,
     ItemPickedUserPage,
       ItemCalendarUserPage,
-      ItemCalendarReturnUserPage,
     ItemConfirmPickupPage,
+    ItemConfirmConfirmPickupPage,
     ItemsTabsUserPage,
     ItemsUnavailableUserPage
   ],

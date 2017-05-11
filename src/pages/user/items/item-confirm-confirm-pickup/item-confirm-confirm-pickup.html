@@ -1,5 +1,5 @@
-﻿<!--
-  Generated template for the ItemConfirmPickup page.
+<!--
+  Generated template for the ItemConfirmConfirmPickup page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ItemConfirmPickup</ion-title>
+    <ion-title>ItemConfirmConfirmPickup</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,19 +15,16 @@
 
 <ion-content padding>
   <div class="pUpInfo">
-    <p class="pUpDate">Pickup date</p>
-    <p class="date">{{pickupDate}}</p>
+    <p class="pUpDate">Return date</p>
+    <p class="date">{{returnDate}}</p>
   </div>
   <p class="officeInfo">{{officeLocation}}</p>
   <p class="roomAndTimeInfo">{{officeRoom}}</p>
   <p class="dayAndOpeningInfo">{{officeDays}}</p>
   <p class="roomAndTimeInfo">{{officeHours}}</p>
   <div class="buttons-placement">
-    <button class="cancel-button" (click)="cancelClicked()">
-      <div class="button-text">Cancel</div>
-    </button>
-    <button class="confirm-button" (click)="confirmClicked()">
-      <div class="button-text">Confirm</div>
+    <button class="confirm-button" (click)="okClicked()">
+      <div class="button-text">Ok</div>
     </button>
   </div>
   <div class="placeBottom">

@@ -1,0 +1,44 @@
+<!--
+  Generated template for the EntityStandardReservation page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>EntityStandardReservation</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<div class="title-text">{{entityName}}</div>
+<div class="office-and-opening">Borrowing office location:</div>
+<div class="location-and-days">{{entityOffice.location}}</div>
+
+<div class="room-and-hours">{{entityOffice.room}}</div>
+<br>
+<br>
+<hr style="color:gray;height:0.5em;">
+<div class="office-and-opening">Opening hours:</div>
+<div class="location-and-days">{{entityDays}}</div>
+<div class="room-and-hours">{{entityOffice.hours}}</div>
+
+<div class="reservation-text"> Number of loan days:</div>
+<ion-item class="reservation-input">
+      <ion-input placeholder="#days" type="number" min="1" max="99" [(ngModel)]="reservationDays"></ion-input>
+    </ion-item>
+
+    <div class="info-text">(can add offices and alter reservation days at entity page)</div>
+
+<br>
+<div class="place-bottom">
+ <button class="blue-button" (click)="addEntity()">
+    <div class="button-text">
+      <b>Add entity</b>
+    </div>
+  </button>
+</div>
+</ion-content>

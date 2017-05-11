@@ -77,8 +77,8 @@
       <div class="reservations-container">
         <img [src]="reservation.photoURL" class="item-image" />
         <div class="item-name">
-          {{reservation.name}}
-          <div class="dueDate">Pick up {{dueDate(reservation.reserved.pickupDate)}}</div>
+          {{reservation.itemName}}
+          <div class="dueDate">Pick up {{dueDate(reservation.pickupDate)}}</div>
         </div>
       </div>
     </div>

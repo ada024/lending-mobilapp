@@ -30,6 +30,11 @@
     </p>
   </div>
 
+  <div><div class="item-res-days"><b>Number of standard loan days:</b> <span *ngIf="!modifyResDays">{{resDays}}</span></div> <ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
+  </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon><ion-item class="reservation-input" *ngIf="modifyResDays">
+      <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
+    </ion-item></div>
+
 
   <div class="notification-reservation" [class.hideShow]="item.reservation==null" *ngIf="item.reservation!=null">{{requesterName.fullname}} wants to reserve this item. <br /> Pickup date: {{item.reservation.formattedpUpDate}}. <br /> Return date: {{item.reservation.formattedRetDate}}
       <button class="decline-button" (click)="declineClicked()">

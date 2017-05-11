@@ -22,6 +22,7 @@
               [currentDate]="calendar.currentDate"
               autoSelect="false"
               noEventsLabel={{openingInfo}}
+              [eventSource]= "eventSource"
               (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)"
               (onTitleChanged)="onViewTitleChanged($event)"

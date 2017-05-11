@@ -40,7 +40,9 @@ export class HomeUserPage {
     onReservationsLoaded(usersReservations) {
         this.zone.run(() => {
             this.reservations = usersReservations;
-            this.reservations.sort((date1, date2) => date1.reserved.pickupDate - date2.reserved.pickupDate);
+            if(this.reservations!=null){
+            this.reservations.sort((date1, date2) => date1.pickupDate - date2.pickupDate);
+        }
         });
     }
 

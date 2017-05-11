@@ -1,76 +1,46 @@
-﻿import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
-import { Reservation } from '../../../../app/models/reservation';
+import { Component } from '@angular/core';
+import { NavController, NavParams, Platform  } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+
 import { Toast } from 'ionic-native';
-import {ItemConfirmConfirmPickupPage} from '../item-confirm-confirm-pickup/item-confirm-confirm-pickup';
 
 /*
-  Generated class for the ItemConfirmPickup page.
+  Generated class for the ItemConfirmConfirmPickup page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-item-confirm-pickup',
-  templateUrl: 'item-confirm-pickup.html'
+  selector: 'page-item-confirm-confirm-pickup',
+  templateUrl: 'item-confirm-confirm-pickup.html'
 })
-export class ItemConfirmPickupPage {
-    eventDate: any;
+export class ItemConfirmConfirmPickupPage {
+     eventDate: any;
     item: any;
-    pickupDate: any;
+    returnDate: any;
     currentEntity: any;
     officeLocation: any;
     officeRoom: any;
     officeHours: any;
     officeDays: any;
+    reservation:any;
 
-    returnDate: Date;
-    formattedReturnDate:any;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-        this.eventDate = navParams.get("event");
-        this.item = navParams.get("item");
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
+        this.reservation = navParams.get("reservation");
         this.currentEntity = navParams.get("entity");
+        this.item=navParams.get("item");
         this.officeLocation = this.currentEntity.office.location;
         this.officeRoom = this.currentEntity.office.room;
         this.officeHours = this.currentEntity.office.hours;
         this.officeDays = this.getWeekDays(this.currentEntity.office.days.length);
 
-        var year = this.eventDate.getFullYear();
-        var month = this.eventDate.getMonth()+1;
-        var monthAsText = this.getMonthAsText(month);
-        var date = this.eventDate.getDate();
-        var suffix = this.getDayOfMonthSuffix(date);
-        this.pickupDate = date + suffix + " of " + monthAsText + " " + year;
-
-        var x = this.item.reservationDays;
-        var resDays = +x;
-        this.returnDate = new Date(this.eventDate);
-        this.returnDate.setDate(this.returnDate.getDate() + resDays);
-
-        var year2 = this.returnDate.getFullYear();
-        var month2 = this.returnDate.getMonth()+1;
-        var monthAsText2 = this.getMonthAsText(month2);
-        var date2 = this.returnDate.getDate();
-        var suffix2 = this.getDayOfMonthSuffix(date2);
-        this.formattedReturnDate = date2 + suffix2 + " of " + monthAsText2 + " " + year2;
+        this.returnDate = this.reservation.formattedRetDate;
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemConfirmPickupPage');
   }
 
-  getDayOfMonthSuffix(n) {
-    if (n >= 11 && n <= 13) {
-        return "th";
-    }
-    switch (n % 10) {
-        case 1: return "st";
-        case 2: return "nd";
-        case 3: return "rd";
-        default: return "th";
-    }
-  }
 
   getWeekDays(n) {
       var weekday = new Array(7);
@@ -128,18 +98,24 @@ export class ItemConfirmPickupPage {
   }
 
 
-  cancelClicked() {
-      this.navCtrl.remove(2, 4);
+ 
+  okClicked() {
+      this.db.addReservation(this.reservation, this.item);
+      
+      if (this.platform.is('cordova')) {
+          this.showToast("You have reserved " + this.item.name, "center");
+      }
+      this.navCtrl.remove(3, 4);
       this.navCtrl.pop();
+      
   }
 
-  confirmClicked() {
-      var photoURL = null;
-      if(this.item.photoURL!=null){
-      photoURL = this.item.photoURL;
-      }
-      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate.getTime(), this.pickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.item.name, photoURL);
-      this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
+  showToast(message, position) {
+      this.platform.ready().then(() => Toast.show(message, "long", position).subscribe(
+          toast => {
+              console.log(toast);
+          }
+      ));
   }
 
 

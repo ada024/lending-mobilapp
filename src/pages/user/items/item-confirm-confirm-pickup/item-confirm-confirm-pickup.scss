@@ -1,7 +1,7 @@
-﻿page-item-confirm-pickup {
+page-item-confirm-confirm-pickup {
 
   .pUpInfo {
-    border: 0.4em solid dimgrey;
+    border: 0.4em solid indianred;
     height: 8em;
     width: 70%;
     margin-left: 4em;
@@ -10,7 +10,7 @@
   .pUpDate {
     font-size: 2em;
     font-weight: bold;
-    color: grey;
+    color: indianred;
     text-align: center;
     position: relative;
     top: -0.4em;
@@ -19,7 +19,7 @@
   .date {
     font-size: 1.3em;
     font-weight: bold;
-    color: grey;
+    color: indianred;
     text-align: center;
     position: relative;
     top: -1.3em;
@@ -56,20 +56,14 @@
   .buttons-placement {
     position: absolute;
     top: 26em;
-  }
-
-  .cancel-button {
-    width: 11em;
-    height: 4em;
-    margin-right: 20px;
-    background-color: #f28282;
+    left:9em;
   }
 
 
   .confirm-button {
-    width: 11em;
+    width: 8em;
     height: 4em;
-    background-color: #7cd87b;
+    background-color: #3f3f3f;
   }
 
   .placeBottom {

@@ -29,6 +29,7 @@ export class DatabaseService {
 
 
 
+
     usersRef: any;
     usersList: any;
     userReturn: any;
@@ -65,33 +66,72 @@ export class DatabaseService {
 
     //Methods to add and get items
 
-    addItem(name, id, photoURI) {
+    addItem(name, id, photoURI, reservationDays) {
         this.items.push({
             name: name,
             id: id,
             entity: this.currentUser.entity,
             entityName: this.currentUser.entityName,
-            status:"Available"
+            reservationDays: reservationDays,
+            status:"Available", 
+            reserved: null
         }).then((resolve) => {
            this.uploadImage(photoURI, name, resolve.key)
         })
     }
 
     addReservation(reservation, item) {
-        this.items.update(item.$key, {
-            reservation: reservation
-        });
+        var resRef = this.itemsRef.child(item.$key + "/reserved");
+        resRef.push(reservation);
+       
+    }
+
+    getReservations(item){
+        var ref = this.itemsRef.child(item.$key + "/reserved");
+        var dataWithKeys;
+     ref.on('value', (snap) => {
+  // snap.val() comes back as an object with keys
+  // these keys need to be come "private" properties
+  let data = snap.val();
+  dataWithKeys = Object.keys(data).map((key) => {
+     var obj = data[key];
+     obj._key = key;
+     return obj;
+  });
+  
+  console.log(dataWithKeys); // This is a synchronized array
+});
+return dataWithKeys;
     }
 
 
 
     loadUsersReservations(onDataLoaded) {
+        var dataWithKeys;
         this.items.subscribe(itemsArray => {
             itemsArray = itemsArray.filter(item => {
-                return (item.reserved != null && item.reserved.userId == this.currentUser.uid)
+                if(item.reserved!=null){
+                var ref = this.itemsRef.child(item.$key + "/reserved");
+            
+               
+            ref.on('value', (snap) => {
+            // snap.val() comes back as an object with keys
+            // these keys need to be come "private" properties
+            let data = snap.val();
+            dataWithKeys = Object.keys(data).map((key) => {
+            var obj = data[key];
+            obj._key = key;
+            if(obj.userId==this.currentUser.uid){
+                return obj;
+            }
             });
-            onDataLoaded(itemsArray)
         });
+        }
+           });
+            onDataLoaded(dataWithKeys)
+            });
+           
+            
     }
 
 
@@ -574,12 +614,13 @@ export class DatabaseService {
 
   //Methods to add and get entities
 
-  addEntity(name, office) {
+  addEntity(name, office, reservationDays) {
     this.entities.push({
       name: name,
       owner: this.currentUser.uid,
       ownerName: this.currentUser.fullname,
-      office: office
+      office: office,
+      reservationDays:reservationDays
     });
   }
 
@@ -687,6 +728,26 @@ editHours(hours){
     officeRef.update({
   "hours": hours
 });
+}
+
+editResDays(resdays){
+    this.entities.update(this.currentUser.entity, {
+        reservationDays:resdays
+    });
+
+    this.items.subscribe(itemsArray => {
+          itemsArray = itemsArray.filter(item => {
+            item.entity==this.currentUser.entity && this.items.update(item.$key, {
+                reservationDays:resdays
+          });
+      });
+});
+}
+
+editItemResDays(resdays, itemKey){
+    this.items.update(itemKey, {
+        reservationDays: resdays
+    })
 }
 
   //Developer tools

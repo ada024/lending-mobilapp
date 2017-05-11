@@ -17,6 +17,7 @@ modifyLocation = false;
 modifyRoom = false;
 modifyDays = false;
 modifyHours = false;
+modifyResDays = false;
 notAdded1 = false;
 notAdded2=false;
 
@@ -26,6 +27,7 @@ entityHoursFrom="";
 entityHoursTo="";
 entityDays="";
 entityHours="";
+resDays="";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
@@ -40,6 +42,7 @@ onEntityLoaded(entity){
      this.currentEntityRoom = this.currentEntity.office.room;
      this.currentEntityHours = this.currentEntity.office.hours;
      this.currentEntityDays = this.getWeekDays(this.currentEntity.office.days.length);
+     this.resDays = this.currentEntity.reservationDays;
 }
 
 
@@ -74,6 +77,15 @@ editHours(){
     this.modifyHours= false;
 }
 else this.modifyHours = false;
+
+}
+
+editResDays(){
+    if(this.resDays.length!=0){
+    this.db.editResDays(this.resDays);
+    this.modifyResDays= false;
+}
+else this.modifyResDays = false;
 
 }
 

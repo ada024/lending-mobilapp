@@ -2,6 +2,7 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { EntityOffice } from '../../../../app/models/entityOffice';
+import {EntityStandardReservationPage} from '../entity-standard-reservation/entity-standard-reservation';
 /*
   Generated class for the EntityOpeningTimeAdmin page.
 
@@ -39,7 +40,7 @@ export class EntityOpeningTimeAdminPage {
       this.entityHours = this.entityHoursFrom + " - " + this.entityHoursTo;
       this.officeInfo = new EntityOffice(this.entityLocation, this.entityRoom, this.entityDays, this.entityHours);
       if (this.entityDays.length != 0 && this.entityHoursTo.length != 0 && this.entityHours.length != 0) {
-          this.db.addEntity(this.entityName, this.officeInfo);
+          this.navCtrl.push(EntityStandardReservationPage, {entityName: this.entityName, office: this.officeInfo});
           this.navCtrl.remove(2, 3);
       }
       if (this.entityDays.length == 0) {

@@ -51,4 +51,10 @@
     </ion-item>
 <ion-icon name="md-create" class="edit-icon2" (click)="modifyHours = true" *ngIf="!modifyHours">
   </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editHours()" *ngIf="modifyHours"></ion-icon>
+
+  <div class="reservation-text"> Number of standard loan days: <span *ngIf="!modifyResDays">{{resDays}}</span></div><ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
+  </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
+<ion-item class="reservation-input" *ngIf="modifyResDays">
+      <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
+    </ion-item>
 </ion-content>

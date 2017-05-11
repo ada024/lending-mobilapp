@@ -15,6 +15,7 @@ import { ItemPickedUserPage } from '../item-picked-user/item-picked-user';
 })
 export class ItemsDetailsUserPage {
     item;
+    resDays;
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
@@ -29,6 +30,7 @@ export class ItemsDetailsUserPage {
   onItemLoaded(itemForDetail) {
       this.zone.run(() => {
           this.item = itemForDetail[0];
+          this.resDays = this.item.reservationDays;
       });
 
   }
