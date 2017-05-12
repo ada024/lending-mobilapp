@@ -24,6 +24,7 @@ export class ItemCalendarUserPage {
     selectedDay;
     item: any;
     clickedTwice:boolean;
+    unableForReservation = false;
 
     notClickable=[];
 
@@ -87,6 +88,11 @@ export class ItemCalendarUserPage {
           this.clickedTwice = false;
           this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, entity: this.currentEntity });
       }
+      if(!this.checkIfClickable(event) && this.loadedFirstTime){
+          this.unableForReservation=true;
+      }
+      else this.unableForReservation=false;
+
       this.loadedFirstTime = true;
   }
 
@@ -114,12 +120,8 @@ export class ItemCalendarUserPage {
         if(this.item.reserved!=null){
              reservations = this.item.reserved;
         }
-        console.log("reservationslength: " + reservations.length);
-        //console.log("reservationsitem1: " + this.item.reserved.formattedpUpDate);
         if(reservations!=null){
-            console.log("reservasjonskalender");
         for(var reservation of reservations) {
-            console.log("reservasjonstid: " + reservation.pickupDate);
             var startDate = new Date();
             startDate.setTime(reservation.pickupDate);
             this.notClickable.push(startDate);
@@ -134,7 +136,6 @@ export class ItemCalendarUserPage {
                 checkDate.setDate(checkDate.getDate() + distance);
                       
                 if(checkDate<endDate && checkDate>startDate){
-                    console.log("date added1: " + checkDate);
                     this.notClickable.push(checkDate);
                 }
 
@@ -144,7 +145,6 @@ export class ItemCalendarUserPage {
                 checkDate2.setDate(checkDate2.getDate() + distance);
 
                   if(checkDate2<endDate && checkDate2>startDate){
-                    console.log("date added2: " + checkDate2);
                     this.notClickable.push(checkDate2);
                 }
             }
@@ -212,8 +212,7 @@ export class ItemCalendarUserPage {
           if(distance<0){
           distance = 500000000000000;
           }
-          console.log("click-date: " + distance);
-          if(date.getTime()==clickDate.getTime() || distance<resDaysMilli){
+          if(date.getTime()==clickDate.getTime() || distance<=resDaysMilli){
           isNotClickable = false;
           }
       }

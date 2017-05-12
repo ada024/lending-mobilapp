@@ -95,6 +95,7 @@ export class DatabaseService {
 
 
 
+
     loadUsersReservations(onDataLoaded) {
 
         
@@ -227,14 +228,14 @@ export class DatabaseService {
             this.setCurrentUser(this.loadNumberOfItems.bind(this), onDataLoaded)
     }
 
-    loadNumberOfReservationRequests(onDataLoaded) {
+    loadNumberOfReservations(onDataLoaded) {
         if (this.currentUser != null) {
             Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-                return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reservation != null).length;
-            }).subscribe(numberOfReservationRequests => onDataLoaded(numberOfReservationRequests));
+                return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
+            }).subscribe(numberOfReservations => onDataLoaded(numberOfReservations));
         }
         else
-            this.setCurrentUser(this.loadNumberOfReservationRequests.bind(this), onDataLoaded)
+            this.setCurrentUser(this.loadNumberOfReservations.bind(this), onDataLoaded)
     }
 
 

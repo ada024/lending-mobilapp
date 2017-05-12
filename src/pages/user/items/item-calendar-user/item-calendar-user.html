@@ -29,7 +29,9 @@
               (onTimeSelected)="onTimeSelected($event)"
               step="30">
     </calendar>
+    
     <div>
+      <div class="unable-date" *ngIf="unableForReservation">It's unable to borrow this item that date</div>
       <div class="item">
         <p class="item-borrow">Item you want to borrow</p>
         <div class="item-info"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span></div>

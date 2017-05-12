@@ -17,6 +17,8 @@
 
   .item {
     width: 90%;
+    margin-top:0.8em;
+    
   }
 
   .item-image {
@@ -49,4 +51,11 @@
     bottom: 1em;
     left: 0.8em;
   }
+
+  .unable-date{
+    margin-top:-1em;
+    text-align:center;
+    color:red;
+  }
+
 }

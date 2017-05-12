@@ -27,10 +27,13 @@
 
     <p class="status">
       <b>Status</b><br>
-      In stock
+      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedDate}}</span>
+      <span *ngIf="item.loan==null"> Available</span>
     </p>
 
     <div class="item-res-days"><b>Number of standard loan days:</b> {{resDays}}</div>
 
+
+<div class="you-have-reserved" *ngIf="reservation!=null&&!reservationCanceled">You have reserved this item from {{reservation.formattedpUpDate}} <button class="cancel-res" (click)="cancelReservation()"><div class="cancel-text">Cancel reservation</div></button></div>
   <button class="blue-button" (click)="goToItemPickedPage()"><div class="button-text">Reserve</div></button>
 </ion-content>

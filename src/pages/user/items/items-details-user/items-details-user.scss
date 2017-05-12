@@ -21,7 +21,7 @@
   .blue-button{
     height:3em;
     width:10em;
-    margin-top:28em;
+    margin-top:27em;
     margin-left:8em;
   }
   .button-text{
@@ -30,5 +30,20 @@
   .item-res-days {
     position: absolute;
      top:30.5em;
+  }
+
+  .you-have-reserved{
+    position:absolute;
+    top:38em;
+    color:red;
+  }
+
+  .cancel-res{
+    background-color:indianred;
+    margin-left:8em;
+    height:1.5em;
+  }
+  .cancel-text{
+    color:white;
   }
 }

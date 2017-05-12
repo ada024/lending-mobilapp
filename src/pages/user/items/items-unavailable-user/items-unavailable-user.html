@@ -24,8 +24,7 @@
       <div class="item-name">
         {{item.name}}
       </div>
-      <div class="available-date" *ngIf="item.reserved!=null">Available {{item.reserved.formattedRetDate}}</div>
-      <div class="available-date" *ngIf="item.loan!=null">Available {{item.loan.formattedDate}}</div>
+      <div class="available-date" *ngIf="item.loan!=null">Loaned until {{item.loan.formattedDate}}</div>
     </ion-item>
   </ion-list>
 
