@@ -36,21 +36,8 @@
     </ion-item></div>
 
 
-  <div class="notification-reservation" [class.hideShow]="item.reservation==null" *ngIf="item.reservation!=null">{{requesterName.fullname}} wants to reserve this item. <br /> Pickup date: {{item.reservation.formattedpUpDate}}. <br /> Return date: {{item.reservation.formattedRetDate}}
-      <button class="decline-button" (click)="declineClicked()">
-        <div class="button-text">Decline</div>
-      </button>
-      <button class="accept-button" (click)="acceptClicked()">
-        <div class="button-text">Accept</div>
-      </button>
-    </div>
-
-  <div class="notification-reserved" [class.hideShow]="item.reserved==null"  *ngIf="item.reserved!=null">Reserved by {{requesterName.fullname}}.<br /> Pickup date: {{item.reserved.formattedpUpDate}} <br />Return date: {{item.reserved.formattedRetDate}} </div>
-  <button class="cancel-res-button" (click)="cancelResClicked()" *ngIf="item.reserved!=null">
-    <div class="cancel-res-button-text" >Cancel reservation</div>
-  </button>
-
-
+  <div class="notification-reserved"  *ngIf="reservations!=null">Reserved by {{reservations[0].userName}}.<br /> Pickup date: {{reservations[0].formattedpUpDate}} <br />Return date: {{reservations[0].formattedRetDate}} </div>
+  
     <div *ngIf="modify">
       <ion-icon name="checkbox-outline" class="edit-icon" (click)="modify = false"></ion-icon>
 

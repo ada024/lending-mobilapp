@@ -13,12 +13,19 @@ export class ItemsDetailsAdminPage {
   requesterName;
   resDays:any;
   modifyResDays=false;
+  reservations;
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService, public events: Events) {
       var sentItem = navParams.get("item");
       db.getItemForDetailsPage(this.onItemLoaded.bind(this), sentItem.$key);
       this.resDays=this.item.reservationDays;
+      
+      if(this.item.reserved!=null){
+          this.reservations = this.item.reserved
+          this.reservations.sort((date1, date2) => date1.pickupDate - date2.pickupDate);
+          console.log("resLength: "+ this.reservations.length);
+      }
 
       if (this.item.reservation != null) {
           this.requesterName = this.db.getUsernameByUserId(this.item.reservation.userId);

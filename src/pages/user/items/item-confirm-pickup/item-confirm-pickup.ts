@@ -137,8 +137,10 @@ export class ItemConfirmPickupPage {
       var photoURL = null;
       if(this.item.photoURL!=null){
       photoURL = this.item.photoURL;
-      }
-      var reservation = new Reservation(this.db.currentUser.uid, this.eventDate.getTime(), this.pickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.item.name, photoURL);
+    }
+    
+      var reservation = new Reservation(this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.item.name, photoURL);
+     
       this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
   }
 

@@ -27,12 +27,15 @@ export class CheckoutItemsPage {
     dataReceived: boolean;
 	item: any;
 
+    reservations: any;
+
 	
 
     constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
 
         db.loadItems(this.onDataLoaded.bind(this));
 
+        
         this.itemsList.sort((loan1, loan2): number => {
             if (loan1.loan != null && loan2.loan == null) return 1;
             if (loan1.loan == null && loan2.loan != null) return -1;

@@ -80,55 +80,36 @@ export class DatabaseService {
         })
     }
 
-    addReservation(reservation, item) {
+    addReservation(reservations, item) {
+        this.items.update(item.$key, {
+            reserved:reservations
+        })
+        /*
         var resRef = this.itemsRef.child(item.$key + "/reserved");
+
         resRef.push(reservation);
+        */
        
     }
 
-    getReservations(item){
-        var ref = this.itemsRef.child(item.$key + "/reserved");
-        var dataWithKeys;
-     ref.on('value', (snap) => {
-  // snap.val() comes back as an object with keys
-  // these keys need to be come "private" properties
-  let data = snap.val();
-  dataWithKeys = Object.keys(data).map((key) => {
-     var obj = data[key];
-     obj._key = key;
-     return obj;
-  });
-  
-  console.log(dataWithKeys); // This is a synchronized array
-});
-return dataWithKeys;
-    }
 
 
 
     loadUsersReservations(onDataLoaded) {
-        var dataWithKeys;
+
+        
         this.items.subscribe(itemsArray => {
+            var returnList = [];
             itemsArray = itemsArray.filter(item => {
                 if(item.reserved!=null){
-                var ref = this.itemsRef.child(item.$key + "/reserved");
-            
-               
-            ref.on('value', (snap) => {
-            // snap.val() comes back as an object with keys
-            // these keys need to be come "private" properties
-            let data = snap.val();
-            dataWithKeys = Object.keys(data).map((key) => {
-            var obj = data[key];
-            obj._key = key;
-            if(obj.userId==this.currentUser.uid){
-                return obj;
-            }
-            });
-        });
-        }
-           });
-            onDataLoaded(dataWithKeys)
+                    for(var reservation of item.reserved){
+                        if(reservation.userId==this.currentUser.uid){
+                        returnList.push(reservation)
+                        }
+                    }
+                }
+                });
+            onDataLoaded(returnList)
             });
            
             
@@ -183,13 +164,13 @@ return dataWithKeys;
 
     loadAvailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan == null);
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan == null);
         }).subscribe(availableItems => onDataLoaded(availableItems));
     }
 
     loadUnavailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null);
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
         }).subscribe(availableItems => onDataLoaded(availableItems));
     }
 
@@ -201,13 +182,13 @@ return dataWithKeys;
 
     loadNumberOfUnavailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null || item.loan != null).length;
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null).length;
         }).subscribe(availableItems => onDataLoaded(availableItems));
     }
 
     loadNumberOfAvailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved == null && item.loan == null).length;
+            return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan == null).length;
         }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems));
     }
 

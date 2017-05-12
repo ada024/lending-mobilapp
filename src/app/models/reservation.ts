@@ -1,5 +1,5 @@
 ﻿export class Reservation {
-    constructor(public userId: String, public pickupDate: Date, public formattedpUpDate: String, public returnDate: any, public formattedRetDate, public itemName, public itemPhoto) {
+    constructor(public userId: String, public userName: String, public pickupDate: Date, public formattedpUpDate: String, public returnDate: any, public formattedRetDate, public itemName, public itemPhoto) {
 
     }
 
@@ -7,6 +7,9 @@
         return this.userId;
     }
 
+   getUserName() {
+        return this.userId;
+    }
     getPickupDate() {
         return this.pickupDate;
     }

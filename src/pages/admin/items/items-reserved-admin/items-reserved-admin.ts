@@ -18,6 +18,7 @@ export class ItemsReservedAdminPage {
     itemsList: any;
     loadedItemList: any;
     searchString = '';
+    reservations;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone, public db: DatabaseService, public appCtrl: App) {
