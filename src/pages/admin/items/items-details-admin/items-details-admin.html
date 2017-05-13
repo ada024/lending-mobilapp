@@ -43,7 +43,8 @@
 
     <p class="status">
       <b>Status</b><br>
-      In stock
+      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedDate}}</span>
+      <span *ngIf="item.loan==null"> Available</span>
     </p>
 
     <div class="item-res-days">
@@ -73,12 +74,12 @@
 
       <div class="top-button-container">
         <button class="checkout-button" (click)="cancel()">
-          <div class="cancel-text">
+          <div class="button-text">
             <b>Cancel</b>
           </div>
         </button>
         <button class="edit-button" (click)="confirm()">
-          <div class="confirm-text">
+          <div class="button-text">
             <b>Confirm</b>
           </div>
         </button>
