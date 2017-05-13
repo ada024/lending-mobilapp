@@ -11,73 +11,132 @@
 <ion-content padding>
 
   <div *ngIf="!modify">
-    <ion-icon name="md-create" class="edit-icon" (click)="modify = true"></ion-icon>
+
+    <div class="top-button-container">
+      <button class="checkout-button" (click)="checkout()">
+        <ion-icon name="redo" class="checkout-icon"></ion-icon>
+        <div class="checkout-text">
+          <b>Check out</b>
+        </div>
+      </button>
+      <button class="edit-button" (click)="modify = true">
+        <ion-icon name="md-create" class="edit-icon"></ion-icon>
+        <div class="edit-text">
+          <b>Edit</b>
+        </div>
+      </button>
+    </div>
+    
+    <div class="item-image-container">
+      <img [src]="item.photoURL" class="item-image" *ngIf="!photoURL"/>
+      <img [src]="photoURI" class="item-image" *ngIf="photoURL"/>
+    </div>
 
     <p class=title>
       <b>{{item.name}}</b>
     </p>
-    
-    <img [src]="item.photoURL" class="item-image" />
 
-    <p class="description">
+    <div class="description">
       <b>Description</b><br>
-      bla bla bla
-    </p>
+      {{item.description}}
+    </div>
 
     <p class="status">
       <b>Status</b><br>
       In stock
     </p>
+
+    <div class="item-res-days">
+      <b>Number of standard loan days:</b>
+      <span *ngIf="!modifyResDays">{{resDays}}</span>
+    </div> 
+    <ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays"></ion-icon>
+    <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
+    <ion-item class="reservation-input" *ngIf="modifyResDays">
+      <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
+    </ion-item>
+
+
+    <div class="notification-reserved"  *ngIf="reservations!=null">
+      Reserved by {{reservations[0].userName}}.<br /> 
+      Pickup date: {{reservations[0].formattedpUpDate}} <br />
+      Return date: {{reservations[0].formattedRetDate}} 
+    </div>
+
   </div>
 
-  <div><div class="item-res-days"><b>Number of standard loan days:</b> <span *ngIf="!modifyResDays">{{resDays}}</span></div> <ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
-  </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon><ion-item class="reservation-input" *ngIf="modifyResDays">
-      <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
-    </ion-item></div>
 
 
-  <div class="notification-reserved"  *ngIf="reservations!=null">Reserved by {{reservations[0].userName}}.<br /> Pickup date: {{reservations[0].formattedpUpDate}} <br />Return date: {{reservations[0].formattedRetDate}} </div>
-  
+
+
     <div *ngIf="modify">
-      <ion-icon name="checkbox-outline" class="edit-icon" (click)="modify = false"></ion-icon>
 
-      <p class= title>
-        <ion-input placeholder="{{item.name}}" [(ngModel)]="newItemName"></ion-input>
-      </p>
-
-      <ion-icon name="image" class="item-image"></ion-icon>
+      <div class="top-button-container">
+        <button class="checkout-button" (click)="cancel()">
+          <div class="cancel-text">
+            <b>Cancel</b>
+          </div>
+        </button>
+        <button class="edit-button" (click)="confirm()">
+          <div class="confirm-text">
+            <b>Confirm</b>
+          </div>
+        </button>
+    </div>
+    
+    <div class="item-image-container">
+      <img [src]="item.photoURL" class="item-image" *ngIf="!photoURL && item"/>
+      <img [src]="photoURI" class="item-image" *ngIf="photoURL"/>
+    </div>
 
       <div class="image-button-container">
-        <button class="image-button">
+        <button class="image-button" (click)="getPicture(true)">
           <ion-icon name="camera" class="button-icon"></ion-icon>
         </button>
 
-        <button class="image-button">
+        <button class="image-button" (click)="getPicture(false)">
           <ion-icon name="image" class="button-icon"></ion-icon>
         </button>
       </div>
 
-
-      <p class="description">
-        <b>Description</b><br>
-        <ion-input placeholder="bla bla bla" [(ngModel)]="newItemDescription"></ion-input>
+      <p class="name-input">
+        <ion-input [(ngModel)]="itemName">
+          {{itemName}}
+        </ion-input>
       </p>
 
+      <div class="description" [(ngModel)]="itemDescription">
+        <b>Description</b><br>
+        <ion-input>
+          {{itemDescription}}
+        </ion-input>
+      </div>
+
+      <div class="item-res-days">
+        <b>Number of standard loan days:</b> <span *ngIf="!modifyResDays">{{resDays}}</span>
+      </div> 
+      <ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays"></ion-icon>
+      <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
+      <ion-item class="reservation-input" *ngIf="modifyResDays">
+        <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
+      </ion-item>
+
       <div class="button-container">
-        <button class="blue-button">
+        <button class="blue-button" (click)="encode()">
           <ion-icon name="finger-print" class="button-icon"></ion-icon>
           <div class="button-with-icon-text">
             <b>Encode</b>
           </div>
         </button>
 
-        <button class="red-button">
+        <button class="red-button" (click)="delete()">
           <ion-icon name="nuclear" class="button-icon"></ion-icon>
           <div class="button-with-icon-text">
             <b>Delete item</b>
           </div>
         </button>
       </div>
+
     </div>
 
 </ion-content>

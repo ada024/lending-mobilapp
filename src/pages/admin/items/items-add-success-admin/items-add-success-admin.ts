@@ -18,7 +18,6 @@ export class ItemsAddSuccessAdminPage {
     this.itemName = navParams.get("itemName");
     let photoURI = navParams.get("photoURI");
     let tagId = navParams.get("tagId");
-    db.getEntity(this.onEntityLoaded.bind(this));
     if(tagId != null) {
       this.tagId = tagId;
       this.titleText = "Success. Added and Encoded";
@@ -26,12 +25,13 @@ export class ItemsAddSuccessAdminPage {
     if(photoURI != null) {
       this.photoURI = photoURI;
     }
-    this.db.addItem(this.itemName, this.tagId, this.photoURI, this.currentEntity.reservationDays);
     this.navCtrl.remove(2, 10);
+    db.getEntity(this.onEntityLoaded.bind(this));
   }
 
 onEntityLoaded(entity){
 this.currentEntity = entity[0];
+this.db.addItem(this.itemName, this.tagId, this.photoURI, this.currentEntity.reservationDays);
 }
 
   goBackToItemsAdminPage() {

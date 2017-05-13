@@ -15,7 +15,7 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let item of itemsList; let i = index">
+    <ion-item-sliding *ngFor="let item of itemsList">
       <ion-item (click)="goToItemsDetailsAdminPage(item)">
         <img [src]="item.photoURL" class="item-image"/>
         <div class="item-name">

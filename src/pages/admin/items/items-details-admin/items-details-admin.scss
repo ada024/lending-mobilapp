@@ -1,81 +1,94 @@
 ﻿page-items-details-admin {
 
+  .top-button-container {
+    text-align: center;
+  }
+
+  .checkout-button {
+    float: left;
+    width: 160px;
+    height: 55px;
+    background-color: #f28282;
+  }
+  
+  .checkout-icon {
+    float: left;
+    font-size: 30px;
+    margin: 7px;
+  }
+
+  .checkout-text {
+    color: white;
+    float: left;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  .edit-button {
+    width: 120px;
+    height: 55px;
+    background-color: #40afce;
+  }
+
   .edit-icon {
-    float: right;
-    font-size: 50px;
+    color: white;
+    float: left;
+    font-size: 30px;
+    margin: 5px;
+  }
+
+  .edit-text {
+    color: white;
+    float: left;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  .item-image-container {
+    text-align: center;
+    margin: 20px;
   }
 
   .item-image {
-    position: absolute;
     width: 8em;
     height: 8em;
-    top: 27%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 
-
   .image-button-container {
-    display: inline-block;
-    position: absolute;
-    top: 43%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center;
   }
 
   .image-button {
     background-color: #40afce;
   }
 
-  .description {
-    position: absolute;
-    top: 50%;
-  }
-
-  .status {
-    position: absolute;
-    top: 60%;
-  }
   .item-res-days {
-    position: absolute;
-     top:30.5em;
-  }
-
-  .edit-icon3{
-    position:absolute;
-     top:25.5em;
-    left:17.8em;
+    float: left;
+    margin-right: 10px;
   }
 
   .reservation-input{
-    position:absolute;
-    top:25.5em;
-    left:13em;
     width:5.5em;
   }
 
   .button-container {
-    position: absolute;
-    bottom: 0px;
+    margin-top: 30px;
   }
 
   .red-button {
     width: 100%;
     height: 70px;
     margin-top: 5px;
-    margin-bottom: 5px;
     background-color: red;
   }
 
   .notification-reservation {
-    position: absolute;
-    top: 29em;
     color: red;
   }
 
   .notification-reserved {
-    position: absolute;
-    top: 34em;
     color: red;
   }
 
@@ -118,6 +131,10 @@
   .button-text {
     font-size: 1.5em;
     color: white;
+  }
+
+  .name-input {
+    font-size: 30px;
   }
 
 }

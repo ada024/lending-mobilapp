@@ -76,8 +76,13 @@ export class DatabaseService {
             status:"Available", 
             reserved: null
         }).then((resolve) => {
-           this.uploadImage(photoURI, name, resolve.key)
+           this.uploadImage(photoURI, resolve.key)
         })
+    }
+
+    deleteItem(key) {
+        this.items.remove(key);
+        this.deleteImage(key);
     }
 
     addReservation(reservations, item) {
@@ -904,9 +909,9 @@ editItemResDays(resdays, itemKey){
 
 
   //image stuff
-  uploadImage(photoURI, name, key) {
+  uploadImage(photoURI, key) {
     if(photoURI != null) {
-      firebase.storage().ref('images/' + this.currentUser.entityName + "-" + this.currentUser.entity + "/" + name + "-" + key)
+      firebase.storage().ref('images/' + this.currentUser.entity + "/" + key)
       .putString(photoURI.split(",")[1], 'base64').then(function(snapshot) {
         this.items.update(key, {
           photoURL: snapshot.downloadURL
@@ -914,6 +919,10 @@ editItemResDays(resdays, itemKey){
         console.log('Uploaded', snapshot.totalBytes, 'bytes.');
       }.bind(this))
     }
+  }
+
+  deleteImage(key) {
+      firebase.storage().ref('images/' + this.currentUser.entity + "/" + key).delete().catch(() => {});
   }
 
 //   downloadImage(item, onDataLoaded) {

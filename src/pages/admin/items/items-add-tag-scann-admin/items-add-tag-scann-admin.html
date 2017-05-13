@@ -9,8 +9,12 @@
 
 <ion-content padding>
 
-  <p class=title>
+  <p class=title *ngIf="!close">
     <b>Place your device on the NFC tag</b>
+  </p>
+
+  <p class="text" *ngIf="close">
+    success, new tag registered
   </p>
 
   <ion-icon name="finger-print" class="scann-icon"></ion-icon>
