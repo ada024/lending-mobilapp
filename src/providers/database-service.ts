@@ -73,7 +73,7 @@ export class DatabaseService {
             entity: this.currentUser.entity,
             entityName: this.currentUser.entityName,
             reservationDays: reservationDays,
-            status:"Available", 
+            status:"Available",
             reserved: null
         }).then((resolve) => {
            this.uploadImage(photoURI, resolve.key)
@@ -94,7 +94,7 @@ export class DatabaseService {
 
         resRef.push(reservation);
         */
-       
+
     }
 
 
@@ -103,7 +103,7 @@ export class DatabaseService {
 
     loadUsersReservations(onDataLoaded) {
 
-        
+
         this.items.subscribe(itemsArray => {
             var returnList = [];
             itemsArray = itemsArray.filter(item => {
@@ -117,8 +117,8 @@ export class DatabaseService {
                 });
             onDataLoaded(returnList)
             });
-           
-            
+
+
     }
 
 
@@ -247,7 +247,7 @@ export class DatabaseService {
 
            this.items.subscribe(itemsArray => {
 
-               
+
                var reservations = [];
             itemsArray = itemsArray.filter(item => {
                 if(item.reserved!=null && item.entity==this.currentUser.entity){
@@ -259,7 +259,7 @@ export class DatabaseService {
             onDataLoaded(reservations)
             });
         }
-     
+
 
 
     getItemByTag(id) {
@@ -270,7 +270,7 @@ export class DatabaseService {
                     foundItem = item;
                 }
             });
-           
+
         });
         return foundItem;
     }
@@ -430,14 +430,14 @@ export class DatabaseService {
                 }
             onDataLoaded(foundItem);
         });
-               
+
 }
-   
+
 
    removeTemporaryItems() {
        this.tempItems.deleteAllItems();
   }
-  
+
 
    removeTemporaryItem(item) {
        this.tempItems.deleteItem(item);
@@ -446,7 +446,7 @@ export class DatabaseService {
 
   //Pending stuff
 
-  
+
   addPendingLoan(loan, itemKey) {
     this.items.update(itemKey, {
        pendingLoan:loan
@@ -475,8 +475,8 @@ export class DatabaseService {
       this.setCurrentUser(this.loadPendingLoans.bind(this), onDataLoaded)
   }
 
-   
-  
+
+
   getUsernameByUserId(userId) {
 	    var foundUser;
     this.users.subscribe(users => {
@@ -488,9 +488,9 @@ export class DatabaseService {
     });
     return foundUser;
   }
-	  
-	  
-  
+
+
+
 
   addPendingUser(entity) {
     this.pendingUsers.push({
@@ -562,7 +562,7 @@ export class DatabaseService {
       status: "Out"
     });
   }
-  
+
 
 
   removeLoan(loan) {
@@ -785,7 +785,7 @@ editItemResDays(resdays, itemKey){
     return list;
   }
 
-  
+
 
 
   //FACEBOOK AUTH
@@ -861,9 +861,10 @@ editItemResDays(resdays, itemKey){
         uid: user.uid,
         entity: "No Entity",
         entityName: "No Entity",
+        isAdmin: "false",
         email: user.email || "",
         photoURL: user.photoURL || "",
-        fullname: user.displayName || "",
+        fullName: user.displayName || "",
         name: {
           first: narr[0] || "",
           last: narr[1] || "",
@@ -940,7 +941,7 @@ editItemResDays(resdays, itemKey){
 
 //   downloadImage(item, onDataLoaded) {
 //     firebase.storage().ref('images/' + item.entity + "/" + item.name + "-" + item.$key).getDownloadURL().then(url => {
-//       onDataLoaded(url);  
+//       onDataLoaded(url);
 //     }, ()=>{})
 //   }
 
