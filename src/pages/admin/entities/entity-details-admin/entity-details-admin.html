@@ -57,4 +57,6 @@
 <ion-item class="reservation-input" *ngIf="modifyResDays">
       <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
     </ion-item>
+
+<button class="blue-button" (click)="goToTermsAndConditions()" *ngIf="currentEntity.termsAndConditions!=null"><div class="button-text">Terms and conditions</div></button>
 </ion-content>

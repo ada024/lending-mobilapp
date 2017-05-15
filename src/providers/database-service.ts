@@ -234,28 +234,33 @@ export class DatabaseService {
     }
 
     loadNumberOfReservations(onDataLoaded) {
-        if (this.currentUser != null) {
-            Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
-                return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
-            }).subscribe(numberOfReservations => onDataLoaded(numberOfReservations));
-        }
-        else
-            this.setCurrentUser(this.loadNumberOfReservations.bind(this), onDataLoaded)
-    }
+          /* this.items.subscribe(items=> {
+               var reservations = 0;
+               items.forEach(item=>{
+                   if(item.entity==this.currentUser.entity && item.reserved!=null){
+                    reservations+=item.reserved.length;
+                   }
+               });
+                onDataLoaded(reservations)
+           });
+           */
 
+           this.items.subscribe(itemsArray => {
 
-    getItem(name, id) {
-        let foundItem;
-        this.items.subscribe(items => {
-            items.forEach(item => {
-                if (item.name == name && item.id == id) {
-                    foundItem = item;
-                    console.log(foundItem.name);
-                }
+               
+               var reservations = [];
+            itemsArray = itemsArray.filter(item => {
+                if(item.reserved!=null && item.entity==this.currentUser.entity){
+                    for(var res of item.reserved){
+                    reservations.push(res)
+                    }
+                        }
+                });
+            onDataLoaded(reservations)
             });
-        });
-        return foundItem;
-    }
+        }
+     
+
 
     getItemByTag(id) {
         var foundItem;
@@ -265,6 +270,7 @@ export class DatabaseService {
                     foundItem = item;
                 }
             });
+           
         });
         return foundItem;
     }
@@ -601,15 +607,22 @@ export class DatabaseService {
 
   //Methods to add and get entities
 
-  addEntity(name, office, reservationDays) {
+  addEntity(name, office, reservationDays, termsAndConditions) {
     this.entities.push({
       name: name,
       owner: this.currentUser.uid,
       ownerName: this.currentUser.fullname,
       office: office,
-      reservationDays:reservationDays
+      reservationDays:reservationDays,
+      termsAndConditions:termsAndConditions
     });
   }
+
+updateTermsAndConditions(termsAndConditions){
+    this.entities.update(this.currentUser.entity, {
+        termsAndConditions:termsAndConditions
+    })
+}
 
   getEntitys() {
     return this.entities;

@@ -1,5 +1,5 @@
 ﻿export class Reservation {
-    constructor(public userId: String, public userName: String, public pickupDate: Date, public formattedpUpDate: String, public returnDate: any, public formattedRetDate, public itemName, public itemPhoto) {
+    constructor(public userId: String, public userName: String, public pickupDate: Date, public formattedpUpDate: String, public formattedShortpUpDate: String, public returnDate: any, public formattedRetDate, public formattedShortRetDate, public itemName, public itemPhoto) {
 
     }
 
@@ -18,11 +18,19 @@
         return this.formattedpUpDate;
     }
 
+    getFormattedShortpUpDate() {
+        return this.formattedpUpDate;
+    }
+
     getReturnDate() {
         return this.returnDate;
     }
 
     getFormattedRetDate() {
+        return this.formattedRetDate;
+    }
+
+    getFormattedShortRetDate() {
         return this.formattedRetDate;
     }
 

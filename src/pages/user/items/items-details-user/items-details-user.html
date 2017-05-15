@@ -34,6 +34,6 @@
     <div class="item-res-days"><b>Number of standard loan days:</b> {{resDays}}</div>
 
 
-<div class="you-have-reserved" *ngIf="reservation!=null&&!reservationCanceled">You have reserved this item from {{reservation.formattedpUpDate}} <button class="cancel-res" (click)="cancelReservation()"><div class="cancel-text">Cancel reservation</div></button></div>
+<div class="you-have-reserved" *ngIf="reservation!=null&&!reservationCanceled">You have reserved this item from {{reservation.formattedShortpUpDate}} <button class="cancel-res" (click)="cancelReservation()"><div class="cancel-text">Cancel</div></button></div>
   <button class="blue-button" (click)="goToItemPickedPage()"><div class="button-text">Reserve</div></button>
 </ion-content>

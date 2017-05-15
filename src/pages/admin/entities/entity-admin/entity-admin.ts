@@ -15,10 +15,13 @@ export class EntityAdminPage {
   currentUserEntity = "";
   currentEntity;
 
+  sentThis;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
     this.db.loadCurrentUser(this.onDataLoaded.bind(this));
     this.db.getEntity(this.onEntityLoaded.bind(this));
+
   }
 
   onDataLoaded(currentUser) {
@@ -43,7 +46,7 @@ onEntityLoaded(entities){
   }
 
   goToEntityListAdminPage() {
-    this.navCtrl.push(EntityListAdminPage);
+    this.navCtrl.push(EntityListAdminPage, {self:this.sentThis});
   }
 
   goToEntityAddAdminPage() {

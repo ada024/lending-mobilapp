@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import {TermsAndConditionsDetailsPage} from '../terms-and-conditions-details/terms-and-conditions-details';
 
 
 @Component({
@@ -42,7 +43,9 @@ onEntityLoaded(entity){
      this.currentEntityRoom = this.currentEntity.office.room;
      this.currentEntityHours = this.currentEntity.office.hours;
      this.currentEntityDays = this.getWeekDays(this.currentEntity.office.days.length);
-     this.resDays = this.currentEntity.reservationDays;
+     if(this.currentEntity.reservationDays!=null){
+         this.resDays = this.currentEntity.reservationDays;
+     }
 }
 
 
@@ -89,6 +92,9 @@ else this.modifyResDays = false;
 
 }
 
+goToTermsAndConditions(){
+this.navCtrl.push(TermsAndConditionsDetailsPage, {entity:this.currentEntity});
+}
 
 
 

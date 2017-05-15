@@ -19,6 +19,7 @@ export class ItemConfirmPickupPage {
     eventDate: any;
     item: any;
     pickupDate: any;
+    shortPickupDate: any;
     currentEntity: any;
     officeLocation: any;
     officeRoom: any;
@@ -27,6 +28,7 @@ export class ItemConfirmPickupPage {
 
     returnDate: Date;
     formattedReturnDate:any;
+    formattedShortReturnDate:any;
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
         this.eventDate = navParams.get("event");
         this.item = navParams.get("item");
@@ -42,6 +44,7 @@ export class ItemConfirmPickupPage {
         var date = this.eventDate.getDate();
         var suffix = this.getDayOfMonthSuffix(date);
         this.pickupDate = date + suffix + " of " + monthAsText + " " + year;
+        this.shortPickupDate = date + suffix + " of " + monthAsText;
 
         var x = this.item.reservationDays;
         var resDays = +x;
@@ -54,6 +57,7 @@ export class ItemConfirmPickupPage {
         var date2 = this.returnDate.getDate();
         var suffix2 = this.getDayOfMonthSuffix(date2);
         this.formattedReturnDate = date2 + suffix2 + " of " + monthAsText2 + " " + year2;
+        this.formattedShortReturnDate = date2 + suffix2 + " of " + monthAsText2;;
     }
 
   ionViewDidLoad() {
@@ -139,7 +143,7 @@ export class ItemConfirmPickupPage {
       photoURL = this.item.photoURL;
     }
     
-      var reservation = new Reservation(this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.item.name, photoURL);
+      var reservation = new Reservation(this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);
      
       this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
   }

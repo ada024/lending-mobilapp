@@ -30,8 +30,8 @@
 <ion-item class="reservation-input">
       <ion-input placeholder="#days" type="number" min="1" max="99" [(ngModel)]="reservationDays"></ion-input>
     </ion-item>
-
-    <div class="info-text">(can add offices and alter reservation days at entity page)</div>
+<div class="empty-res-days" *ngIf="emptyResDays">You have to add standard reservation days</div>
+    <div class="info-text">(you can alter office and reservation days at entity page)</div>
 
 <br>
 <div class="place-bottom">

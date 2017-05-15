@@ -28,6 +28,7 @@ import { ItemsDetailsAdminPage } from '../pages/admin/items/items-details-admin/
 import { ItemsTabsPage } from '../pages/admin/items/items-tabs/items-tabs';
 import { ItemsReservedAdminPage } from '../pages/admin/items/items-reserved-admin/items-reserved-admin';
 import { ItemsLoanedAdminPage } from '../pages/admin/items/items-loaned-admin/items-loaned-admin';
+import {ItemReservationCalendarPage} from '../pages/admin/items/item-reservation-calendar/item-reservation-calendar';
 
 import { UsersAdminPage } from '../pages/admin/users/users-admin/users-admin';
 import { UsersListAdminPage } from '../pages/admin/users/users-list-admin/users-list-admin';
@@ -39,8 +40,10 @@ import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/ent
 import { EntityOfficeAdminPage } from '../pages/admin/entities/entity-office-admin/entity-office-admin';
 import { EntityOpeningTimeAdminPage } from '../pages/admin/entities/entity-opening-time-admin/entity-opening-time-admin';
 import { EntityStandardReservationPage } from '../pages/admin/entities/entity-standard-reservation/entity-standard-reservation';
+import {TermsAndConditionsPage} from '../pages/admin/entities/terms-and-conditions/terms-and-conditions';
 import { EntityListAdminPage } from '../pages/admin/entities/entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../pages/admin/entities/entity-details-admin/entity-details-admin';
+import {TermsAndConditionsDetailsPage} from '../pages/admin/entities/terms-and-conditions-details/terms-and-conditions-details';
 
 import { CheckoutFirstPage } from '../pages/admin/checkout/checkout-first/checkout-first';
 import { CheckoutScanItemPage } from '../pages/admin/checkout/checkout-scan-item/checkout-scan-item';
@@ -116,6 +119,7 @@ export const firebaseConfig = {
     ItemsTabsPage,
     ItemsReservedAdminPage,
     ItemsLoanedAdminPage,
+    ItemReservationCalendarPage,
 
     UsersAdminPage,
     UsersListAdminPage,
@@ -127,8 +131,10 @@ export const firebaseConfig = {
       EntityOfficeAdminPage,
       EntityOpeningTimeAdminPage,
       EntityStandardReservationPage,
+      TermsAndConditionsPage,
     EntityListAdminPage,
     EntityDetailsAdminPage,
+    TermsAndConditionsDetailsPage,
 
       CheckoutFirstPage,
       CheckoutScanItemPage,
@@ -194,6 +200,7 @@ export const firebaseConfig = {
     ItemsTabsPage,
     ItemsReservedAdminPage,
     ItemsLoanedAdminPage,
+    ItemReservationCalendarPage,
 
     UsersAdminPage,
     UsersListAdminPage,
@@ -205,8 +212,10 @@ export const firebaseConfig = {
       EntityOfficeAdminPage,
       EntityOpeningTimeAdminPage,
       EntityStandardReservationPage,
+      TermsAndConditionsPage,
     EntityListAdminPage,
     EntityDetailsAdminPage,
+    TermsAndConditionsDetailsPage,
 
       CheckoutFirstPage,
       CheckoutScanItemPage,

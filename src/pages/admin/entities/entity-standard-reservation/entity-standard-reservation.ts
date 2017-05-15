@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import {TermsAndConditionsPage} from '../terms-and-conditions/terms-and-conditions';
 
 /*
   Generated class for the EntityStandardReservation page.
@@ -17,7 +18,9 @@ entityOffice: any;
 entityName: any;
 entityDays: any;
 reservationDays: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+
+emptyResDays=false;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public alertCtrl: AlertController) {
 this.entityOffice = navParams.get("office");
 this.entityName = navParams.get("entityName");
 console.log("entityDays: " + this.entityOffice.days);
@@ -29,9 +32,11 @@ this.entityDays = this.getWeekDays(this.entityOffice.days.length);
   }
 
 addEntity(){
-this.db.addEntity(this.entityName, this.entityOffice, this.reservationDays);
-this.navCtrl.remove(2, 4);
-this.navCtrl.pop();
+    if(this.reservationDays!=null){
+this.presentConfirm();
+    }
+    
+this.emptyResDays=true;
 }
 
 
@@ -72,5 +77,31 @@ getWeekDays(n) {
 
       return dayInfo;
   }
+
+
+presentConfirm() {
+  let alert = this.alertCtrl.create({
+    title: 'Terms and conditions?',
+    message: 'Do you want to add terms and conditions for this entity?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel',
+        handler: () => {
+             this.db.addEntity(this.entityName, this.entityOffice, this.reservationDays, null);
+            this.navCtrl.remove(2, 4);
+            this.navCtrl.pop();
+        }
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.navCtrl.push(TermsAndConditionsPage, {entityName:this.entityName, entityOffice:this.entityOffice, resDays:this.reservationDays});
+        }
+      }
+    ]
+  });
+  alert.present();
+}
 
 }

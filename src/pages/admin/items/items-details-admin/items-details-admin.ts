@@ -5,6 +5,7 @@ import { Platform } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { CheckoutConfirmItemPage } from '../../checkout/checkout-confirm-item/checkout-confirm-item';
 import { ItemsAddTagScannAdminPage } from '../items-add-tag-scann-admin/items-add-tag-scann-admin';
+import {ItemReservationCalendarPage} from '../item-reservation-calendar/item-reservation-calendar';
 
 @Component({
   selector: 'page-items-details-admin',
@@ -132,5 +133,9 @@ this.modifyResDays=false;
             });
         });
     }
+  }
+
+  goToReservationCalendar(){
+      this.navCtrl.push(ItemReservationCalendarPage, {item:this.item});
   }
 }

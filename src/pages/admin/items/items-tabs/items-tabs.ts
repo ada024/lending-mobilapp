@@ -24,14 +24,14 @@ export class ItemsTabsPage {
     @ViewChild('myTabs') tabRef: Tabs;
     selectedIndex;
     numberOfAvailable;
-    numberOfReserved;
+    numberOfReservations;
     numberOfLoaned
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
-        db.loadNumberOfReservedItems(this.onNumberOfReservedLoaded.bind(this));
+        db.loadNumberOfReservations(this.onNumberOfResLoaded.bind(this));
         db.loadNumberOfLoanedItems(this.onNumberOfLoanedLoaded.bind(this));
 
     }
@@ -40,14 +40,13 @@ export class ItemsTabsPage {
     console.log('ionViewDidLoad ItemsTabsPage');
   }
 
+
+onNumberOfResLoaded(numberOfRes){
+  this.numberOfReservations = numberOfRes.length;
+}
   onNumberOfAvailableLoaded(numberOfAvailable) {
       this.zone.run(() => {
           this.numberOfAvailable = numberOfAvailable;
-      });
-  }
-  onNumberOfReservedLoaded(numberOfReserved) {
-      this.zone.run(() => {
-          this.numberOfReserved = numberOfReserved;
       });
   }
 

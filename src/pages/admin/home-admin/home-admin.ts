@@ -27,7 +27,7 @@ export class HomeAdminPage {
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
     db.loadPendingUsersInThisEntity(this.onNumberOfPendingUsersLoaded.bind(this));
     db.loadItems(this.onItemsLoaded.bind(this));
-    db.loadNumberOfReservations(this.onNumberOfReservationsLoaded.bind(this));
+    db.loadNumberOfReservedItems(this.onNumberOfResLoaded.bind(this));
     db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
   }
 
@@ -37,6 +37,11 @@ export class HomeAdminPage {
     });
   }
 
+onNumberOfResLoaded(numberOfRes){
+  this.zone.run(() => {
+  this.numberOfReservations = numberOfRes;
+  });
+}
 
   onItemsLoaded(loadedList) {
       var loaded = false;
@@ -46,12 +51,6 @@ export class HomeAdminPage {
       });
       
   }
-  onNumberOfReservationsLoaded(numberOfReservations){
-      this.zone.run(() => {
-          this.numberOfReservations = numberOfReservations;
-          console.log("numberofres: " + this.numberOfReservations);
-      });
-  } 
       
   onNumberOfPendingUsersLoaded(pendingUsers) {
       this.zone.run(() => {
