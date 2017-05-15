@@ -20,7 +20,8 @@ export class ItemsDetailsAdminPage {
   reservations;
   itemDescription;
   itemName;
-  photoURI;
+  newPhotoURI;
+  oldPhotoURI;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
   public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events) {
@@ -85,8 +86,9 @@ this.modifyResDays=false;
           description: this.itemDescription,
           name: this.itemName
       });
-      if(this.photoURI) {
-          this.db.uploadImage(this.photoURI, this.item.$key);
+      if(this.newPhotoURI) {
+          this.db.uploadImage(this.newPhotoURI, this.item.$key);
+          this.oldPhotoURI = this.newPhotoURI = null;
       }
   }
 
@@ -94,7 +96,8 @@ this.modifyResDays=false;
       this.modify = false;
       this.itemDescription = this.item.description;
       this.itemName = this.item.name;
-      this.photoURI = null;
+      this.item.photoURL = this.oldPhotoURI;
+      this.oldPhotoURI = this.newPhotoURI = null;
   }
 
   encode() {
@@ -128,7 +131,8 @@ this.modifyResDays=false;
       }
       this.camera.getPicture(options).then(uri => {
           this.zone.run(() => {
-              this.photoURI = "data:image/jpeg;base64," + uri;
+              this.oldPhotoURI = this.item.photoURL;
+              this.newPhotoURI = this.item.photoURL = "data:image/jpeg;base64," + uri;
             });
         });
     }
