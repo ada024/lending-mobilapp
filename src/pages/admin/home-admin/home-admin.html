@@ -1,6 +1,9 @@
 ﻿<ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" class="logo">
+    </div>
     <ion-buttons end>
       <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
         <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
@@ -15,7 +18,7 @@
   <div class="button-container">
     <button class="check-out-button" (click)="goToCheckOut()">
       <div>
-        <ion-icon name="redo" class="check-out-icon"></ion-icon><br>
+        <img src="./assets/icons/checkout.svg" class="check-out-icon">
         <div class="check-out-text">
           check out
         </div>
@@ -24,7 +27,7 @@
 
     <button class="check-in-button"  (click)="goToCheckIn()">
       <div>
-        <ion-icon name="return-left" class="check-in-icon"></ion-icon><br>
+        <img src="./assets/icons/checkin.svg" class="check-in-icon">
         <div class="check-in-text">
           check in
         </div>
@@ -35,24 +38,26 @@
 <div class="button-container">
   <button class="grey-button" (click)="goToItemsAdminPage()">
     <div>
-      <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
+      <img src="./assets/icons/items.svg" class="grey-button-icon">
       <div class="grey-button-text-container">
         <div class="grey-button-text-title">
           Items
         </div><br>
         <div class="grey-button-text-info">
           <div class="items-registered">{{numberOfItems}} items registered</div>
-          <div class="notification-reservation" *ngIf="numberOfReservations && numberOfReservations!=0">
-            {{numberOfReservations}} items with reservations
-          </div>
         </div>
       </div>
     </div>
   </button>
+  <div class="notification-container" *ngIf="numberOfReservations && numberOfReservations!=0">
+    <div class="notification-reservation">
+      {{numberOfReservations}} items with reservations
+    </div>
+  </div>
 
   <button [ngClass]="currentEntity != 'No entity' ? 'grey-button' : 'grey-button-glowing'" (click)="goToEntityAdminPage()">
     <div>
-      <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
+      <img src="./assets/icons/entities.svg" class="grey-button-icon">
       <div class="grey-button-text-container">
         <div class="grey-button-text-title">
           Entity
@@ -66,26 +71,22 @@
 
   <button class="grey-button" (click)="goToUsersAdminPage()">
     <div>
-      <ion-icon name="logo-freebsd-devil" class="grey-button-icon"></ion-icon>
+      <img src="./assets/icons/users.svg" class="grey-button-icon">
       <div class="grey-button-text-container">
         <div class="grey-button-text-title">
           Users
         </div><br>
         <div class="grey-button-text-info">
           <div class="users-registered">{{numberOfUsers}} registered</div>
-          <div class="notification-pending" *ngIf="numberOfPendingUsers && numberOfPendingUsers!=0">
-            {{numberOfPendingUsers}} pending
-          </div>
         </div>
       </div>
     </div>
   </button>
-  
-  <button class="developer-tools-button"  (click)="goToDeveloperToolsAdminPage()">
-    <div class="developer-tools-text">
-      Developer tools
+  <div class="notification-container" *ngIf="numberOfPendingUsers && numberOfPendingUsers!=0">
+    <div class="notification-pending">
+      {{numberOfPendingUsers}} users with pending requests
     </div>
-  </button>
+  </div>
 
 </div>
 

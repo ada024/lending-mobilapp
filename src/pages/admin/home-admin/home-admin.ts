@@ -7,7 +7,6 @@ import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
 import { ItemsAdminPage } from '../items/items-admin/items-admin';
 import { UsersAdminPage } from '../users/users-admin/users-admin';
 import { EntityAdminPage } from '../entities/entity-admin/entity-admin';
-import { DeveloperToolsPage } from '../developer-tools/developer-tools';
 
 @Component({
   selector: 'page-home-admin',
@@ -88,9 +87,5 @@ onNumberOfResLoaded(numberOfRes){
 
   goToEntityAdminPage() {
     this.navCtrl.push(EntityAdminPage);
-  }
-
-  goToDeveloperToolsAdminPage() {
-    this.navCtrl.push(DeveloperToolsPage);
   }
 }

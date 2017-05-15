@@ -1,5 +1,16 @@
 ﻿page-home-admin {
 
+  .navbar {
+    background-color: #F8FF4A;
+  }
+
+  .logo {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 80px;
+    width: 80px;
+  }
   
   .button-container {
     margin-top: 20px;
@@ -11,15 +22,17 @@
     width: 150px;
     height: 130px;
     margin-right: 20px;
-    background-color: #f28282;
+    background-color: #F98782;
   }
 
   .check-out-icon {
-    font-size: 50px;
+    height: 65px;
+    width: 65px;
   }
 
   .check-out-text {
     font-size: 20px;
+    margin-top: 10px;
   }
 
 
@@ -28,15 +41,17 @@
   .check-in-button {
     width: 150px;
     height: 130px;
-    background-color: #9ee084;
+    background-color: #80E08F;
   }
 
   .check-in-icon {
-    font-size: 50px;
+    height: 65px;
+    width: 65px;
   }
 
   .check-in-text {
     font-size: 20px;
+    margin-top: 10px;
   }
 
 
@@ -45,31 +60,29 @@
   .grey-button {
     width: 100%;
     height: 60px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #d6d6d6;
+    margin-top: 15px;
+    background-color: #DCDEE0;
   }
 
   .grey-button-glowing {
     width: 100%;
     height: 60px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #d6d6d6;
+    margin-top: 15px;
+    background-color: #DCDEE0;
     border: 3px solid #9ecaed;;
-    box-shadow: 0 0 10px #9ecaed;
+    box-shadow: 0 0 10px #DCDEE0;
   }
 
   .grey-button-icon {
-    font-size: 40px;
+    height: 40px;
+    width: 40px;
     margin-right: 20px;
+    margin-left: 10px;
     float: left;
-    display: inline-block;
   }
 
   .grey-button-text-container {
     float: left;
-    display: inline-block;
   }
 
   .grey-button-text-title {
@@ -81,30 +94,31 @@
     float: left;
   }
 
+  .notification-container {
+    background-color: #FF7166;
+    text-align: center;
+    margin-top: -5px;
+    height: 25px;
+  }
+
   .notification-pending {
-    color: red;
-    position: absolute;
-    left: 6.1em;
-    top: 28.1em
+    color: white;
+    font-size: 15px;
+    padding: 5px;
   }
 
   .notification-reservation {
-    color: red;
-    position: absolute;
-    left: 6.2em;
-    top: 17.6em;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
   }
 
   .items-registered {
-    position: absolute;
-    left: 6.2em;
-    top: 16.6em;
+    margin-top: 5px;
   }
 
   .users-registered {
-    position: absolute;
-    left: 6.2em;
-    top: 27.1em;
+    margin-top: 5px;
   }
 
   .developer-tools-button {
@@ -117,5 +131,9 @@
 
   .developer-tools-text {
     font-size: 30px;
+  }
+
+  button {
+    margin: 0;
   }
 }

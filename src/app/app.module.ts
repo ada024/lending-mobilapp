@@ -4,7 +4,6 @@ import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { DatabaseService} from '../providers/database-service';
 import { DropDownMenuService} from '../providers/drop-down-menu-service';
-import { DeveloperToolsPage } from '../pages/admin/developer-tools/developer-tools';
 import { DropdownMenuPage } from '../pages/dropdown-menu/dropdown-menu';
 
 import { LoginPage } from '../pages/login/login';
@@ -100,7 +99,6 @@ export const firebaseConfig = {
     ChooseAccountTypePage,
     HomeAdminPage,
     HomeUserPage,
-    DeveloperToolsPage,
     DropdownMenuPage,
     SendMailPage,
 
@@ -181,7 +179,6 @@ export const firebaseConfig = {
     ChooseAccountTypePage,
     HomeAdminPage,
     HomeUserPage,
-    DeveloperToolsPage,
     DropdownMenuPage,
     SendMailPage,
 
