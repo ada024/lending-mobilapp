@@ -882,7 +882,7 @@ editItemResDays(resdays, itemKey){
         entityName: "No entity, join an entity to get started",
         email: user.email || "",
         photoURL: user.photoURL || "",
-        fullName: user.displayName || "",
+        fullname: user.displayName || "",
       });
     } else {
       console.log("User exist in db");
