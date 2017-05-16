@@ -23,6 +23,7 @@ export class ItemsDetailsAdminPage {
   itemName;
   newPhotoURI;
   oldPhotoURI;
+  entity;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
   public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events) {
@@ -32,6 +33,7 @@ export class ItemsDetailsAdminPage {
       db.getItemForDetailsPage(this.onItemLoaded.bind(this), sentItem.$key);
       this.resDays=this.item.reservationDays;
       
+
       if(this.item.reserved!=null){
           this.reservations = this.item.reserved
           this.reservations.sort((date1, date2) => date1.pickupDate - date2.pickupDate);
@@ -46,6 +48,7 @@ export class ItemsDetailsAdminPage {
       }
 
   }
+
 
   onItemLoaded(itemForDetail) {
       this.zone.run(() => {

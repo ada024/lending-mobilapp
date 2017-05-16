@@ -25,6 +25,7 @@ export class ItemReservationCalendarPage {
     clickedTwice:boolean;
     unableForReservation = false;
     reservationName;
+    loanName;
 
     notClickable=[];
 
@@ -64,12 +65,21 @@ export class ItemReservationCalendarPage {
       this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
+      if(this.item.reserved!=null){
       for(var reservation of this.item.reserved){
         if(reservation.pickupDate<=ev.selectedTime.getTime() && reservation.returnDate>=ev.selectedTime.getTime()){
       this.reservationName=reservation.userName;
       break;
         }
         else this.reservationName=null;
+      }
+      }
+      if(this.item.loan!=null){
+          var today = new Date();
+          if(today.getTime()<=ev.selectedTime.getTime() && this.item.loan.timeInMillis>=ev.selectedTime.getTime()){
+       this.loanName=this.item.loan.loanerName;
+        }
+        else this.loanName=null;
       }
 
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
@@ -128,7 +138,7 @@ export class ItemReservationCalendarPage {
                 endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
                
                 events.push({
-                    title: ' ',
+                    title: 'Reserved',
                     startTime: startTime,
                     endTime: endTime,
                     allDay: true,
@@ -136,6 +146,23 @@ export class ItemReservationCalendarPage {
                 });
         }
             
+    }
+    if(this.item.loan!=null){
+           var startDate = new Date();
+            var endDate = new Date();
+            endDate.setTime(this.item.loan.timeInMillis);
+            var startTime;
+            var endTime;
+                startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()+1);
+               
+                endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
+               
+                events.push({
+                    title: 'Loaned out',
+                    startTime: startTime,
+                    endTime: endTime,
+                    allDay: true
+                });
         }
         return events;
     }

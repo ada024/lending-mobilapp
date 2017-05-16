@@ -47,7 +47,7 @@ export class HomeUserPage {
     }
 
     acceptLoan(pendingLoan) {
-        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.timeInMillis);
+        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.timeInMillis);
         this.db.addLoan(loan, pendingLoan);
        this.db.deletePendingLoan(pendingLoan);
   }
@@ -115,6 +115,37 @@ export class HomeUserPage {
             text: 'Confirm',
             handler: () => {
                 this.db.acceptUserTag();
+            }
+        }
+        ] 
+    }).present();
+  }
+
+
+removeReservation(reservation){
+     this.alertCtrl.create({
+        title: 'Delete reservation?',
+        message: 'Do you really want to delete this reservation?',
+        buttons: [
+        {
+            text: 'No',
+        },
+        {
+            text: 'Yes',
+            handler: () => {
+                  var resList = [];
+                  var item = this.db.getItemByKey(reservation.itemKey);
+            resList = item.reserved;
+            for(var res of resList){
+            if(res.pickupDate==reservation.pickupDate&&res.returnDate==reservation.returnDate&&res.itemKey==reservation.itemKey){
+            var index = resList.indexOf(res);
+            if (resList.length > -1) {
+            resList.splice(index, 1);
+            this.db.addReservation(resList, item);
+            break;
+}
+        }
+    }
             }
         }
         ] 

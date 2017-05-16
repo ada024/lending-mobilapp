@@ -49,7 +49,7 @@ export class CheckoutUserPickedPage {
 
     goToHomeAdminPage() {
 
-        var loan = new Loan(this.user.uid, this.db.currentUser.fullname, this.formattedReturnDate, this.returnDate.getTime());
+        var loan = new Loan(this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.returnDate.getTime());
         for (let item of this.itemList) {
             this.db.addPendingLoan(loan, item.$key);
         }

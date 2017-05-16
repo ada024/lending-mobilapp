@@ -164,6 +164,46 @@ export class ItemCalendarUserPage {
                 
             
         }
+        
+        if(this.item.loan!=null){
+           var startDate = new Date();
+            this.notClickable.push(startDate);
+            var endDate = new Date();
+            endDate.setTime(this.item.loan.timeInMillis);
+            this.notClickable.push(endDate);
+
+            for(var officeDay of this.currentEntity.office.days){
+                var checkDate = new Date();
+                    var distance = officeDay - checkDate.getDay();
+                checkDate.setDate(checkDate.getDate() + distance);
+                      
+                if(checkDate<endDate && checkDate>startDate){
+                    this.notClickable.push(checkDate);
+                }
+
+                var checkDate2= new Date();
+                checkDate2.setTime(this.item.loan.timeInMillis);
+                var distance = officeDay - checkDate2.getDay();
+                checkDate2.setDate(checkDate2.getDate() + distance);
+
+                  if(checkDate2<endDate && checkDate2>startDate){
+                    this.notClickable.push(checkDate2);
+                }
+            }
+
+            var startTime;
+            var endTime;
+                startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()+1);
+               
+                endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
+               
+                events.push({
+                    title: 'Loaned out',
+                    startTime: startTime,
+                    endTime: endTime,
+                    allDay: true
+                });
+        }
         return events;
     }
    }

@@ -97,7 +97,7 @@
       <div class="reservations-container">
         <img [src]="reservation.photoURL" class="item-image" />
         <div class="item-name">
-          {{reservation.itemName}}
+          {{reservation.itemName}} <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
           <div class="dueDate">Pick up {{dueDate(reservation.pickupDate)}}</div>
         </div>
       </div>
