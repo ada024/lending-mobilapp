@@ -40,8 +40,8 @@ onEntityLoaded(entities){
 
 
   goToEntityDetailsAdminPage() {
-    if(this.currentUserEntity!="No entity"){
-    this.navCtrl.push(EntityDetailsAdminPage, {entity:this.currentEntity});
+    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+      this.navCtrl.push(EntityDetailsAdminPage, {entity:this.currentEntity});
     }
   }
 
@@ -50,6 +50,8 @@ onEntityLoaded(entities){
   }
 
   goToEntityAddAdminPage() {
-    this.navCtrl.push(EntityAddAdminPage);
+    if(this.db.currentUser.entity != "No entity, join an entity to get started")  {
+      this.navCtrl.push(EntityAddAdminPage);
+    }
   }
 }

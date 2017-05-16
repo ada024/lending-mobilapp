@@ -17,4 +17,32 @@ page-entity-join-user {
         color: red;
         font-size: 30px;
     }
+
+.title-text{
+font-weight:bold;
+font-size:3em;
+text-align:center;
+}
+.office-and-opening{
+margin-top:2em;
+font-size:1.5em;
+text-align:center;
+}
+.location-and-days{
+    margin-top:0.5em;
+    margin-bottom:0.3em;
+    font-size:1.4em;
+font-weight:bold;
+text-align:center;
+}
+.room-and-hours{
+font-size:1.8em;
+font-weight:bold;
+text-align:center;
+}
+.reservation-text{
+    position:relative;
+    top:2.5em;
+    text-align:center;
+}
 }

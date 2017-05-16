@@ -41,8 +41,10 @@ export class ItemsDetailsUserPage {
 
   onItemLoaded(itemForDetail) {
       this.zone.run(() => {
-          this.item = itemForDetail[0];
-          this.resDays = this.item.reservationDays;
+          if(itemForDetail[0]) {
+              this.item = itemForDetail[0];
+              this.resDays = this.item.reservationDays;
+          }
       });
 
   }
