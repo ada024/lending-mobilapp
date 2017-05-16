@@ -87,14 +87,17 @@ export class HomeUserPage {
       var oneDay = 24 * 60 * 60 * 1000;
       var diffDays = Math.round(Math.abs((itemDate - currentDate.getTime()) / (oneDay)));
       var returnText;
+      if (diffDays < 0) {
+          returnText = "Should have been returned";
+      }
       if (diffDays == 0) {
           returnText = "today";
       }
       else if (diffDays == 1) {
-          returnText = " in " + diffDays + " day";
+          returnText = "in " + diffDays + " day";
       }
       else if (diffDays > 1) {
-          returnText = " in " + diffDays + " days";
+          returnText = "in " + diffDays + " days";
       }
       return returnText;
   }

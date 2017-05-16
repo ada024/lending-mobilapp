@@ -52,6 +52,34 @@ export class DatabaseService {
         this.entitiesRef = firebase.database().ref('/entities');
         this.tempItems = new Tempitems();
 
+
+
+var now = new Date();
+now.setDate(now.getDate()+1);
+for(var item of this.itemsRef){
+if(item.reserved!=null){
+    for(var res of item.reserved){
+        if(res.pickupDate>=now.getTime()){
+            var index = item.reserved.indexOf(res);
+            if (item.reserved.length > -1) {
+            item.reserved.splice(index, 1);
+            this.addReservation(item.reserved, item);
+        }
+    }
+}
+}
+}
+
+for(var item of this.itemsRef){
+if(item.loan!=null){
+        if(item.loan.timeInMillis>=now.getTime()){
+            item.loan.status="Notify";
+        }
+}
+}
+
+
+
         // CURREMT USER INFO
         this.af.auth.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
@@ -61,6 +89,9 @@ export class DatabaseService {
                 });
             }
         });
+
+
+
     }
 
 

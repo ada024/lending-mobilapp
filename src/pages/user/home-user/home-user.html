@@ -112,7 +112,7 @@
         <img [src]="loan.photoURL" class="item-image" />
         <div class="item-name">
           {{loan.name}}
-          <div class="dueDateBorrowed">Due {{dueDate(loan.loan.timeInMillis)}}</div>
+          <div class="dueDateBorrowed"> <span *ngIf="dueDate(loan.loan.timeInMillis)=='Should have been returned'">{{dueDate(loan.loan.timeInMillis)}}</span> <span *ngIf="dueDate(loan.loan.timeInMillis)!='Should have been returned'">Due {{dueDate(loan.loan.timeInMillis)}}</span></div>
         </div>
       </div>
     </div>
