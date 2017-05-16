@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { DropDownMenuService} from '../../../providers/drop-down-menu-service';
 import { EntityUserPage } from '../entities/entity-user/entity-user';
@@ -22,7 +22,7 @@ export class HomeUserPage {
     resTest;
     //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,
+    constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
         public zone: NgZone, public db: DatabaseService, public menu: DropDownMenuService) {
         db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
         db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
@@ -97,5 +97,26 @@ export class HomeUserPage {
       return returnText;
   }
   
+  declineUserTag() {
+      this.db.declineUserTag();
+  }
+
+  acceptUserTag() {
+      this.alertCtrl.create({
+        title: 'Confirm',
+        message: 'This will override any previously registered tag you have',
+        buttons: [
+        {
+            text: 'Cancel',
+        },
+        {
+            text: 'Confirm',
+            handler: () => {
+                this.db.acceptUserTag();
+            }
+        }
+        ] 
+    }).present();
+  }
 
 }

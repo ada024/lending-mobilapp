@@ -70,6 +70,26 @@
     </button>
   </div>
 
+  <h3 style="margin-top: 20px;" *ngIf="db.currentUser && db.currentUser.requestTagId">NFC Tag request</h3>
+
+  <div *ngIf="db.currentUser && db.currentUser.requestTagId">
+    <div class="tag-text">
+      An admin wants to register a NFC user tag for you
+    </div>
+    <div>
+      <button class="dismiss-button" (click)="declineUserTag()">
+        <div class="button-text">
+          <b>Dismiss</b>
+        </div>
+      </button>
+      <button class="confirm-button" (click)="acceptUserTag()">
+        <div class="button-text">
+          <b>Accept</b>
+        </div>
+      </button>
+    </div>
+  </div>
+
   <h3 style="margin-top: 20px;" *ngIf="reservations && reservations.length != 0">You have reserved</h3>
 
   <div *ngIf="reservations && reservations.length != 0" class="scroll-bar">

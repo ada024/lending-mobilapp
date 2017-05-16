@@ -33,6 +33,7 @@ import { UsersAdminPage } from '../pages/admin/users/users-admin/users-admin';
 import { UsersListAdminPage } from '../pages/admin/users/users-list-admin/users-list-admin';
 import { UsersPendingAdminPage } from '../pages/admin/users/users-pending-admin/users-pending-admin';
 import { UsersDetailsAdminPage } from '../pages/admin/users/users-details-admin/users-details-admin';
+import { UsersAddTagAdminPage } from '../pages/admin/users/users-add-tag-admin/users-add-tag-admin';
 
 import { EntityAdminPage } from '../pages/admin/entities/entity-admin/entity-admin';
 import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/entity-add-admin';
@@ -123,6 +124,7 @@ export const firebaseConfig = {
     UsersListAdminPage,
     UsersPendingAdminPage,
     UsersDetailsAdminPage,
+    UsersAddTagAdminPage,
 
     EntityAdminPage,
       EntityAddAdminPage,
@@ -203,6 +205,7 @@ export const firebaseConfig = {
     UsersListAdminPage,
     UsersPendingAdminPage,
     UsersDetailsAdminPage,
+    UsersAddTagAdminPage,
 
     EntityAdminPage,
       EntityAddAdminPage,

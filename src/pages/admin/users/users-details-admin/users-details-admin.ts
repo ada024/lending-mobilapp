@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { UsersAddTagAdminPage } from '../users-add-tag-admin/users-add-tag-admin';
 import { SendMailPage } from '../../../send-mail/send-mail';
 
 @Component({
@@ -19,10 +20,14 @@ export class UsersDetailsAdminPage {
     this.navCtrl.push(SendMailPage, {user: this.user});
   }
 
+  goToUsersAddTagAdminPage() {
+    this.navCtrl.push(UsersAddTagAdminPage, {user: this.user});
+  }
+
   giveAdminAccess() {
     this.alertCtrl.create({
       title: 'Confirm',
-      message: 'Do you want to give this user admin access? This will allow the user to control the entity',
+      message: 'Do you want to give this user admin access? This will allow the user to control this entity',
       buttons: [
       {
         text: 'Cancel',
@@ -40,7 +45,7 @@ export class UsersDetailsAdminPage {
   kickUser() {
     this.alertCtrl.create({
       title: 'Confirm',
-      message: 'Do you want to kick this user from the entity?',
+      message: 'Do you want to kick this user from this entity?',
       buttons: [
       {
         text: 'Cancel',

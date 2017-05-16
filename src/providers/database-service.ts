@@ -374,6 +374,25 @@ export class DatabaseService {
       })
     }
 
+    requestUserTag(tagId, user) {
+        return this.users.update(user, {
+          requestTagId: tagId
+      })
+    }
+
+    declineUserTag() {
+        this.users.update(this.currentUser.$key, {
+          requestTagId: null
+      })
+    }
+
+    acceptUserTag() {
+        this.users.update(this.currentUser.$key, {
+            tagId: this.currentUser.requestTagId,
+            requestTagId: null
+      })
+    }
+
     setUserIsAdmin(isAdmin) {
         this.users.update(this.currentUser.$key, {
           isAdmin: isAdmin
@@ -691,8 +710,8 @@ updateTermsAndConditions(termsAndConditions){
 
   setEntityNull() {
       this.users.update(this.currentUser.$key, {
-          entity: "No entity",
-          entityName: "No entity"
+          entity: "No entity, join an entity to get started",
+          entityName: "No entity, join an entity to get started"
       });
   }
 
@@ -859,8 +878,8 @@ editItemResDays(resdays, itemKey){
       let narr = this.authState.auth.displayName.split(" ");
       this.usersRef.child(user.uid).set({
         uid: user.uid,
-        entity: "No Entity",
-        entityName: "No Entity",
+        entity: "No entity, join an entity to get started",
+        entityName: "No entity, join an entity to get started",
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",
