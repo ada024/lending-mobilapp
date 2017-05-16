@@ -10,9 +10,19 @@
 
 <ion-content padding>
 
-  <p class=title>
-    <b>{{entity.name}}</b>
-  </p>
+<div class="title-text">{{entity.name}}</div>
+<div class="office-and-opening">Borrowing office location:</div>
+<div class="location-and-days">{{currentEntityLocation}}</div>
+
+<div class="room-and-hours">{{currentEntityRoom}}</div>
+<br>
+<br>
+<hr style="color:gray;height:0.5em;">
+<div class="office-and-opening">Opening hours:</div>
+<div class="location-and-days">{{currentEntityDays}}</div>
+<div class="room-and-hours">{{currentEntityHours}}</div>
+
+<br>
 
   <div *ngIf="!(entity.owner == db.currentUser.uid)">
 
