@@ -30,10 +30,10 @@ export class MyApp {
       if (this.authState) {
         this.db.existInDb();
         this.db.loadCurrentUser((currentUser) => {
-          if(currentUser.isAdmin) {
+          if(currentUser.isAdmin == "true") {
             this.rootPage = HomeAdminPage;
           }
-          else if(currentUser.isAdmin == false) {
+          else if(currentUser.isAdmin == "false") {
             this.rootPage = HomeUserPage;
           }
           else {

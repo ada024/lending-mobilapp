@@ -14,23 +14,33 @@
     <b>{{entity.name}}</b>
   </p>
 
-  <div *ngIf="!isPending && !hasJoined && bothAnswersLoaded">
-    <button class="blue-button" (click)="sendRequest()">
-    <div class="button-text">
-      <b>Send request to join entity</b>
+  <div *ngIf="!(entity.owner == db.currentUser.uid)">
+
+    <div *ngIf="!isPending && !hasJoined && bothAnswersLoaded">
+      <button class="blue-button" (click)="sendRequest()">
+        <div class="button-text">
+          <b>Send request to join entity</b>
+        </div>
+      </button>
     </div>
-   </button>
+
+    <div *ngIf="isPending && bothAnswersLoaded">
+      <div class="info-text-1">
+        <b>Waiting for the owner of {{entity.name}} to accept request</b>
+      </div>
+    </div>
+
+    <div *ngIf="hasJoined && bothAnswersLoaded">
+      <div class="info-text-2">
+        <b>You have already joined this entity</b>
+      </div>
+    </div>
+
   </div>
 
-  <div *ngIf="isPending && bothAnswersLoaded">
-    <div class="info-text-1">
-      <b>Waiting for the owner of {{entity.name}} to accept request</b>
-    </div>
-  </div>
-
-  <div *ngIf="hasJoined && bothAnswersLoaded">
-    <div class="info-text-2">
-      <b>You have already joined this entity</b>
+  <div *ngIf="entity.owner == db.currentUser.uid">
+    <div class="info-text-3">
+      <b>You can't join your own entity</b>
     </div>
   </div>
 
