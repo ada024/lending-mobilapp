@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import {TermsAndConditionsUserPage} from '../terms-and-conditions-user/terms-and-conditions-user';
 
 /*
   Generated class for the EntityDetailsUser page.
@@ -74,4 +75,8 @@ onEntityLoaded(entity){
       return dayInfo;
   }
 
+
+goToTermsAndConditions(){
+    this.navCtrl.push(TermsAndConditionsUserPage, {entity: this.currentEntity});
+}
 }

@@ -67,6 +67,7 @@ import { EntityUserPage } from '../pages/user/entities/entity-user/entity-user';
 import { EntityListUserPage } from '../pages/user/entities/entity-list-user/entity-list-user';
 import { EntityChangeUserPage } from '../pages/user/entities/entity-change-user/entity-change-user';
 import { EntityDetailsUserPage } from '../pages/user/entities/entity-details-user/entity-details-user';
+import {TermsAndConditionsUserPage} from '../pages/user/entities/terms-and-conditions-user/terms-and-conditions-user';
 import { EntityJoinUserPage } from '../pages/user/entities/entity-join-user/entity-join-user';
 
 import { ItemsDetailsUserPage } from '../pages/user/items/items-details-user/items-details-user';
@@ -158,6 +159,7 @@ export const firebaseConfig = {
     EntityListUserPage,
     EntityChangeUserPage,
     EntityDetailsUserPage,
+    TermsAndConditionsUserPage,
     EntityJoinUserPage,
 
       ItemsDetailsUserPage,
@@ -239,6 +241,7 @@ export const firebaseConfig = {
     EntityListUserPage,
     EntityChangeUserPage,
     EntityDetailsUserPage,
+    TermsAndConditionsUserPage,
     EntityJoinUserPage,
 
      ItemsDetailsUserPage,

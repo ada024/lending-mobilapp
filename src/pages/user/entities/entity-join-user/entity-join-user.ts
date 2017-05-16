@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import {TermsAndConditionsUserPage} from '../terms-and-conditions-user/terms-and-conditions-user';
 
 
 @Component({
@@ -43,5 +44,9 @@ export class EntityJoinUserPage {
 
   sendRequest() {
     this.db.addPendingUser(this.entity);
+  }
+
+  goToTermsAndConditions(){
+    this.navCtrl.push(TermsAndConditionsUserPage, {entity:this.entity});
   }
 }

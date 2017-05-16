@@ -14,6 +14,8 @@
     <b>{{entity.name}}</b>
   </p>
 
+
+
   <div *ngIf="!(entity.owner == db.currentUser.uid)">
 
     <div *ngIf="!isPending && !hasJoined && bothAnswersLoaded">
@@ -22,6 +24,10 @@
           <b>Send request to join entity</b>
         </div>
       </button>
+      <span *ngIf="entity.termsAndConditions!=null" style="margin-left:0.8em">(By joining you agree to the terms and conditions)</span>
+      <br>
+      <br>
+      <button class="blue-button" (click)="goToTermsAndConditions()" *ngIf="entity.termsAndConditions!=null"><div class="button-text">Read this entitys terms and conditions</div></button>
     </div>
 
     <div *ngIf="isPending && bothAnswersLoaded">
