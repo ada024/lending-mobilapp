@@ -50,8 +50,7 @@ onEntityLoaded(entities){
   }
 
   goToEntityAddAdminPage() {
-    if(this.db.currentUser.entity != "No entity, join an entity to get started")  {
       this.navCtrl.push(EntityAddAdminPage);
-    }
+    
   }
 }
