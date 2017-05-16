@@ -57,7 +57,9 @@ export class HomeUserPage {
   }
 
   goToItemlistUserPage() {
-      this.navCtrl.push(ItemsTabsUserPage);
+      if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+          this.navCtrl.push(ItemsTabsUserPage);
+      }
   }
 
   onPendingLoansLoaded(loadedList) {

@@ -70,19 +70,27 @@ onNumberOfResLoaded(numberOfRes){
   }
 
   goToCheckOut() {
-    this.navCtrl.push(CheckoutFirstPage);
+    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+      this.navCtrl.push(CheckoutFirstPage);
+    }
   }
   
   goToCheckIn() {
-    this.navCtrl.push(CheckinFirstPage);
+    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+      this.navCtrl.push(CheckinFirstPage);
+    }
   }
   
   goToItemsAdminPage() {
-    this.navCtrl.push(ItemsAdminPage);
+    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+      this.navCtrl.push(ItemsAdminPage);
+    }
   }
 
   goToUsersAdminPage() {
-    this.navCtrl.push(UsersAdminPage);
+    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+      this.navCtrl.push(UsersAdminPage);
+    }
   }
 
   goToEntityAdminPage() {

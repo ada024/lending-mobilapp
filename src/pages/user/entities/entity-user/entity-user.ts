@@ -29,7 +29,7 @@ export class EntityUserPage {
   }
 
   onEntityLoaded(entity){
-this.currentEntity = entity[0];
+    this.currentEntity = entity[0];
   }
 
   goToEntityChangeUserPage() {
@@ -41,8 +41,8 @@ this.currentEntity = entity[0];
   }
 
   goToEntityDetailsUserPage(){
-    if(this.currentUserEntity!="No entity"){
-    this.navCtrl.push(EntityDetailsUserPage);
+    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+      this.navCtrl.push(EntityDetailsUserPage);
     }
   }
 
