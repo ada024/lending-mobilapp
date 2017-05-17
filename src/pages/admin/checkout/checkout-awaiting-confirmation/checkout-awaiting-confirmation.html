@@ -41,5 +41,10 @@
       <b>Done</b>
     </div>
   </button>
+  <button class="done-button" (click)="done()"  *ngIf="confirmCheck!=items.length">
+    <div class="blue-button-text">
+      <b>Dont wait for confirmation</b>
+    </div>
+  </button>
 
 </ion-content>

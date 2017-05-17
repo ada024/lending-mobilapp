@@ -346,7 +346,7 @@ status:"Notify"
         let foundUser;
         this.users.subscribe(users => {
             users.forEach(user => {
-                if (user.id == id) {
+                if (user.tagId == id) {
                     foundUser = user;
                 }
             });
