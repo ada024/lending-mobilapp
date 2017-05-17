@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class UsersAddTagAdminPage {
   user;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone,
-  public platform: Platform, public db: DatabaseService) {
+  public platform: Platform, public db: DatabaseService, public menu: DropDownMenuService) {
     this.user = navParams.get("user");
     platform.registerBackButtonAction(this.onBackPressed.bind(this));
       if ((<any>window).nfc != null) {

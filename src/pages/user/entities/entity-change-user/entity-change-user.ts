@@ -29,6 +29,6 @@ export class EntityChangeUserPage {
 
   changeEntity(entity) {
     this.db.setEntity(entity);
-    this.navCtrl.pop();
+    this.navCtrl.popToRoot();
   }
 }

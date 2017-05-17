@@ -28,7 +28,9 @@ this.resDays = navParams.get("resDays");
   }
 
   addTermsAndConditions(){
-    this.db.addEntity(this.entityName, this.entityOffice, this.resDays, this.termsAndConditions);
+    this.db.addEntity(this.entityName, this.entityOffice, this.resDays, this.termsAndConditions).then(resolve => {
+      this.db.setEntity({$key: resolve.key, name: this.entityName});
+    });
     this.navCtrl.remove(2, 5);
     this.navCtrl.pop();
   }

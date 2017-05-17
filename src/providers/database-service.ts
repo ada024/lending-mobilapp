@@ -670,7 +670,7 @@ status:"Notify"
   //Methods to add and get entities
 
   addEntity(name, office, reservationDays, termsAndConditions) {
-    this.entities.push({
+    return this.entities.push({
       name: name,
       owner: this.currentUser.uid,
       ownerName: this.currentUser.fullname,
@@ -1013,5 +1013,9 @@ editItemResDays(resdays, itemKey){
     ctx.drawImage(<HTMLImageElement>this, 0, 0, tempImg.width, tempImg.height, 0, 0, size, size);
     callback(canvas.toDataURL("image/jpeg"));
     };
+  }
+
+  isAndroid() {
+      return this.platform.is("android")
   }
 }

@@ -32,6 +32,6 @@ export class EntityListAdminPage {
 
   changeEntity(entity) {
     this.db.setEntity(entity);
-    this.navCtrl.pop();
+    this.navCtrl.popToRoot();
   }
 }

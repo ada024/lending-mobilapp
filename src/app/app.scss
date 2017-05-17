@@ -111,5 +111,25 @@ overflow:hidden !important;
   ion-modal ion-backdrop {
     visibility: visible;
   }
+
+
+
+  // navbar logo
+  
+  .android-logo {
+    position: absolute;
+    top: -20%;
+    left: 15%;
+    height: 80px;
+    width: 80px;
+  }
+
+  .ios-logo {
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    height: 80px;
+    width: 80px;
+  }
 }
 
