@@ -12,10 +12,18 @@
     float: left;
   }
   .return-date{
+    color: green;
+    font-size: 0.68em;
+    position: fixed;
+    top:1em;
+    left: 17em;
+  }
+
+  .reserved-date{
     color: red;
     font-size: 0.68em;
     position: fixed;
-    top:6em;
-    left: 16em;
+    top:7em;
+    left: 17em;
   }
 }

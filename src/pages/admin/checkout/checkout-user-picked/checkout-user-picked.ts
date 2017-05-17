@@ -27,6 +27,7 @@ export class CheckoutUserPickedPage {
     itemRef: any;
     returnDate: any;
     formattedReturnDate: any;
+    formattedShortReturnDate: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform, public zone: NgZone) {
         this.user = navParams.get('user');
@@ -39,6 +40,7 @@ export class CheckoutUserPickedPage {
         var date = this.returnDate.getDate();
         var suffix = this.getDayOfMonthSuffix(date);
         this.formattedReturnDate = date + suffix + " of " + monthAsText + " " + year;
+        this.formattedShortReturnDate = date + suffix + " of " + monthAsText;
 
     }
 
@@ -49,7 +51,7 @@ export class CheckoutUserPickedPage {
 
     goToHomeAdminPage() {
 
-        var loan = new Loan(this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.returnDate.getTime());
+        var loan = new Loan(this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.formattedShortReturnDate, this.returnDate.getTime());
         for (let item of this.itemList) {
             this.db.addPendingLoan(loan, item.$key);
         }

@@ -47,7 +47,7 @@ export class HomeUserPage {
     }
 
     acceptLoan(pendingLoan) {
-        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.timeInMillis);
+        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.formattedShortDate, pendingLoan.pendingLoan.timeInMillis);
         this.db.addLoan(loan, pendingLoan);
        this.db.deletePendingLoan(pendingLoan);
   }
@@ -85,7 +85,7 @@ export class HomeUserPage {
       var currentDate = new Date();
       currentDate.setHours(0o0, 0o0);
       var oneDay = 24 * 60 * 60 * 1000;
-      var diffDays = Math.round(Math.abs((itemDate - currentDate.getTime()) / (oneDay)));
+      var diffDays = Math.round((itemDate - currentDate.getTime()) / (oneDay));
       var returnText;
       if (diffDays < 0) {
           returnText = "Should have been returned";

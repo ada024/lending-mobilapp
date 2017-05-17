@@ -31,6 +31,17 @@ ionViewDidLoad() {
     onDataLoaded(loadedList) {
         this.zone.run(() => {
             this.itemsList = this.loadedItemList = loadedList;
+            this.itemsList.sort((date1,date2) => {
+      if(date1.reserved!=null && date2.reserved==null){
+        console.log("HEY");
+        return -1;
+      }
+      if(date1.reserved!=null && date2.reserved!=null && date1.reserved[0].pickupDate<date2.reserved[0].pickupDate){
+        console.log("HEEEEY");
+        return -1;
+      }
+      return 1;
+    });
         });
     }
   

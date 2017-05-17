@@ -1,5 +1,5 @@
 ﻿export class Loan {
-    constructor(public loaner, public loanerName, public itemOwnerName, public formattedDate, public timeInMillis) {
+    constructor(public loaner, public loanerName, public itemOwnerName, public formattedDate, public formattedShortDate, public timeInMillis) {
 
     }
     getLoaner() {
@@ -16,6 +16,10 @@
 
     getFormattedDate() {
         return this.formattedDate;
+    }
+
+    getFormattedShortDate() {
+        return this.formattedShortDate;
     }
 
     getTimeInMillis() {

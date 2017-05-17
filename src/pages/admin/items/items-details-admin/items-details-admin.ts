@@ -86,6 +86,14 @@ this.modifyResDays=false;
 
   confirm() {
       this.modify = false;
+      this.editResDays();
+      if(this.itemDescription==null){
+          this.db.getItems().update(this.item.$key, {
+          description: null,
+          name: this.itemName
+      });
+    }
+    else
       this.db.getItems().update(this.item.$key, {
           description: this.itemDescription,
           name: this.itemName

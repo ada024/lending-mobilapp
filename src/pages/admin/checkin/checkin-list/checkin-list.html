@@ -10,8 +10,11 @@
     <ion-title>CheckinItems</ion-title>
   </ion-navbar>
 
+</ion-header>
 
-  <ion-searchbar [(ngModel)]="searchItemString"
+
+<ion-content padding>
+   <ion-searchbar [(ngModel)]="searchItemString"
                  (ionInput)="searchItems($event)">
   </ion-searchbar>
   <ion-list class="listProps">
@@ -19,9 +22,4 @@
       <div class="listProps" (click)="goToCheckinConfirmPage(loan)"><img [src]="loan.photoURL" class="item-image" /><span class="item-name">{{loan.name}}</span></div>
     </ion-item>
   </ion-list>
-
-</ion-header>
-
-
-<ion-content padding>
 </ion-content>

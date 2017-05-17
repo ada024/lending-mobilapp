@@ -25,7 +25,8 @@
         {{item.name}}
       </div>
       <br>
-      <span class="return-date">Return: {{item.loan.formattedDate}}</span>
+      <span class="return-date">Return: {{item.loan.formattedShortDate}}</span>
+      <span class="reserved-date">Reserved from: {{item.reserved[0].formattedShortpUpDate}}</span>
     </ion-item>
   </ion-list>
 </ion-content>

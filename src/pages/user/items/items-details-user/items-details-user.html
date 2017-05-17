@@ -27,7 +27,7 @@
 
     <p class="status">
       <b>Status</b><br>
-      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedDate}}</span>
+      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedShortDate}}</span>
       <span *ngIf="item.loan==null"> Available</span>
     </p>
 

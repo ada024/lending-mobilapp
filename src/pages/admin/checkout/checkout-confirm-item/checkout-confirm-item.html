@@ -22,7 +22,8 @@
   <img [src]="item.photoURL" class="item-image" />
     <div class="inner-wrapper"></div>
     <div class="item-name">{{item.name}}</div>
-  <div class="already-added" *ngIf="allreadyAdded">This item is allready added</div>
+  <div class="already-added" *ngIf="allreadyAdded">This item is already added</div>
+  <div class="added-text" *ngIf="!allreadyAdded">Item added to checkout-basket</div>
   <button class="checkout-button1" (click)="goToCheckoutScanItemPage()">
     <div class="checkout-button-text">
       Scan more items

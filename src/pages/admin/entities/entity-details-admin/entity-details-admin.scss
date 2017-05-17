@@ -45,22 +45,27 @@ text-align:center;
 }
 
 .reservation-input{
-    width:5.5em;
+    width:4.5em;
     height:1em;
     position: relative;
-    left:14.4em;
+    left:14.2em;
     bottom: 0.9em;
 }
 .reservation-text{
     position:relative;
     top:2.5em;
-    text-align:center;
+    margin-left:2em;
 }
 
 .blue-button{
     height:3em;
     margin-top:3.5em;
     width:100%
+}
+
+.info-text{
+    margin-top:1.5em;
+    text-align:center;
 }
 
 }

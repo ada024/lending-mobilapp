@@ -10,7 +10,6 @@
   </ion-navbar>
 </ion-header>
 <ion-tabs #myTabs>
-  <ion-tab [root]="AvailableItems" tabTitle="Available ({{numberOfAvailable}})"></ion-tab>
-  <ion-tab [root]="ReservedItems" tabTitle="Reserved items ({{numberOfReservations}})"></ion-tab>
+  <ion-tab [root]="AvailableItems" tabTitle="In stock ({{numberOfAvailable}})"></ion-tab>
   <ion-tab [root]="LoanedItems" tabTitle="Checked out ({{numberOfLoaned}})"></ion-tab>
 </ion-tabs>

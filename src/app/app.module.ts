@@ -25,7 +25,6 @@ import { ItemsAddSuccessAdminPage } from '../pages/admin/items/items-add-success
 import { ItemsListAdminPage } from '../pages/admin/items/items-list-admin/items-list-admin';
 import { ItemsDetailsAdminPage } from '../pages/admin/items/items-details-admin/items-details-admin';
 import { ItemsTabsPage } from '../pages/admin/items/items-tabs/items-tabs';
-import { ItemsReservedAdminPage } from '../pages/admin/items/items-reserved-admin/items-reserved-admin';
 import { ItemsLoanedAdminPage } from '../pages/admin/items/items-loaned-admin/items-loaned-admin';
 import {ItemReservationCalendarPage} from '../pages/admin/items/item-reservation-calendar/item-reservation-calendar';
 
@@ -117,7 +116,6 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage,
     ItemsTabsPage,
-    ItemsReservedAdminPage,
     ItemsLoanedAdminPage,
     ItemReservationCalendarPage,
 
@@ -199,7 +197,6 @@ export const firebaseConfig = {
     ItemsListAdminPage,
     ItemsDetailsAdminPage, 
     ItemsTabsPage,
-    ItemsReservedAdminPage,
     ItemsLoanedAdminPage,
     ItemReservationCalendarPage,
 

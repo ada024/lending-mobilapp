@@ -98,7 +98,7 @@
         <img [src]="reservation.photoURL" class="item-image" />
         <div class="item-name">
           {{reservation.itemName}} <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
-          <div class="dueDate">Pick up {{dueDate(reservation.pickupDate)}}</div>
+          <div class="dueDate"><span *ngIf="dueDate(reservation.pickupDate)=='today'">Pick up today. Reservation will be deleted tomorrow</span><span *ngIf="dueDate(reservation.pickupDate)!='today'">Pick up {{dueDate(reservation.pickupDate)}}</span></div>
         </div>
       </div>
     </div>

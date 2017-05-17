@@ -19,19 +19,16 @@ import { DatabaseService } from '../../../../providers/database-service';
 })
 export class ItemsTabsPage {
     AvailableItems = ItemsListAdminPage;
-    ReservedItems = ItemsReservedAdminPage;
     LoanedItems = ItemsLoanedAdminPage;
     @ViewChild('myTabs') tabRef: Tabs;
     selectedIndex;
     numberOfAvailable;
-    numberOfReservations;
     numberOfLoaned
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
-        db.loadNumberOfReservations(this.onNumberOfResLoaded.bind(this));
         db.loadNumberOfLoanedItems(this.onNumberOfLoanedLoaded.bind(this));
 
     }
@@ -41,9 +38,6 @@ export class ItemsTabsPage {
   }
 
 
-onNumberOfResLoaded(numberOfRes){
-  this.numberOfReservations = numberOfRes.length;
-}
   onNumberOfAvailableLoaded(numberOfAvailable) {
       this.zone.run(() => {
           this.numberOfAvailable = numberOfAvailable;

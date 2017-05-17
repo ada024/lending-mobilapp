@@ -53,13 +53,14 @@ export class DatabaseService {
         this.tempItems = new Tempitems();
 
 
-
 var now = new Date();
-now.setDate(now.getDate()+1);
-for(var item of this.itemsRef){
-if(item.reserved!=null){
-    for(var res of item.reserved){
-        if(res.pickupDate>=now.getTime()){
+now.setDate(now.getDate()-1);
+
+   this.items.subscribe(items => {
+            items.forEach(item => {
+                if(item.reserved!=null){
+                 for(var res of item.reserved){
+        if(res.pickupDate<=now.getTime()){
             var index = item.reserved.indexOf(res);
             if (item.reserved.length > -1) {
             item.reserved.splice(index, 1);
@@ -68,15 +69,21 @@ if(item.reserved!=null){
     }
 }
 }
-}
+            });
+   });
+               
 
-for(var item of this.itemsRef){
+ this.items.subscribe(items => {
+items.forEach(item=> {
 if(item.loan!=null){
-        if(item.loan.timeInMillis>=now.getTime()){
-            item.loan.status="Notify";
+        if(item.loan.timeInMillis<=now.getTime()){
+            this.setNotify(item);
         }
 }
-}
+})
+
+ });
+
 
 
 
@@ -129,7 +136,12 @@ if(item.loan!=null){
     }
 
 
-
+setNotify(item){
+this.items.update(item.$key, {
+status:"Notify"
+}
+)
+}
 
 
     loadUsersReservations(onDataLoaded) {

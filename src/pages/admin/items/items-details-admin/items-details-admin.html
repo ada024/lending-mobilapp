@@ -43,23 +43,20 @@
 
     <p class="status">
       <b>Status</b><br>
-      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedDate}}</span>
+      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedShortDate}}</span>
       <span *ngIf="item.loan==null"> Available</span>
     </p>
 
     <div class="item-res-days">
       <b>Number of standard loan days:</b>
-      <span *ngIf="!modifyResDays">{{resDays}}</span>
-    </div> <ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays"></ion-icon>
-    <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
+      <span >{{resDays}}</span>
+    </div>
 
 
     <button class="blue-button" (click)="goToReservationCalendar()"><div class="button-text">Reservation calendar</div></button>
 
     
-    <ion-item class="reservation-input" *ngIf="modifyResDays">
-      <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
-    </ion-item>
+   
 
 
   </div>
@@ -112,11 +109,9 @@
       </div>
 
       <div class="item-res-days">
-        <b>Number of standard loan days:</b> <span *ngIf="!modifyResDays">{{resDays}}</span>
+        <b>Number of standard loan days:</b>
       </div> 
-      <ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays"></ion-icon>
-      <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
-      <ion-item class="reservation-input" *ngIf="modifyResDays">
+      <ion-item class="reservation-input">
         <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
       </ion-item>
 
