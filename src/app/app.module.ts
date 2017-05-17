@@ -172,7 +172,7 @@ export const firebaseConfig = {
     ItemsUnavailableUserPage
   ],
   imports: [
-      IonicModule.forRoot(MyApp, { tabsPlacement: "top", tabsHideOnSubPages: true }),
+      IonicModule.forRoot(MyApp, { tabsPlacement: "top", tabsHideOnSubPages: true, backButtonText: '' }),
       AngularFireModule.initializeApp(firebaseConfig),
       NgCalendarModule,
   ],
