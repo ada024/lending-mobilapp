@@ -18,6 +18,7 @@ export class CheckoutUserPage {
     usersList: any;
     loadedUserList: any;
     searchUserString = '';
+	currentEntity;
 
     close = false;
     dataReceived: boolean;
@@ -27,7 +28,7 @@ export class CheckoutUserPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
    
         db.loadUsersInThisEntity(this.onDataLoaded.bind(this));
-
+		db.getEntity(this.onEntityLoaded.bind(this));
     }
     onDataLoaded(loadedList) {
         this.zone.run(() => {
@@ -35,12 +36,16 @@ export class CheckoutUserPage {
         });
     }
 
+	
+	onEntityLoaded(entity){
+		this.currentEntity = entity[0];
+	}
     searchUsers() {
         this.usersList = this.db.search(this.loadedUserList, this.searchUserString, "v.fullname");
     }
 
     goToCheckoutUserPickedPage(user) {
-        this.navCtrl.push(CheckoutReturnDatePage, { user: user });
+        this.navCtrl.push(CheckoutReturnDatePage, { user: user, entity:this.currentEntity });
     }
 
 
