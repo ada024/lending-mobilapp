@@ -455,16 +455,18 @@ status:"Notify"
     }
 
     kickUser(user) {
+		let key;
         this.usersEntityMap.subscribe(map => {
             map.forEach(element => {
                 if(element.userUid == user.uid && element.entity == this.currentUser.entity) {
-                    this.usersEntityMap.remove(element.$key)
+					key = element.$key;
                 }
             });
         });
+		this.usersEntityMap.remove(key);
         this.users.update(user.$key, {
-          entity: "No entity",
-          entityName: "No entity"
+          entity: "No entity, join an entity to get started",
+          entityName: "No entity, join an entity to get started"
       })
     }
 

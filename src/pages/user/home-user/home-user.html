@@ -95,7 +95,7 @@
   <div *ngIf="reservations && reservations.length != 0" class="scroll-bar">
     <div *ngFor="let reservation of reservations" class="scroll-bar-element">
       <div class="reservations-container">
-        <img [src]="reservation.photoURL" class="item-image" />
+        <img [src]="reservation.itemPhoto" class="item-image" />
         <div class="item-name">
           {{reservation.itemName}} <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
           <div class="dueDate"><span *ngIf="dueDate(reservation.pickupDate)=='today'">Pick up today. Reservation will be deleted tomorrow</span><span *ngIf="dueDate(reservation.pickupDate)!='today'">Pick up {{dueDate(reservation.pickupDate)}}</span></div>
