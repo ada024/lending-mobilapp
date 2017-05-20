@@ -6,6 +6,7 @@ import { Camera } from '@ionic-native/camera';
 import { CheckoutConfirmItemPage } from '../../checkout/checkout-confirm-item/checkout-confirm-item';
 import { ItemsAddTagScannAdminPage } from '../items-add-tag-scann-admin/items-add-tag-scann-admin';
 import {ItemReservationCalendarPage} from '../item-reservation-calendar/item-reservation-calendar';
+import { CheckinConfirmPage } from '../../checkin/checkin-confirm/checkin-confirm';
 
 @Component({
   selector: 'page-items-details-admin',
@@ -53,6 +54,9 @@ export class ItemsDetailsAdminPage {
   onItemLoaded(itemForDetail) {
       this.zone.run(() => {
           this.item = itemForDetail[0];
+          if(!this.oldPhotoURI && this.item) {
+              this.oldPhotoURI = this.item.photoURL;
+          }
       });
       
   }
@@ -83,6 +87,11 @@ this.modifyResDays=false;
       this.navCtrl.push(CheckoutConfirmItemPage, {item: this.item});
   }
 
+  checkin() {
+      let user = this.db.getUsernameByUserId(this.item.loan.loaner);
+      this.navCtrl.push(CheckinConfirmPage, {loan: this.item, user:user, self: this});
+  }
+
 
   confirm() {
       this.modify = false;
@@ -109,7 +118,7 @@ this.modifyResDays=false;
       this.itemDescription = this.item.description;
       this.itemName = this.item.name;
       this.item.photoURL = this.oldPhotoURI;
-      this.oldPhotoURI = this.newPhotoURI = null;
+      this.newPhotoURI = null;
   }
 
   encode() {
@@ -143,7 +152,6 @@ this.modifyResDays=false;
       }
       this.camera.getPicture(options).then(uri => {
           this.zone.run(() => {
-              this.oldPhotoURI = this.item.photoURL;
               this.newPhotoURI = this.item.photoURL = "data:image/jpeg;base64," + uri;
             });
         });

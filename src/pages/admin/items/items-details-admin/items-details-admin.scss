@@ -25,6 +25,13 @@
     margin-left: 5px;
   }
 
+  .checkin-button {
+    float: left;
+    width: 160px;
+    height: 55px;
+    background-color: green;
+  }
+
   .edit-button {
     width: 120px;
     height: 55px;
@@ -139,14 +146,11 @@
     font-size: 30px;
   }
 
-  .blue-button{
-    margin-top:6.5em;
+  .blue-button-2 {
     height:4em;
     width:18em;
     margin-left:3em;
-  }
-
-  .info-text{
-    margin-top:2.5em;
+    margin-top:2em;
+    background-color: #40afce;
   }
 }

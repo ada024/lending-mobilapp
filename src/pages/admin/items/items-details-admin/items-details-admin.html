@@ -13,10 +13,16 @@
   <div *ngIf="!modify">
 
     <div class="top-button-container">
-      <button class="checkout-button" (click)="checkout()">
+      <button class="checkout-button" (click)="checkout()" *ngIf="item.loan==null">
         <ion-icon name="redo" class="checkout-icon"></ion-icon>
         <div class="checkout-text">
           <b>Check out</b>
+        </div>
+      </button>
+      <button class="checkin-button" (click)="checkin()" *ngIf="item.loan!=null">
+        <ion-icon name="redo" class="checkout-icon"></ion-icon>
+        <div class="checkout-text">
+          <b>Check In</b>
         </div>
       </button>
       <button class="edit-button" (click)="modify = true">
@@ -51,9 +57,8 @@
       <b>Number of standard loan days:</b>
       <span >{{resDays}}</span>
     </div>
-    <div class="info-text">(Altering wont affect reservations already made)</div>
 
-    <button class="blue-button" (click)="goToReservationCalendar()"><div class="button-text">Reservation calendar</div></button>
+    <button class="blue-button-2" (click)="goToReservationCalendar()"><div class="button-text">Reservation calendar</div></button>
 
     
    
@@ -101,9 +106,9 @@
         </ion-input>
       </p>
 
-      <div class="description" [(ngModel)]="itemDescription">
+      <div [(ngModel)]="itemDescription">
         <b>Description</b><br>
-        <ion-input>
+        <ion-input placeholder="Add description">
           {{itemDescription}}
         </ion-input>
       </div>
@@ -114,6 +119,7 @@
       <ion-item class="reservation-input">
         <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
       </ion-item>
+      <div class="info-text">(Altering wont affect reservations already made)</div>
 
       <div class="button-container">
         <button class="blue-button" (click)="encode()">

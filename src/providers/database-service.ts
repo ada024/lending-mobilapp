@@ -27,9 +27,6 @@ export class DatabaseService {
     entitiesRef: any;
     tempItems: Tempitems;
 
-
-
-
     usersRef: any;
     usersList: any;
     userReturn: any;
@@ -408,7 +405,7 @@ status:"Notify"
                 }
             })
             callback(parameter);
-        }).unsubscribe;
+        });
     }
 
     setUserTag(tagId) {
@@ -591,7 +588,8 @@ status:"Notify"
     this.usersEntityMap.push({
       userUid: pendingUser.userUid,
       entity: pendingUser.entity,
-      entityName: pendingUser.entityName
+      entityName: pendingUser.entityName,
+      newUser: true
     });
   }
 
@@ -761,9 +759,19 @@ updateTermsAndConditions(termsAndConditions){
   }
 
   loadUserEntityMap(onDataLoaded){
-    this.usersEntityMap.subscribe(loadedList => {
-      onDataLoaded(loadedList);
-    });
+      if (this.currentUser != null) {
+        this.usersEntityMap.subscribe(loadedList => {
+            onDataLoaded(loadedList);
+        });
+      }
+    else
+        this.setCurrentUser(this.loadUserEntityMap.bind(this), onDataLoaded)
+  }
+
+  confirmNewEntity(map) {
+      this.usersEntityMap.update(map.$key, {
+          newUser: null
+      });
   }
 
 editLocation(location){
@@ -813,23 +821,6 @@ editItemResDays(resdays, itemKey){
         reservationDays: resdays
     })
 }
-
-  //Developer tools
-
-  populateDatabase() {
-    // this.addItem("iphone lader", "1gf13gf1");
-    // this.addItem("android lader", "6554y5hh");
-    // this.addItem("camera", "876ur5htr");
-  }
-
-  clearDatabase() {
-    this.entities.remove();
-    this.items.remove();
-    //this.users.remove();
-    this.loans.remove();
-    this.pendingUsers.remove();
-    this.pendingLoans.remove();
-  }
 
 
   //Searches a list
@@ -920,7 +911,6 @@ editItemResDays(resdays, itemKey){
       console.log("User added in db");
       let user = this.authState.auth;
       //splits fullname into an array
-      let narr = this.authState.auth.displayName.split(" ");
       this.usersRef.child(user.uid).set({
         uid: user.uid,
         entity: "No entity, join an entity to get started",

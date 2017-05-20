@@ -18,6 +18,7 @@ export class HomeUserPage {
     currentEntity;
     dueDays = [];
     returnDate: any;
+    map;
 
     resTest;
     //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
@@ -29,6 +30,7 @@ export class HomeUserPage {
         db.loadLoans(this.onLoansLoaded.bind(this));
         db.loadUsersReservations(this.onReservationsLoaded.bind(this));
         db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
+        db.loadUserEntityMap(this.onMapLoaded.bind(this))
     }
 
     onCurrentEntityLoaded(currentUser) {
@@ -78,6 +80,13 @@ export class HomeUserPage {
   onNumberOfItemsLoaded(numberOfItems) {
     this.zone.run(() => {
       this.numberOfItems = numberOfItems;
+    });
+  }
+
+  onMapLoaded(map) {
+      this.zone.run(() => {
+        this.map = map.filter(x => {return x.userUid == this.db.currentUser.uid})
+        .filter(x => {return x.newUser});
     });
   }
 
@@ -153,6 +162,18 @@ removeReservation(reservation){
         }
         ] 
     }).present();
+  }
+
+  ok(map) {
+      this.db.confirmNewEntity(map);
+  }
+
+  goTo(map) {
+      this.db.confirmNewEntity(map);
+      this.db.setEntity({
+          $key: map.entity,
+          name: map.entityName
+      });
   }
 
 }

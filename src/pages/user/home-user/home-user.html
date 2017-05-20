@@ -70,6 +70,28 @@
     </button>
   </div>
 
+  <h3 style="margin-top: 20px;" *ngIf="map && map.length != 0">New entity</h3>
+
+  <div *ngIf="map && map.length != 0">
+    <div *ngFor="let map of map" class="scroll-bar-element">
+      <div class="tag-text">
+        You have been accepted to {{map.entityName}}
+      </div>
+      <div>
+        <button class="ok-button" (click)="ok(map)">
+          <div class="button-text">
+            <b>Ok</b>
+          </div>
+        </button>
+        <button class="confirm-button" (click)="goTo(map)">
+          <div class="button-text">
+            <b>Go To</b>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <h3 style="margin-top: 20px;" *ngIf="db.currentUser && db.currentUser.requestTagId">NFC Tag request</h3>
 
   <div *ngIf="db.currentUser && db.currentUser.requestTagId">
