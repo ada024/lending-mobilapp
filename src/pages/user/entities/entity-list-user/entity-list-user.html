@@ -19,7 +19,8 @@
       <ion-item (click)="goToEntityJoinUserPage(entity)">
         {{entity.name}}
         <br/>
-        {{entity.ownerName}}
+        <span style="color:red" *ngIf="currentUser.uid==entity.owner">You're admin of this entity</span>
+        <span style="color:green" *ngIf="currentUser.uid!=entity.owner && checkIfJoined(entity)">You have already joined this entity</span>
       </ion-item>
       <ion-item-options>
         <button danger (click)="removeItem(item)"> Delete</button>

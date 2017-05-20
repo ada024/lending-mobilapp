@@ -1,4 +1,5 @@
-﻿page-items-loaned-admin {
+page-items-reserved-admin {
+
   .item-image {
     height: 65px;
     width: 65px;
@@ -11,20 +12,24 @@
     margin-top: 15px;
     float: left;
   }
-  .return-date{
-    color: green;
-    font-size: 0.68em;
-    position: fixed;
-    top:1em;
-    left: 17em;
+
+  .hideShow {
+    display: none;
   }
 
-  .reserved-date{
+  .notification-reservation {
+    color: red;
+    font-size: 0.8em;
+    position:absolute;
+    left:13.8em;
+  }
+
+  .res-date{
     color: red;
     font-size: 0.68em;
     position: fixed;
     top:6em;
     left: 16em;
   }
-  
+
 }

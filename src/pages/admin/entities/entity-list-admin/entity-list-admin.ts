@@ -12,9 +12,11 @@ export class EntityListAdminPage {
   entitiesList: any;
 	loadedEntitiesList: any;
 	searchString = '';
+  currentUser;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
+    this.currentUser=db.currentUser;
     this.db.loadEntitiesYouOwn(this.onDataLoaded.bind(this));
     
 
@@ -23,6 +25,11 @@ export class EntityListAdminPage {
   onDataLoaded(loadedList) {
     this.zone.run(() => {
       this.entitiesList = this.loadedEntitiesList = loadedList;
+       this.entitiesList.sort((entity1, entity2)=> { if(entity1.$key == this.currentUser.entity && entity2.$key!=this.currentUser.entity){
+        return -1;
+      }
+      return 1;
+      });
     });
   }
 

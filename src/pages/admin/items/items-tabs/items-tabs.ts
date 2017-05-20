@@ -20,23 +20,30 @@ import { DatabaseService } from '../../../../providers/database-service';
 export class ItemsTabsPage {
     AvailableItems = ItemsListAdminPage;
     LoanedItems = ItemsLoanedAdminPage;
+    ReservedItems = ItemsReservedAdminPage;
     @ViewChild('myTabs') tabRef: Tabs;
     selectedIndex;
     numberOfAvailable;
-    numberOfLoaned
+    numberOfLoaned;
+    numberOfReserved;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));
         db.loadNumberOfLoanedItems(this.onNumberOfLoanedLoaded.bind(this));
-
+        db.loadNumberOfReservedItems(this.onReservedLoaded.bind(this));
     }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemsTabsPage');
   }
 
+onReservedLoaded(reserved){
+    this.zone.run(() => {
+    this.numberOfReserved = reserved;
+    });
+}
 
   onNumberOfAvailableLoaded(numberOfAvailable) {
       this.zone.run(() => {
