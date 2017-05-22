@@ -15,43 +15,42 @@ import { DatabaseService } from '../../../../providers/database-service';
   templateUrl: 'checkout-scan-user.html'
 })
 export class CheckoutScanUserPage {
-    close = false;
-    user;
+    close: boolean;
+    currentEntity;
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService, public alertCtrl:AlertController) {
 
+db.getEntity(this.onEntityLoaded.bind(this));
  if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
             (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
         }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutScanUserPage');
-  }
-        
+  onEntityLoaded(entity){
+		this.currentEntity = entity[0];
+	}
       
 	
      onTagFound(nfcEvent) {
+         var user;
         if (!this.close) {
             this.zone.run(() => {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
-                this.user = this.db.getUserByTag(tagId);
-                console.log("username: " + this.user.fullname);
-                 if(this.user!=null){
-            this.close = true;
-            this.goToCheckoutUserPicked();
+                user = this.db.getUserByTag(tagId);
+                 if(user!=null){
+            this.goToCheckoutUserPicked(user);
         }
             });
-            if(this.user!=null){
+            if(user!=null){
             this.close = true;
         }
     }
 }
 
-    goToCheckoutUserPicked(){
+    goToCheckoutUserPicked(user){
         this.alertCtrl.create({
         title: 'User found',
-        message: this.user.fullname,
+        message: user.fullname,
         buttons: [
         {
             text: 'Scan again',
@@ -62,7 +61,8 @@ export class CheckoutScanUserPage {
         {
             text: 'Ok',
             handler: () => {
-                this.navCtrl.push(CheckoutReturnDatePage, {user:this.user});
+            this.close = true;
+            this.navCtrl.push(CheckoutReturnDatePage, {user: user, entity:this.currentEntity});
             }
         }
         ] 

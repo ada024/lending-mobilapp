@@ -24,7 +24,7 @@ export class ItemReservationCalendarPage {
     item: any;
     clickedTwice:boolean;
     unableForReservation = false;
-    reservationName;
+    reservation;
     loanName;
 
     notClickable=[];
@@ -68,10 +68,10 @@ export class ItemReservationCalendarPage {
       if(this.item.reserved!=null){
       for(var reservation of this.item.reserved){
         if(reservation.pickupDate<=ev.selectedTime.getTime() && reservation.returnDate>=ev.selectedTime.getTime()){
-      this.reservationName=reservation.userName;
+      this.reservation=reservation;
       break;
         }
-        else this.reservationName=null;
+        else this.reservation=null;
       }
       }
       if(this.item.loan!=null){
@@ -174,6 +174,13 @@ export class ItemReservationCalendarPage {
       
   };
 
-  
- 
+  cancelRes(reservation){
+      var index = this.item.reserved.indexOf(reservation);
+            if (this.item.reserved.length > -1) {
+            this.item.reserved.splice(index, 1);
+            this.db.addReservation(this.item.reserved, this.item);
+            this.reservation=null;
+            this.loadEvents();
+  }
+  }
 }
