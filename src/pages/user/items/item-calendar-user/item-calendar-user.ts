@@ -25,6 +25,7 @@ export class ItemCalendarUserPage {
     item: any;
     clickedTwice:boolean;
     unableForReservation = false;
+	clickedFirstTime: boolean;
 
     notClickable=[];
 
@@ -33,8 +34,8 @@ export class ItemCalendarUserPage {
         this.loadedFirstTime = false;
         this.currentEntity = navParams.get("entity");
         this.openingInfo = "Opening hours: " + this.currentEntity.office.hours;
-        this.loadEvents();
-
+        this.loadEvents(null);
+		this.clickedFirstTime=true;
        
 
     }
@@ -52,8 +53,11 @@ export class ItemCalendarUserPage {
       currentDate: new Date(),
   }; // these are the variable used by the calendar.
 
- loadEvents() {
-        this.eventSource = this.createRandomEvents();
+ loadEvents(event: Date) {
+	 var date = new Date();
+	 date = event;
+	 console.log("date " + date);
+        this.eventSource = this.createRandomEvents(date);
     }
 
   onViewTitleChanged(title) {
@@ -66,6 +70,7 @@ export class ItemCalendarUserPage {
       this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
+	  this.loadEvents(ev);
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
           (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
 
@@ -114,7 +119,7 @@ export class ItemCalendarUserPage {
       console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
-   createRandomEvents() {
+   createRandomEvents(event: Date) {
         var events = [];
         var reservations = [];
         if(this.item.reserved!=null){
@@ -204,8 +209,38 @@ export class ItemCalendarUserPage {
                     allDay: true
                 });
         }
+		
+		var today = new Date();
+		console.log("clickedFirstTime " + this.clickedFirstTime);
+		if(event!=null && this.checkIfClickable(today)){
+		 var startTime;
+		 startTime = new Date();
+		 startTime = event;
+		 console.log("startTime " + event);
+            var endTime;
+		 endTime = new Date();
+		 console.log("resdays: " + this.currentEntity.reservationDays);
+		 var x = this.currentEntity.reservationDays;
+        var resDays = +x;
+			endTime.setDate(startTime.getDate()+resDays);
+			
+			console.log("starttime: " + startTime + " endTime: " + endTime);
+                startTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()+1);
+               
+                endTime = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate()+1);
+               
+                events.push({
+                    title: 'The days you want to borrow',
+                    startTime: startTime,
+                    endTime: endTime,
+                    allDay: true
+                });
+		}
+		this.clickedFirstTime=false;
         return events;
     }
+	
+	
    }
    
   markDisabled = (date: Date) => {
