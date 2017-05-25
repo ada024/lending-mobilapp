@@ -1,7 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>itemsAddSuccessAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -9,17 +16,27 @@
 
 <ion-content padding>
 
-  <div class=title>
-    <b>{{titleText}}</b>
+  <div *ngIf="tagId == '0'" class=title>
+    <b>Success. Added</b>
   </div>
 
+  <div *ngIf="tagId != '0'" class=title>
+    <b>Success.<br>Added and Encoded </b>
+  </div>
+
+<div class="a">
   <div class="item-container">
-    <ion-icon *ngIf="!photoURI" name="image" class="item-image"></ion-icon>
-    <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
-    <div class="item-name">
-      <b>{{itemName}}</b>
+    <div class="image-container">
+      <img *ngIf="!photoURI" src="./assets/icons/image.svg" class="item-image">
+      <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
+    </div>
+    <div class="item-name-container">
+      <div class="item-name">
+        <b>{{itemName}}</b>
+      </div>
     </div>
   </div>
+</div>
 
   <div class="bar">
     <div class="progress"></div>
@@ -29,7 +46,7 @@
     100%
   </p>
 
-  <button class="blue-button" (click)="goBackToItemsAdminPage()">
+  <button class="black-button" (click)="goBackToItemsAdminPage()">
     <div class="button-text">
       <b>Done</b>
     </div>

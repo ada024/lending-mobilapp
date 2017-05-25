@@ -1,7 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>itemsAddTagScannAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -10,13 +17,13 @@
 <ion-content padding>
 
   <p class=title *ngIf="!close">
-    <b>Place your device on the NFC tag</b>
+    <b>Place your device<br>on the NFC tag</b>
   </p>
 
   <p class="text" *ngIf="close">
     success, new tag registered
   </p>
 
-  <ion-icon name="finger-print" class="scann-icon"></ion-icon>
+  <img src="./assets/icons/encode_scan.svg" class="big-icon">
 
 </ion-content>

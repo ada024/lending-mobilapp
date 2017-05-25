@@ -12,12 +12,31 @@ page-items-add-name-admin {
 
   .progress {
     width: 33%;
-    height: 30px;
-    background-color: #40afce;
+    height: 26px;
+    background-color: #80E08F;
   }
 
   .progress-text {
     font-size: 25px;
     text-align: center;
+  }
+
+  .button-text {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .arrow-icon {
+    color: white;
+    float: right;
+    margin-right: 15px;
+    font-size: 40px;
+  }
+
+  .black-button {
+    position: relative;
   }
 }

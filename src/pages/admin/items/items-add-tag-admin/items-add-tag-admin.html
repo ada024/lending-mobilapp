@@ -1,7 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>itemsAddTagAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -14,16 +21,16 @@
   </p>
 
   <div class="button-container">
-    <button class="blue-button" (click)="goToItemsAddTagScannAdminPage()">
-      <ion-icon name="finger-print" class="button-icon"></ion-icon>
-      <div class="button-with-icon-text">
+    <button class="white-button" (click)="goToItemsAddTagScannAdminPage()">
+      <img src="./assets/icons/scantag.svg" class="white-button-icon-svg">
+      <div class="white-button-with-icon-svg-text">
         <b>Encode now</b>
       </div>
     </button>
 
-    <button class="blue-button" (click)="goToItemsAddSuccessAdminPage()">
-      <div class="button-text">
-        <b>Skip NFC tag for this item</b>
+    <button class="white-button2" (click)="goToItemsAddSuccessAdminPage()">
+      <div class="white-button-text2">
+        <b>Skip making NFC tag <br>for this item</b>
       </div>
     </button>
   </div>
@@ -36,9 +43,11 @@
     99%
   </p>
 
-  <div class="item-container">
-    <ion-icon *ngIf="!scaledPhotoURI" name="image" class="item-image"></ion-icon>
+  <div class="image-container">
+    <img *ngIf="!scaledPhotoURI" src="./assets/icons/image.svg" class="button-icon2">
     <img *ngIf="scaledPhotoURI" [src]="scaledPhotoURI" class="item-image"/>
+  </div>
+  <div class="item-name-container">
     <div class="item-name">
       {{itemName}}
     </div>

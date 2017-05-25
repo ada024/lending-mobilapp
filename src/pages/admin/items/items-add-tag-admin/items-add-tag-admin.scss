@@ -1,39 +1,73 @@
 page-items-add-tag-admin {
 
-  .item-container {
-    width: 100%;
+  .image-container {
+    position: relative;
+    float: left;
+    width: 25%;
     height: 70px;
-    border: 5px solid grey;
+    background-color: #525150;
+  }
+
+  .item-name-container {
+    float: left;
+    width: 75%;
+    height: 70px;
+    background-color: #DCDEE0;
   }
 
   .item-image {
-    font-size: 5.7em;
-    position:relative;
-    margin-right: 0.5em;
-    bottom:0.11em;
-    float: left;
+    width: 100%;
+    height: 100%;
   }
 
   .item-name {
     font-size: 25px;
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-left: 15px;
     float: left;
   }
 
   .bar {
     width: 100%;
-    margin-top: 60px;
+    margin-top: 30px;
     background-color: #ddd;
   }
 
   .progress {
     width: 99%;
     height: 30px;
-    background-color: #40afce;
+    background-color: #80E08F;
   }
 
   .progress-text {
     font-size: 25px;
     text-align: center;
+  }
+
+  .white-button2 {
+    width: 100%;
+    height: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+    border: 5px solid #4E4E4E;
+  }
+
+  .white-button-text2 {
+    display: inline-block;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    line-height: 120%;
+  }
+
+  .button-icon2 {
+    height: 35px;
+    width: 35px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }

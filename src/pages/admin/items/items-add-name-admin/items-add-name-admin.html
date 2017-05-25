@@ -1,7 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>itemsAddNameAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -23,10 +30,11 @@
     (You can edit the name and add a full descriptions later)
   </p>
 
-  <button class="blue-button" (click)="goToItemsAddPhotoAdminPage()">
+  <button class="black-button" (click)="goToItemsAddPhotoAdminPage()">
     <div class="button-text">
       <b>Next</b>
     </div>
+    <ion-icon class="arrow-icon" name="md-arrow-forward"></ion-icon>
   </button>
 
   <div class="bar">

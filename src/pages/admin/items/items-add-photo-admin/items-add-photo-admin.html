@@ -1,7 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>itemsAddPhotoAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -14,16 +21,16 @@
   </p>
 
   <div class="button-container">
-    <button class="blue-button" (click)="getPicture(true)">
-      <ion-icon name="camera" class="button-icon"></ion-icon>
-      <div class="button-with-icon-text">
+    <button class="black-button" (click)="getPicture(true)">
+      <img src="./assets/icons/camera.svg" class="button-icon-svg">
+      <div class="button-with-icon-svg-text">
         <b>Take a photo</b>
       </div>
     </button>
 
-    <button class="blue-button" (click)="getPicture(false)">
-      <ion-icon name="image" class="button-icon"></ion-icon>
-      <div class="button-with-icon-text">
+    <button class="black-button" (click)="getPicture(false)">
+      <img src="./assets/icons/image.svg" class="button-icon-svg">
+      <div class="button-with-icon-svg-text">
         <b>Add from gallery</b>
       </div>
     </button>
@@ -37,9 +44,11 @@
     66%
   </p>
 
-  <div class="item-container">
-    <ion-icon *ngIf="!scaledPhotoURI" name="image" class="item-image"></ion-icon>
+  <div class="image-container">
+    <img *ngIf="!scaledPhotoURI" src="./assets/icons/image.svg" class="button-icon2">
     <img *ngIf="scaledPhotoURI" [src]="scaledPhotoURI" class="item-image"/>
+  </div>
+  <div class="item-name-container">
     <div class="item-name">
       {{itemName}}
     </div>
