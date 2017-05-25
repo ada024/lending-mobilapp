@@ -4,6 +4,7 @@ import { ItemsListAdminPage } from '../items-list-admin/items-list-admin';
 import { ItemsReservedAdminPage } from '../items-reserved-admin/items-reserved-admin';
 import { ItemsLoanedAdminPage } from '../items-loaned-admin/items-loaned-admin';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 /*
@@ -27,7 +28,7 @@ export class ItemsTabsPage {
     numberOfLoaned;
     numberOfReserved;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,
+    constructor(public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
         public zone: NgZone,public db: DatabaseService) {
         this.selectedIndex = 0;
         db.loadNumberOfAvailableItems(this.onNumberOfAvailableLoaded.bind(this));

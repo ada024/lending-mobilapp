@@ -3,12 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { ItemConfirmPickupPage } from '../item-confirm-pickup/item-confirm-pickup';
 import { DatabaseService } from '../../../../providers/database-service';
-/*
-  Generated class for the ItemReservationCalendar page.
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+
 @Component({
   selector: 'page-item-reservation-calendar',
   templateUrl: 'item-reservation-calendar.html'
@@ -29,21 +26,12 @@ export class ItemReservationCalendarPage {
 
     notClickable=[];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule, public db: DatabaseService, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule, 
+    public menu: DropDownMenuService, public db: DatabaseService, public zone: NgZone) {
         this.item = navParams.get("item");
         this.loadEvents();
-
-       
-
     }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemCalendarUserPage');
-  }
-
-
-      
-  
+    
 
   calendar = {
       mode: 'month',

@@ -1,8 +1,14 @@
-﻿
-<ion-header>
+﻿<ion-header>
 
-  <ion-navbar>
-    <ion-title>itemsDetailsAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -80,7 +86,7 @@
         </button>
         <button class="edit-button" (click)="confirm()">
           <div class="button-text">
-            <b>Confirm</b>
+            <b>Save</b>
           </div>
         </button>
     </div>

@@ -1,11 +1,12 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { Platform } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { CheckoutConfirmItemPage } from '../../checkout/checkout-confirm-item/checkout-confirm-item';
 import { ItemsAddTagScannAdminPage } from '../items-add-tag-scann-admin/items-add-tag-scann-admin';
-import {ItemReservationCalendarPage} from '../item-reservation-calendar/item-reservation-calendar';
+import { ItemReservationCalendarPage } from '../item-reservation-calendar/item-reservation-calendar';
 import { CheckinConfirmPage } from '../../checkin/checkin-confirm/checkin-confirm';
 
 @Component({
@@ -26,7 +27,7 @@ export class ItemsDetailsAdminPage {
   oldPhotoURI;
   entity;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public menu: DropDownMenuService,
   public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events) {
       let sentItem = navParams.get("item");
       this.itemDescription = sentItem.description;
