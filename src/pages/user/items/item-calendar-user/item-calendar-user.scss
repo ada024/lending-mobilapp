@@ -31,8 +31,9 @@
     vertical-align: top;
     font-size: 1.5em;
     margin-left: 1em;
+    margin-top:3.5em;
     position: relative;
-    bottom: 1em;
+    bottom: 0.3em;
   }
 
 
@@ -43,7 +44,7 @@
     height: 3.7em;
     border: 0.2em solid dimgrey;
     position: relative;
-    bottom: 1.8em;
+    bottom: 1.1em;
   }
 
   .item-name {
@@ -53,9 +54,106 @@
   }
 
   .unable-date{
-    margin-top:-1em;
+    top:24.5em;
+    left:2em;
     text-align:center;
     color:red;
+    position:absolute;
   }
 
+ 
+ .monthview-selected {
+    background-color: transparent !important;
+    color: black !important;
+  }
+
+  td.monthview-current {
+    color: white;
+
+    .calendar-day {
+      background-color: color($colors, 'light') !important;
+    }
+  }
+
+  .monthview-datetable {
+    border: 0 !important;
+
+    td, th {
+      border: 0 !important;
+      padding: 3px!important;
+      background-color: transparent!important;
+    }
+  }
+
+ .calendar-day {
+    border-radius: 6px;
+    padding: 3px 5px;
+
+    &.canBorrow {
+      background-color: blue;
+      color: white;
+    }
+
+    &.cantBorrow {
+      background-color: red;
+      color: white;
+    }
+
+  }
+.monthview-eventdetail-timecolumn{
+  display:none;
+}
+
+.monthview-eventdetail{
+  display:none;
+}
+
+
+.info-position{
+  position:absolute;
+  top:29em;
+  left:2em;
+
+}
+
+.foo-red {
+  float: left;
+  width: 17px;
+  height: 17px;
+  margin: 5px;
+  border: 1px solid black;
+  background: red;
+  margin-left:-1.6em;
+}
+
+.foo-blue {
+  float: left;
+  width: 17px;
+  height: 17px;
+  margin: 5px;
+  border: 1px solid black;
+  background: blue;
+  margin-top:1em;
+  margin-left:-1.6em;
+}
+
+
+
+.res-loan-info{
+margin-top:0.3em;
+}
+
+.borrow-info{
+margin-top:1em;
+}
+
+.event-detail-container{
+  display:none;
+}
+.opening-info{
+  margin-top:2em;
+  text-align: center;
+  font-size:1.3em;
+  color:gray;
+}
 }

@@ -26,6 +26,7 @@ export class ItemCalendarUserPage {
     clickedTwice:boolean;
     unableForReservation = false;
 	clickedFirstTime: boolean;
+    swipeOrChangeMonth = false;
 
     notClickable=[];
 
@@ -56,7 +57,6 @@ export class ItemCalendarUserPage {
  loadEvents(event: Date) {
 	 var date = new Date();
 	 date = event;
-	 console.log("date " + date);
         this.eventSource = this.createRandomEvents(date);
     }
 
@@ -70,12 +70,11 @@ export class ItemCalendarUserPage {
       this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
-	  this.loadEvents(ev);
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
           (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-
   }
   onCurrentDateChanged(event: Date) {
+      this.loadEvents(event);
       var today = new Date();
       today.setHours(0, 0, 0, 0);
       event.setHours(0, 0, 0, 0);
@@ -104,15 +103,18 @@ export class ItemCalendarUserPage {
   nextMonth() {
       this.loadedFirstTime = false;
       this.calendar.currentDate = new Date(this.calendar.currentDate.setMonth(this.calendar.currentDate.getMonth() + 1));
+      this.swipeOrChangeMonth=true;
       
   }
   previousMonth() {
       this.loadedFirstTime = false;
       this.calendar.currentDate = new Date(this.calendar.currentDate.setMonth(this.calendar.currentDate.getMonth() - 1));
+      this.swipeOrChangeMonth=true;
   }
 
   swipeEvent() {
       this.loadedFirstTime = false;
+      this.swipeOrChangeMonth=true;
   }
     
   onRangeChanged(ev) {
@@ -120,6 +122,13 @@ export class ItemCalendarUserPage {
   }
 
    createRandomEvents(event: Date) {
+       var swipeOrClick;
+       if(this.swipeOrChangeMonth){
+           swipeOrClick=true;
+       }
+       else{
+           swipeOrClick=false;
+       }
         var events = [];
         var reservations = [];
         if(this.item.reserved!=null){
@@ -161,10 +170,11 @@ export class ItemCalendarUserPage {
                 endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
                
                 events.push({
-                    title: 'Reserved',
+                    title: '',
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: true
+                    allDay: true, 
+                    color: 'cantBorrow'
                 });
                 
             
@@ -203,40 +213,38 @@ export class ItemCalendarUserPage {
                 endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
                
                 events.push({
-                    title: 'Loaned out',
+                    title: '',
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: true
+                    allDay: true,
+                    color: 'cantBorrow'
                 });
         }
-		
-		var today = new Date();
-		console.log("clickedFirstTime " + this.clickedFirstTime);
-		if(event!=null && this.checkIfClickable(today)){
+		if(event!=null && this.checkIfClickable(event) && !swipeOrClick){
 		 var startTime;
-		 startTime = new Date();
-		 startTime = event;
-		 console.log("startTime " + event);
+         startTime = new Date();
+          startTime.setTime(event.getTime());
             var endTime;
-		 endTime = new Date();
-		 console.log("resdays: " + this.currentEntity.reservationDays);
+            endTime = new Date();
+         endTime.setTime(event.getTime());
 		 var x = this.currentEntity.reservationDays;
         var resDays = +x;
-			endTime.setDate(startTime.getDate()+resDays);
-			
-			console.log("starttime: " + startTime + " endTime: " + endTime);
+			endTime.setDate(endTime.getDate()+resDays);
                 startTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()+1);
                
                 endTime = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate()+1);
                
                 events.push({
-                    title: 'The days you want to borrow',
+                    title: '',
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: true
+                    allDay: true,
+                    color:'canBorrow'
                 });
+                startTime = null;
+                endTime = null;
 		}
-		this.clickedFirstTime=false;
+         this.swipeOrChangeMonth=false;
         return events;
     }
 	

@@ -17,9 +17,15 @@
     <p class="title-text">Select your pickup date</p>
   <div>
     <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
+    <template #template let-view="view" let-row="row" let-col="col">
+    <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
+      {{view.dates[row*7+col].label}}
+    </div>
+  </template>
     <calendar (swipe)="swipeEvent()"
               [markDisabled]="markDisabled"
               [currentDate]="calendar.currentDate"
+            [monthviewDisplayEventTemplate]="template"
               autoSelect="false"
               noEventsLabel={{openingInfo}}
               [eventSource]= "eventSource"
@@ -31,6 +37,11 @@
     </calendar>
     
     <div>
+      <div class="opening-info">{{openingInfo}}</div>
+      <div class="info-position">
+      <div class="foo-red"></div><div class="res-loan-info">Reserved/Loaned</div>
+      <div class="foo-blue"></div><div class="borrow-info">Days you wish to reserve</div> 
+      </div>
       <div class="unable-date" *ngIf="unableForReservation">It's unable to borrow this item that date</div>
       <div class="item">
         <p class="item-borrow">Item you want to borrow</p>
