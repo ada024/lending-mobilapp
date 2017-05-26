@@ -550,6 +550,18 @@ status:"Notify"
     return foundUser;
   }
 
+  getUserById(userId) {
+      return new Promise((resolve) => {
+          this.users.subscribe(users => {
+            users.forEach(user => {
+            if (user.uid == userId) {
+                resolve(user);
+                }
+            });
+        }).unsubscribe();
+      });
+  }
+
 
 
 

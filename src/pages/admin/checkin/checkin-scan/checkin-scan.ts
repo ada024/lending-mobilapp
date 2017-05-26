@@ -1,14 +1,10 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { CheckinConfirmPage } from '../checkin-confirm/checkin-confirm';
 
-/*
-  Generated class for the CheckinScan page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-checkin-scan',
   templateUrl: 'checkin-scan.html'
@@ -25,16 +21,13 @@ export class CheckinScanPage {
     loan: any;
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
-
+    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
+    public menu: DropDownMenuService, public db: DatabaseService) {
+        
         if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
             (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
         }
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad CheckoutItemsPage');
     }
 
 
