@@ -1,7 +1,16 @@
 ﻿export class Loan {
-    constructor(public loaner, public loanerName, public itemOwnerName, public formattedDate, public formattedShortDate, public timeInMillis) {
+    constructor(public userPhoto, public userEmail, public loaner, public loanerName, public itemOwnerName, public formattedDate, public formattedShortDate, public timeInMillis) {
 
     }
+
+    getUserPhoto() {
+        return this.userPhoto;
+    }
+
+    getUserEmail() {
+        return this.userEmail;
+    }
+    
     getLoaner() {
         return this.loaner;
     }

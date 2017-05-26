@@ -8,12 +8,12 @@
   }
 
   .pUpDate {
-    font-size: 2em;
+    font-size: 1.3em;
     font-weight: bold;
     color: grey;
     text-align: center;
     position: relative;
-    top: -0.4em;
+    top: -0.8em;
   }
 
   .date {
@@ -22,9 +22,27 @@
     color: grey;
     text-align: center;
     position: relative;
-    top: -1.3em;
+    top: -1.8em;
   }
 
+
+ .retDate {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: indianred;
+    text-align: center;
+    position: relative;
+    top: -2.3em;
+  }
+
+  .ret-date {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: indianred;
+    text-align: center;
+    position: relative;
+    top: -3.3em;
+  }
   
 
   .officeInfo {

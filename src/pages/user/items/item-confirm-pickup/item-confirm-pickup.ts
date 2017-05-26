@@ -139,11 +139,16 @@ export class ItemConfirmPickupPage {
 
   confirmClicked() {
       var photoURL = null;
+      var userEmail = null;
       if(this.item.photoURL!=null){
       photoURL = this.item.photoURL;
     }
+
+    if(this.item.email!=null){
+      userEmail = this.item.email;
+    }
     
-      var reservation = new Reservation(this.item.$key,this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);
+      var reservation = new Reservation(this.db.currentUser.photoURL, userEmail, this.item.$key,this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);
      
       this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
   }

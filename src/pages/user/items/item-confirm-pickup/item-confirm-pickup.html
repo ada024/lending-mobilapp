@@ -17,6 +17,8 @@
   <div class="pUpInfo">
     <p class="pUpDate">Pickup date</p>
     <p class="date">{{pickupDate}}</p>
+    <p class="retDate">Return date</p>
+    <p class="ret-date">{{formattedReturnDate}}</p>
   </div>
   <p class="officeInfo">{{officeLocation}}</p>
   <p class="roomAndTimeInfo">{{officeRoom}}</p>
@@ -31,7 +33,7 @@
     </button>
   </div>
   <div class="placeBottom">
-    <p class="item-borrow">Item you want to borrow</p>
+    <p class="item-borrow">Item you want to reserve</p>
     <div class="item-info"><img [src]="item.photoURL" class="item-image" /><span class="item-name">{{item.name}}</span></div>
   </div>
 </ion-content>

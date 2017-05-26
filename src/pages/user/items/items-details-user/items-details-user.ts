@@ -27,7 +27,7 @@ export class ItemsDetailsUserPage {
         var reservations = this.item.reserved;
         reservations.sort((date1,date2)=>date1.pickupDate-date1.pickupDate);
         for(var res of reservations){
-            if(res.userId=db.currentUser.uid){
+            if(res.userId==db.currentUser.uid){
                 this.reservation=res;
                 break;
             }

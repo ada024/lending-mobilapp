@@ -49,7 +49,12 @@ export class HomeUserPage {
     }
 
     acceptLoan(pendingLoan) {
-        var loan = new Loan(pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.formattedShortDate, pendingLoan.pendingLoan.timeInMillis);
+        var userEmail =  null;
+        if(pendingLoan.pendingLoan.userEmail!=null){
+            userEmail = pendingLoan.pendinLoan.userEmail;
+        }
+
+        var loan = new Loan(pendingLoan.pendingLoan.userPhoto, userEmail, pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.formattedShortDate, pendingLoan.pendingLoan.timeInMillis);
         this.db.addLoan(loan, pendingLoan);
        this.db.deletePendingLoan(pendingLoan);
   }
