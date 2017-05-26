@@ -1,8 +1,14 @@
-﻿
-<ion-header>
+﻿<ion-header>
 
-  <ion-navbar>
-    <ion-title>{{currentUserName}}</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -10,35 +16,34 @@
 
 <ion-content padding>
 
-  <div class="big-icon">
-    <ion-icon name="logo-freebsd-devil"></ion-icon>
+  <div class="big-icon-svg">
+     <img src="./assets/icons/entities.svg">
   </div>
 
   <p class=title>
     <b>Selected entity</b>
   </p>
 
-  <div class="button-container">
-   <button class="blue-button" (click)="goToEntityDetailsAdminPage()">
-      <div class="button-text">
-        <b>{{currentUserEntity}}</b>
-      </div>
-    </button>
+  <div class="current-entity" (click)="goToEntityDetailsAdminPage()">
+     <img src="./assets/icons/edit.svg" class="edit-icon">
+    <div class="current-entity-text">
+      <b>{{currentUserEntity}}</b>
+    </div>
+  </div>
 
-    <button class="blue-button" (click)="goToEntityListAdminPage()">
-      <ion-icon name="ios-list-box-outline" class="button-icon"></ion-icon>
-      <div class="button-with-icon-text">
-        <b>List all entities</b>
+  <div class="button-container">
+    <button class="black-button" (click)="goToEntityListAdminPage()">
+      <img src="./assets/icons/list.svg" class="button-icon-svg">
+      <div class="button-with-icon-svg-text">
+        <b>List my entities</b>
       </div>
    </button>
-  </div>
-
-  <div class="add-icon">
-    <ion-icon name="md-add-circle" (click)="goToEntityAddAdminPage()"></ion-icon>
-  </div>
-
-  <div class="add-entity-text">
-    Add Entity
+   <button class="blue-button" (click)="goToEntityAddAdminPage()">
+      <ion-icon name="add" class="button-icon"></ion-icon>
+      <div class="button-with-icon-text">
+        <b>Create new entity</b>
+      </div>
+   </button>
   </div>
 
 </ion-content>

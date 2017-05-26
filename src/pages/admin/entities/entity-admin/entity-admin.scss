@@ -1,18 +1,31 @@
 ﻿page-entity-admin {
+
   .customIcon {
     font-size: 1.7em;
   }
 
-
-  .add-icon {
-    color: green;
-    text-align: center;
-    font-size: 80px;
-    margin-top: 20px;
+  .current-entity {
+    position: relative;
+    background-color: #DCDEE0;
+    height: 100px;
   }
 
-  .add-entity-text {
-    text-align: center;
+  .current-entity-text {
     font-size: 25px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .edit-icon {
+    height: 30px;
+    width: 30px;
+    top: 20%;
+    left: 92%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }

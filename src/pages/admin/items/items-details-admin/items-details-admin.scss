@@ -13,11 +13,20 @@
   
   .checkout-icon {
     float: left;
-    font-size: 30px;
+    height: 25px;
+    width: 25px;
     margin: 7px;
   }
 
   .checkout-text {
+    color: #844341;
+    float: left;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  .checkin-text {
     color: white;
     float: left;
     font-size: 20px;
@@ -29,27 +38,27 @@
     float: left;
     width: 160px;
     height: 55px;
-    background-color: green;
+    background-color: #7cd87b;
   }
 
   .edit-button {
     width: 120px;
     height: 55px;
-    background-color: #40afce;
+    background-color: #4091FF;
   }
 
   .edit-icon {
-    color: white;
     float: left;
-    font-size: 30px;
-    margin: 5px;
+    height: 30px;
+    width: 30px;
+    margin: 10px;
   }
 
   .edit-text {
     color: white;
     float: left;
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 5px;
   }
 
@@ -65,10 +74,12 @@
 
   .image-button-container {
     text-align: center;
+    margin-bottom: 10px;
   }
 
   .image-button {
-    background-color: #40afce;
+    background-color: #4E4E4E;
+    margin: 5px;
   }
 
   .item-res-days {
@@ -90,7 +101,7 @@
     width: 100%;
     height: 70px;
     margin-top: 5px;
-    background-color: red;
+    background-color: #f28282;
   }
 
   .notification-reservation {
@@ -137,20 +148,89 @@
     position: absolute;
   }
 
-  .button-text {
-    font-size: 1.5em;
-    color: white;
-  }
-
-  .name-input {
-    font-size: 30px;
-  }
-
   .blue-button-2 {
-    height:4em;
+    height:5em;
     width:18em;
     margin-left:3em;
     margin-top:2em;
-    background-color: #40afce;
+    background-color: #4091FF;
+  }
+
+  .super-container {
+    text-align: center;
+    margin: 20px;
+  }
+
+  .item-container {
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    border: 5px solid #4E4E4E;
+  }
+
+  .image-container {
+    height: 80%;
+    width: 100%;
+  }
+
+  .item-image {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+  }
+
+  .item-name-container {
+    height: 20%;
+    width: 100%;
+    background-color: #95989A;
+  }
+
+  .item-name {
+    color: white;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 25px;
+  }
+
+  .description {
+    border: 4px solid #DADCDE;
+    margin-top: 5px;
+  }
+
+  .description-text {
+    margin: 10px;
+  }
+
+  .no-description-text {
+    color: grey;
+  }
+
+  .status {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .white-button {
+    position: relative;
+  }
+
+  .encode-text {
+    color: black;
+    font-size: 25px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .resdays {
+    font-size: 15px;
+    margin-left: 5px;
+  }
+
+  textarea {
+    height: 100px;
   }
 }

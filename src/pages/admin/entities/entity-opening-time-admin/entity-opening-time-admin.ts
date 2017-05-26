@@ -1,14 +1,11 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { EntityOffice } from '../../../../app/models/entityOffice';
-import {EntityStandardReservationPage} from '../entity-standard-reservation/entity-standard-reservation';
-/*
-  Generated class for the EntityOpeningTimeAdmin page.
+import { EntityStandardReservationPage } from '../entity-standard-reservation/entity-standard-reservation';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+
 @Component({
   selector: 'page-entity-opening-time-admin',
   templateUrl: 'entity-opening-time-admin.html'
@@ -26,15 +23,13 @@ export class EntityOpeningTimeAdminPage {
     notAdded3: boolean;
 
     officeInfo;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public menu: DropDownMenuService, public db: DatabaseService) {
         this.entityName = navParams.get("entityName");
         this.entityLocation = navParams.get("entityLocation");
         this.entityRoom = navParams.get("entityRoom");
     }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EntityOpeningTimeAdminPage');
-  }
+    
 
   addEntity() {
       this.entityHours = this.entityHoursFrom + " - " + this.entityHoursTo;

@@ -20,48 +20,62 @@
 
     <div class="top-button-container">
       <button class="checkout-button" (click)="checkout()" *ngIf="item.loan==null">
-        <ion-icon name="redo" class="checkout-icon"></ion-icon>
+        <img src="./assets/icons/checkout_full.svg" class="checkout-icon">
         <div class="checkout-text">
           <b>Check out</b>
         </div>
       </button>
       <button class="checkin-button" (click)="checkin()" *ngIf="item.loan!=null">
-        <ion-icon name="redo" class="checkout-icon"></ion-icon>
-        <div class="checkout-text">
+        <img src="./assets/icons/checkin.svg" class="checkout-icon">
+        <div class="checkin-text">
           <b>Check In</b>
         </div>
       </button>
       <button class="edit-button" (click)="modify = true">
-        <ion-icon name="md-create" class="edit-icon"></ion-icon>
+        <img src="./assets/icons/edit.svg" class="edit-icon">
         <div class="edit-text">
           <b>Edit</b>
         </div>
       </button>
     </div>
-    
-    <div class="item-image-container">
-      <img [src]="item.photoURL" class="item-image" *ngIf="!photoURL"/>
-      <img [src]="photoURI" class="item-image" *ngIf="photoURL"/>
+
+    <div class="super-container">
+      <div class="item-container">
+        <div class="image-container">
+          <img *ngIf="item" [src]="item.photoURL" class="item-image"/>
+        </div>
+        <div class="item-name-container">
+          <div class="item-name">
+            <b>{{itemName}}</b>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <p class=title>
-      <b>{{item.name}}</b>
-    </p>
-
-    <div class="description">
-      <b>Description</b><br>
-      {{item.description}}
+    <b>Description</b><br>
+    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
+      <ion-textarea class="description-text" readonly="true">
+        {{itemDescription}
+      </ion-textarea>
+    </div>
+    <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
+      <b>No description Available</b>
     </div>
 
-    <p class="status">
-      <b>Status</b><br>
-      <span *ngIf="item.loan!=null"> Out until {{item.loan.formattedShortDate}}</span>
-      <span *ngIf="item.loan==null"> Available</span>
-    </p>
+    <div class="status">
+      <b>Status</b>
+      <div *ngIf="item.loan==null"> 
+        Available
+      </div>
+      <div *ngIf="item.loan!=null"> 
+        Out until {{item.loan.formattedShortDate}}<br>
+        Borrower: {{item.loan.loanerName}}
+      </div>
+    </div>
 
     <div class="item-res-days">
       <b>Number of standard loan days:</b>
-      <span >{{resDays}}</span>
+      <span class="resdays">{{resDays}}</span>
     </div>
 
     <button class="blue-button-2" (click)="goToReservationCalendar()"><div class="button-text">Reservation calendar</div></button>
@@ -91,33 +105,40 @@
         </button>
     </div>
     
-    <div class="item-image-container">
-      <img [src]="item.photoURL" class="item-image" *ngIf="!photoURL && item"/>
-      <img [src]="photoURI" class="item-image" *ngIf="photoURL"/>
+    <div class="super-container">
+      <div class="item-container">
+        <div class="image-container">
+          <img *ngIf="item" [src]="item.photoURL" class="item-image"/>
+        </div>
+        <div class="item-name-container">
+          <p class="item-name">
+            <ion-input [(ngModel)]="itemName" placeholder="Add name">
+              {{itemName}}
+            </ion-input>
+          </p>
+        </div>
+      </div>
     </div>
 
       <div class="image-button-container">
         <button class="image-button" (click)="getPicture(true)">
-          <ion-icon name="camera" class="button-icon"></ion-icon>
+          <img src="./assets/icons/camera.svg" class="button-icon-svg">
         </button>
 
         <button class="image-button" (click)="getPicture(false)">
-          <ion-icon name="image" class="button-icon"></ion-icon>
+          <img src="./assets/icons/image.svg" class="button-icon-svg">
         </button>
       </div>
 
-      <p class="name-input">
-        <ion-input [(ngModel)]="itemName">
-          {{itemName}}
-        </ion-input>
-      </p>
 
-      <div [(ngModel)]="itemDescription">
-        <b>Description</b><br>
-        <ion-input placeholder="Add description">
+      <b>Description</b><br>
+        <div class="description" [(ngModel)]="itemDescription">
+        <ion-textarea class="description-text" placeholder="Add description">
           {{itemDescription}}
-        </ion-input>
+        </ion-textarea>
       </div>
+
+      <br>
 
       <div class="item-res-days">
         <b>Number of standard loan days:</b>
@@ -128,16 +149,15 @@
       <div class="info-text">(Altering wont affect reservations already made)</div>
 
       <div class="button-container">
-        <button class="blue-button" (click)="encode()">
-          <ion-icon name="finger-print" class="button-icon"></ion-icon>
-          <div class="button-with-icon-text">
+        <button class="white-button" (click)="encode()">
+          <img src="./assets/icons/scantag.svg" class="button-icon-svg">
+          <div class="encode-text">
             <b>Encode</b>
           </div>
         </button>
 
         <button class="red-button" (click)="delete()">
-          <ion-icon name="nuclear" class="button-icon"></ion-icon>
-          <div class="button-with-icon-text">
+          <div class="button-text">
             <b>Delete item</b>
           </div>
         </button>

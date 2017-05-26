@@ -1,8 +1,14 @@
-﻿
-<ion-header>
+﻿<ion-header>
 
-  <ion-navbar>
-    <ion-title>entityAddAdmin</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -20,10 +26,13 @@
     </ion-item>
   </div>
 
-  <button class="blue-button" (click)="addNewEntity()">
+  <br>
+
+  <button class="black-button" (click)="addNewEntity()">
     <div class="button-text">
       <b>Next</b>
     </div>
+    <ion-icon class="arrow-icon" name="md-arrow-forward"></ion-icon>
   </button>
 
 </ion-content>

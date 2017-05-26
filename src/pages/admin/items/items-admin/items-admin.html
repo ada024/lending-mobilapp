@@ -16,19 +16,20 @@
 
 <ion-content padding>
 
-  <div class="big-icon">
-    <ion-icon name="logo-freebsd-devil"></ion-icon>
+  <div class="big-icon-svg">
+     <img src="./assets/icons/items.svg">
   </div>
 
   <p class=title>
-    <b>{{numberOfItems}} items registered</b>
+    <b>{{numberOfItems}} items</b><br>
+    registered
   </p>
 
   <ion-searchbar>
   </ion-searchbar>
 
   <div>
-    <button class="blue-button" (click)="goToItemsListAdminPage()">
+    <button class="black-button" (click)="goToItemsListAdminPage()">
       <ion-icon name="ios-list-box-outline" class="button-icon"></ion-icon>
      <div class="button-with-icon-text">
        <b>List all items</b>

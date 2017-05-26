@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { EntityOfficeAdminPage } from '../entity-office-admin/entity-office-admin';
 
 
@@ -13,7 +14,8 @@ export class EntityAddAdminPage {
   entityName = "";
   notAdded: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  public menu: DropDownMenuService, public db: DatabaseService) {
       this.currentUser = this.db.currentUserName;
   }
 

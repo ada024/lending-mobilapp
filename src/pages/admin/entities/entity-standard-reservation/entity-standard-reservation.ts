@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import {TermsAndConditionsPage} from '../terms-and-conditions/terms-and-conditions';
 
-/*
-  Generated class for the EntityStandardReservation page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-entity-standard-reservation',
   templateUrl: 'entity-standard-reservation.html'
@@ -20,16 +16,14 @@ entityDays: any;
 reservationDays: any;
 
 emptyResDays=false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
+  public menu: DropDownMenuService, public alertCtrl: AlertController) {
 this.entityOffice = navParams.get("office");
 this.entityName = navParams.get("entityName");
 console.log("entityDays: " + this.entityOffice.days);
 this.entityDays = this.getWeekDays(this.entityOffice.days.length);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EntityStandardReservationPage');
-  }
 
 addEntity(){
     if(this.reservationDays!=null){

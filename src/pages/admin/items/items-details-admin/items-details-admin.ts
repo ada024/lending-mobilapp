@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { Platform } from 'ionic-angular';
@@ -28,7 +28,7 @@ export class ItemsDetailsAdminPage {
   entity;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public menu: DropDownMenuService,
-  public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events) {
+  public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events, public alertCtrl: AlertController) {
       let sentItem = navParams.get("item");
       this.itemDescription = sentItem.description;
       this.itemName = sentItem.name;
@@ -127,8 +127,22 @@ this.modifyResDays=false;
   }
 
   delete() {
-      this.navCtrl.pop();
-      this.db.deleteItem(this.item.$key);
+      this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to delete this item?',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          this.navCtrl.pop();
+          this.db.deleteItem(this.item.$key);
+        }
+      }
+      ]
+    }).present();
   }
 
   getPicture(useCamera) {

@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import {TermsAndConditionsDetailsPage} from '../terms-and-conditions-details/terms-and-conditions-details';
 
 
@@ -30,7 +31,7 @@ entityDays="";
 entityHours="";
 resDays="";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
   public zone: NgZone, public db: DatabaseService) {
      //this.currentEntity = navParams.get("entity");
      db.getEntity(this.onEntityLoaded.bind(this));
