@@ -144,8 +144,8 @@ export class ItemConfirmPickupPage {
       photoURL = this.item.photoURL;
     }
 
-    if(this.item.email!=null){
-      userEmail = this.item.email;
+    if(this.db.currentUser.email!=null){
+      userEmail = this.db.currentUser.email;
     }
     
       var reservation = new Reservation(this.db.currentUser.photoURL, userEmail, this.item.$key,this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);

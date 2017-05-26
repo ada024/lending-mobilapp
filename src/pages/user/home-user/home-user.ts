@@ -51,7 +51,7 @@ export class HomeUserPage {
     acceptLoan(pendingLoan) {
         var userEmail =  null;
         if(pendingLoan.pendingLoan.userEmail!=null){
-            userEmail = pendingLoan.pendinLoan.userEmail;
+            userEmail = pendingLoan.pendingLoan.userEmail;
         }
 
         var loan = new Loan(pendingLoan.pendingLoan.userPhoto, userEmail, pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.formattedShortDate, pendingLoan.pendingLoan.timeInMillis);
