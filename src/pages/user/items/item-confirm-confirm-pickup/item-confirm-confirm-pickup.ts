@@ -25,6 +25,8 @@ export class ItemConfirmConfirmPickupPage {
     officeDays: any;
     reservation:any;
 
+    pUpDate;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
         this.reservation = navParams.get("reservation");
         this.currentEntity = navParams.get("entity");
@@ -35,6 +37,7 @@ export class ItemConfirmConfirmPickupPage {
         this.officeDays = this.getWeekDays(this.currentEntity.office.days.length);
 
         this.returnDate = this.reservation.formattedRetDate;
+        this.pUpDate = this.reservation.formattedpUpDate;
     }
 
   ionViewDidLoad() {

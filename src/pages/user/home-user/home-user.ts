@@ -54,7 +54,7 @@ export class HomeUserPage {
             userEmail = pendingLoan.pendingLoan.userEmail;
         }
 
-        var loan = new Loan(pendingLoan.pendingLoan.userPhoto, userEmail, pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.formattedShortDate, pendingLoan.pendingLoan.timeInMillis);
+        var loan = new Loan(pendingLoan.pendingLoan.entityName, pendingLoan.pendingLoan.userPhoto, userEmail, pendingLoan.pendingLoan.loaner, pendingLoan.pendingLoan.loanerName, pendingLoan.pendingLoan.itemOwnerName, pendingLoan.pendingLoan.formattedDate, pendingLoan.pendingLoan.formattedShortDate, pendingLoan.pendingLoan.timeInMillis);
         this.db.addLoan(loan, pendingLoan);
        this.db.deletePendingLoan(pendingLoan);
   }

@@ -119,8 +119,9 @@
       <div class="reservations-container">
         <img [src]="reservation.itemPhoto" class="item-image" />
         <div class="item-name">
-          {{reservation.itemName}} <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
-          <div class="dueDate"><span *ngIf="dueDate(reservation.pickupDate)=='today'">Pick up today. Reservation will be deleted tomorrow</span><span *ngIf="dueDate(reservation.pickupDate)!='today'">Pick up {{dueDate(reservation.pickupDate)}}</span></div>
+          {{reservation.itemName}}  <span class = "entity-info">from {{reservation.entityName}}</span><ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
+          <div class="dueDate"><span>Pick up {{dueDate(reservation.pickupDate)}}</span></div>
+          <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='today'">Reservation will be deleted tomorrow</div>
         </div>
       </div>
     </div>
@@ -133,7 +134,7 @@
       <div class="borrowed-container">
         <img [src]="loan.photoURL" class="item-image" />
         <div class="item-name">
-          {{loan.name}}
+          {{loan.name}} <span class = "entity-info">from {{loan.entityName}}</span>
           <div class="dueDateBorrowed"> <span *ngIf="dueDate(loan.loan.timeInMillis)=='Should have been returned'">{{dueDate(loan.loan.timeInMillis)}}</span> <span *ngIf="dueDate(loan.loan.timeInMillis)!='Should have been returned'">Due {{dueDate(loan.loan.timeInMillis)}}</span></div>
         </div>
       </div>

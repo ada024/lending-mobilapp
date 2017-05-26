@@ -25,6 +25,7 @@ export class ItemConfirmPickupPage {
     officeRoom: any;
     officeHours: any;
     officeDays: any;
+    additionDaysToRes;
 
     returnDate: Date;
     formattedReturnDate:any;
@@ -33,6 +34,7 @@ export class ItemConfirmPickupPage {
         this.eventDate = navParams.get("event");
         this.item = navParams.get("item");
         this.currentEntity = navParams.get("entity");
+        this.additionDaysToRes = navParams.get("additionDaysToRes");
         this.officeLocation = this.currentEntity.office.location;
         this.officeRoom = this.currentEntity.office.room;
         this.officeHours = this.currentEntity.office.hours;
@@ -46,7 +48,7 @@ export class ItemConfirmPickupPage {
         this.pickupDate = date + suffix + " of " + monthAsText + " " + year;
         this.shortPickupDate = date + suffix + " of " + monthAsText;
 
-        var x = this.item.reservationDays;
+        var x = this.additionDaysToRes;
         var resDays = +x;
         this.returnDate = new Date(this.eventDate);
         this.returnDate.setDate(this.returnDate.getDate() + resDays);
@@ -148,7 +150,7 @@ export class ItemConfirmPickupPage {
       userEmail = this.db.currentUser.email;
     }
     
-      var reservation = new Reservation(this.db.currentUser.photoURL, userEmail, this.item.$key,this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);
+      var reservation = new Reservation(this.db.currentUser.entityName, this.db.currentUser.photoURL, userEmail, this.item.$key,this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);
      
       this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
   }

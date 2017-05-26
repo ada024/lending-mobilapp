@@ -51,10 +51,10 @@ export class CheckoutUserPickedPage {
 
     goToHomeAdminPage() {
         var userEmail = null;
-        if(this.db.currentUser.email!=null){
-            userEmail = this.db.currentUser.email;
+        if(this.user.email!=null){
+            userEmail = this.user.email;
         }
-        var loan = new Loan(this.db.currentUser.photoURL, userEmail, this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.formattedShortReturnDate, this.returnDate.getTime());
+        var loan = new Loan(this.db.currentUser.entityName, this.user.photoURL, userEmail, this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.formattedShortReturnDate, this.returnDate.getTime());
         for (let item of this.itemList) {
             this.db.addPendingLoan(loan, item.$key);
         }

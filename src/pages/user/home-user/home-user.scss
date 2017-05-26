@@ -46,12 +46,13 @@
   .item-name {
     font-size: 1.3em;
     margin-top: 0.4em;
+    margin-left: -1.2em;
     float: left;
   }
 
   .dueDate {
     font-size: 0.6em;
-    margin-left: 0.1em;
+    margin-left: 0em;
     color: mediumseagreen
   }
 
@@ -145,5 +146,9 @@
 
   .grey-button-text {
     margin-top: 5px;
+  }
+
+  .entity-info{
+    font-size:0.6em;
   }
 }

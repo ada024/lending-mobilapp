@@ -1,6 +1,10 @@
 ﻿export class Reservation {
-    constructor(public userPhoto, public userEmail, public itemKey, public userId: String, public userName: String, public pickupDate: Date, public formattedpUpDate: String, public formattedShortpUpDate: String, public returnDate: any, public formattedRetDate, public formattedShortRetDate, public itemName, public itemPhoto) {
+    constructor(public entityName, public userPhoto, public userEmail, public itemKey, public userId: String, public userName: String, public pickupDate: Date, public formattedpUpDate: String, public formattedShortpUpDate: String, public returnDate: any, public formattedRetDate, public formattedShortRetDate, public itemName, public itemPhoto) {
 
+    }
+
+ getEntityName() {
+        return this.entityName;
     }
 
     getUserPhoto() {

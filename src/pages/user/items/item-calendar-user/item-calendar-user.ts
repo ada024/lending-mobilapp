@@ -27,6 +27,7 @@ export class ItemCalendarUserPage {
     unableForReservation = false;
 	clickedFirstTime: boolean;
     swipeOrChangeMonth = false;
+    additionDaysToRes;
 
     notClickable=[];
 
@@ -90,7 +91,7 @@ export class ItemCalendarUserPage {
       this.isToday = today.getTime() === event.getTime();
       if (this.clickedTwice && this.checkIfClickable(event)) {
           this.clickedTwice = false;
-          this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, entity: this.currentEntity });
+          this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, entity: this.currentEntity, additionDaysToRes: this.additionDaysToRes });
       }
       if(!this.checkIfClickable(event) && this.loadedFirstTime){
           this.unableForReservation=true;
@@ -179,7 +180,7 @@ export class ItemCalendarUserPage {
                 
             
         }
-        
+        }
         if(this.item.loan!=null){
            var startDate = new Date();
             this.notClickable.push(startDate);
@@ -220,7 +221,8 @@ export class ItemCalendarUserPage {
                     color: 'cantBorrow'
                 });
         }
-		if(event!=null && this.checkIfClickable(event) && !swipeOrClick){
+   
+		if(event!=null && this.checkIfClickable(event) && !swipeOrClick && this.loadedFirstTime){
 		 var startTime;
          startTime = new Date();
           startTime.setTime(event.getTime());
@@ -230,10 +232,35 @@ export class ItemCalendarUserPage {
 		 var x = this.currentEntity.reservationDays;
         var resDays = +x;
 			endTime.setDate(endTime.getDate()+resDays);
+            var fitWithOpening = false;
+            var distanceToOpening;
+            for(var officeDay of this.currentEntity.office.days){
+                        var newDistance;
+                    newDistance = officeDay - endTime.getDay();
+                    if(newDistance<0){
+                        newDistance= 7- (endTime.getDay()-officeDay);
+                    }
+                    if(distanceToOpening==null || distanceToOpening>newDistance){
+                        distanceToOpening = newDistance;
+                    }
+                if(endTime.getDay() == officeDay){
+                    fitWithOpening=true;
+                }
+            }
+            if(!fitWithOpening){
+                endTime.setDate(endTime.getDate()+distanceToOpening);
+                this.additionDaysToRes = resDays+distanceToOpening; 
+            }else{this.additionDaysToRes = resDays;}
+
+    
+
+            
+
+            
                 startTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()+1);
                
                 endTime = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate()+1);
-               
+              
                 events.push({
                     title: '',
                     startTime: startTime,
@@ -243,10 +270,10 @@ export class ItemCalendarUserPage {
                 });
                 startTime = null;
                 endTime = null;
-		}
+		 }
          this.swipeOrChangeMonth=false;
         return events;
-    }
+       
 	
 	
    }
@@ -288,7 +315,7 @@ export class ItemCalendarUserPage {
 
   
   checkIfClickable(date:Date){
-      var isNotClickable = true;
+      var isClickable = true;
       for(var clickDate of this.notClickable){
          var distance = clickDate.getTime()-date.getTime(); 
           var resDaysMilli = this.item.reservationDays*24*60*60*1000;
@@ -296,10 +323,10 @@ export class ItemCalendarUserPage {
           distance = 500000000000000;
           }
           if(date.getTime()==clickDate.getTime() || distance<=resDaysMilli){
-          isNotClickable = false;
+          isClickable = false;
           }
       }
-      return isNotClickable;
+      return isClickable;
       
   }
 
