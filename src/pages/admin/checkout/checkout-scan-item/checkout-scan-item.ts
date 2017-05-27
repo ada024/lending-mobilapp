@@ -1,15 +1,11 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { ViewController, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { CustomAlertPage } from '../custom-alert/custom-alert';
 import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
 
-/*
-  Generated class for the CheckoutScanItem page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-checkout-scan-item',
   templateUrl: 'checkout-scan-item.html'
@@ -18,15 +14,12 @@ export class CheckoutScanItemPage {
     close: boolean;
     item: any;
 
-    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
+    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
+    public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
         if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
             (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
         }
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad CheckoutScanItemPage');
     }
 
 

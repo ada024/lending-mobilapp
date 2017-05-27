@@ -10,11 +10,15 @@ import { ItemsAddPhotoAdminPage } from '../items-add-photo-admin/items-add-photo
 })
 export class ItemsAddNameAdminPage {
   itemName = "";
-
+  notAdded: boolean;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public db: DatabaseService, public menu: DropDownMenuService) {}
 
   goToItemsAddPhotoAdminPage(){
-    this.navCtrl.push(ItemsAddPhotoAdminPage,{itemName: this.itemName});
+    if(this.itemName.length!=0) {
+      this.navCtrl.push(ItemsAddPhotoAdminPage,{itemName: this.itemName});
+    }
+    else this.notAdded = true;
   }
 }

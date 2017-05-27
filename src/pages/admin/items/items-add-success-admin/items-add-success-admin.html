@@ -24,19 +24,9 @@
     <b>Success.<br>Added and Encoded </b>
   </div>
 
-<div class="super-container">
-  <div class="item-container">
-    <div class="image-container">
-      <img *ngIf="!photoURI" src="./assets/icons/image.svg" class="item-image">
-      <img *ngIf="photoURI" [src]="photoURI" class="item-image"/>
-    </div>
-    <div class="item-name-container">
-      <div class="item-name">
-        <b>{{itemName}}</b>
-      </div>
-    </div>
-  </div>
-</div>
+  <img [src]="photoURI" class="item-image" />
+  <div class="inner-wrapper"></div>
+  <div class="item-name">{{itemName}}</div>
 
   <div class="bar">
     <div class="progress"></div>

@@ -1,18 +1,13 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { ViewController, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
-import {AngularFire} from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
 import { CustomAlertPage } from '../custom-alert/custom-alert';
 import { Tempitems } from '../../../../app/models/tempItems';
 
 
-/*
-  Generated class for the CheckoutItems page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-checkout-items',
   templateUrl: 'checkout-items.html'
@@ -31,7 +26,8 @@ export class CheckoutItemsPage {
 
 	
 
-    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
+    public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
 
         db.loadItems(this.onDataLoaded.bind(this));
 
@@ -41,9 +37,6 @@ export class CheckoutItemsPage {
             if (loan1.loan == null && loan2.loan != null) return -1;
             return 0;
         });
-    }
-    ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutItemsPage');
     }
   
 

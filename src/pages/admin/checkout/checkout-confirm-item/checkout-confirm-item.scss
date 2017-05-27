@@ -1,33 +1,4 @@
 ﻿page-checkout-confirm-item {
-  .checkout-button1 {
-    width: 20em;
-    height: 4em;
-    margin-top: 5em;
-    right: 3.8em;
-    background-color: white;
-    border: solid black;
-    position: absolute;
-  }
-
-  .checkout-button2 {
-    width: 20em;
-    height: 4em;
-    margin-top: 10em;
-    right: 3.8em;
-    background-color: white;
-    border: solid black;
-    position: absolute;
-  }
-
-  .checkout-button3 {
-    width: 20em;
-    height: 4em;
-    margin-top: 15em;
-    right: 3.8em;
-    background-color: white;
-    border: solid black;
-    position: absolute;
-  }
 
   .item-image {
     width: 15em;
@@ -36,8 +7,6 @@
     margin-top: 2em;
     border: solid black;
   }
-
-
 
   .inner-wrapper {
     background-color: black;
@@ -59,24 +28,21 @@
     position: relative;
   }
 
-  .customIcon {
-    font-size: 1.7em;
-  }
-
   .already-added{
     color:red;
     margin-top:2em;
     margin-left:5em;
   }
+  
   .added-text{
     margin-top:2em;
     margin-left:5em;
   }
 
   .item-reserved{
-    position:fixed;
     top:26em;
     margin-bottom:1em;
+    margin-top: 1em;
     color:red
   }
 }
