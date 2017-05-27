@@ -21,7 +21,7 @@
           {{item.name}}
         </div>  
          <br />
-      <span class="res-date" *ngIf="item.reserved!=null">Reserved from: {{item.reserved[0].formattedShortpUpDate}}</span> 
+      <span class="res-date" *ngIf="item.reserved!=null">Next reservation: {{item.reserved[0].formattedShortpUpDate}} - {{item.reserved[0].formattedShortRetDate}}</span> 
       </ion-item>
   </ion-list>
 

@@ -15,13 +15,19 @@
 
 
 <ion-content padding>
-    <p class="title-text">Select your pickup date</p>
+    <p class="title-text">Reservation calendar for {{item.name}}</p>
   <div>
+    <template #template let-view="view" let-row="row" let-col="col">
+    <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
+      {{view.dates[row*7+col].label}}
+    </div>
+  </template>
     <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
     <calendar (swipe)="swipeEvent()"
               [markDisabled]="markDisabled"
               [currentDate]="calendar.currentDate"
               autoSelect="false"
+            [monthviewDisplayEventTemplate]="template"
               noEventsLabel=""
               [eventSource]= "eventSource"
               showEventDetail="false"
@@ -31,6 +37,7 @@
               (onTimeSelected)="onTimeSelected($event)"
               step="30">
     </calendar>
+    <div class="foo-red"></div><div class="res-loan-info">Reserved/Loaned</div>
     <div *ngIf="reservation!=null" class="reserved-by">Reserved by {{reservation.userName}} <button class="cancel-res-button" (click)="cancelRes(reservation)">Cancel reservation?</button></div> 
     <div *ngIf="loanName!=null" class="reserved-by">Currently loaned by {{loanName}}</div>
   </div>

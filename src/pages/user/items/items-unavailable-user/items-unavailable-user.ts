@@ -31,6 +31,17 @@ export class ItemsUnavailableUserPage {
         this.zone.run(() => {
             this.unavailableItems = this.loadedItemList = loadedList;
             this.unavailableItems.sort((date1, date2)=>date1.loan.timeInMillis-date2.loan.timeInMillis);
+      
+    for(var item of this.unavailableItems){
+          if(item.reserved!=null){
+              item.reserved.sort((date1,date2) => {
+      if(date1.pickupDate< date2.pickupDate){
+        return -1;
+      }
+      return 1;
+    });
+          }
+      }
         });
     }
   

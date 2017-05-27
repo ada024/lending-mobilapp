@@ -229,7 +229,7 @@ export class ItemCalendarUserPage {
             var endTime;
             endTime = new Date();
          endTime.setTime(event.getTime());
-		 var x = this.currentEntity.reservationDays;
+		 var x = this.item.reservationDays;
         var resDays = +x;
 			endTime.setDate(endTime.getDate()+resDays);
             var fitWithOpening = false;
@@ -238,7 +238,7 @@ export class ItemCalendarUserPage {
                         var newDistance;
                     newDistance = officeDay - endTime.getDay();
                     if(newDistance<0){
-                        newDistance= 7- (endTime.getDay()-officeDay);
+                        newDistance= 7-(endTime.getDay()-officeDay);
                     }
                     if(distanceToOpening==null || distanceToOpening>newDistance){
                         distanceToOpening = newDistance;
@@ -246,6 +246,7 @@ export class ItemCalendarUserPage {
                 if(endTime.getDay() == officeDay){
                     fitWithOpening=true;
                 }
+                console.log("distancetoopening: " + distanceToOpening);
             }
             if(!fitWithOpening){
                 endTime.setDate(endTime.getDate()+distanceToOpening);

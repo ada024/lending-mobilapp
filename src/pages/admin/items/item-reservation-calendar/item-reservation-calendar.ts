@@ -127,11 +127,12 @@ export class ItemReservationCalendarPage {
                 endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
                
                 events.push({
-                    title: 'Reserved',
+                    title: '',
                     startTime: startTime,
                     endTime: endTime,
                     allDay: true,
-                    resName:reservation.userName
+                    resName:reservation.userName,
+                    color: "resLoaned"
                 });
         }
             
@@ -147,10 +148,11 @@ export class ItemReservationCalendarPage {
                 endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()+1);
                
                 events.push({
-                    title: 'Loaned out',
+                    title: '',
                     startTime: startTime,
                     endTime: endTime,
-                    allDay: true
+                    allDay: true,
+                    color: "resLoaned"
                 });
         }
         return events;

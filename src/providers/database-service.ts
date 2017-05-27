@@ -70,17 +70,6 @@ now.setDate(now.getDate()-1);
    });
                
 
- this.items.subscribe(items => {
-items.forEach(item=> {
-if(item.loan!=null){
-        if(item.loan.timeInMillis<=now.getTime()){
-            this.setNotify(item);
-        }
-}
-})
-
- });
-
 
 
 

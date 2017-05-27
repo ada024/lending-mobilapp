@@ -124,6 +124,7 @@
   border: 1px solid black;
   background: red;
   margin-left:-1.6em;
+  margin-top:-1em;
 }
 
 .foo-blue {
@@ -140,7 +141,7 @@
 
 
 .res-loan-info{
-margin-top:0.3em;
+margin-top:-1.0em;
 }
 
 .borrow-info{
@@ -151,9 +152,11 @@ margin-top:1em;
   display:none;
 }
 .opening-info{
-  margin-top:2em;
+  margin-top:1em;
   text-align: center;
   font-size:1.3em;
   color:gray;
 }
+
+
 }

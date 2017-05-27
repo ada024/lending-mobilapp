@@ -19,7 +19,7 @@
       <div class="item-container">
         <img [src]="pendingLoan.photoURL" class="item-image" />
         <div class="item-name">
-          {{pendingLoan.name}}
+          {{pendingLoan.name}}  <span class = "entity-info">from {{pendingLoan.entityName}}</span>
         </div>
       </div>
       <div class="return-date">Return date: {{pendingLoan.pendingLoan.formattedDate}}</div>
