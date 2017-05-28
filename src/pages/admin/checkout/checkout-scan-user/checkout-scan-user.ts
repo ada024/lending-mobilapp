@@ -2,14 +2,9 @@
 import {AlertController, NavController, NavParams } from 'ionic-angular';
 import {CheckoutReturnDatePage} from '../checkout-return-date/checkout-return-date';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
-/*
-  Generated class for the CheckoutScanUser page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-checkout-scan-user',
   templateUrl: 'checkout-scan-user.html'
@@ -17,7 +12,8 @@ import { DatabaseService } from '../../../../providers/database-service';
 export class CheckoutScanUserPage {
     close: boolean;
     currentEntity;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService, public alertCtrl:AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
+  public menu: DropDownMenuService, public db: DatabaseService, public alertCtrl:AlertController) {
 
 db.getEntity(this.onEntityLoaded.bind(this));
  if ((<any>window).nfc != null) {

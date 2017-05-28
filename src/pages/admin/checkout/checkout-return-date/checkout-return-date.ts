@@ -1,13 +1,11 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
-/*
-  Generated class for the CheckoutReturnDate page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+
 @Component({
   selector: 'page-checkout-return-date',
   templateUrl: 'checkout-return-date.html'
@@ -22,17 +20,12 @@ export class CheckoutReturnDatePage {
     item: any;
     user: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public menu: DropDownMenuService, public db: DatabaseService, public ngCal: NgCalendarModule) {
         this.item = navParams.get("item");
         this.user = navParams.get("user");
 		this.currentEntity = navParams.get("entity");
         this.loadedFirstTime = false;
-
-
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad ItemCalendarUserPage');
     }
 
     calendar = {

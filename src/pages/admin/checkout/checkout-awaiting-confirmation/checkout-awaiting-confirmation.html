@@ -1,20 +1,21 @@
-﻿<!--
-  Generated template for the CheckoutAwaitingConfirmation page.
+﻿<ion-header>
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>CheckoutAwaitingConfirmation</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div class="title-text">Checkout</div>
+  <div class="title"><b>Checkout</b></div>
   <div class="awaiting-container" *ngIf="confirmCheck!=items.length" >
     <p class="awaiting-text">Awaiting confirmation from {{user.fullname}}</p>
   </div>
@@ -43,7 +44,7 @@
   </button>
   <button class="done-button" (click)="done()"  *ngIf="confirmCheck!=items.length">
     <div class="blue-button-text">
-      <b>Dont wait for confirmation</b>
+      <b>Done</b>
     </div>
   </button>
 

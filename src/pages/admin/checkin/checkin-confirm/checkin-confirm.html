@@ -15,22 +15,13 @@
 
 <ion-content padding>
 
- <p class="title">
+ <div class="title">
    <b>Check in</b>  
-  </p>
-
- <div class="super-container">
-    <div class="item-container">
-      <div class="image-container">
-        <img *ngIf="loan" [src]="loan.photoURL" class="item-image"/>
-      </div>
-      <div class="item-name-container">
-        <div class="item-name">
-          <b>{{loan.name}}</b>
-        </div>
-      </div>
-    </div>
   </div>
+
+  <img [src]="loan.photoURL" class="item-image" *ngIf="loan" />
+  <div class="inner-wrapper"></div>
+  <div class="item-name">{{loan.name}}</div>
 
  <div class="placeBottom">
 
@@ -38,12 +29,9 @@
      Currently borrowed by
    </p>
 
-   <div class="user-container" (click)="goToUsersDetailsAdminPage(user)">
-     <img class="user-image" [src]="loan.loan.userPhoto" />
-     <div class="userName">
-       {{loan.loan.loanerName}}
-     </div>
-  </div>
+    <div class="user-container" (click)="goToUsersDetailsAdminPage(user)">
+      <img class="user-image" [src]="loan.loan.userPhoto" /> <div class="user-name">{{loan.loan.loanerName}}</div>
+    </div>
   
   <button class="black-button" (click)="goToHomeAdminPage()">
       <div class="button-text">

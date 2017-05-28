@@ -1,17 +1,16 @@
-﻿<!--
-  Generated template for the CheckoutUser page.
+﻿<ion-header>
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>CheckoutUser</ion-title>
-   
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
-  
 </ion-header>
 
 
@@ -21,7 +20,9 @@
   </ion-searchbar>
   <ion-list >
     <ion-item *ngFor="let user of usersList">
-      <div class="name" (click)="goToCheckoutUserPickedPage(user)"><img class="user-image" [src]="user.photoURL" /> <span class="centerText">{{user.fullname}}</span></div>
+      <div (click)="goToCheckoutUserPickedPage(user)">
+        <img class="user-image" [src]="user.photoURL" /> <span class="centerText">{{user.fullname}}</span>
+      </div>
     </ion-item>
   </ion-list>
 

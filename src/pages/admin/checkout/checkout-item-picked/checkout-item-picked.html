@@ -16,15 +16,17 @@
 
 <ion-content padding>
 
-  <div class="title-text">Who are you borrowing to?</div>
+  <p class="title"><b>Who are you<br>borrowing to?</b></p>
 
-  <button class="checkout-button1" (click)="goToCheckoutScanUserPage()">
-    <div class="checkout-button-text">
+  <button class="white-button" (click)="goToCheckoutScanUserPage()">
+    <img src="./assets/icons/scantag.svg" class="button-icon-svg">
+    <div class="white-button-with-icon-svg-text">
       Scan users NFC tag
     </div>
   </button>
-  <button class="checkout-button2" (click)="goToCheckoutUserPage()">
-    <div class="checkout-button-text">
+  <button class="white-button" (click)="goToCheckoutUserPage()">
+    <img src="./assets/icons/search.svg" class="button-icon-svg">
+    <div class="white-button-with-icon-svg-text">
       Search for user
     </div>
   </button>

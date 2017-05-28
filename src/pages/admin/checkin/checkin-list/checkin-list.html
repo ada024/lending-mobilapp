@@ -19,8 +19,8 @@
                  (ionInput)="searchItems($event)">
   </ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let loan of loansList">
-      <div class="listProps" (click)="goToCheckinConfirmPage(loan)">
+    <ion-item *ngFor="let loan of loansList" (click)="goToCheckinConfirmPage(loan)">
+      <div class="listProps">
         <img [src]="loan.photoURL" class="item-image" /><span class="item-name">{{loan.name}}</span>
       </div>
     </ion-item>

@@ -1,6 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
 import { Toast } from 'ionic-native';
 import { Loan } from '../../../../app/models/loan';
@@ -8,12 +9,7 @@ import { CheckoutAwaitingConfirmationPage } from '../checkout-awaiting-confirmat
 
 declare var window: any;
 
-/*
-  Generated class for the CheckoutUserPicked page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
     selector: 'page-checkout-user-picked',
     templateUrl: 'checkout-user-picked.html'
@@ -29,7 +25,8 @@ export class CheckoutUserPickedPage {
     formattedReturnDate: any;
     formattedShortReturnDate: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
+    public menu: DropDownMenuService, private platform: Platform, public zone: NgZone) {
         this.user = navParams.get('user');
         this.returnDate = navParams.get("event");
 		this.itemList = db.getTemporaryItems();
@@ -42,10 +39,6 @@ export class CheckoutUserPickedPage {
         this.formattedReturnDate = date + suffix + " of " + monthAsText + " " + year;
         this.formattedShortReturnDate = date + suffix + " of " + monthAsText;
 
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad CheckoutUserPickedPage');
     }
 	
 

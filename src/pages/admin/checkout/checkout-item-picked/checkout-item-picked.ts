@@ -19,13 +19,7 @@ export class CheckoutItemPickedPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
         this.itemList = db.getTemporaryItems();
-	  
   }
-  
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CheckoutItemPickedPage');
-  }
-  
  
   goToCheckoutUserPage() {
       this.navCtrl.push(CheckoutUserPage);
