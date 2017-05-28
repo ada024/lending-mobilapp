@@ -1,8 +1,14 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>settingsTagMakeReadOnly</ion-title>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -14,14 +20,14 @@
     <p class=title>
       <b>Place your device on the NFC tag</b>
     </p>
-    <ion-icon name="finger-print" class="scann-icon"></ion-icon>
+    <img src="./assets/icons/encode_scan.svg" class="big-icon">
   </div>
 
   <div *ngIf="success">
     <p class=success-text>
-      <b>Success, the tag is now locked</b>
+      <b>Success, the tag is now protected</b>
     </p>
-    <ion-icon name="thumbs-up" class="scann-icon"></ion-icon>
+    <img src="./assets/icons/encode_scan.svg" class="big-icon">
   </div>
 
 </ion-content>

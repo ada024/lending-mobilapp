@@ -37,13 +37,8 @@
 
   <div class="return-date">Return Date: {{formattedDate}}</div>
 
-  <button class="done-button" (click)="done()"  *ngIf="confirmCheck==items.length">
-    <div class="blue-button-text">
-      <b>Done</b>
-    </div>
-  </button>
-  <button class="done-button" (click)="done()"  *ngIf="confirmCheck!=items.length">
-    <div class="blue-button-text">
+  <button class="black-button" (click)="done()">
+    <div class="button-text">
       <b>Done</b>
     </div>
   </button>

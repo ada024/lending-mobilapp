@@ -1,7 +1,9 @@
-
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
     <ion-buttons end>
       <button ion-button icon-only>
         <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
@@ -18,29 +20,37 @@
     <b>Your Settings</b>
   </p>
 
+  <p class=role>
+    <b>Role:</b>
+    <span *ngIf="db.currentUser && db.currentUser.isAdmin == 'true'">Admin</span>
+    <span *ngIf="db.currentUser && db.currentUser.isAdmin == 'false'">Borrower</span>
+  </p>
+
   <div class="account-type">
-    <button class="blue-button" (click)="goToChooseAccountTypePage()">
+    <button class="black-button" (click)="goToChooseAccountTypePage()">
       <div class="button-text">
-        <b>Change account type</b>
+        <b>Change role</b>
       </div>
     </button>
   </div>
 
-  <button class="blue-button" (click)="showNFCSettings()">
+  <button class="black-button" (click)="showNFCSettings()">
     <div class="button-text">
       <b>Enable / Disable NFC</b>
     </div>
   </button>
 
-  <button class="blue-button" (click)="goToSettingsAddUserTagPage()">
-    <div class="button-text">
+  <button class="white-button" (click)="goToSettingsAddUserTagPage()">
+    <img src="./assets/icons/scantag.svg" class="button-icon-svg">
+    <div class="white-button-with-icon-svg-text">
       <b>Add user tag</b>
     </div>
   </button>
 
-  <button class="blue-button" (click)="goToSettingsTagMakeReadOnlyPage()">
-    <div class="button-text">
-      <b>Lock NFC tag</b>
+  <button class="white-button" (click)="goToSettingsTagMakeReadOnlyPage()">
+    <img src="./assets/icons/scantag.svg" class="button-icon-svg">
+    <div class="white-button-with-icon-svg-text">
+      <b>Protect NFC tag</b>
     </div>
   </button>
 

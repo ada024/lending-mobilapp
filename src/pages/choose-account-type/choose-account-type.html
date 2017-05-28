@@ -1,8 +1,11 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="navbar">
+    <div>
+      <img src="./assets/icons/logo.svg" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
     <ion-buttons end>
-      <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
+      <button ion-button icon-only>
         <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
       </button>
     </ion-buttons>
@@ -13,30 +16,26 @@
 
 <ion-content padding>
 
-  <p class=title-text>
-    <b>Which account do you want?</b>
+  <p class=title>
+    <b>Which Role do you want?</b>
   </p>
 
   <div class="button-container">
-    <button class="blue-button" (click)="goToHomeUserPage()">
+    <button class="black-button" (click)="goToHomeUserPage()">
       <div class="button-text">
-        <b>Borrower account</b>
+        <b>Borrower</b>
       </div>
     </button>
 
-    <button class="blue-button" (click)="goToHomeAdminPage()">
+    <button class="black-button" (click)="goToHomeAdminPage()">
       <div class="button-text">
-        <b>Admin account</b>
+        <b>Admin</b>
       </div>
     </button>
   </div>
 
-
-
   <p class=info-text>
     (You can change this any time in your settings)
   </p>
-<!-- Function test BUTTON-->
-  <button (click)="customButton()" ion-button block>Custom Button</button>
 
 </ion-content>

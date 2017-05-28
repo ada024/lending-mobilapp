@@ -98,7 +98,8 @@ now.setDate(now.getDate()-1);
             entityName: this.currentUser.entityName,
             reservationDays: reservationDays,
             status:"Available",
-            reserved: null
+            reserved: null,
+            description: ""
         }).then((resolve) => {
            this.uploadImage(photoURI, resolve.key)
         })

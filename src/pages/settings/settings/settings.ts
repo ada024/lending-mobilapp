@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, App } from 'ionic-angular';
+import { NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { ChooseAccountTypePage } from "../../choose-account-type/choose-account-type";
 import { SettingsAddUserTagPage } from '../settings-add-user-tag/settings-add-user-tag';
@@ -12,7 +12,7 @@ import { SettingsTagMakeReadOnlyPage } from '../settings-tag-make-read-only/sett
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
   public app: App, public db: DatabaseService) {
   }
 
@@ -21,11 +21,39 @@ export class SettingsPage {
   }
 
   goToSettingsAddUserTagPage() {
-    this.navCtrl.push(SettingsAddUserTagPage);
+    this.alertCtrl.create({
+      title: 'Warning',
+      message: 'This will override any previously tag you have registered to identify you with',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Proceed',
+        handler: () => {
+          this.navCtrl.push(SettingsAddUserTagPage);
+        }
+      }
+      ]
+    }).present();
   }
 
   goToSettingsTagMakeReadOnlyPage() {
-    this.navCtrl.push(SettingsTagMakeReadOnlyPage);
+    this.alertCtrl.create({
+      title: 'Warning',
+      message: 'This action will make the NFC tag "read only", you can still register it for new items and users, but it may not be usable in other apps witch requiers write operations',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Proceed',
+        handler: () => {
+          this.navCtrl.push(SettingsTagMakeReadOnlyPage);
+        }
+      }
+      ]
+    }).present();
   }
 
   showNFCSettings() {

@@ -26,16 +26,5 @@ export class ChooseAccountTypePage {
     this.navCtrl.setRoot(HomeUserPage);
   }
 
-  logout(): void {
-    this.db.logout();
-  }
-
-  customButton(): void {
-    this.db.msgToast("Check console.log");
-    this.db.listUsers();
-  }
-
-
-
 }
 
