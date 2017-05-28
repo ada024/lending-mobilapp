@@ -1,7 +1,10 @@
 ﻿page-checkout-scan-item {
+
   .scann-icon {
-    font-size: 250px;
-    margin-left: 23%;
-    position: static;
+    top: 60%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }

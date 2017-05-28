@@ -39,18 +39,9 @@
       </button>
     </div>
 
-    <div class="super-container">
-      <div class="item-container">
-        <div class="image-container">
-          <img *ngIf="item" [src]="item.photoURL" class="item-image"/>
-        </div>
-        <div class="item-name-container">
-          <div class="item-name">
-            <b>{{itemName}}</b>
-          </div>
-        </div>
-      </div>
-    </div>
+    <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+    <div class="inner-wrapper"></div>
+    <div class="item-name">{{item.name}}</div>
 
     <b>Description</b><br>
     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
@@ -80,10 +71,6 @@
 
     <button class="blue-button-2" (click)="goToReservationCalendar()"><div class="button-text">Reservation calendar</div></button>
 
-    
-   
-
-
   </div>
 
 
@@ -104,21 +91,9 @@
           </div>
         </button>
     </div>
-    
-    <div class="super-container">
-      <div class="item-container">
-        <div class="image-container">
-          <img *ngIf="item" [src]="item.photoURL" class="item-image"/>
-        </div>
-        <div class="item-name-container">
-          <p class="item-name">
-            <ion-input [(ngModel)]="itemName" placeholder="Add name">
-              {{itemName}}
-            </ion-input>
-          </p>
-        </div>
-      </div>
-    </div>
+
+    <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+    <div class="inner-wrapper"></div>
 
       <div class="image-button-container">
         <button class="image-button" (click)="getPicture(true)">
@@ -130,6 +105,9 @@
         </button>
       </div>
 
+      <ion-input placeholder="Add name" [(ngModel)]="itemName" class="item-name-input">
+        {{itemName}}
+      </ion-input>
 
       <b>Description</b><br>
         <div class="description" [(ngModel)]="itemDescription">
