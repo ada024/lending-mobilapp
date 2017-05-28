@@ -24,6 +24,15 @@ export class CheckoutConfirmItemPage {
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
         this.allreadyAdded = false;
         this.item = navParams.get("item");
+          if(this.item.reserved!=null){
+              this.item.reserved.sort((date1,date2) => {
+      if(date1.pickupDate< date2.pickupDate){
+        return -1;
+      }
+      return 1;
+    });
+          }
+
         var index = navParams.get("index");
         navCtrl.remove(index);
 

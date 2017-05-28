@@ -20,8 +20,10 @@ export class CheckoutScanItemPage {
 
     constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
         if ((<any>window).nfc != null) {
-            (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
-            (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
+            //(<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
+            //(<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
+            ((<any>window).nfc.addNdefListener(this.onTagFound.bind(this)));
+            console.log("nfc initialisert");
         }
     }
 
@@ -34,6 +36,7 @@ export class CheckoutScanItemPage {
         var item;
         if (!this.close) {
             this.zone.run(() => {
+                console.log("nfc funnet");
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 item = this.db.getItemByTag(tagId);
                 if (item != null) {
