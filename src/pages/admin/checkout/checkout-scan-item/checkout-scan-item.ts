@@ -32,12 +32,12 @@ export class CheckoutScanItemPage {
                 console.log("nfc funnet");
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 item = this.db.getItemByTag(tagId);
-                if (item != null) {
+                if (item != null && item.loan == null) {
                     this.goToCheckoutConfirmItemPage(item);
                     //this.isThisTheRightItem(item);
                 }
             });
-            if (item != null) {
+            if (item != null && item.loan == null) {
                 this.close = true;
             }
         }
