@@ -423,9 +423,9 @@ status:"Notify"
       })
     }
 
-    setUserIsAdmin(isAdmin) {
+    setAdminRole(adminRole) {
         this.users.update(this.currentUser.$key, {
-          isAdmin: isAdmin
+          adminRole: adminRole
       })
     }
 

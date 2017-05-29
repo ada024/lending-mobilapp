@@ -15,13 +15,13 @@ export class ChooseAccountTypePage {
   public db: DatabaseService, public menu: DropDownMenuService) {}
 
   goToHomeAdminPage() {
-    this.db.setUserIsAdmin("true");
+    this.db.setAdminRole("true");
     this.db.setEntityNull();
     this.navCtrl.setRoot(HomeAdminPage);
   }
 
   goToHomeUserPage() {
-    this.db.setUserIsAdmin("false");
+    this.db.setAdminRole("false");
     this.db.setEntityNull();
     this.navCtrl.setRoot(HomeUserPage);
   }
