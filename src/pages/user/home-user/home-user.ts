@@ -59,6 +59,10 @@ export class HomeUserPage {
        this.db.deletePendingLoan(pendingLoan);
   }
 
+  dismissLoan(pendingLoan){
+      this.db.deletePendingLoan(pendingLoan);
+  }
+
   goToEntityUserPage() {
     this.navCtrl.push(EntityUserPage);
   }

@@ -103,18 +103,11 @@ export class ItemConfirmConfirmPickupPage {
 
  
   okClicked() {
-    var resList = [];
-       if(this.item.reserved!=null){
-        resList = this.item.reserved;
-    }
-     resList.push(this.reservation);
-      this.db.addReservation(resList, this.item);
-      
+    
       if (this.platform.is('cordova')) {
           this.showToast("You have reserved " + this.item.name, "center");
       }
-      this.navCtrl.remove(3, 4);
-      this.navCtrl.pop();
+      this.navCtrl.popToRoot();
       
   }
 

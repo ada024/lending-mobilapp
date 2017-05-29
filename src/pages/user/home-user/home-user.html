@@ -24,7 +24,7 @@
       </div>
       <div class="return-date">Return date: {{pendingLoan.pendingLoan.formattedDate}}</div>
       <div class="item-container-buttons">
-        <button class="dismiss-button">
+        <button class="dismiss-button" (click)="dismissLoan(pendingLoan)">
           <div class="button-text">
             <b>Dismiss</b>
           </div>

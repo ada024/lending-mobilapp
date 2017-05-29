@@ -17,10 +17,7 @@ export class CheckoutScanItemPage {
     constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
     public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
         if ((<any>window).nfc != null) {
-            //(<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
-            //(<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
             ((<any>window).nfc.addNdefListener(this.onTagFound.bind(this)));
-            console.log("nfc initialisert");
         }
     }
 
@@ -34,7 +31,6 @@ export class CheckoutScanItemPage {
                 item = this.db.getItemByTag(tagId);
                 if (item != null && item.loan == null) {
                     this.goToCheckoutConfirmItemPage(item);
-                    //this.isThisTheRightItem(item);
                 }
             });
             if (item != null && item.loan == null) {

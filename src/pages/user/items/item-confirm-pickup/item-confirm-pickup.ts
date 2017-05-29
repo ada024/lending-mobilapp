@@ -152,6 +152,14 @@ export class ItemConfirmPickupPage {
     
       var reservation = new Reservation(this.db.currentUser.entityName, this.db.currentUser.photoURL, userEmail, this.item.$key,this.db.currentUser.uid, this.db.currentUser.fullname, this.eventDate.getTime(), this.pickupDate, this.shortPickupDate, this.returnDate.getTime(), this.formattedReturnDate, this.formattedShortReturnDate, this.item.name, photoURL);
      
+ var resList = [];
+       if(this.item.reserved!=null){
+        resList = this.item.reserved;
+    }
+     resList.push(reservation);
+      this.db.addReservation(resList, this.item);
+      
+
       this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
   }
 
