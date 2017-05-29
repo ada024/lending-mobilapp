@@ -15,15 +15,21 @@ export class ChooseAccountTypePage {
   public db: DatabaseService, public menu: DropDownMenuService) {}
 
   goToHomeAdminPage() {
-    this.db.setAdminRole("true");
-    this.db.setEntityNull();
-    this.navCtrl.setRoot(HomeAdminPage);
+    if (!(this.db.currentUser != null && this.db.currentUser.adminRole == "true")) {
+      this.db.setAdminRole("true");
+    }
+    else {
+      this.navCtrl.setRoot(HomeAdminPage);
+    }
   }
 
   goToHomeUserPage() {
-    this.db.setAdminRole("false");
-    this.db.setEntityNull();
-    this.navCtrl.setRoot(HomeUserPage);
+    if (!(this.db.currentUser != null && this.db.currentUser.adminRole == "false")) {
+      this.db.setAdminRole("false");
+    }
+    else {
+      this.navCtrl.setRoot(HomeUserPage);
+    }
   }
 
 }

@@ -424,9 +424,29 @@ status:"Notify"
     }
 
     setAdminRole(adminRole) {
-        this.users.update(this.currentUser.$key, {
-          adminRole: adminRole
-      })
+        if(this.currentUser && !this.currentUser.adminRole) {
+            this.users.update(this.currentUser.$key, {
+                adminRole: adminRole,
+            })
+        }
+        else if(this.currentUser && !this.currentUser.otherRoleEntity){
+            this.users.update(this.currentUser.$key, {
+                adminRole: adminRole,
+                otherRoleEntity: this.currentUser.entity,
+                otherRoleEntityName: this.currentUser.entityName,
+                entity: "No entity, join an entity to get started",
+                entityName: "No entity, join an entity to get started"
+            })
+        }
+        else if(this.currentUser && this.currentUser.otherRoleEntity){
+            this.users.update(this.currentUser.$key, {
+                adminRole: adminRole,
+                otherRoleEntity: this.currentUser.entity,
+                otherRoleEntityName: this.currentUser.entityName,
+                entity: this.currentUser.otherRoleEntity,
+                entityName: this.currentUser.otherRoleEntityName
+            })
+        }
     }
 
     giveUserAdminAccess(user) {
@@ -715,7 +735,7 @@ updateTermsAndConditions(termsAndConditions){
   loadJoinedEntities(onDataLoaded) {
     Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
       let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
-      let entities = [];
+      let entities = this.search(loadedEntities, this.currentUser.uid, "v.owner");
       filteredMap.forEach(element => {
         let entity = this.search(loadedEntities, element.entity, "v.$key");
         entities.push(entity[0]);
@@ -751,13 +771,6 @@ updateTermsAndConditions(termsAndConditions){
         entity: entity.$key,
         entityName: entity.name
     });
-  }
-
-  setEntityNull() {
-      this.users.update(this.currentUser.$key, {
-          entity: "No entity, join an entity to get started",
-          entityName: "No entity, join an entity to get started"
-      });
   }
 
   loadUserEntityMap(onDataLoaded){
