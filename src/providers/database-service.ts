@@ -296,7 +296,7 @@ status:"Notify"
         var foundItem;
         this.items.subscribe(items => {
             items.forEach(item => {
-                if (item.entity == this.currentUser.entity && item.id == id && item.loan==null) {
+                if (item.entity == this.currentUser.entity && item.id == id) {
                     foundItem = item;
                 }
             });

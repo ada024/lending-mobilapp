@@ -30,6 +30,7 @@ export class ItemCalendarUserPage {
     additionDaysToRes;
 
     notClickable=[];
+    tooShortDistance = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule, public db: DatabaseService, public zone: NgZone) {
         this.item = navParams.get("item");
@@ -89,11 +90,11 @@ export class ItemCalendarUserPage {
       }
       this.selectedDay=new Date(newDay);
       this.isToday = today.getTime() === event.getTime();
-      if (this.clickedTwice && this.checkIfClickable(event)) {
+      if (this.clickedTwice && this.checkIfClickable(event, null) && !this.checkIfTooShortDistance(event)) {
           this.clickedTwice = false;
           this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, entity: this.currentEntity, additionDaysToRes: this.additionDaysToRes });
       }
-      if(!this.checkIfClickable(event) && this.loadedFirstTime){
+      if(this.loadedFirstTime && !this.checkIfClickable(event, null) || this.checkIfTooShortDistance(event)){
           this.unableForReservation=true;
       }
       else this.unableForReservation=false;
@@ -123,6 +124,10 @@ export class ItemCalendarUserPage {
   }
 
    createRandomEvents(event: Date) {
+    
+    
+
+
        var swipeOrClick;
        if(this.swipeOrChangeMonth){
            swipeOrClick=true;
@@ -221,8 +226,8 @@ export class ItemCalendarUserPage {
                     color: 'cantBorrow'
                 });
         }
-   
-		if(event!=null && this.checkIfClickable(event) && !swipeOrClick && this.loadedFirstTime){
+
+		if(event!=null && this.checkIfClickable(event, null) && !swipeOrClick && this.loadedFirstTime){
 		 var startTime;
          startTime = new Date();
           startTime.setTime(event.getTime());
@@ -232,6 +237,7 @@ export class ItemCalendarUserPage {
 		 var x = this.item.reservationDays;
         var resDays = +x;
 			endTime.setDate(endTime.getDate()+resDays);
+            
             var fitWithOpening = false;
             var distanceToOpening;
             for(var officeDay of this.currentEntity.office.days){
@@ -246,7 +252,6 @@ export class ItemCalendarUserPage {
                 if(endTime.getDay() == officeDay){
                     fitWithOpening=true;
                 }
-                console.log("distancetoopening: " + distanceToOpening);
             }
             if(!fitWithOpening){
                 endTime.setDate(endTime.getDate()+distanceToOpening);
@@ -255,9 +260,9 @@ export class ItemCalendarUserPage {
 
     
 
-            
-
-            
+            if(event!=null){
+   }
+            if(this.checkIfClickable(event, distanceToOpening)){
                 startTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()+1);
                
                 endTime = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate()+1);
@@ -269,16 +274,15 @@ export class ItemCalendarUserPage {
                     allDay: true,
                     color:'canBorrow'
                 });
+            }else{this.tooShortDistance.push(event)}}
                 startTime = null;
                 endTime = null;
-		 }
+		 
+         
          this.swipeOrChangeMonth=false;
         return events;
-       
-	
-	
+
    }
-   
   markDisabled = (date: Date) => {
     
       var officeDays = this.currentEntity.office.days;
@@ -315,19 +319,40 @@ export class ItemCalendarUserPage {
   };
 
   
-  checkIfClickable(date:Date){
+  checkIfClickable(date:Date, addDays){
       var isClickable = true;
       for(var clickDate of this.notClickable){
-         var distance = clickDate.getTime()-date.getTime(); 
-          var resDaysMilli = this.item.reservationDays*24*60*60*1000;
+         var distance = clickDate.getTime()-date.getTime();
+         var resDays;
+         if(addDays!=null){
+             resDays = +addDays;
+             resDays += +this.item.reservationDays;
+         } else resDays = this.item.reservationDays;
+          var resDaysMilli = resDays*24*60*60*1000;
           if(distance<0){
           distance = 500000000000000;
-          }
+        }
+        date.setHours(0o0,0o0,0o0,0o0);
           if(date.getTime()==clickDate.getTime() || distance<=resDaysMilli){
           isClickable = false;
+          break;
           }
       }
       return isClickable;
+      
+  }
+
+   checkIfTooShortDistance(date:Date){
+      var tooShortDistance = false;
+      date.setHours(0o0,0o0,0o0,0o0);
+      for(var clickDate of this.tooShortDistance){
+         if(date.getTime()==clickDate.getTime()){
+             tooShortDistance=true;
+             break;
+        }
+    
+      }
+      return tooShortDistance;
       
   }
 

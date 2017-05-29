@@ -26,11 +26,9 @@ this.entityDays = this.getWeekDays(this.entityOffice.days.length);
 
 
 addEntity(){
-    if(this.reservationDays!=null){
+    if(this.reservationDays!=null && this.reservationDays.length!=0){
 this.presentConfirm();
-    }
-    
-this.emptyResDays=true;
+    } else this.emptyResDays=true;
 }
 
 

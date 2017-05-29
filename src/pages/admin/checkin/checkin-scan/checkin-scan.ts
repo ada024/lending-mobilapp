@@ -26,7 +26,6 @@ export class CheckinScanPage {
         
         if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
-            (<any>window).nfc.addTagDiscoveredListener(this.onTagFound.bind(this));
         }
     }
 
