@@ -3,7 +3,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { DatabaseService} from '../providers/database-service';
-import { DropDownMenuService} from '../providers/drop-down-menu-service';
 import { DropdownMenuPage } from '../pages/dropdown-menu/dropdown-menu';
 import { NavbarPage } from '../pages/navbar/navbar';
 
@@ -258,6 +257,6 @@ export const firebaseConfig = {
     ItemsUnavailableUserPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, 
-  DatabaseService, DropDownMenuService, Camera, SocialSharing]
+  DatabaseService, Camera, SocialSharing]
 })
 export class AppModule {}

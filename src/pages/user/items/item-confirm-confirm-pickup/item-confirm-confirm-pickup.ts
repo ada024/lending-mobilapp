@@ -4,12 +4,7 @@ import { DatabaseService } from '../../../../providers/database-service';
 
 import { Toast } from 'ionic-native';
 
-/*
-  Generated class for the ItemConfirmConfirmPickup page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-item-confirm-confirm-pickup',
   templateUrl: 'item-confirm-confirm-pickup.html'
@@ -40,9 +35,6 @@ export class ItemConfirmConfirmPickupPage {
         this.pUpDate = this.reservation.formattedpUpDate;
     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemConfirmPickupPage');
-  }
 
 
   getWeekDays(n) {

@@ -1,10 +1,10 @@
 
 
-  <div>
-    <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
-  </div>
-  <ion-buttons end>
-    <button ion-button icon-only (click)="menu.openDropdownMenu($event)">
-      <img [src]="db.currentUserPhotoURI" (click)="navCtrl.popToRoot()" [ngClass]="db.isAndroid() ? 'facebook-image-android' : 'facebook-image-ios'">
-    </button>
-  </ion-buttons>
+<div>
+  <img src="./assets/icons/logo.svg" (click)="goHome()" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+</div>
+<ion-buttons end>
+  <button ion-button icon-only (click)="openDropdownMenu($event)">
+    <img [src]="db.currentUserPhotoURI" [ngClass]="db.isAndroid() ? 'facebook-image-android' : 'facebook-image-ios'">
+  </button>
+</ion-buttons>

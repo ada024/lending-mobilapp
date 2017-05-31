@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 @Component({
@@ -14,8 +13,7 @@ export class EntityListAdminPage {
 	searchString = '';
   currentUser;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
-  public zone: NgZone, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
     this.currentUser=db.currentUser;
     this.db.loadEntitiesYouOwn(this.onDataLoaded.bind(this));
     

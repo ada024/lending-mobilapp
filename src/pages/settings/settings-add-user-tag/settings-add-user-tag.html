@@ -1,16 +1,7 @@
-<ion-header>
-
-  <ion-navbar color="navbar">
-    <div>
-      <img src="./assets/icons/logo.svg" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
-    </div>
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <img class="facebook-image" [src]="db.currentUserPhotoURI"/>
-      </button>
-    </ion-buttons>
+<ion-header no-border>
+  <ion-navbar color="navbar-color">
+    <navbar></navbar>
   </ion-navbar>
-
 </ion-header>
 
 

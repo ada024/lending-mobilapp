@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { UsersAddTagAdminPage } from '../users-add-tag-admin/users-add-tag-admin';
 import { SendMailPage } from '../../../send-mail/send-mail';
 
@@ -12,8 +11,7 @@ import { SendMailPage } from '../../../send-mail/send-mail';
 export class UsersDetailsAdminPage {
   user;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public alertCtrl: AlertController, public db: DatabaseService, public menu: DropDownMenuService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public db: DatabaseService) {
     this.user = navParams.get("user");
   }
 

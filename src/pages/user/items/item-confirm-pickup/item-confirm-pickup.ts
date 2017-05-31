@@ -5,12 +5,7 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { Toast } from 'ionic-native';
 import {ItemConfirmConfirmPickupPage} from '../item-confirm-confirm-pickup/item-confirm-confirm-pickup';
 
-/*
-  Generated class for the ItemConfirmPickup page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-item-confirm-pickup',
   templateUrl: 'item-confirm-pickup.html'
@@ -62,9 +57,6 @@ export class ItemConfirmPickupPage {
         this.formattedShortReturnDate = date2 + suffix2 + " of " + monthAsText2;;
     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemConfirmPickupPage');
-  }
 
   getDayOfMonthSuffix(n) {
     if (n >= 11 && n <= 13) {

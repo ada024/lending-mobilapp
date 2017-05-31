@@ -3,12 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import {TermsAndConditionsUserPage} from '../terms-and-conditions-user/terms-and-conditions-user';
 
-/*
-  Generated class for the EntityDetailsUser page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-entity-details-user',
   templateUrl: 'entity-details-user.html'
@@ -33,9 +28,6 @@ onEntityLoaded(entity){
      this.currentEntityHours = this.currentEntity.office.hours;
      this.currentEntityDays = this.getWeekDays(this.currentEntity.office.days.length);
 }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EntityDetailsUserPage');
-  }
 
   getWeekDays(n) {
       var weekday = new Array(7);

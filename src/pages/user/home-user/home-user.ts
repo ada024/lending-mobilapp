@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
-import { DropDownMenuService} from '../../../providers/drop-down-menu-service';
 import { EntityUserPage } from '../entities/entity-user/entity-user';
 import { ItemsTabsUserPage } from '../items/items-tabs-user/items-tabs-user';
 import { Loan } from '../../../app/models/loan';
@@ -24,7 +23,7 @@ export class HomeUserPage {
     //pendingLoans2 = [{itemName: "a"},{itemName: "b"}];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-        public zone: NgZone, public db: DatabaseService, public menu: DropDownMenuService) {
+        public zone: NgZone, public db: DatabaseService) {
         db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
         db.loadPendingLoans(this.onPendingLoansLoaded.bind(this));
         db.loadLoans(this.onLoansLoaded.bind(this));

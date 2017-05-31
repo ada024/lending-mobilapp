@@ -5,12 +5,6 @@ import { ItemsUnavailableUserPage } from '../items-unavailable-user/items-unavai
 import { DatabaseService } from '../../../../providers/database-service';
 
 
-/*
-  Generated class for the ItemsTabs page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-tabs-user',
   templateUrl: 'items-tabs-user.html',
@@ -32,10 +26,6 @@ export class ItemsTabsUserPage {
 
 
     }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsTabsUserPage');
-  }
 
   onNumberOfAvailableLoaded(numberOfAvailable) {
       this.zone.run(() => {

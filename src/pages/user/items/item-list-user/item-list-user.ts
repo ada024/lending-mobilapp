@@ -4,12 +4,6 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsDetailsUserPage } from '../items-details-user/items-details-user';
 
 
-/*
-  Generated class for the ItemListUser page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-item-list-user',
   templateUrl: 'item-list-user.html'
@@ -52,9 +46,6 @@ export class ItemListUserPage {
 
   search() {
       this.itemsList = this.db.search(this.loadedItemList, this.searchString, "v.name");
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemListUserPage');
   }
 
   goToItemPickedUserPage(item) {

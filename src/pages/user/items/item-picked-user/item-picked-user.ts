@@ -5,12 +5,6 @@ import { ItemCalendarUserPage } from '../item-calendar-user/item-calendar-user';
 import { DatabaseService } from '../../../../providers/database-service';
 
 
-/*
-  Generated class for the ItemPickedUser page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-item-picked-user',
   templateUrl: 'item-picked-user.html'
@@ -36,11 +30,6 @@ export class ItemPickedUserPage {
 
     }
   
-
-    ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemPickedUserPage');
-  }
-
   noClicked() {
       this.navCtrl.pop();
   }

@@ -3,12 +3,7 @@ import { App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsDetailsUserPage } from '../items-details-user/items-details-user';
 
-/*
-  Generated class for the ItemsUnavailableUser page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-unavailable-user',
   templateUrl: 'items-unavailable-user.html'
@@ -23,9 +18,6 @@ export class ItemsUnavailableUserPage {
         db.loadUnavailableItems(this.onDataLoaded.bind(this));
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad ItemsUnavailableUserPage');
-    }
 
     onDataLoaded(loadedList) {
         this.zone.run(() => {

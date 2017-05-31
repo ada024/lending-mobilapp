@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import {TermsAndConditionsPage} from '../terms-and-conditions/terms-and-conditions';
 
 
@@ -16,8 +15,7 @@ entityDays: any;
 reservationDays: any;
 
 emptyResDays=false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
-  public menu: DropDownMenuService, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public alertCtrl: AlertController) {
 this.entityOffice = navParams.get("office");
 this.entityName = navParams.get("entityName");
 console.log("entityDays: " + this.entityOffice.days);

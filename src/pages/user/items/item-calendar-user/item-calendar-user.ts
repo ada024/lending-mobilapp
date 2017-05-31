@@ -4,12 +4,7 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { ItemConfirmPickupPage } from '../item-confirm-pickup/item-confirm-pickup';
 import { DatabaseService } from '../../../../providers/database-service';
 
-/*
-  Generated class for the ItemCalendarUser page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-item-calendar-user',
   templateUrl: 'item-calendar-user.html'
@@ -42,12 +37,6 @@ export class ItemCalendarUserPage {
        
 
     }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemCalendarUserPage');
-  }
-
-
       
   
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
-import { DropDownMenuService} from '../../providers/drop-down-menu-service';
-
+import { DropdownMenuPage } from '../dropdown-menu/dropdown-menu';
+import { PopoverController } from 'ionic-angular';
 
 @Component({
   selector: 'navbar',
@@ -10,6 +10,18 @@ import { DropDownMenuService} from '../../providers/drop-down-menu-service';
 })
 export class NavbarPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public db: DatabaseService, public menu: DropDownMenuService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController,
+  public db: DatabaseService, public app: App) {}
+
+  openDropdownMenu(event) {
+    this.popoverCtrl.create(DropdownMenuPage).present({
+      ev: event
+    });
+  }
+
+  goHome() {
+    if (this.app.getRootNav().getActive().name != "HomeAdminPage" && this.app.getRootNav().getActive().name != "HomeUserPage") {
+      this.navCtrl.popToRoot();
+    }
+  }
 }

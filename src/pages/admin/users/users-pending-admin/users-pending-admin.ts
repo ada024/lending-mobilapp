@@ -1,7 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 @Component({
@@ -13,8 +12,7 @@ export class UsersPendingAdminPage {
 	loadedPendingUsers: any;
 	searchString = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public zone: NgZone, public db: DatabaseService, public menu: DropDownMenuService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
     this.db.loadPendingUsersInThisEntity(this.onDataLoaded.bind(this));
   }
 
