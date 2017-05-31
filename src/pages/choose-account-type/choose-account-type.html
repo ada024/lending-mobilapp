@@ -12,14 +12,14 @@
   </p>
 
   <div class="button-container">
-    <button (click)="goToHomeUserPage()" [ngClass]="db.currentUser.adminRole ? 'android-logo' : 'white-button'">
-      <div class="button-text">
+    <button (click)="goToHomeUserPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'false' ? 'black-button' : 'white-button'">
+      <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'false' ? 'button-text' : 'white-button-text'">
         <b>Borrower</b>
       </div>
     </button>
 
-    <button (click)="goToHomeAdminPage()" [ngClass]="db.currentUser.adminRole ? 'black-button' : 'white-button'">
-      <div class="button-text">
+    <button (click)="goToHomeAdminPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'true'? 'black-button' : 'white-button'">
+      <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'true' ? 'button-text' : 'white-button-text'">
         <b>Admin</b>
       </div>
     </button>
