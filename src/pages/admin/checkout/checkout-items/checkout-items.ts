@@ -1,6 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { ViewController, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
@@ -26,8 +25,8 @@ export class CheckoutItemsPage {
 
 	
 
-    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
-    public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController, public modalCtrl: ModalController) {
+    constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
+    public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController) {
 
         db.loadItems(this.onDataLoaded.bind(this));
 

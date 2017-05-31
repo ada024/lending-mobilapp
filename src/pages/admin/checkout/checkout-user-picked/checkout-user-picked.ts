@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
 import { Toast } from 'ionic-native';
 import { Loan } from '../../../../app/models/loan';
@@ -25,8 +24,8 @@ export class CheckoutUserPickedPage {
     formattedReturnDate: any;
     formattedShortReturnDate: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
-    public menu: DropDownMenuService, private platform: Platform, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService,
+    private platform: Platform, public zone: NgZone) {
         this.user = navParams.get('user');
         this.returnDate = navParams.get("event");
 		this.itemList = db.getTemporaryItems();

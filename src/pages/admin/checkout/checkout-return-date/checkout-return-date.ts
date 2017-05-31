@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { CheckoutUserPickedPage } from '../checkout-user-picked/checkout-user-picked';
 
@@ -21,7 +20,7 @@ export class CheckoutReturnDatePage {
     user: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public menu: DropDownMenuService, public db: DatabaseService, public ngCal: NgCalendarModule) {
+    public db: DatabaseService, public ngCal: NgCalendarModule) {
         this.item = navParams.get("item");
         this.user = navParams.get("user");
 		this.currentEntity = navParams.get("entity");

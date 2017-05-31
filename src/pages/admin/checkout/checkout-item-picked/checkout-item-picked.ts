@@ -4,12 +4,7 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { CheckoutUserPage } from '../checkout-user/checkout-user';
 import { CheckoutScanUserPage } from '../checkout-scan-user/checkout-scan-user';
 
-/*
-  Generated class for the CheckoutItemPicked page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-checkout-item-picked',
   templateUrl: 'checkout-item-picked.html',

@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { CheckinConfirmPage } from '../checkin-confirm/checkin-confirm';
 
 
@@ -21,8 +20,7 @@ export class CheckinScanPage {
     loan: any;
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
-    public menu: DropDownMenuService, public db: DatabaseService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
         
         if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));

@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { CheckinConfirmPage } from '../checkin-confirm/checkin-confirm';
 
 
@@ -20,8 +19,7 @@ export class CheckinListPage {
     showList: boolean;
     loan: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
-    public menu: DropDownMenuService, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
         db.loadLoansForCheckin(this.onDataLoaded.bind(this));
     }
 

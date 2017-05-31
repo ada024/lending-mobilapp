@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams, Platform} from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { Toast } from 'ionic-native';
 import { UsersDetailsAdminPage } from '../../users/users-details-admin/users-details-admin';
 
@@ -12,8 +11,7 @@ import { UsersDetailsAdminPage } from '../../users/users-details-admin/users-det
 export class CheckinConfirmPage {
     loan: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
-    public menu: DropDownMenuService, private platform: Platform) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
         platform.registerBackButtonAction(this.goBack.bind(this));
         this.loan = navParams.get('loan');
     }

@@ -22,8 +22,8 @@
 
   <p class=role>
     <b>Role:</b>
-    <span *ngIf="db.currentUser && db.currentUser.isAdmin == 'true'">Admin</span>
-    <span *ngIf="db.currentUser && db.currentUser.isAdmin == 'false'">Borrower</span>
+    <span *ngIf="db.currentUser && db.currentUser.adminRole == 'true'">Admin</span>
+    <span *ngIf="db.currentUser && db.currentUser.adminRole == 'false'">Borrower</span>
   </p>
 
   <div class="account-type">

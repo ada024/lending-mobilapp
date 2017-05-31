@@ -1,6 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { NavController, NavParams } from 'ionic-angular';
 import { CheckoutReturnDatePage } from '../checkout-return-date/checkout-return-date';
 
@@ -21,8 +20,7 @@ export class CheckoutUserPage {
     
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public menu: DropDownMenuService, public db: DatabaseService, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public zone: NgZone) {
    
         db.loadUsersInThisEntity(this.onDataLoaded.bind(this));
 		db.getEntity(this.onEntityLoaded.bind(this));

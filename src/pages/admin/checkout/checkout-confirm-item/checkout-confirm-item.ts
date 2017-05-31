@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { CheckoutScanItemPage } from '../checkout-scan-item/checkout-scan-item';
 import { CheckoutItemsPage } from '../checkout-items/checkout-items';
 import { CheckoutItemPickedPage } from '../checkout-item-picked/checkout-item-picked';
@@ -17,7 +16,7 @@ export class CheckoutConfirmItemPage {
     tempItems: any;
     allreadyAdded: boolean;
     constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public db: DatabaseService, public zone: NgZone, public menu: DropDownMenuService) {
+    public db: DatabaseService, public zone: NgZone) {
         this.allreadyAdded = false;
         this.item = navParams.get("item");
           if(this.item.reserved!=null){

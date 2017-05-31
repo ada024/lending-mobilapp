@@ -2,7 +2,6 @@
 import {AlertController, NavController, NavParams } from 'ionic-angular';
 import {CheckoutReturnDatePage} from '../checkout-return-date/checkout-return-date';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 @Component({
@@ -13,7 +12,7 @@ export class CheckoutScanUserPage {
     close: boolean;
     currentEntity;
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
-  public menu: DropDownMenuService, public db: DatabaseService, public alertCtrl:AlertController) {
+  public db: DatabaseService, public alertCtrl:AlertController) {
 
 db.getEntity(this.onEntityLoaded.bind(this));
  if ((<any>window).nfc != null) {

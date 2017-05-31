@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class CheckoutAwaitingConfirmationPage {
     formattedDate: any;
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public menu: DropDownMenuService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
         this.user = navParams.get("user");
         this.formattedDate = navParams.get("formattedDate");
         this.items = db.getTemporaryItems();

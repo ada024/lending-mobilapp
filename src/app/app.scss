@@ -44,7 +44,13 @@
 
   //facebook images
 
-  .facebook-image {
+  .facebook-image-android {
+    height: 3.5em;
+	  width: 3.5em;
+    border-radius: 50%;
+  }
+
+  .facebook-image-ios {
     height: 2.7em;
 	  width: 2.7em;
     border-radius: 50%;
@@ -194,18 +200,18 @@ overflow:hidden !important;
   
   .android-logo {
     position: absolute;
-    top: -20%;
+    top: 5%;
     left: 15%;
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
   }
 
   .ios-logo {
     position: absolute;
-    top: 0%;
+    top: 25%;
     left: 10%;
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
   }
 }
 
