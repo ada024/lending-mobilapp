@@ -70,7 +70,7 @@ page-item-reservation-calendar {
   height: 17px;
   margin: 5px;
   border: 1px solid black;
-  background: red;
+  background: #F98782;
   margin-left:0em;
   margin-top:6em;
 }
@@ -102,12 +102,11 @@ margin-top:6em;
   }
 
  .calendar-day {
-    border-radius: 6px;
     padding: 3px 5px;
 
 
     &.resLoaned {
-      background-color: red;
+      background-color: #F98782;
       color: white;
     }
 

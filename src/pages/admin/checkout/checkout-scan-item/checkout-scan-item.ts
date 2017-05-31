@@ -17,11 +17,14 @@ export class CheckoutScanItemPage {
     public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController ) {
         if ((<any>window).nfc != null) {
             ((<any>window).nfc.addNdefListener(this.onTagFound.bind(this)));
+            console.log("hei1");
         }
+        console.log("hei2");
     }
 
 
     onTagFound(nfcEvent) {
+        console.log("hei3");
         var item;
         if (!this.close) {
             this.zone.run(() => {

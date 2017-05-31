@@ -13,7 +13,7 @@
       <div class="item-container">
         <img [src]="pendingLoan.photoURL" class="item-image" />
         <div class="item-name">
-          {{pendingLoan.name}}  <span class = "entity-info">from {{pendingLoan.entityName}}</span>
+          {{trimString(pendingLoan.name)}}  <span class = "entity-info">from {{trimString(pendingLoan.entityName)}}</span>
         </div>
       </div>
       <div class="return-date">Return date: {{pendingLoan.pendingLoan.formattedDate}}</div>
@@ -113,7 +113,7 @@
       <div class="reservations-container">
         <img [src]="reservation.itemPhoto" class="item-image" />
         <div class="item-name">
-          {{reservation.itemName}}  <span class = "entity-info">from {{reservation.entityName}}</span><ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
+          <span maxlength="2">{{trimString(reservation.itemName)}}</span>  <span class = "entity-info">from {{trimString(reservation.entityName)}}</span><ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
           <div class="dueDate"><span>Pick up {{dueDate(reservation.pickupDate)}}</span></div>
           <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='today'">Reservation will be deleted tomorrow</div>
         </div>
@@ -128,7 +128,7 @@
       <div class="borrowed-container">
         <img [src]="loan.photoURL" class="item-image" />
         <div class="item-name">
-          {{loan.name}} <span class = "entity-info">from {{loan.entityName}}</span>
+          {{trimString(loan.name)}} <span class = "entity-info">from {{trimString(loan.entityName)}}</span>
           <div class="dueDateBorrowed"> <span *ngIf="dueDate(loan.loan.timeInMillis)=='Should have been returned'">{{dueDate(loan.loan.timeInMillis)}}</span> <span *ngIf="dueDate(loan.loan.timeInMillis)!='Should have been returned'">Due {{dueDate(loan.loan.timeInMillis)}}</span></div>
         </div>
       </div>

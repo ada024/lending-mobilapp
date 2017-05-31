@@ -184,4 +184,12 @@ removeReservation(reservation){
       });
   }
 
+  trimString(wordToBeTrimmed){
+      var length = 16;
+      if(wordToBeTrimmed.length>length){
+                   wordToBeTrimmed = wordToBeTrimmed.substring(0, length - 3) + "...";
+      }
+      return wordToBeTrimmed;
+  }
+
 }

@@ -6,11 +6,9 @@
 
 
 <ion-content padding>
-    <p class= title>
-      <b>{{item.name}}</b>
-    </p>
-
-  <img [src]="item.photoURL" class="item-image" />
+   <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+    <div class="inner-wrapper"></div>
+    <div class="item-name">{{item.name}}</div>
 
     <p class="description">
       <b>Description</b><br>

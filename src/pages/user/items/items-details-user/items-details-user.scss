@@ -9,13 +9,32 @@
     top: 60%;
   }
 
-  .item-image {
+.item-image {
+    width: 15em;
+    height: 15em;
+    margin-left: 4em;
+    margin-top: 2em;
+    border: solid black;
+  }
+
+  .inner-wrapper {
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+    font-size: 1.25em;
+    left: 3.2em;
+    padding: 1em 6em;
+    margin-top: -2.2em;
+    margin-left: 0.9em;
     position: absolute;
-    width:8em;
-    height:8em;
-    top: 32%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  }
+
+  .item-name {
+    font-size: 1.5em;
+    margin-top: -1.6em;
+    text-align: center;
+    color: white;
+    position: relative;
   }
 
   .blue-button{
@@ -36,17 +55,14 @@
     position:absolute;
     top:38em;
     color:red;
-    margin-left:-0.7em;
+    margin-left:1.5em;
+    margin-top: -5em;
+    margin-bottom:-10em;
   }
 
-  .cancel-res{
-    background-color:indianred;
-    margin-left:21.8em;
-    top:-1.7em;
-    height:2em;
-    position:relative;
-  }
-  .cancel-text{
-    color:white;
-  }
+  .blue-button{
+    position:absolute;
+    top:10em;
+    }
+
 }
