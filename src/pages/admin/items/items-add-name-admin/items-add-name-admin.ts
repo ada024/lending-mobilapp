@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { ItemsAddPhotoAdminPage } from '../items-add-photo-admin/items-add-photo-admin';
 
 @Component({
@@ -12,8 +11,7 @@ export class ItemsAddNameAdminPage {
   itemName = "";
   notAdded: boolean;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public db: DatabaseService, public menu: DropDownMenuService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {}
 
   goToItemsAddPhotoAdminPage(){
     if(this.itemName.length!=0) {

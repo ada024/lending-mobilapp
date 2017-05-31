@@ -3,12 +3,7 @@ import { App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admin';
 
-/*
-  Generated class for the ItemsReservedAdmin page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-reserved-admin',
   templateUrl: 'items-reserved-admin.html'

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { ItemsAddTagScannAdminPage } from '../items-add-tag-scann-admin/items-add-tag-scann-admin';
 import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-success-admin';
 
@@ -14,8 +13,7 @@ export class ItemsAddTagAdminPage {
   photoURI;
   scaledPhotoURI;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  public menu: DropDownMenuService, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
     this.itemName = navParams.get("itemName");
     let photoURI = navParams.get("photoURI");
     if(photoURI != null) {

@@ -7,12 +7,6 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
-/*
-  Generated class for the ItemsTabs page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-items-tabs',
   templateUrl: 'items-tabs.html',
@@ -36,9 +30,6 @@ export class ItemsTabsPage {
         db.loadNumberOfReservedItems(this.onReservedLoaded.bind(this));
     }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsTabsPage');
-  }
 
 onReservedLoaded(reserved){
     this.zone.run(() => {

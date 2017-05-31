@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { Platform } from 'ionic-angular';
 import { ItemsAddSuccessAdminPage } from '../items-add-success-admin/items-add-success-admin';
 
@@ -16,7 +15,7 @@ export class ItemsAddTagScannAdminPage {
   close = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService,
-  public zone: NgZone, public menu: DropDownMenuService, public platform: Platform) {
+  public zone: NgZone, public platform: Platform) {
       this.itemName = navParams.get("itemName");
       this.photoURI = navParams.get("photoURI");
       this.item = navParams.get("item");

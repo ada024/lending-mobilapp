@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { Platform } from 'ionic-angular';
 import { Camera } from '@ionic-native/camera';
 import { CheckoutConfirmItemPage } from '../../checkout/checkout-confirm-item/checkout-confirm-item';
@@ -27,8 +26,8 @@ export class ItemsDetailsAdminPage {
   oldPhotoURI;
   entity;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public menu: DropDownMenuService,
-  public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public alertCtrl: AlertController,
+  public platform: Platform, public camera: Camera, public db: DatabaseService, public events: Events) {
       let sentItem = navParams.get("item");
       this.itemDescription = sentItem.description;
       this.itemName = sentItem.name;

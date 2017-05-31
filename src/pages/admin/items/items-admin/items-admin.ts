@@ -1,7 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 import { ItemsAddNameAdminPage } from '../items-add-name-admin/items-add-name-admin';
 import { ItemsTabsPage } from '../items-tabs/items-tabs';
 
@@ -13,7 +12,7 @@ import { ItemsTabsPage } from '../items-tabs/items-tabs';
 export class ItemsAdminPage {
   numberOfItems;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: DropDownMenuService,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
   public zone: NgZone, public db: DatabaseService) {
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
   }

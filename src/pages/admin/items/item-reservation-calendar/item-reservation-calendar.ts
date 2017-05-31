@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { ItemConfirmPickupPage } from '../item-confirm-pickup/item-confirm-pickup';
 import { DatabaseService } from '../../../../providers/database-service';
-import { DropDownMenuService} from '../../../../providers/drop-down-menu-service';
 
 
 @Component({
@@ -26,8 +25,8 @@ export class ItemReservationCalendarPage {
 
     notClickable=[];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule, 
-    public menu: DropDownMenuService, public db: DatabaseService, public zone: NgZone) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule,
+    public db: DatabaseService, public zone: NgZone) {
         this.item = navParams.get("item");
         this.loadEvents();
     }
