@@ -11,6 +11,9 @@
   </ion-searchbar>
 
   <ion-list>
+    <div class="add-icon">
+      <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
+    </div>
       <ion-item (click)="goToItemsDetailsAdminPage(item)" *ngFor="let item of itemsList">
         <img [src]="item.photoURL" class="item-image"/>
         <div class="item-name">

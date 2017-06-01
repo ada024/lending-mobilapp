@@ -1,6 +1,7 @@
 ﻿import { Component, NgZone  } from '@angular/core';
 import { App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
+import { ItemsAddNameAdminPage } from '../items-add-name-admin/items-add-name-admin';
 import { ItemsDetailsAdminPage } from '../items-details-admin/items-details-admin';
 
 
@@ -45,9 +46,16 @@ export class ItemsLoanedAdminPage {
       }
         });
     }
+
+    search(){
+    this.itemsList = this.db.search(this.loadedItemList, this.searchString, "v.name");
+  }
   
     goToItemsDetailsAdminPage(item) {
         this.appCtrl.getRootNav().push(ItemsDetailsAdminPage, { item: item });
-
     }
+
+    goToItemsAddNameAdminPage(){
+    this.navCtrl.push(ItemsAddNameAdminPage);
+  }
 }

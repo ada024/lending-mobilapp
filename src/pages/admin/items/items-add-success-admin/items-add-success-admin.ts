@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 
 @Component({
@@ -13,14 +13,15 @@ export class ItemsAddSuccessAdminPage {
   photoURI;
   currentEntity;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  public platform: Platform, public db: DatabaseService) {
+    platform.registerBackButtonAction(this.onBackPressed.bind(this));
     this.itemName = navParams.get("itemName");
     this.photoURI = navParams.get("photoURI");
     let tagId = navParams.get("tagId");
     if (tagId) {
       this.tagId = tagId;
     }
-    this.navCtrl.remove(2, 10);
     db.getEntity(this.onEntityLoaded.bind(this));
   }
 
@@ -30,6 +31,10 @@ export class ItemsAddSuccessAdminPage {
   }
 
   goBackToItemsAdminPage() {
-    this.navCtrl.pop();
+    this.navCtrl.popToRoot();
+  }
+
+  onBackPressed() {
+    this.navCtrl.popToRoot();
   }
 }

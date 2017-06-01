@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
 import { CheckoutFirstPage } from '../checkout/checkout-first/checkout-first';
 import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
-import { ItemsAdminPage } from '../items/items-admin/items-admin';
+import { ItemsTabsPage } from '../items/items-tabs/items-tabs';
 import { UsersAdminPage } from '../users/users-admin/users-admin';
 import { EntityAdminPage } from '../entities/entity-admin/entity-admin';
 
@@ -82,7 +82,7 @@ onNumberOfResLoaded(numberOfRes){
   
   goToItemsAdminPage() {
     if(this.db.currentUser.entity != "No entity, join an entity to get started") {
-      this.navCtrl.push(ItemsAdminPage);
+      this.navCtrl.push(ItemsTabsPage);
     }
   }
 
