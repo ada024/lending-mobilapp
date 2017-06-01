@@ -10,7 +10,7 @@
   <div *ngIf="!modify">
 
     <div class="top-button-container">
-      <button class="checkout-button" (click)="checkout()" *ngIf="item.loan==null">
+      <button class="checkout-button" (click)="checkout()" *ngIf="item.loan==null && item.pendingLoan==null">
         <img src="./assets/icons/checkout_full.svg" class="checkout-icon">
         <div class="checkout-text">
           <b>Check out</b>
@@ -20,6 +20,11 @@
         <img src="./assets/icons/checkin.svg" class="checkout-icon">
         <div class="checkin-text">
           <b>Check In</b>
+        </div>
+      </button>
+      <button class="red-button2" (click)="cancelLoan(item)" *ngIf="item.pendingLoan!=null">
+        <div class="cancel-pending-text">
+          <b>Cancel pending loan</b>
         </div>
       </button>
       <button class="edit-button" (click)="modify = true">
@@ -54,12 +59,7 @@
         Borrower: {{item.loan.loanerName}}
       </div>
       <div *ngIf="item.pendingLoan!=null"> 
-        {{item.pendingLoan.loanerName}} have not accepted the loan yet
-        <button class="red-button2" (click)="cancelLoan()">
-        <div class="button-text">
-          <b>Cancel loan</b>
-        </div>
-      </button>
+       Pending to {{item.pendingLoan.loanerName}}. Not accepted yet.
       </div>
     </div>
 

@@ -26,6 +26,14 @@
     margin-left: 5px;
   }
 
+  .cancel-pending-text {
+    color: white;
+    float: left;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
   .checkin-text {
     color: white;
     float: left;
@@ -95,9 +103,9 @@
   }
 
   .red-button2 {
-    width: 50%;
-    height: 40px;
-    margin-top: 5px;
+     float: left;
+    width: 160px;
+    height: 55px;
     background-color: #f28282;
   }
 

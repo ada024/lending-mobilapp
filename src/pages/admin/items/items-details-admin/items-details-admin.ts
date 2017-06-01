@@ -125,10 +125,10 @@ this.modifyResDays=false;
       this.navCtrl.push(ItemsAddTagScannAdminPage, {item: this.item});
   }
 
-  cancelLoan() {
+  cancelLoan(item) {
       this.alertCtrl.create({
-      title: 'Confirm',
-      message: 'Do you want to cancal the loan?',
+      title: 'Cancel pending loan?',
+      message: 'Do you want to cancel the pending loan to ' + item.pendingLoan.loanerName + '?',
       buttons: [
       {
         text: 'Cancel',
