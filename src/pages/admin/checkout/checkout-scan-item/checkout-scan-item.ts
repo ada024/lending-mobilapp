@@ -35,9 +35,13 @@ ionViewCanLeave(): boolean{
             this.zone.run(() => {
                 var tagId = (<any>window).nfc.bytesToHexString(nfcEvent.tag.id);
                 item = this.db.getItemByTag(tagId);
-                if (item != null && item.loan == null) {
+                if (item != null && item.loan == null && item.pendingLoan == null) {
                     this.goToCheckoutConfirmItemPage(item);
                 }
+                if(item!=null && item.pendingLoan !=null){
+                    this.itemIsPending(item);
+                }
+
                 if(item!=null && item.loan!=null){
                     this.itemAlreadyCheckedOut(item);
                 }
@@ -81,6 +85,19 @@ this.alertCtrl.create({
 noItemFound(){
     this.alertCtrl.create({
         title: 'No item found',
+        buttons: [
+        {
+            text: 'Ok',
+            
+        }
+        ] 
+    }).present();
+}
+
+itemIsPending(item){
+    this.alertCtrl.create({
+        title: item.name + ' is pending to ' + item.pendingLoan.loanerName,
+        message:"You have to cancel pending before you can check out",
         buttons: [
         {
             text: 'Ok',
