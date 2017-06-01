@@ -26,6 +26,11 @@ export class ItemsAddTagScannAdminPage {
       }
   }
 
+ionViewCanLeave(): boolean{
+   this.close = true;
+      return true;    
+  }
+
   onTagFound(nfcEvent) {
     if(!this.close) {
       this.zone.run(() => {

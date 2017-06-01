@@ -22,6 +22,11 @@ export class SettingsAddUserTagPage {
       }
   }
 
+ionViewCanLeave(): boolean{
+   this.close = true;
+      return true;    
+  }
+
   onTagFound(nfcEvent) {
     if(!this.close) {
       this.zone.run(() => {

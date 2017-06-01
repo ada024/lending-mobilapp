@@ -105,7 +105,7 @@ export class HomeUserPage {
       var diffDays = Math.round((itemDate - currentDate.getTime()) / (oneDay));
       var returnText;
       if (diffDays < 0) {
-          returnText = "Should have been returned";
+          returnText = 'Deadline expired ' + Math.abs(diffDays) + ' days ago';
       }
       if (diffDays == 0) {
           returnText = "today";

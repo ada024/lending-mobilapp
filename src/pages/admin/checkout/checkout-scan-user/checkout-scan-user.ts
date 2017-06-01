@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import {AlertController, NavController, NavParams } from 'ionic-angular';
+import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {CheckoutReturnDatePage} from '../checkout-return-date/checkout-return-date';
 import { DatabaseService } from '../../../../providers/database-service';
 
@@ -14,6 +14,7 @@ export class CheckoutScanUserPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
   public db: DatabaseService, public alertCtrl:AlertController) {
 
+
 db.getEntity(this.onEntityLoaded.bind(this));
  if ((<any>window).nfc != null) {
             (<any>window).nfc.addNdefListener(this.onTagFound.bind(this));
@@ -21,6 +22,10 @@ db.getEntity(this.onEntityLoaded.bind(this));
         }
   }
 
+ionViewCanLeave(): boolean{
+   this.close = true;
+      return true;    
+  }
   onEntityLoaded(entity){
 		this.currentEntity = entity[0];
 	}
@@ -36,9 +41,7 @@ db.getEntity(this.onEntityLoaded.bind(this));
             this.goToCheckoutUserPicked(user);
         }
             });
-            if(user!=null){
-            this.close = true;
-        }
+            
     }
 }
 
@@ -50,7 +53,6 @@ db.getEntity(this.onEntityLoaded.bind(this));
         {
             text: 'Scan again',
             handler: () => {
-                this.close=false;
             }
         },
         {

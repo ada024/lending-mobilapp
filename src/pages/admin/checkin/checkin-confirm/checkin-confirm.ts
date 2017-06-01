@@ -12,8 +12,9 @@ export class CheckinConfirmPage {
     loan: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private platform: Platform) {
-        platform.registerBackButtonAction(this.goBack.bind(this));
         this.loan = navParams.get('loan');
+        var index = navParams.get("index");
+        navCtrl.remove(index);
     }
 
 
@@ -33,10 +34,6 @@ export class CheckinConfirmPage {
       ));
   }
 
-  goBack() {
-      this.navParams.get('self').close = false;
-      this.navCtrl.pop();
-  }
 
   goToUsersDetailsAdminPage(user) {
       this.db.getUserById(this.loan.loan.loaner).then((user) => {

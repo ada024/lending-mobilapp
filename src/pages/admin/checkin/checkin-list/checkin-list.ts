@@ -32,7 +32,7 @@ export class CheckinListPage {
 
   goToCheckinConfirmPage(loan) {
       this.close = true;
-      this.navCtrl.push(CheckinConfirmPage, { loan: loan, self: this });
+      this.navCtrl.push(CheckinConfirmPage, { loan: loan, self: this});
   }	
 
 
