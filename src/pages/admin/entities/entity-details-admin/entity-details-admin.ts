@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import {TermsAndConditionsDetailsPage} from '../terms-and-conditions-details/terms-and-conditions-details';
 
@@ -30,8 +30,8 @@ entityDays="";
 entityHours="";
 resDays="";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
-     //this.currentEntity = navParams.get("entity");
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
+  public alertCtrl: AlertController, public db: DatabaseService) {
      db.getEntity(this.onEntityLoaded.bind(this));
      
   }
@@ -133,6 +133,24 @@ getWeekDays(n) {
       }
 
       return dayInfo;
+  }
+
+  delete() {
+      this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to delete this entity? This will delete all items in this entity and all current loans and reservations',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+            this.db.deleteEntity(this.currentEntity);
+        }
+      }
+      ]
+    }).present();
   }
 
 }
