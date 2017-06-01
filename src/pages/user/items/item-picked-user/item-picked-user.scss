@@ -1,46 +1,50 @@
 ﻿page-item-picked-user {
 
-  .title-text {
-    text-align: center;
-    font-size: 2em;
+  .item-image {
+    width: 15em;
+    height: 15em;
+    margin-left: 4em;
+    margin-top: 2em;
+    border: solid black;
   }
 
-  .item-image {
-    position: fixed;
-    width: 13em;
-    height: 13em;
-    top: 17em;
-    left: 12.7em;
-    transform: translate(-50%, -50%);
+  .inner-wrapper {
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+    font-size: 1.25em;
+    left: 3.2em;
+    padding: 1em 6em;
+    margin-top: -2.2em;
+    margin-left: 0.9em;
+    position: absolute;
   }
 
   .item-name {
-    text-align: center;
     font-size: 1.5em;
-    margin-top: 10em;
-  }
-
-  .blue-button1 {
-    margin-top: 2em;
-    width: 11em;
-    height: 4em;
-    background-color: #40afce;
-    margin-left: 4%;
-  }
-
-  .blue-button2 {
-    width: 11em;
-    height: 4em;
-    background-color: #40afce;
-    margin-left: 3%;
-  }
-
-  .blue-button-text {
+    margin-top: -1.6em;
+    margin-bottom: 2em;
+    text-align: center;
     color: white;
-    font-size: 2em;
+    position: relative;
   }
 
-  .hideShowNavBar {
-    display: none;
+  .cancel-button {
+    float: left;
+    width: 11em;
+    height: 5em;
+    margin-top: 2em;
+    background-color: #F98782;
+  }
+
+  .yes-button {
+    width: 11em;
+    height: 5em;
+    margin-top: 2em;
+    background-color: #80E08F
+  }
+
+  .button-container {
+    text-align: center;
   }
 }

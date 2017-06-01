@@ -20,12 +20,8 @@ export class NavbarPage {
   }
 
   goHome() {
-    let page = this.app.getRootNav().getActive();
-    if (page.instance.close) {
-      page.instance.close = true;
-    }
-    if (page.name != "HomeAdminPage"
-    && page.name != "HomeUserPage"
+    if (this.app.getRootNav().getActive().name != "HomeAdminPage"
+    && this.app.getRootNav().getActive().name != "HomeUserPage"
     && this.db.currentUser && this.db.currentUser.adminRole) {
       this.navCtrl.popToRoot();
     }

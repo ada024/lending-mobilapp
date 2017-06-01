@@ -15,13 +15,19 @@
   <p class="roomAndTimeInfo">{{officeRoom}}</p>
   <p class="dayAndOpeningInfo">{{officeDays}}</p>
   <p class="roomAndTimeInfo">{{officeHours}}</p>
-  <div class="buttons-placement">
+  <div class="button-container">
     <button class="confirm-button" (click)="okClicked()">
       <div class="button-text">Ok</div>
     </button>
   </div>
-  <div class="placeBottom">
-    <p class="item-borrow">Item you have resered</p>
-    <div class="item-info"><img [src]="item.photoURL" class="item-image" /><span class="item-name">{{item.name}}</span></div>
+  <p class="item-borrow">Item you want to reserve</p>
+  <div class="image-container">
+    <img *ngIf="!item.photoURL" src="./assets/icons/image.svg" class="no-image">
+    <img *ngIf="item.photoURL" [src]="item.photoURL" class="item-image"/>
+  </div>
+  <div class="item-name-container">
+    <div class="item-name">
+      {{item.name}}
+    </div>
   </div>
 </ion-content>

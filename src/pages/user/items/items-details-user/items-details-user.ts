@@ -13,6 +13,7 @@ export class ItemsDetailsUserPage {
     resDays;
     reservation;
     reservationCanceled;
+    itemDescription;
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
@@ -36,6 +37,7 @@ export class ItemsDetailsUserPage {
           if(itemForDetail[0]) {
               this.item = itemForDetail[0];
               this.resDays = this.item.reservationDays;
+              this.itemDescription = this.item.description;
           }
       });
 

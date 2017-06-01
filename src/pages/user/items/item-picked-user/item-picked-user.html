@@ -6,13 +6,20 @@
 
 
 <ion-content padding>
-  <p class="title-text">Want to reserve this item?</p>
-  <img [src]="item.photoURL" class="item-image" />
-  <p class="item-name">{{item.name}}</p>
-  <button class="blue-button1" (click)="noClicked()">
-    <div class="blue-button-text">No</div>
-  </button>
-  <button class="blue-button2" (click)="yesClicked(item)">
-    <div class="blue-button-text">Yes</div>
-  </button>
+
+  <div class="title"><b>Want to reserve it?</b></div>
+
+  <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+  <div class="inner-wrapper"></div>
+  <div class="item-name">{{item.name}}</div>
+
+  <div class="button-container">
+    <button class="cancel-button" (click)="noClicked()">
+      <div class="button-text"><b>Cancel</b></div>
+    </button>
+    <button class="yes-button" (click)="yesClicked(item)">
+      <div class="button-text"><b>Yes</b></div>
+    </button>
+  </div>
+
 </ion-content>

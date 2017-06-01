@@ -1,12 +1,21 @@
 ﻿page-items-details-user {
+  
   .description {
-    position: absolute;
-    top: 50%;
+    border: 4px solid #DADCDE;
+    margin-top: 5px;
+  }
+
+  .no-description-text {
+    color: grey;
   }
 
   .status {
-    position: absolute;
-    top: 60%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    height: 100px;
   }
 
 .item-image {
@@ -32,37 +41,18 @@
   .item-name {
     font-size: 1.5em;
     margin-top: -1.6em;
+    margin-bottom: 2em;
     text-align: center;
     color: white;
     position: relative;
   }
 
-  .blue-button{
-    height:3em;
-    width:10em;
-    margin-top:27em;
-    margin-left:8em;
-  }
-  .button-text{
-    font-size:1.5em;
-  }
-  .item-res-days {
-    position: absolute;
-     top:30.5em;
-  }
-
   .you-have-reserved{
-    position:absolute;
-    top:38em;
     color:red;
-    margin-left:1.5em;
-    margin-top: -5em;
-    margin-bottom:-10em;
+    margin-top: 1em;
   }
 
-  .blue-button{
-    position:absolute;
-    top:10em;
-    }
-
+  .black-button {
+    margin-top: 2em;
+  }
 }
