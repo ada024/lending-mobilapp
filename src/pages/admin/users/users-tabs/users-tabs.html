@@ -1,0 +1,10 @@
+<ion-header no-border>
+  <ion-navbar color="navbar-color">
+    <navbar></navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs #myTabs>
+  <ion-tab [root]="AvailableItems" tabTitle="Users"></ion-tab>
+  <ion-tab [root]="LoanedItems" tabTitle="Pending Users"></ion-tab>
+</ion-tabs>
