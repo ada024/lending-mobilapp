@@ -57,4 +57,11 @@
     <div class="info-text">(Altering wont affect reservations already made)</div>
 
 <button class="blue-button" (click)="goToTermsAndConditions()" *ngIf="currentEntity.termsAndConditions!=null"><div class="button-text">Terms and conditions</div></button>
+
+  <button class="red-button" (click)="delete()">
+    <div class="button-text">
+      <b>Delete Entity</b>
+    </div>
+  </button>
+
 </ion-content>

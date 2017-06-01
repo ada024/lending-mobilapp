@@ -125,6 +125,24 @@ this.modifyResDays=false;
       this.navCtrl.push(ItemsAddTagScannAdminPage, {item: this.item});
   }
 
+  cancelLoan() {
+      this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to cancal the loan?',
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          this.db.deletePendingLoan(this.item);
+        }
+      }
+      ]
+    }).present();
+  }
+
   delete() {
       this.alertCtrl.create({
       title: 'Confirm',

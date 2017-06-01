@@ -838,6 +838,42 @@ editItemResDays(resdays, itemKey){
 }
 
 
+    deleteEntity(entity) {
+        this.usersEntityMap.subscribe(map => {
+            let elementsToDelete = map.filter(el => {return (el.entity == entity.$key)});
+            elementsToDelete.forEach(el => {
+                 this.usersEntityMap.remove(el);
+            });
+        }).unsubscribe();
+
+        this.users.subscribe(users => {
+            users.forEach(user => {
+                if(user.entity == entity.$key) {
+                    this.users.update(user, {
+                        entity: "No entity, join an entity to get started",
+                        entityName: "No entity, join an entity to get started"
+                    })
+                }
+                if(user.otherRoleEntity == entity.$key) {
+                    this.users.update(user, {
+                        otherRoleEntity: "No entity, join an entity to get started",
+                        otherRoleEntityName: "No entity, join an entity to get started"
+                    })
+                }
+            });
+        }).unsubscribe();
+
+        this.items.subscribe(items => {
+            let itemsToDelete = items.filter(item => {return (item.entity == entity.$key)});
+            itemsToDelete.forEach(item => {
+                this.items.remove(item);
+            });
+        }).unsubscribe();
+
+        this.entities.remove(entity);
+    }
+
+
   //Searches a list
 
   search(loadedList, key, property) {
@@ -1002,12 +1038,6 @@ editItemResDays(resdays, itemKey){
   deleteImage(key) {
       firebase.storage().ref('images/' + this.currentUser.entity + "/" + key).delete().catch(() => {});
   }
-
-//   downloadImage(item, onDataLoaded) {
-//     firebase.storage().ref('images/' + item.entity + "/" + item.name + "-" + item.$key).getDownloadURL().then(url => {
-//       onDataLoaded(url);
-//     }, ()=>{})
-//   }
 
   resizeImage(size, uri, callback) {
   var tempImg = new Image();

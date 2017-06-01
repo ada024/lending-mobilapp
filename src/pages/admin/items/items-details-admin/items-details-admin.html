@@ -46,12 +46,20 @@
 
     <div class="status">
       <b>Status</b>
-      <div *ngIf="item.loan==null"> 
+      <div *ngIf="item.loan==null && item.pendingLoan==null"> 
         Available
       </div>
-      <div *ngIf="item.loan!=null"> 
+      <div *ngIf="item.loan!=null && item.pendingLoan==null"> 
         Out until {{item.loan.formattedShortDate}}<br>
         Borrower: {{item.loan.loanerName}}
+      </div>
+      <div *ngIf="item.pendingLoan!=null"> 
+        {{item.pendingLoan.loanerName}} have not accepted the loan yet
+        <button class="red-button2" (click)="cancelLoan()">
+        <div class="button-text">
+          <b>Cancel loan</b>
+        </div>
+      </button>
       </div>
     </div>
 
