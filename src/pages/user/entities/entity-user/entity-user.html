@@ -7,32 +7,32 @@
 
 <ion-content padding>
 
-  <div class="big-icon">
-    <ion-icon name="logo-freebsd-devil"></ion-icon>
+  <div class="big-icon-svg">
+     <img src="./assets/icons/entities.svg">
   </div>
 
-  <p class=title>
+  <p class="title">
     <b>Selected entity</b>
   </p>
 
-  <div class="button-container">
-   <button class="blue-button"(click)="goToEntityDetailsUserPage()">
-      <div class="button-text">
-        <b>{{currentUserEntity}}</b>
-      </div>
-    </button>
+  <div class="current-entity" (click)="goToEntityDetailsUserPage()">
+    <img src="./assets/icons/edit.svg" class="edit-icon">
+    <div class="current-entity-text">
+      <b>{{currentUserEntity}}</b>
+    </div>
+  </div>
 
-    <button class="blue-button" (click)="goToEntityChangeUserPage()">
-      <ion-icon name="ios-list-box-outline" class="button-icon"></ion-icon>
-     <div class="button-with-icon-text">
-       <b>List my entities</b>
+  <div class="button-container">
+    <button class="black-button" (click)="goToEntityChangeUserPage()">
+      <img src="./assets/icons/list.svg" class="button-icon-svg">
+      <div class="button-with-icon-svg-text">
+        <b>List my entities</b>
       </div>
    </button>
-
-   <button class="blue-button" (click)="goToEntityListUserPage()">
-      <ion-icon name="person-add" class="button-icon"></ion-icon>
-     <div class="button-with-icon-text">
-       <b>Join an entity</b>
+   <button class="white-button" (click)="goToEntityListUserPage()">
+      <img src="./assets/icons/search.svg" class="white-button-icon-svg">
+      <div class="white-button-with-icon-svg-text">
+        <b>Join an entity</b>
       </div>
    </button>
   </div>

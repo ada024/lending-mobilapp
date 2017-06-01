@@ -7,26 +7,35 @@
 
 <ion-content padding>
 
-  <p class=title>
-    <b>Which Role do you want?</b>
+  <p class="title">
+    <b>Which Role<br>do you want?</b>
   </p>
 
   <div class="button-container">
     <button (click)="goToHomeUserPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'false' ? 'black-button' : 'white-button'">
       <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'false' ? 'button-text' : 'white-button-text'">
-        <b>Borrower</b>
+        <b>Borrower mode</b>
       </div>
     </button>
+
+    <div class="info-text">
+    (You want to borrow items from an entity)
+    </div>
 
     <button (click)="goToHomeAdminPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'true'? 'black-button' : 'white-button'">
       <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'true' ? 'button-text' : 'white-button-text'">
-        <b>Admin</b>
+        <b>Admin mode</b>
       </div>
     </button>
+
+    <div class="info-text">
+      (You want to administer loans to users)
+    </div>
+
   </div>
 
-  <p class=info-text>
-    (You can change this any time in your settings)
-  </p>
+  <div class="info-text2" *ngIf="db.currentUser && !db.currentUser.adminRole">
+    <b>You can change role any<br>time in your Settings</b>
+  </div>
 
 </ion-content>

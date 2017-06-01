@@ -1,35 +1,31 @@
 page-login {
 
-  .content {
-    background-color: #F8FF4A;
+  .container {
     text-align: center;
+    top: 35%;
+    left: 50%;
+    position: absolute;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
   .logo {
     color: white;
-    top: 30%;
-    left: 50%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    height: 170px;
+    width: 170px;
   }
 
   .title {
-    font-size: 40px;
-    top: 45%;
-    left: 50%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    color: #422744;
+    font-size: 50px;
   }
 
   .text {
-    font-size: 17px;
-    top: 53%;
-    left: 50%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    font-style: italic;
+    line-height: 130%;
+    font-size: 20px;
+    margin: 10px;
   }
 
   .button {
