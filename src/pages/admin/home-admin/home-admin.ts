@@ -4,7 +4,7 @@ import { DatabaseService } from '../../../providers/database-service';
 import { CheckoutFirstPage } from '../checkout/checkout-first/checkout-first';
 import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
 import { ItemsTabsPage } from '../items/items-tabs/items-tabs';
-import { UsersAdminPage } from '../users/users-admin/users-admin';
+import { UsersTabsPage } from '../users/users-tabs/users-tabs';
 import { EntityAdminPage } from '../entities/entity-admin/entity-admin';
 
 @Component({
@@ -88,7 +88,7 @@ onNumberOfResLoaded(numberOfRes){
 
   goToUsersAdminPage() {
     if(this.db.currentUser.entity != "No entity, join an entity to get started") {
-      this.navCtrl.push(UsersAdminPage);
+      this.navCtrl.push(UsersTabsPage);
     }
   }
 

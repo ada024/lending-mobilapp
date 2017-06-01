@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import { ViewController, NavController, NavParams} from 'ionic-angular';
 import { Reservation } from '../../../../app/models/reservation';
 import { DatabaseService } from '../../../../providers/database-service';
 import { Toast } from 'ionic-native';
@@ -25,7 +25,7 @@ export class ItemConfirmPickupPage {
     returnDate: Date;
     formattedReturnDate:any;
     formattedShortReturnDate:any;
-    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, public viewCtrl: ViewController) {
         this.eventDate = navParams.get("event");
         this.item = navParams.get("item");
         this.currentEntity = navParams.get("entity");
@@ -132,6 +132,7 @@ export class ItemConfirmPickupPage {
   }
 
   confirmClicked() {
+
       var photoURL = null;
       var userEmail = null;
       if(this.item.photoURL!=null){
@@ -152,7 +153,8 @@ export class ItemConfirmPickupPage {
       this.db.addReservation(resList, this.item);
       
 
-      this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item});
+            const index = this.viewCtrl.index;
+      this.navCtrl.push(ItemConfirmConfirmPickupPage, {reservation:reservation, entity:this.currentEntity, item:this.item, index:index});
   }
 
 

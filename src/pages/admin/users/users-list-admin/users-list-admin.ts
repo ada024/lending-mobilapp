@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { UsersDetailsAdminPage } from '../users-details-admin/users-details-admin';
 
@@ -13,7 +13,7 @@ export class UsersListAdminPage {
   loadedUserList: any;
   searchString = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService, public appCtrl: App) {
     db.loadUsersInThisEntity(this.onDataLoaded.bind(this));
   }
 
@@ -28,6 +28,6 @@ export class UsersListAdminPage {
   }
 
   goToUsersDetailsAdminPage(user) {
-    this.navCtrl.push(UsersDetailsAdminPage, {user: user});
+    this.appCtrl.getRootNav().push(UsersDetailsAdminPage, {user: user});
   }
 }

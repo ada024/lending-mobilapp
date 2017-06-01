@@ -33,6 +33,9 @@ export class ItemConfirmConfirmPickupPage {
 
         this.returnDate = this.reservation.formattedRetDate;
         this.pUpDate = this.reservation.formattedpUpDate;
+
+        const index = navParams.get("index");
+        this.navCtrl.remove(1, index);
     }
 
 

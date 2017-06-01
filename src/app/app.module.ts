@@ -29,7 +29,7 @@ import { ItemsLoanedAdminPage } from '../pages/admin/items/items-loaned-admin/it
 import { ItemsReservedAdminPage } from '../pages/admin/items/items-reserved-admin/items-reserved-admin';
 import {ItemReservationCalendarPage} from '../pages/admin/items/item-reservation-calendar/item-reservation-calendar';
 
-import { UsersAdminPage } from '../pages/admin/users/users-admin/users-admin';
+import { UsersTabsPage } from '../pages/admin/users/users-tabs/users-tabs';
 import { UsersListAdminPage } from '../pages/admin/users/users-list-admin/users-list-admin';
 import { UsersPendingAdminPage } from '../pages/admin/users/users-pending-admin/users-pending-admin';
 import { UsersDetailsAdminPage } from '../pages/admin/users/users-details-admin/users-details-admin';
@@ -122,7 +122,7 @@ export const firebaseConfig = {
     ItemsReservedAdminPage,
     ItemReservationCalendarPage,
 
-    UsersAdminPage,
+    UsersTabsPage,
     UsersListAdminPage,
     UsersPendingAdminPage,
     UsersDetailsAdminPage,
@@ -206,7 +206,7 @@ export const firebaseConfig = {
     ItemsReservedAdminPage,
     ItemReservationCalendarPage,
 
-    UsersAdminPage,
+    UsersTabsPage,
     UsersListAdminPage,
     UsersPendingAdminPage,
     UsersDetailsAdminPage,
