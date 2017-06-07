@@ -12,4 +12,8 @@ termsAndConditions;
     var entity = navParams.get("entity");
     this.termsAndConditions = entity.termsAndConditions;
   }
+
+  back() {
+    this.navCtrl.pop();
+  }
 }

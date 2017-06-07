@@ -6,8 +6,11 @@
 
 
 <ion-content padding>
-<div class="title-text">Terms and conditions</div>
-<textarea readonly class="terms-and-conds" [(ngModel)]="termsAndConditions">
-          {{termsAndConditions}}
-        </textarea>
+  <div class="title"><b>Terms and conditions</b></div>
+  <textarea class="terms-and-conds" [(ngModel)]="termsAndConditions" readonly="true">
+    {{termsAndConditions}}
+  </textarea>
+  <div class="button-container">
+    <button class="black-button" (click)="back()"><div class="button-text">Back</div></button>
+  </div>
 </ion-content>

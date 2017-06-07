@@ -26,7 +26,7 @@ export class UsersDetailsAdminPage {
   giveAdminAccess() {
     this.alertCtrl.create({
       title: 'Confirm',
-      message: 'Do you want to give this user admin access? This will allow the user to control this entity',
+      message: 'Do you want to give the user admin access? This will allow the user to control this entity',
       buttons: [
       {
         text: 'Cancel',
@@ -44,7 +44,7 @@ export class UsersDetailsAdminPage {
   kickUser() {
     this.alertCtrl.create({
       title: 'Confirm',
-      message: 'Do you want to kick this user from this entity?',
+      message: 'Do you want to kick the user from this entity?',
       buttons: [
       {
         text: 'Cancel',

@@ -16,12 +16,12 @@ termsAndConditions;
     this.termsAndConditions = entity.termsAndConditions;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TermsAndConditionsDetailsPage');
-  }
-
   okClicked(){
     this.db.updateTermsAndConditions(this.termsAndConditions);
+    this.navCtrl.pop();
+  }
+
+  cancelClicked() {
     this.navCtrl.pop();
   }
 

@@ -23,7 +23,7 @@ export class SettingsPage {
   goToSettingsAddUserTagPage() {
     this.alertCtrl.create({
       title: 'Warning',
-      message: 'This will override any previously tag you have registered to identify you with',
+      message: 'This will override your previous tag ',
       buttons: [
       {
         text: 'Cancel',
@@ -41,7 +41,7 @@ export class SettingsPage {
   goToSettingsTagMakeReadOnlyPage() {
     this.alertCtrl.create({
       title: 'Warning',
-      message: 'This action will make the NFC tag "read only", you can still register it for new items and users, but it may not be usable in other apps witch requiers write operations',
+      message: 'This action will make the NFC tag "read only", you can still encode it for new items and users, but it may not be usable in other apps that requier write operations',
       buttons: [
       {
         text: 'Cancel',

@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import {TermsAndConditionsUserPage} from '../terms-and-conditions-user/terms-and-conditions-user';
 
@@ -20,7 +20,7 @@ export class EntityJoinUserPage {
   currentEntityHours;
   currentEntityDays;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
    public zone: NgZone, public db: DatabaseService) {
     this.entity = navParams.get("entity");
     db.isPending(this.entity, this.onAnswerLoaded1.bind(this));
@@ -53,7 +53,26 @@ export class EntityJoinUserPage {
   }
 
   sendRequest() {
-    this.db.addPendingUser(this.entity);
+    if (this.entity.termsAndConditions != null) {
+      this.alertCtrl.create({
+        title: 'Confirm',
+        message: 'By joining this entity you agree to the Terms and Conditions',
+        buttons: [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.db.addPendingUser(this.entity);
+          }
+        }
+        ]
+      }).present();
+    }
+    else {
+      this.db.addPendingUser(this.entity);
+    }
   }
 
   goToTermsAndConditions(){

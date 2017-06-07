@@ -7,10 +7,6 @@
 
 <ion-content padding>
 
-  <p class="title">
-    User 
-  </p>
-
   <div class="image-container">
     <img class="facebook-image-2" [src]="user.photoURL"/>
   </div>
@@ -19,27 +15,31 @@
     {{user.fullname}}
   </p>
 
-  <button class="black-button" (click)="goToSendMailPage()">
-    <div class="button-text">
+  <button class="white-button" (click)="goToSendMailPage()">
+    <ion-icon name="mail" class="white-button-icon"></ion-icon>
+    <div class="white-button-with-icon-text">
       <b>Send email</b>
     </div>
   </button>
 
-  <button class="black-button" (click)="goToUsersAddTagAdminPage()">
-    <div class="button-text">
-      <b>Encode user tag</b>
+  <button class="white-button" (click)="goToUsersAddTagAdminPage()">
+    <img src="./assets/icons/scantag.svg" class="white-button-icon-svg">
+    <div class="white-button-with-icon-svg-text">
+      <b>Encode a NFC user tag</b>
     </div>
   </button>
 
-  <button class="black-button" (click)="giveAdminAccess()">
-    <div class="button-text">
-      <b>Give Admin Access</b>
+  <button class="white-button" (click)="giveAdminAccess()">
+    <ion-icon name="unlock" class="white-button-icon"></ion-icon>
+    <div class="white-button-with-icon-text">
+      <b>Give admin access</b>
     </div>
   </button>
 
   <button class="red-button" (click)="kickUser()">
-    <div class="button-text">
-      <b>Kick user</b>
+    <img src="./assets/icons/kick.svg" class="red-button-icon">
+    <div class="red-button-text">
+      <b>Kick out user</b>
     </div>
   </button>
 

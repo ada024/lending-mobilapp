@@ -16,7 +16,6 @@ import { SettingsPage } from '../pages/settings/settings/settings';
 import { SettingsAddUserTagPage } from '../pages/settings/settings-add-user-tag/settings-add-user-tag';
 import { SettingsTagMakeReadOnlyPage } from '../pages/settings/settings-tag-make-read-only/settings-tag-make-read-only';
 
-import { ItemsAdminPage } from '../pages/admin/items/items-admin/items-admin';
 import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
 import { ItemsAddPhotoAdminPage } from '../pages/admin/items/items-add-photo-admin/items-add-photo-admin';
 import { ItemsAddTagAdminPage } from '../pages/admin/items/items-add-tag-admin/items-add-tag-admin';
@@ -109,7 +108,6 @@ export const firebaseConfig = {
     SettingsAddUserTagPage,
     SettingsTagMakeReadOnlyPage,
 
-    ItemsAdminPage,
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
     ItemsAddTagAdminPage,
@@ -193,7 +191,6 @@ export const firebaseConfig = {
     SettingsAddUserTagPage,
     SettingsTagMakeReadOnlyPage,
 
-    ItemsAdminPage,
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
     ItemsAddTagAdminPage,

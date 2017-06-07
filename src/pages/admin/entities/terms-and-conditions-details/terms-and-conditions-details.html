@@ -6,10 +6,12 @@
 
 
 <ion-content padding>
-  <div class="title-text">Terms and conditions</div>
-<textarea class="terms-and-conds" [(ngModel)]="termsAndConditions">
-          {{termsAndConditions}}
-        </textarea>
-
-        <button class="ok-button" (click)="okClicked()"><div class="button-text">OK</div></button>
+  <div class="title"><b>Terms and conditions</b></div>
+  <textarea class="terms-and-conds" [(ngModel)]="termsAndConditions">
+    {{termsAndConditions}}
+  </textarea>
+  <div class="button-container">
+    <button class="cancel-button" (click)="cancelClicked()"><div class="button-text">Cancel</div></button>
+    <button class="ok-button" (click)="okClicked()"><div class="button-text">Save</div></button>
+  </div>
 </ion-content>

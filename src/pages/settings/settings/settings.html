@@ -12,36 +12,34 @@
   </p>
 
   <p class=role>
-    <b>Role:</b>
+    <b>Current Role:</b>
     <span *ngIf="db.currentUser && db.currentUser.adminRole == 'true'">Admin</span>
     <span *ngIf="db.currentUser && db.currentUser.adminRole == 'false'">Borrower</span>
   </p>
 
   <div class="account-type">
-    <button class="black-button" (click)="goToChooseAccountTypePage()">
-      <div class="button-text">
+    <button class="white-button" (click)="goToChooseAccountTypePage()">
+      <div class="white-button-text">
         <b>Change role</b>
       </div>
     </button>
   </div>
 
-  <button class="black-button" (click)="showNFCSettings()">
-    <div class="button-text">
+  <button class="white-button" (click)="showNFCSettings()">
+    <div class="white-button-text">
       <b>Enable / Disable NFC</b>
     </div>
   </button>
 
   <button class="white-button" (click)="goToSettingsAddUserTagPage()">
-    <img src="./assets/icons/scantag.svg" class="button-icon-svg">
-    <div class="white-button-with-icon-svg-text">
-      <b>Add user tag</b>
+    <div class="white-button-text">
+      <b>Encode NFC user tag</b>
     </div>
   </button>
 
   <button class="white-button" (click)="goToSettingsTagMakeReadOnlyPage()">
-    <img src="./assets/icons/scantag.svg" class="button-icon-svg">
-    <div class="white-button-with-icon-svg-text">
-      <b>Protect NFC tag</b>
+    <div class="white-button-text">
+      <b>Write protect NFC tag</b>
     </div>
   </button>
 

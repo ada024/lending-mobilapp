@@ -7,9 +7,11 @@
 
 <ion-content padding>
 
-  <p class="title">
+  <img src="./assets/icons/role.svg" class="big-icon-svg">
+
+  <div class="title">
     <b>Which Role<br>do you want?</b>
-  </p>
+  </div>
 
   <div class="button-container">
     <button (click)="goToHomeUserPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'false' ? 'black-button' : 'white-button'">
@@ -36,6 +38,10 @@
 
   <div class="info-text2" *ngIf="db.currentUser && !db.currentUser.adminRole">
     <b>You can change role any<br>time in your Settings</b>
+  </div>
+
+  <div class="info-text3" *ngIf="db.currentUser && db.currentUser.adminRole">
+    (You can switch between these<br>2 modes any time)
   </div>
 
 </ion-content>
