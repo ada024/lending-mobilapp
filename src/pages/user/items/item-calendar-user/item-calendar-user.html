@@ -30,16 +30,11 @@
     </calendar>
     
     <div class="under-calendar-placemenent">
-      <div class="opening-info">{{openingInfo}}</div>
       <div class="info-position">
       <div class="foo-red"></div><div class="res-loan-info">Reserved/Loaned</div>
-      <div class="foo-blue"></div><div class="borrow-info">Days you wish to reserve</div> 
+      <div class="foo-blue"></div><div class="borrow-info">Days you want to reserve</div> 
       </div>
       <div class="unable-date" *ngIf="unableForReservation">It's unable to reserve this item that date</div>
-      <div class="item">
-        <p class="item-borrow">Item you want to reserve</p>
-        <div class="item-info"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span></div>
-      </div>
     </div>
   </div>
   

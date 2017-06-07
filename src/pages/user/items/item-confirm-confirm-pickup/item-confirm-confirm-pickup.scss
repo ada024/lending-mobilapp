@@ -1,16 +1,16 @@
 page-item-confirm-confirm-pickup {
 
   .pUpInfo {
-    border: 0.4em solid indianred;
+    border: 0.4em solid #F98782;
     height: 8em;
-    width: 70%;
-    margin-left: 4em;
+    width: 95%;
+    margin-left: 1em;
   }
 
   .confirmed {
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: bold;
-    color: indianred;
+    color: #F98782;
     text-align: center;
     position: relative;
     top: -0.8em;
@@ -19,42 +19,44 @@ page-item-confirm-confirm-pickup {
  .retDate {
     font-size: 1.3em;
     font-weight: bold;
-    color: indianred;
+    color: #F98782;
     text-align: center;
     position: relative;
-    top: -1.7em;
+    top: -3.6em;
   }
 
   .date {
     font-size: 1.3em;
     font-weight: bold;
-    color: indianred;
+    color: #F98782;
     text-align: center;
     position: relative;
-    top: -2.8em;
+    top: -4.7em;
   }
 
-  
 
   .officeInfo {
-    margin-top: 3em;
+    margin-top: 0em;
     font-size: 1.3em;
+    font-weight: bold;
     text-align: center;
-    color: grey;
+    color: dimgray;
   }
 
   .dayAndOpeningInfo {
-    margin-top: 2em;
+    margin-top: -0.8em;
     font-size: 1.3em;
+    font-weight: bold;
     text-align: center;
-    color: grey;
+    color: dimgray;
   }
 
   .roomAndTimeInfo {
     text-align: center;
     font-size: 2em;
+    font-weight: bold;
     margin-top: -0.5em;
-    color: grey;
+    color: dimgray;
   }
 
   .hrstyle {
@@ -67,21 +69,23 @@ page-item-confirm-confirm-pickup {
   }
 
   .confirm-button {
-    width: 8em;
+    width: 95%;
     height: 4em;
     background-color: #3f3f3f;
   }
 
   .item-borrow {
     font-size: 1.5em;
-    margin-top: 2em;
+    margin-top: -0.2em;
   }
 
+ 
   .image-container {
     position: relative;
     float: left;
     width: 25%;
     height: 70px;
+    margin-top:-1em;
     background-color: #525150;
   }
 
@@ -89,9 +93,9 @@ page-item-confirm-confirm-pickup {
     float: left;
     width: 75%;
     height: 70px;
+    margin-top:-1em;
     background-color: #DCDEE0;
   }
-
   .item-image {
     width: 100%;
     height: 100%;
@@ -112,5 +116,10 @@ page-item-confirm-confirm-pickup {
     position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+  }
+
+   .location-and-opening-info{
+    font-size:1.5em;
+    text-align: center;
   }
 }

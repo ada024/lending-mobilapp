@@ -26,13 +26,15 @@
   .reservations-container {
     width: 90%;
     height: 70px;
-    border: 5px solid mediumseagreen;
+    border: 5px solid #80E08F;
+    background-color: #80E08F;
   }
 
   .borrowed-container {
     width: 90%;
     height: 70px;
-    border: 5px solid indianred;
+    border: 5px solid #F98782;;
+    background-color: #F98782;
   }
 
   .item-image {
@@ -45,21 +47,19 @@
 
   .item-name {
     font-size: 1.3em;
-    margin-top: 0.4em;
+    margin-top: -0.2em;
     margin-left: -1.2em;
     float: left;
   }
 
   .dueDate {
     font-size: 0.6em;
-    margin-left: 0em;
-    color: mediumseagreen
+    color: black;
   }
 
   .dueDateBorrowed {
     font-size: 0.6em;
-    margin-left: 0.1em;
-    color: indianred;
+    color: black;
   }
 
   .item-container-buttons {
@@ -122,7 +122,7 @@
   }
 
   .return-date {
-    color: indianred;
+    color: black;
     margin-top: 1em;
     left: -2em;
     text-align: center;
@@ -132,8 +132,8 @@
   .close-icon{
     font-size:1em;
     position:absolute;
-    left:17em;
-    margin-top:-0.3em;
+    left:17.3em;
+    margin-top:0em;
   }
 
   .ok-button {

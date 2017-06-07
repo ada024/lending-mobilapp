@@ -134,9 +134,10 @@
       <div class="reservations-container">
         <img [src]="reservation.itemPhoto" class="item-image" />
         <div class="item-name">
-          {{trimString(reservation.itemName)}}  <span class = "entity-info">from {{trimString(reservation.entityName)}}</span><ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
-          <div class="dueDate"><span>{{dueDate(reservation.pickupDate, 'reservation')}}</span></div>
-          <div class="dueDate" *ngIf="dueDate(reservation.pickupDate, 'reservation')=='today'">Reservation will be deleted tomorrow</div>
+          <div>{{trimString(reservation.itemName)}}  <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon></div>
+          <div class = "entity-info">Entity: {{trimString(reservation.entityName)}}</div>
+          <div class="dueDate"><span>Pickup date: {{reservation.formattedShortpUpDate}} ({{dueDate(reservation.pickupDate)}})</span></div>
+          <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='today'">Reservation will be deleted tomorrow</div>
         </div>
       </div>
     </div>
@@ -149,8 +150,10 @@
       <div class="borrowed-container">
         <img [src]="loan.photoURL" class="item-image" />
         <div class="item-name">
-          {{trimString(loan.name)}} <span class = "entity-info">from {{trimString(loan.entityName)}}</span>
-          <div class="dueDateBorrowed">{{dueDate(loan.loan.timeInMillis, 'loan')}}</div>
+          <div>{{trimString(loan.name)}}</div>
+          <div class = "entity-info">Borrowing from: {{trimString(loan.entityName)}}</div>
+          <div class="dueDateBorrowed">Return date: {{loan.loan.formattedShortDate}} <span *ngIf="dueDate(loan.loan.timeInMillis)!='expired'">({{dueDate(loan.loan.timeInMillis)}})</span></div>
+          <div class="dueDateBorrowed" *ngIf="dueDate(loan.loan.timeInMillis)=='expired'">LOAN EXPIRED - PLEASE RETURN</div>
         </div>
       </div>
     </div>

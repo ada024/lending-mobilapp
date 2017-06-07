@@ -7,11 +7,11 @@
 
 <ion-content padding>
   <div class="pUpInfo">
-    <p class="pUpDate">Pickup date</p>
+    <p class="pUpDate">Pick up date</p>
     <p class="date">{{pickupDate}}</p>
-    <p class="retDate">Return date</p>
-    <p class="ret-date">{{formattedReturnDate}}</p>
+    <p class="retDate">Return date {{formattedReturnDate}}</p>
   </div>
+  <p class="location-and-opening-info">Borrowing office location and opening hours:</p>
   <p class="officeInfo">{{officeLocation}}</p>
   <p class="roomAndTimeInfo">{{officeRoom}}</p>
   <p class="dayAndOpeningInfo">{{officeDays}}</p>
@@ -24,7 +24,7 @@
       <div class="button-text">Confirm</div>
     </button>
   </div>
-  <p class="item-borrow">Item you want to reserve</p>
+  <p class="item-borrow">Item you are reserving</p>
   <div class="image-container">
     <img *ngIf="!item.photoURL" src="./assets/icons/image.svg" class="no-image">
     <img *ngIf="item.photoURL" [src]="item.photoURL" class="item-image"/>

@@ -11,6 +11,7 @@
     <p class="retDate">Remember to pick up</p>
     <p class="date">{{pUpDate}}</p>
   </div>
+  <p class="location-and-opening-info">Borrowing office location and opening hours:</p>
   <p class="officeInfo">{{officeLocation}}</p>
   <p class="roomAndTimeInfo">{{officeRoom}}</p>
   <p class="dayAndOpeningInfo">{{officeDays}}</p>
@@ -20,7 +21,7 @@
       <div class="button-text">Ok</div>
     </button>
   </div>
-  <p class="item-borrow">Item you want to reserve</p>
+  <p class="item-borrow">Item you have reserved</p>
   <div class="image-container">
     <img *ngIf="!item.photoURL" src="./assets/icons/image.svg" class="no-image">
     <img *ngIf="item.photoURL" [src]="item.photoURL" class="item-image"/>

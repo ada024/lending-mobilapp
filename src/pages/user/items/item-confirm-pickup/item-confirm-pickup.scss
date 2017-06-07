@@ -1,16 +1,16 @@
 ﻿page-item-confirm-pickup {
 
   .pUpInfo {
-    border: 0.4em solid dimgrey;
+    border: 0.4em solid dimgray;
     height: 8em;
-    width: 70%;
-    margin-left: 4em;
+    width: 95%;
+    margin-left: 1em;
   }
 
   .pUpDate {
-    font-size: 1.3em;
+    font-size: 2em;
     font-weight: bold;
-    color: grey;
+    color: dimgray;
     text-align: center;
     position: relative;
     top: -0.8em;
@@ -19,51 +19,46 @@
   .date {
     font-size: 1.3em;
     font-weight: bold;
-    color: grey;
+    color: dimgray;
     text-align: center;
     position: relative;
-    top: -1.8em;
+    top: -2.5em;
   }
 
 
  .retDate {
     font-size: 1.3em;
     font-weight: bold;
-    color: indianred;
-    text-align: center;
-    position: relative;
-    top: -2.3em;
-  }
-
-  .ret-date {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: indianred;
+    color: #F98782;
     text-align: center;
     position: relative;
     top: -3.3em;
   }
+
   
 
   .officeInfo {
-    margin-top: 3em;
+    margin-top: 0em;
     font-size: 1.3em;
+    font-weight: bold;
     text-align: center;
-    color: grey;
+    color: dimgray;
   }
 
   .dayAndOpeningInfo {
-    margin-top: 2em;
+    margin-top: -0.8em;
     font-size: 1.3em;
+    font-weight: bold;
     text-align: center;
-    color: grey;
+    color: dimgray;
   }
 
   .roomAndTimeInfo {
     text-align: center;
     font-size: 2em;
+    font-weight: bold;
     margin-top: -0.5em;
-    color: grey;
+    color: dimgray;
   }
 
   .hrstyle {
@@ -86,7 +81,7 @@
 
   .item-borrow {
     font-size: 1.5em;
-    margin-top: 2em;
+    margin-top: 0.8em;
   }
 
   .image-container {
@@ -94,6 +89,7 @@
     float: left;
     width: 25%;
     height: 70px;
+    margin-top:-0.8em;
     background-color: #525150;
   }
 
@@ -101,6 +97,7 @@
     float: left;
     width: 75%;
     height: 70px;
+    margin-top:-0.8em;
     background-color: #DCDEE0;
   }
 
@@ -124,5 +121,10 @@
     position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+  }
+
+  .location-and-opening-info{
+    font-size:1.5em;
+    text-align: center;
   }
 }

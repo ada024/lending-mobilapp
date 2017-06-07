@@ -42,14 +42,15 @@
     font-size: 1.3em;
     margin-left: 1em;
     height: 3.7em;
-    border: 0.2em solid dimgrey;
+    border: 0.2em solid #d3d3d3;
+    background-color:#d3d3d3;
     position: relative;
     bottom: 1.1em;
   }
 
   .item-name {
     position: relative;
-    bottom: 1em;
+    bottom: 1.6em;
     left: 0.8em;
   }
 
@@ -89,7 +90,7 @@
     padding: 3px 5px;
 
     &.canBorrow {
-      background-color: blue;
+      background-color: #4091FF;
       color: white;
     }
 
@@ -117,10 +118,9 @@
 
 .foo-red {
   float: left;
-  width: 17px;
-  height: 17px;
+  width: 30px;
+  height: 20px;
   margin: 5px;
-  border: 1px solid black;
   background: #F98782;
   margin-left:-1.6em;
   margin-top:-1em;
@@ -128,13 +128,12 @@
 
 .foo-blue {
   float: left;
-  width: 17px;
-  height: 17px;
+  width: 30px;
+  height: 20px;
   margin: 5px;
-  border: 1px solid black;
-  background: blue;
+  background: #4091FF;
   margin-top:1em;
-  margin-left:-1.6em;
+  margin-left:-2.5em;
 }
 
 
@@ -145,6 +144,7 @@ margin-top:-1.0em;
 
 .borrow-info{
 margin-top:1em;
+margin-left:1em;
 }
 
 .event-detail-container{

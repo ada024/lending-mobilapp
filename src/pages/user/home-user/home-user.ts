@@ -99,38 +99,26 @@ export class HomeUserPage {
     });
   }
 
-  dueDate(itemDate, text) {
+  dueDate(itemDate) {
       var currentDate = new Date();
       currentDate.setHours(0o0, 0o0);
       var oneDay = 24 * 60 * 60 * 1000;
       var diffDays = Math.round((itemDate - currentDate.getTime()) / (oneDay));
       var returnText;
 
-     if(text=='loan'){
-      if (diffDays < 0) {
-          returnText = 'Deadline expired ' + Math.abs(diffDays) + ' days ago';
+      if(diffDays<0){
+          returnText="expired";
       }
-      if (diffDays == 0) {
-          returnText = "Due today";
-      }
-      else if (diffDays == 1) {
-          returnText = "Due in " + diffDays + " day";
-      }
-      else if (diffDays > 1) {
-          returnText = "Due in " + diffDays + " days";
-      }
-      }
-     if(text=='reservation'){
          if (diffDays == 0) {
-          returnText = "Pick up today";
+          returnText = "Today";
       }
       else if (diffDays == 1) {
-          returnText = "Pick up in " + diffDays + " day";
+          returnText = "Tomorrow";
       }
       else if (diffDays > 1) {
-          returnText = "Pick up in " + diffDays + " days";
+          returnText = "In " + diffDays + " days";
       }
-     }
+     
       return returnText;
   }
   
@@ -200,7 +188,7 @@ removeReservation(reservation){
   }
 
   trimString(wordToBeTrimmed){
-      var length = 16;
+      var length = 23;
       if(wordToBeTrimmed.length>length){
                    wordToBeTrimmed = wordToBeTrimmed.substring(0, length - 3) + "...";
       }
