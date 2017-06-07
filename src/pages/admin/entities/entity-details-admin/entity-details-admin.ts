@@ -37,14 +37,16 @@ resDays="";
   }
 
 onEntityLoaded(entity){
-    this.currentEntity = entity[0];
-    this.currentEntityLocation = this.currentEntity.office.location;
-     this.currentEntityRoom = this.currentEntity.office.room;
-     this.currentEntityHours = this.currentEntity.office.hours;
-     this.currentEntityDays = this.getWeekDays(this.currentEntity.office.days.length);
-     if(this.currentEntity.reservationDays!=null){
-         this.resDays = this.currentEntity.reservationDays;
-     }
+    if(entity[0]){
+        this.currentEntity = entity[0];
+        this.currentEntityLocation = this.currentEntity.office.location;
+        this.currentEntityRoom = this.currentEntity.office.room;
+        this.currentEntityHours = this.currentEntity.office.hours;
+        this.currentEntityDays = this.getWeekDays(this.currentEntity.office.days.length);
+        if(this.currentEntity.reservationDays!=null){
+            this.resDays = this.currentEntity.reservationDays;
+        }
+    }
 }
 
 
@@ -147,6 +149,7 @@ getWeekDays(n) {
         text: 'Confirm',
         handler: () => {
             this.db.deleteEntity(this.currentEntity);
+            this.navCtrl.popToRoot();
         }
       }
       ]

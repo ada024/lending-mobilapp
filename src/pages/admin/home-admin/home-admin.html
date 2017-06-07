@@ -1,6 +1,27 @@
 ﻿<ion-header no-border>
   <ion-navbar color="navbar-color">
-    <navbar></navbar>
+    <div>
+      <img src="./assets/icons/logo.svg" [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openDropdownMenu($event)">
+        <div>
+          <div *ngIf="db.currentUser" style="margin: 2.5px; font-size: 13px">
+            {{db.currentUser.fullname}}
+          </div>
+
+          <div style="float: right; margin: 2.5px; font-size: 13px">
+            <span *ngIf="db.currentUser && db.currentUser.adminRole == 'true'">Admin</span>
+            <span *ngIf="db.currentUser && db.currentUser.adminRole == 'false'">Borrower</span>
+          </div>
+        </div>
+      </button>
+
+      <button ion-button icon-only (click)="openDropdownMenu($event)">
+        <img [src]="db.currentUserPhotoURI" [ngClass]="db.isAndroid() ? 'facebook-image-android' : 'facebook-image-ios'">
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

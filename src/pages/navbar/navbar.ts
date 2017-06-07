@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, App } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 import { DropdownMenuPage } from '../dropdown-menu/dropdown-menu';
-import { PopoverController } from 'ionic-angular';
 
 @Component({
   selector: 'navbar',
@@ -10,8 +9,8 @@ import { PopoverController } from 'ionic-angular';
 })
 export class NavbarPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController,
-  public db: DatabaseService, public app: App) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  public popoverCtrl: PopoverController, public db: DatabaseService) {}
 
   openDropdownMenu(event) {
     this.popoverCtrl.create(DropdownMenuPage).present({
@@ -20,9 +19,7 @@ export class NavbarPage {
   }
 
   goHome() {
-    if (this.app.getRootNav().getActive().name != "HomeAdminPage"
-    && this.app.getRootNav().getActive().name != "HomeUserPage"
-    && this.db.currentUser && this.db.currentUser.adminRole) {
+    if (this.db.currentUser && this.db.currentUser.adminRole) {
       this.navCtrl.popToRoot();
     }
   }

@@ -1,6 +1,7 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { DatabaseService } from '../../../providers/database-service';
+import { DropdownMenuPage } from '../../dropdown-menu/dropdown-menu';
 import { CheckoutFirstPage } from '../checkout/checkout-first/checkout-first';
 import { CheckinFirstPage } from '../checkin/checkin-first/checkin-first';
 import { ItemsTabsPage } from '../items/items-tabs/items-tabs';
@@ -19,7 +20,7 @@ export class HomeAdminPage {
   numberOfReservations;
   items;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController,
   public zone: NgZone, public db: DatabaseService) {
     db.loadUsersInThisEntity(this.onUsersLoaded.bind(this));
     db.loadNumberOfItems(this.onNumberOfItemsLoaded.bind(this));
@@ -94,5 +95,11 @@ onNumberOfResLoaded(numberOfRes){
 
   goToEntityAdminPage() {
     this.navCtrl.push(EntityAdminPage);
+  }
+
+  openDropdownMenu(event) {
+    this.popoverCtrl.create(DropdownMenuPage).present({
+      ev: event
+    });
   }
 }
