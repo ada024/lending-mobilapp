@@ -98,24 +98,38 @@ export class HomeUserPage {
     });
   }
 
-  dueDate(itemDate) {
+  dueDate(itemDate, text) {
       var currentDate = new Date();
       currentDate.setHours(0o0, 0o0);
       var oneDay = 24 * 60 * 60 * 1000;
       var diffDays = Math.round((itemDate - currentDate.getTime()) / (oneDay));
       var returnText;
+
+     if(text=='loan'){
       if (diffDays < 0) {
           returnText = 'Deadline expired ' + Math.abs(diffDays) + ' days ago';
       }
       if (diffDays == 0) {
-          returnText = "today";
+          returnText = "Due today";
       }
       else if (diffDays == 1) {
-          returnText = "in " + diffDays + " day";
+          returnText = "Due in " + diffDays + " day";
       }
       else if (diffDays > 1) {
-          returnText = "in " + diffDays + " days";
+          returnText = "Due in " + diffDays + " days";
       }
+      }
+     if(text=='reservation'){
+         if (diffDays == 0) {
+          returnText = "Pick up today";
+      }
+      else if (diffDays == 1) {
+          returnText = "Pick up in " + diffDays + " day";
+      }
+      else if (diffDays > 1) {
+          returnText = "Pick up in " + diffDays + " days";
+      }
+     }
       return returnText;
   }
   
