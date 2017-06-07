@@ -6,15 +6,16 @@
 
 
 <ion-content padding>
-  
+    <button class="blue-button" (click)="goToItemPickedPage()"><div class="button-text"><ion-icon class="calendar-icon" name="md-calendar"></ion-icon>Reserve</div></button>
+     <div style="text-align: center;">You can borrow this item for {{resDays}} days</div>
     <img [src]="item.photoURL" class="item-image" *ngIf="item" />
     <div class="inner-wrapper"></div>
     <div class="item-name">{{item.name}}</div>
 
     <b>Description</b><br>
-    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
+     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
       <ion-textarea class="description-text" readonly="true">
-        {{itemDescription}}
+        {{itemDescription}
       </ion-textarea>
     </div>
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
@@ -27,9 +28,9 @@
       <span *ngIf="item.loan==null"> Available</span>
     </p>
 
-    <div><b>Number of standard loan days:</b> {{resDays}}</div>
+   
 
 
 <div class="you-have-reserved" *ngIf="reservation!=null&&!reservationCanceled">You have reserved this item from {{reservation.formattedShortpUpDate}}</div>
-  <button class="black-button" (click)="goToItemPickedPage()"><div class="button-text">Reserve</div></button>
+
 </ion-content>

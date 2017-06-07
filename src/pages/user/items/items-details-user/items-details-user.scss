@@ -22,7 +22,7 @@
     width: 15em;
     height: 15em;
     margin-left: 4em;
-    margin-top: 2em;
+    margin-top: 1em;
     border: solid black;
   }
 
@@ -54,5 +54,14 @@
 
   .black-button {
     margin-top: 2em;
+  }
+
+  .calendar-icon{
+    position:relative;
+    right: 2.3em;
+    font-size: 1.5em;
+  }
+  .description-text{
+    height:auto;
   }
 }
