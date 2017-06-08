@@ -1,5 +1,5 @@
 ﻿import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { AlertController, NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { HomeAdminPage } from '../../home-admin/home-admin';
 import { Toast } from 'ionic-native';
@@ -25,7 +25,7 @@ export class CheckoutUserPickedPage {
     formattedShortReturnDate: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService,
-    private platform: Platform, public zone: NgZone) {
+    private platform: Platform, public zone: NgZone, public alertCtrl: AlertController) {
         this.user = navParams.get('user');
         this.returnDate = navParams.get("event");
 		this.itemList = db.getTemporaryItems();
@@ -41,18 +41,63 @@ export class CheckoutUserPickedPage {
     }
 	
 
-    goToHomeAdminPage() {
-        var userEmail = null;
+    checkIfReserved() {
+        var isNotReserved = true;
+        var noReservations = true;
+        var numberOfRes = 0;
+        var numberOfAnswer = 0;
+        var reservedByOthers = [];
+        var today = new Date();
+        today.setHours(0o0,0o0,0o0,0o0);
+        for(var item of this.itemList){
+            if(item.reserved!=null){
+                for(var reservation of item.reserved){
+  if(reservation.pickupDate<=today.getTime() && reservation.returnDate>=today.getTime() || reservation.pickupDate<=this.returnDate.getTime() && reservation.returnDate>=this.returnDate.getTime()){
+                        if(reservation.userId!=this.user.uid){
+                            reservedByOthers.push(reservation);
+                        }
+                            }
+                }
+            }         
+        }
+       
+       if(reservedByOthers.length!=0){
+                var newAlertCtrl = this.alertCtrl.create({
+                        title: 'Items with reservations',
+                        message: 'Some of the items you are trying to check out are reserved by others in the period you are lending them out. Do you want to check out anyway?',
+                        buttons: [
+                         {
+                        text: 'No',
+                        handler: () => {
+                            this.navCtrl.popToRoot();
+                            }
+                                },
+                            {
+                             text: 'Yes',
+                            handler: () => {
+                                this.confirmPressed()
+                            }
+                            
+        }
+        ] 
+    }).present();
+            } else(this.confirmPressed())
+           
+            }
+        
+
+    confirmPressed(){
+          var userEmail = null;
         if(this.user.email!=null){
             userEmail = this.user.email;
         }
-        var loan = new Loan(this.db.currentUser.entityName, this.user.photoURL, userEmail, this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.formattedShortReturnDate, this.returnDate.getTime());
+    var loan = new Loan(this.db.currentUser.entityName, this.user.photoURL, userEmail, this.user.uid, this.user.fullname, this.db.currentUser.fullname, this.formattedReturnDate, this.formattedShortReturnDate, this.returnDate.getTime());
         for (let item of this.itemList) {
             this.db.addPendingLoan(loan, item.$key);
         }
-        this.navCtrl.push(CheckoutAwaitingConfirmationPage, { user: this.user, formattedDate: this.formattedReturnDate});
+        this.navCtrl.push(CheckoutAwaitingConfirmationPage, { user: this.user, formattedDate: this.formattedReturnDate})
     }
-
+    
     getDayOfMonthSuffix(n) {
         if (n >= 11 && n <= 13) {
             return "th";

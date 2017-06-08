@@ -84,6 +84,7 @@ this.modifyResDays=false;
   }
 
   checkout() {
+      this.db.removeTemporaryItems();
       this.navCtrl.push(CheckoutConfirmItemPage, {item: this.item});
   }
 

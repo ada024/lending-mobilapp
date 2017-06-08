@@ -188,7 +188,7 @@ removeReservation(reservation){
   }
 
   trimString(wordToBeTrimmed){
-      var length = 23;
+      var length = 25;
       if(wordToBeTrimmed.length>length){
                    wordToBeTrimmed = wordToBeTrimmed.substring(0, length - 3) + "...";
       }

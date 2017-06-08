@@ -11,7 +11,8 @@ import { CheckoutScanItemPage } from '../checkout-scan-item/checkout-scan-item'
 })
 export class CheckoutFirstPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+  }
 
   goToCheckoutScanItemPage() {
       this.navCtrl.push(CheckoutScanItemPage);

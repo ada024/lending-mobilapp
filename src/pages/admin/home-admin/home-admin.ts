@@ -71,6 +71,7 @@ onNumberOfResLoaded(numberOfRes){
 
   goToCheckOut() {
     if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    this.db.removeTemporaryItems();
       this.navCtrl.push(CheckoutFirstPage);
     }
   }

@@ -137,7 +137,7 @@
           <div>{{trimString(reservation.itemName)}}  <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon></div>
           <div class = "entity-info">Entity: {{trimString(reservation.entityName)}}</div>
           <div class="dueDate"><span>Pickup date: {{reservation.formattedShortpUpDate}} ({{dueDate(reservation.pickupDate)}})</span></div>
-          <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='today'">Reservation will be deleted tomorrow</div>
+          <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='Today'">Reservation will be deleted tomorrow</div>
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@
         <img [src]="loan.photoURL" class="item-image" />
         <div class="item-name">
           <div>{{trimString(loan.name)}}</div>
-          <div class = "entity-info">Borrowing from: {{trimString(loan.entityName)}}</div>
+          <div class = "entity-info">Entity: {{trimString(loan.entityName)}}</div>
           <div class="dueDateBorrowed">Return date: {{loan.loan.formattedShortDate}} <span *ngIf="dueDate(loan.loan.timeInMillis)!='expired'">({{dueDate(loan.loan.timeInMillis)}})</span></div>
           <div class="dueDateBorrowed" *ngIf="dueDate(loan.loan.timeInMillis)=='expired'">LOAN EXPIRED - PLEASE RETURN</div>
         </div>
