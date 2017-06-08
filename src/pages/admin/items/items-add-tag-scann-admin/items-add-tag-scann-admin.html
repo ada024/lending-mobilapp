@@ -7,14 +7,24 @@
 
 <ion-content padding>
 
-  <p class=title *ngIf="!close">
-    <b>Place your device<br>on the NFC tag</b>
-  </p>
+  <div *ngIf="!success">
+    <div class=title>
+      <b>Place your device on the NFC tag</b>
+    </div>
+    <img src="./assets/icons/encode_scan.svg" class="scann-icon">
+  </div>
 
-  <p class="text" *ngIf="close">
-    success, new tag registered
-  </p>
+  <div *ngIf="success">
+    <div class=success-text>
+      <b>Success!<br>New tag registered</b>
+    </div>
+    <img src="./assets/icons/thumb.svg" class="scann-icon">
 
-  <img src="./assets/icons/encode_scan.svg" class="big-icon">
+    <button class="black-button" (click)="done()">
+      <div class="button-text">
+        <b>Done</b>
+      </div>
+    </button>
+  </div>
 
 </ion-content>
