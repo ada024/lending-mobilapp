@@ -185,12 +185,13 @@
 
   .encode-text {
     color: black;
-    font-size: 25px;
+    white-space: nowrap;
     top: 50%;
-    left: 50%;
+    left: 55%;
     position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    font-size: 24px;
   }
 
   .resdays {
@@ -233,5 +234,14 @@
 
   .item-name-input {
     font-size: 25px;
+  }
+
+  .button-icon-svg2 {
+    color: white;
+    float: left;
+    margin-left: 5px;
+    margin-right: 15px;
+    height: 40px;
+    width: 40px;
   }
 }

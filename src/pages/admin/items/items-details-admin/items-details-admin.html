@@ -46,7 +46,7 @@
       </ion-textarea>
     </div>
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
-      <b>No description Available</b>
+      <b>No description....yet</b>
     </div>
 
     <div class="status">
@@ -64,7 +64,7 @@
     </div>
 
     <div class="item-res-days">
-      <b>Number of standard loan days:</b>
+      <b>Standard number of loan days:</b>
       <span class="resdays">{{resDays}}</span>
     </div>
 
@@ -118,7 +118,7 @@
       <br>
 
       <div class="item-res-days">
-        <b>Number of standard loan days:</b>
+        <b>Standard number of loan days:</b>
       </div> 
       <ion-item class="reservation-input">
         <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
@@ -127,9 +127,9 @@
 
       <div class="button-container">
         <button class="white-button" (click)="encode()">
-          <img src="./assets/icons/scantag.svg" class="button-icon-svg">
+          <img src="./assets/icons/scantag.svg" class="button-icon-svg2">
           <div class="encode-text">
-            <b>Encode</b>
+            <b>Register new NFC tag</b>
           </div>
         </button>
 

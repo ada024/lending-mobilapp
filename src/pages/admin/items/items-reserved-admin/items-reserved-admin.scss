@@ -1,5 +1,9 @@
 page-items-reserved-admin {
 
+  .scroll {
+    height: 70%;
+  }
+
   .item-image {
     height: 65px;
     width: 65px;
@@ -32,10 +36,10 @@ page-items-reserved-admin {
   }
 
   .add-icon {
-    color: green;
+    color: #4091FF;
     float: right;
-    font-size: 40px;
-    margin: 3px;
+    font-size: 50px;
+    margin: 20px;
   }
 
 }

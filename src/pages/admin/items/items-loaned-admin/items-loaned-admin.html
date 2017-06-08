@@ -10,10 +10,8 @@
                  (ionInput)="search()">
   </ion-searchbar>
 
+<ion-scroll class="scroll">
   <ion-list>
-    <div class="add-icon">
-      <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
-    </div>
     <ion-item (click)="goToItemsDetailsAdminPage(item)" *ngFor="let item of itemsList">
       <img [src]="item.photoURL" class="item-image" />
       <div class="item-name">
@@ -24,4 +22,10 @@
       <span class="reserved-date" *ngIf="item.reserved!=null">Next reservation: {{item.reserved[0].formattedShortpUpDate}} - {{item.reserved[0].formattedShortRetDate}}</span>
     </ion-item>
   </ion-list>
+</ion-scroll>
+
+  <div class="add-icon">
+    <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
+  </div>
+
 </ion-content>
