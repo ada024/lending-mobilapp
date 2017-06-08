@@ -37,4 +37,9 @@ export class SettingsTagMakeReadOnlyPage {
     this.close = true;
     this.navCtrl.pop();
   }
+
+  done() {
+    this.close = true;
+    this.navCtrl.pop();
+  }
 }
