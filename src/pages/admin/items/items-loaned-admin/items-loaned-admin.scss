@@ -1,9 +1,5 @@
 ﻿page-items-loaned-admin {
 
-  .scroll {
-    height: 70%;
-  }
-
   .item-image {
     height: 65px;
     width: 65px;
@@ -34,9 +30,12 @@
 
   .add-icon {
     color: #4091FF;
-    float: right;
     font-size: 50px;
-    margin: 20px;
+    top: 95%;
+    left: 85%;
+    position: fixed;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
   
 }
