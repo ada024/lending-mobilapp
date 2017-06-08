@@ -21,7 +21,7 @@ export class ItemReservationCalendarPage {
     clickedTwice:boolean;
     unableForReservation = false;
     reservation;
-    loanName;
+    loan;
 
     notClickable=[];
 
@@ -65,9 +65,9 @@ export class ItemReservationCalendarPage {
           var today = new Date();
           today.setHours(0o0,0o0,0o0,0o0);
           if(today.getTime()<=ev.selectedTime.getTime() && this.item.loan.timeInMillis>=ev.selectedTime.getTime()){
-       this.loanName=this.item.loan.loanerName;
+       this.loan=this.item.loan;
         }
-        else this.loanName=null;
+        else this.loan=null;
       }
 
       console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +

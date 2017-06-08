@@ -35,6 +35,7 @@
       <div class="foo-blue"></div><div class="borrow-info">Days you want to reserve</div> 
       </div>
       <div class="unable-date" *ngIf="unableForReservation">It's unable to reserve this item that date</div>
+      <div *ngIf="datesPicked"><button class="red-button" (click)="resetClicked()"><div class="button-text">Reset</div></button><button class="blue-button" (click)="continiueClicked()"><div class="button-text">Continiue</div></button></div>
     </div>
   </div>
   

@@ -53,15 +53,19 @@ page-item-reservation-calendar {
   }
 
   .reserved-by{
-    margin-top:-5em;
+    bottom:9em;
+    position:relative;
+    right:0em;
   }
 
   .cancel-res-button{
-    background-color:indianred;
+    background-color:#F98782;
     color:white;
-    height:1.4em;
-    margin-left:4em;
-    margin-top:0em;
+    height:4em;
+    position:fixed;
+    right:2em;
+    bottom:2em;
+    width:90%;
   }
 
 .foo-red {
@@ -72,11 +76,11 @@ page-item-reservation-calendar {
   border: 1px solid black;
   background: #F98782;
   margin-left:0em;
-  margin-top:6em;
+  margin-top:9em;
 }
 
 .res-loan-info{
-margin-top:6em;
+margin-top:9em;
 }
  .monthview-selected {
     background-color: transparent !important;

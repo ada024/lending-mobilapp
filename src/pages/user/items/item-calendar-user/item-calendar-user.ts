@@ -23,6 +23,7 @@ export class ItemCalendarUserPage {
 	clickedFirstTime: boolean;
     swipeOrChangeMonth = false;
     additionDaysToRes;
+    datesPicked;
 
     notClickable=[];
     tooShortDistance = [];
@@ -79,15 +80,6 @@ export class ItemCalendarUserPage {
       }
       this.selectedDay=new Date(newDay);
       this.isToday = today.getTime() === event.getTime();
-      if (this.clickedTwice && this.checkIfClickable(event, null) && !this.checkIfTooShortDistance(event)) {
-          this.clickedTwice = false;
-          this.navCtrl.push(ItemConfirmPickupPage, { event: event, item: this.item, entity: this.currentEntity, additionDaysToRes: this.additionDaysToRes });
-      }
-      if(this.loadedFirstTime && !this.checkIfClickable(event, null) || this.checkIfTooShortDistance(event)){
-          this.unableForReservation=true;
-      }
-      else this.unableForReservation=false;
-
       this.loadedFirstTime = true;
   }
 
@@ -252,6 +244,8 @@ export class ItemCalendarUserPage {
             if(event!=null){
    }
             if(this.checkIfClickable(event, distanceToOpening)){
+                this.unableForReservation = false;
+                this.datesPicked=true;
                 startTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate()+1);
                
                 endTime = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate()+1);
@@ -263,7 +257,11 @@ export class ItemCalendarUserPage {
                     allDay: true,
                     color:'canBorrow'
                 });
-            }else{this.tooShortDistance.push(event)}}
+            }else{this.tooShortDistance.push(event); this.unableForReservation=true; }
+        }else if(event!=null && !this.checkIfClickable(event, null) && this.loadedFirstTime){
+            this.unableForReservation=true;
+            this.datesPicked=false; 
+            } else{ this.datesPicked=false;}
                 startTime = null;
                 endTime = null;
 		 
@@ -343,6 +341,23 @@ export class ItemCalendarUserPage {
       }
       return tooShortDistance;
       
+  }
+
+  continiueClicked(){
+      if(this.checkIfClickable(this.selectedDay, null) && !this.checkIfTooShortDistance(this.selectedDay)){
+          this.clickedTwice = false;
+    this.navCtrl.push(ItemConfirmPickupPage, { event: this.selectedDay, item: this.item, entity: this.currentEntity, additionDaysToRes: this.additionDaysToRes });
+    }
+    if(this.loadedFirstTime && !this.checkIfClickable(this.selectedDay, null) || this.checkIfTooShortDistance(this.selectedDay)){
+      }
+  }
+
+  resetClicked(){
+      this.datesPicked = false;
+      this.loadedFirstTime = false;
+      var today = new Date();
+      this.onCurrentDateChanged(today);
+      this.loadEvents(null);
   }
 
 }

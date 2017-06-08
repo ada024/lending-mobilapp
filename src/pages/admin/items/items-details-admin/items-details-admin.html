@@ -46,7 +46,7 @@
       </ion-textarea>
     </div>
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
-      <b>No description....yet</b>
+      <b>No description...yet</b>
     </div>
 
     <div class="status">
@@ -68,7 +68,12 @@
       <span class="resdays">{{resDays}}</span>
     </div>
 
-    <button class="blue-button-2" (click)="goToReservationCalendar()"><div class="button-text">item calendar</div></button>
+<button class="blue-button" (click)="goToReservationCalendar()">
+      <img src="./assets/icons/calendar.svg" class="button-icon-svg">
+      <div class="blue-button-text">
+        <b>Item calendar</b>
+      </div>
+    </button>
 
   </div>
 
