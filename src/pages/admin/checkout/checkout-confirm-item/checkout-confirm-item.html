@@ -11,8 +11,7 @@
   <div class="inner-wrapper"></div>
   <div class="item-name">{{item.name}}</div>
   <div class="already-added" *ngIf="allreadyAdded">This item is already added</div>
-  <div class="added-text" *ngIf="!allreadyAdded">Item added to checkout-basket</div>
-  <div class="item-reserved" *ngIf="item.reserved!=null">Reserved by {{item.reserved[0].userName}} from {{item.reserved[0].formattedShortpUpDate}} to {{item.reserved[0].formattedShortRetDate}} </div>
+  <div class="added-text" *ngIf="!allreadyAdded" style="color:#80E08F">Item added to checkout-basket</div>
 
   <button class="white-button" (click)="goToCheckoutScanItemPage()">
     <img src="./assets/icons/scantag.svg" class="button-icon-svg">

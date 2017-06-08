@@ -62,9 +62,14 @@ export class CheckoutUserPickedPage {
         }
        
        if(reservedByOthers.length!=0){
+           var returnText = " ";
+           for(var reservation of reservedByOthers){
+            returnText+=  "<br> '" + reservation.itemName + "' is reserved by " + reservation.userName + " from " + reservation.formattedShortpUpDate + " to " + reservation.formattedShortRetDate + "<br>";
+           }
+           returnText+= "<br> Do you want to check out these items anyway? <br> (Remember to delete unwanted reservations in the items calendar)"
                 var newAlertCtrl = this.alertCtrl.create({
-                        title: 'Items with reservations',
-                        message: 'Some of the items you are trying to check out are reserved by others in the period you are lending them out. Do you want to check out anyway?',
+                        title: 'This loan overlap reservations',
+                        message: returnText,
                         buttons: [
                          {
                         text: 'No',
