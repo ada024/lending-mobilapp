@@ -21,8 +21,11 @@
   //title and big icons
 
   .title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     text-align: center;
-    font-size: 30px;
+    color: #585858;
+    font-size: 35px;
   }
 
   .big-icon {
@@ -105,7 +108,7 @@
   }
 
   .white-button-icon {
-    color: black;
+    color: #4E4E4E;
     float: left;
     font-size: 55px;
     margin-left: 15px;
@@ -122,7 +125,7 @@
   }
 
   .white-button-icon-svg {
-    color: black;
+    color: #4E4E4E;
     float: left;
     margin-left: 15px;
     margin-right: 15px;
@@ -136,11 +139,15 @@
   //button text
 
   .button-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     color: white;
     font-size: 25px;
   }
 
   .button-with-icon-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     color: white;
     float: left;
     font-size: 25px;
@@ -148,6 +155,8 @@
   }
 
   .button-with-icon-svg-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
     color: white;
     float: left;
     font-size: 25px;
@@ -155,19 +164,25 @@
   }
 
   .white-button-text {
-    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #4E4E4E;
     font-size: 25px;
   }
 
   .white-button-with-icon-text {
-    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #4E4E4E;
     float: left;
     font-size: 25px;
     margin-top: 15px;
   }
 
   .white-button-with-icon-svg-text {
-    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #4E4E4E;
     float: left;
     font-size: 25px;
     margin-top: 10px;

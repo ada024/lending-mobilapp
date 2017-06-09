@@ -6,7 +6,10 @@
 
 
 <ion-content padding>
-<div class="title-text">Terms and conditions</div>
-<textarea class="terms-and-conds" placeholder="Write your entitys terms and conditions" [(ngModel)]="termsAndConditions"></textarea>
-<div><button class="cancel-button" (click)="cancel()"><div class="button-text" >Cancel</div></button><button class="add-button" (click)="addTermsAndConditions()"><div class="button-text">Add</div></button></div>
+  <div class="title"><b>Terms and conditions</b></div>
+  <textarea class="terms-and-conds" [(ngModel)]="termsAndConditions" placeholder="Write your entitys terms and conditions"></textarea>
+  <div class="button-container">
+    <button class="cancel-button" (click)="cancel()"><div class="button-text">Cancel</div></button>
+    <button class="add-button" (click)="addTermsAndConditions()"><div class="button-text">Add</div></button>
+  </div>
 </ion-content>
