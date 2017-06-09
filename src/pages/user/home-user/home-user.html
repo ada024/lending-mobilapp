@@ -30,14 +30,16 @@
 
   <div *ngIf="pendingLoans && pendingLoans.length != 0" class="scroll-bar">
     <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
-      <h6>{{pendingLoan.pendingLoan.itemOwnerName}} wants to lend you</h6>
+      <h6>{{pendingLoan.pendingLoan.itemOwnerName}} wants to lend you:</h6>
       <div class="item-container">
         <img [src]="pendingLoan.photoURL" class="item-image" />
         <div class="item-name">
-          {{trimString(pendingLoan.name)}}  <span class = "entity-info">from {{trimString(pendingLoan.entityName)}}</span>
+          <div>{{trimString(pendingLoan.name)}}</div>  
+        <div class = "entity-info">Entity: {{trimString(pendingLoan.entityName)}}</div>
+        <div class="entity-info">Return date: {{pendingLoan.pendingLoan.formattedShortDate}}</div>
         </div>
       </div>
-      <div class="return-date">Return date: {{pendingLoan.pendingLoan.formattedDate}}</div>
+      
       <div class="item-container-buttons">
         <button class="dismiss-button" (click)="dismissLoan(pendingLoan)">
           <div class="button-text">

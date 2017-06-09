@@ -23,6 +23,8 @@ export class CheckoutUserPickedPage {
     returnDate: any;
     formattedReturnDate: any;
     formattedShortReturnDate: any;
+    returnText;
+    today;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService,
     private platform: Platform, public zone: NgZone, public alertCtrl: AlertController) {
@@ -47,12 +49,14 @@ export class CheckoutUserPickedPage {
         var numberOfRes = 0;
         var numberOfAnswer = 0;
         var reservedByOthers = [];
-        var today = new Date();
-        today.setHours(0o0,0o0,0o0,0o0);
+        this.today = new Date();
+        this.today.setHours(0o0,0o0,0o0,0o0);
+        console.log("todayInCheck: " + this.today.getTime());
+         console.log("Check: real returnDate: " + this.returnDate + " returnDateInDelete: " + this.returnDate.getTime());
         for(var item of this.itemList){
             if(item.reserved!=null){
                 for(var reservation of item.reserved){
-  if(reservation.pickupDate<=today.getTime() && reservation.returnDate>=today.getTime() || reservation.pickupDate<=this.returnDate.getTime() && reservation.returnDate>=this.returnDate.getTime()){
+  if(reservation.pickupDate<=this.today.getTime() && reservation.returnDate>=this.today.getTime() || reservation.pickupDate<=this.returnDate.getTime() && reservation.returnDate>=this.returnDate.getTime() || this.today.getTime()<=reservation.pickupDate && this.returnDate.getTime()>=reservation.returnDate){
                         if(reservation.userId!=this.user.uid){
                             reservedByOthers.push(reservation);
                         }
@@ -62,14 +66,13 @@ export class CheckoutUserPickedPage {
         }
        
        if(reservedByOthers.length!=0){
-           var returnText = " ";
+            this.returnText = " ";
            for(var reservation of reservedByOthers){
-            returnText+=  "<br> '" + reservation.itemName + "' is reserved by " + reservation.userName + " from " + reservation.formattedShortpUpDate + " to " + reservation.formattedShortRetDate + "<br>";
+            this.returnText+=  "<br> '" + reservation.itemName + "' is reserved by " + reservation.userName + " from " + reservation.formattedShortpUpDate + " to " + reservation.formattedShortRetDate + "<br>";
            }
-           returnText+= "<br> Do you want to check out these items anyway? <br> (Remember to delete unwanted reservations in the items calendar)"
                 var newAlertCtrl = this.alertCtrl.create({
                         title: 'This loan overlap reservations',
-                        message: returnText,
+                        message: this.returnText + "<br> <b>Do you want to check out these items anyway?<b>",
                         buttons: [
                          {
                         text: 'No',
@@ -80,7 +83,7 @@ export class CheckoutUserPickedPage {
                             {
                              text: 'Yes',
                             handler: () => {
-                                this.confirmPressed()
+                                this.deleteReservations();
                             }
                             
         }
@@ -88,7 +91,55 @@ export class CheckoutUserPickedPage {
     }).present();
             } else(this.confirmPressed())
            
+        }
+        
+        deleteReservations(){
+                            var newAlertCtrl = this.alertCtrl.create({
+                        title: 'Do you also want to delete these reservations?',
+                        message: this.returnText,
+                        buttons: [
+                         {
+                        text: 'No',
+                        handler: () => {
+                            }
+                                },
+                            {
+                             text: 'Yes',
+                            handler: () => {
+                                 for(var item of this.itemList){
+                                if(item.reserved!=null){
+                                    var deleteReservations = [];
+                                for(var reservation of item.reserved){
+                                    console.log("formatted respickup" + reservation.formattedShortpUpDate + " resPickup: " + reservation.pickupDate + " formatted returnDate " + reservation.formattedShortRetDate + " resReturnDate " + reservation.returnDate);
+                            if(reservation.pickupDate<=this.today.getTime() && reservation.returnDate>=this.today.getTime() || reservation.pickupDate<=this.returnDate.getTime() && reservation.returnDate>=this.returnDate.getTime() || this.today.getTime()<=reservation.pickupDate && this.returnDate.getTime()>=reservation.returnDate){
+                            if(reservation.userId!=this.user.uid){
+                             var index = item.reserved.indexOf(reservation);
+                             console.log("sletter reservasjon med pUpDate: " + reservation.formattedShortpUpDate);
+                             deleteReservations.push(reservation);
+                        }
+                     }
+                 }  
+            for(var reservation of deleteReservations){
+                var index = item.reserved.indexOf(reservation);
+               if (item.reserved.length > -1) {
+                   console.log("itemResLength before splice: " + item.reserved.length);
+                                item.reserved.splice(index, 1);
+                   console.log("itemResLength after splice: " + item.reserved.length);
+               }
+            }   
+            this.db.addReservation(item.reserved, item);    
             }
+              
+        }
+                        
+                            }
+                            
+        }
+        ] 
+    }).present();
+
+    this.confirmPressed();
+        }
         
 
     confirmPressed(){
