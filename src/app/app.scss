@@ -21,8 +21,7 @@
   //title and big icons
 
   .title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-family: 'Montserrat';
     text-align: center;
     color: #585858;
     font-size: 35px;
@@ -140,14 +139,12 @@
 
   .button-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     color: white;
     font-size: 25px;
   }
 
   .button-with-icon-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     color: white;
     float: left;
     font-size: 25px;
@@ -156,7 +153,6 @@
 
   .button-with-icon-svg-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     color: white;
     float: left;
     font-size: 25px;
@@ -165,14 +161,12 @@
 
   .white-button-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     color: #4E4E4E;
     font-size: 25px;
   }
 
   .white-button-with-icon-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     color: #4E4E4E;
     float: left;
     font-size: 25px;
@@ -181,7 +175,6 @@
 
   .white-button-with-icon-svg-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     color: #4E4E4E;
     float: left;
     font-size: 25px;
@@ -227,6 +220,13 @@ overflow:hidden !important;
     left: 10%;
     height: 50px;
     width: 50px;
+  }
+
+
+
+  @font-face {
+    font-family: Montserrat;
+    src: url(https://fonts.gstatic.com/s/montserrat/v10/IQHow_FEYlDC4Gzy_m8fcoWiMMZ7xLd792ULpGE4W_Y.woff2) format('woff2');
   }
 }
 
