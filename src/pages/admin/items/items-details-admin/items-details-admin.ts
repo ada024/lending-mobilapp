@@ -63,6 +63,7 @@ export class ItemsDetailsAdminPage {
 
   editResDays(){
       if(this.resDays.length!=0){
+          console.log("resdays: " + this.resDays);
     this.db.editItemResDays(this.resDays, this.item.$key);
     this.modifyResDays= false;
 }

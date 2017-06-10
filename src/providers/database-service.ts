@@ -817,7 +817,7 @@ editHours(hours){
 });
 }
 
-editResDays(resdays){
+/*editResDays(resdays){
     this.entities.update(this.currentUser.entity, {
         reservationDays:resdays
     });
@@ -829,9 +829,30 @@ editResDays(resdays){
           });
       });
 });
+}*/
+
+editResDays(resdays){
+    this.entities.update(this.currentUser.entity, {
+        reservationDays:resdays
+    });
+    
+    let itemsToEdit;
+    this.items.subscribe(itemsArray => {
+        itemsToEdit = itemsArray.filter(item => {return item.entity==this.currentUser.entity});
+    });
+
+    itemsToEdit.forEach(item => {
+          this.items.update(item.$key, {
+                reservationDays:resdays
+          }); 
+      });
 }
 
+
+
+
 editItemResDays(resdays, itemKey){
+    console.log("resdays i db: " + resdays);
     this.items.update(itemKey, {
         reservationDays: resdays
     })
