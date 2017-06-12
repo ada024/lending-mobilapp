@@ -24,7 +24,7 @@ export class UsersListAdminPage {
   }
 
   search(){
-    this.usersList = this.db.search(this.loadedUserList, this.searchString, "v.name");
+    this.usersList = this.db.search(this.loadedUserList, this.searchString, "v.fullname");
   }
 
   goToUsersDetailsAdminPage(user) {

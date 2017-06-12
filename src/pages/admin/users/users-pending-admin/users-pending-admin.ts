@@ -23,7 +23,7 @@ export class UsersPendingAdminPage {
   }
 
   search(){
-    this.pendingUsers = this.db.search(this.loadedPendingUsers, this.searchString, "v.userName");
+    this.pendingUsers = this.db.search(this.loadedPendingUsers, this.searchString, "v.fullname");
   }
 
   acceptUser(pendingUser) {
