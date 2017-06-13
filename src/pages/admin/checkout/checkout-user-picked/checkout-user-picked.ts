@@ -1,8 +1,6 @@
 ﻿import { Component, NgZone } from '@angular/core';
 import { AlertController, NavController, NavParams, Platform } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { HomeAdminPage } from '../../home-admin/home-admin';
-import { Toast } from 'ionic-native';
 import { Loan } from '../../../../app/models/loan';
 import { CheckoutAwaitingConfirmationPage } from '../checkout-awaiting-confirmation/checkout-awaiting-confirmation';
 
@@ -41,7 +39,7 @@ export class CheckoutUserPickedPage {
         this.formattedShortReturnDate = date + suffix + " of " + monthAsText;
 
     }
-	
+
 
     checkIfReserved() {
         var isNotReserved = true;
@@ -62,9 +60,9 @@ export class CheckoutUserPickedPage {
                         }
                             }
                 }
-            }         
+            }
         }
-       
+
        if(reservedByOthers.length!=0){
             this.returnText = " ";
            for(var reservation of reservedByOthers){
@@ -85,14 +83,14 @@ export class CheckoutUserPickedPage {
                             handler: () => {
                                 this.deleteReservations();
                             }
-                            
+
         }
-        ] 
+        ]
     }).present();
             } else(this.confirmPressed())
-           
+
         }
-        
+
         deleteReservations(){
                             var newAlertCtrl = this.alertCtrl.create({
                         title: 'Do you also want to delete these reservations?',
@@ -118,7 +116,7 @@ export class CheckoutUserPickedPage {
                              deleteReservations.push(reservation);
                         }
                      }
-                 }  
+                 }
             for(var reservation of deleteReservations){
                 var index = item.reserved.indexOf(reservation);
                if (item.reserved.length > -1) {
@@ -126,21 +124,21 @@ export class CheckoutUserPickedPage {
                                 item.reserved.splice(index, 1);
                    console.log("itemResLength after splice: " + item.reserved.length);
                }
-            }   
-            this.db.addReservation(item.reserved, item);    
             }
-              
+            this.db.addReservation(item.reserved, item);
+            }
+
         }
-                        
+
                             }
-                            
+
         }
-        ] 
+        ]
     }).present();
 
     this.confirmPressed();
         }
-        
+
 
     confirmPressed(){
           var userEmail = null;
@@ -153,7 +151,7 @@ export class CheckoutUserPickedPage {
         }
         this.navCtrl.push(CheckoutAwaitingConfirmationPage, { user: this.user, formattedDate: this.formattedReturnDate})
     }
-    
+
     getDayOfMonthSuffix(n) {
         if (n >= 11 && n <= 13) {
             return "th";
@@ -183,6 +181,6 @@ export class CheckoutUserPickedPage {
         }
     }
 
-      
-    
+
+
 }

@@ -4,7 +4,6 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { EntityAddAdminPage } from '../entity-add-admin/entity-add-admin';
 import { EntityListAdminPage } from '../entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../entity-details-admin/entity-details-admin';
-import { HomeAdminPage } from '../../home-admin/home-admin';
 
 @Component({
   selector: 'page-entity-admin',
@@ -50,6 +49,6 @@ onEntityLoaded(entities){
 
   goToEntityAddAdminPage() {
       this.navCtrl.push(EntityAddAdminPage);
-    
+
   }
 }

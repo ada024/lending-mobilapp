@@ -1,4 +1,4 @@
-﻿import { Component, NgZone, ViewChild, } from '@angular/core';
+﻿import { Component, NgZone } from '@angular/core';
 import { ViewController, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { CustomAlertPage } from '../custom-alert/custom-alert';
@@ -15,7 +15,7 @@ export class CheckoutScanItemPage {
     constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams,
     public db: DatabaseService, public zone: NgZone, public modalCtrl: ModalController, private alertCtrl: AlertController) {
 
-        
+
 
         if ((<any>window).nfc != null) {
             ((<any>window).nfc.addNdefListener(this.onTagFound.bind(this)));
@@ -26,7 +26,7 @@ export class CheckoutScanItemPage {
 
 ionViewCanLeave(): boolean{
    this.close = true;
-      return true;    
+      return true;
   }
 
     onTagFound(nfcEvent) {
@@ -47,10 +47,10 @@ ionViewCanLeave(): boolean{
                 }
                 if(item==null){
                     this.noItemFound();
-                    
+
                 }
             });
-            
+
         }
     }
 
@@ -67,7 +67,7 @@ ionViewCanLeave(): boolean{
         });
         customAlert.present();
     }
- 
+
 
     itemAlreadyCheckedOut(item){
 this.alertCtrl.create({
@@ -76,9 +76,9 @@ this.alertCtrl.create({
         buttons: [
         {
             text: 'Ok',
-            
+
         }
-        ] 
+        ]
     }).present();
 }
 
@@ -88,9 +88,9 @@ noItemFound(){
         buttons: [
         {
             text: 'Ok',
-            
+
         }
-        ] 
+        ]
     }).present();
 }
 
@@ -101,9 +101,9 @@ itemIsPending(item){
         buttons: [
         {
             text: 'Ok',
-            
+
         }
-        ] 
+        ]
     }).present();
 }
 
@@ -112,6 +112,6 @@ itemIsPending(item){
              this.close=true;
             const index = this.viewCtrl.index;
             this.navCtrl.push(CheckoutConfirmItemPage, { index: index, item: item })
-        
+
     }
 }

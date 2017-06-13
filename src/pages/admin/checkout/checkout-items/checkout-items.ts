@@ -3,8 +3,6 @@ import { DatabaseService } from '../../../../providers/database-service';
 import { ViewController, NavController, NavParams, AlertController, ModalController} from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { CheckoutConfirmItemPage } from '../checkout-confirm-item/checkout-confirm-item';
-import { CustomAlertPage } from '../custom-alert/custom-alert';
-import { Tempitems } from '../../../../app/models/tempItems';
 
 
 @Component({
@@ -23,21 +21,21 @@ export class CheckoutItemsPage {
 
     reservations: any;
 
-	
+
 
     constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
     public af: AngularFire, public db: DatabaseService, public zone: NgZone, private alertCtrl: AlertController) {
 
         db.loadItems(this.onDataLoaded.bind(this));
 
-        
+
         this.itemsList.sort((loan1, loan2): number => {
             if (loan1.loan != null && loan2.loan == null) return 1;
             if (loan1.loan == null && loan2.loan != null) return -1;
             return 0;
         });
     }
-  
+
 
   onDataLoaded(loadedList) {
       this.zone.run(() => {
@@ -64,12 +62,12 @@ export class CheckoutItemsPage {
       }
       });
 
-      
+
   }
 
   searchItems() {
           this.itemsList = this.db.search(this.loadedItemList, this.searchItemString, "v.name");
-   
+
   }
 
   goToCheckoutItemPickedPage(item) {
@@ -86,7 +84,7 @@ export class CheckoutItemsPage {
         this.close = true;
         this.navCtrl.pop();
     }
-	
+
 
 }
 

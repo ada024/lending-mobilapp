@@ -33,7 +33,7 @@ export class ItemsDetailsAdminPage {
       this.itemName = sentItem.name;
       db.getItemForDetailsPage(this.onItemLoaded.bind(this), sentItem.$key);
       this.resDays=this.item.reservationDays;
-      
+
 
       if(this.item.reserved!=null){
           this.reservations = this.item.reserved
@@ -58,7 +58,7 @@ export class ItemsDetailsAdminPage {
               this.oldPhotoURI = this.item.photoURL;
           }
       });
-      
+
   }
 
   editResDays(){
