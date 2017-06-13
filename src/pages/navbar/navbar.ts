@@ -23,4 +23,12 @@ export class NavbarPage {
       this.navCtrl.popToRoot();
     }
   }
+
+  trimUsername(username){
+      var length = 26;
+      if(username.length>length){
+                   username = username.substring(0, length - 3) + "...";
+      }
+      return username;
+  }
 }

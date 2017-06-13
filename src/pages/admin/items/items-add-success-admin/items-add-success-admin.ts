@@ -12,6 +12,7 @@ export class ItemsAddSuccessAdminPage {
   tagId = "0";
   photoURI;
   currentEntity;
+  added: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
   public platform: Platform, public db: DatabaseService) {
@@ -19,6 +20,7 @@ export class ItemsAddSuccessAdminPage {
     this.itemName = navParams.get("itemName");
     this.photoURI = navParams.get("photoURI");
     let tagId = navParams.get("tagId");
+    this.added = false;
     if (tagId) {
       this.tagId = tagId;
     }
@@ -27,7 +29,10 @@ export class ItemsAddSuccessAdminPage {
 
   onEntityLoaded(entity){
     this.currentEntity = entity[0];
+    if(!this.added){
     this.db.addItem(this.itemName, this.tagId, this.photoURI, this.currentEntity.reservationDays);
+    this.added=true;
+    }
   }
 
   goBackToItemsAdminPage() {

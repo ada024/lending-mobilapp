@@ -40,10 +40,8 @@
     <div class="item-name">{{item.name}}</div>
 
     <b>Description</b><br>
-    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
-      <ion-textarea class="description-text" readonly="true">
-        {{itemDescription}
-      </ion-textarea>
+    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''" ngDefaultControl>
+        {{itemDescription}}
     </div>
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
       <b>No description...yet</b>
@@ -95,9 +93,13 @@
           </div>
         </button>
     </div>
-
-    <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+    
+      <img [src]="item.photoURL" class="item-image" *ngIf="item" />
     <div class="inner-wrapper"></div>
+    <ion-input placeholder="Add name" [(ngModel)]="itemName" class="item-name-input">
+        {{itemName}}
+      </ion-input>
+    
 
       <div class="image-button-container">
         <button class="image-button" (click)="getPicture(true)">
@@ -109,9 +111,7 @@
         </button>
       </div>
 
-      <ion-input placeholder="Add name" [(ngModel)]="itemName" class="item-name-input">
-        {{itemName}}
-      </ion-input>
+      
 
       <b>Description</b><br>
         <div class="description" [(ngModel)]="itemDescription">

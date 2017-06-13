@@ -8,7 +8,7 @@
       <button ion-button icon-only (click)="openDropdownMenu($event)">
         <div>
           <div *ngIf="db.currentUser" style="margin: 2.5px; font-size: 13px">
-            {{db.currentUser.fullname}}
+            {{trimUsername(db.currentUser.fullname)}}
           </div>
 
           <div style="float: right; margin: 2.5px; font-size: 13px">

@@ -103,4 +103,12 @@ onNumberOfResLoaded(numberOfRes){
       ev: event
     });
   }
+
+   trimUsername(username){
+      var length = 30;
+      if(username.length>length){
+                   username = username.substring(0, length - 3) + "...";
+      }
+      return username;
+  }
 }

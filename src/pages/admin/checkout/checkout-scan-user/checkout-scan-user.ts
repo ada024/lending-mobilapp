@@ -40,6 +40,9 @@ ionViewCanLeave(): boolean{
                  if(user!=null){
             this.goToCheckoutUserPicked(user);
         }
+        else{
+            this.noUserFound();
+        }
             });
             
     }
@@ -65,6 +68,17 @@ ionViewCanLeave(): boolean{
         ] 
     }).present();
         
+}
+
+    noUserFound(){
+        this.alertCtrl.create({
+        title: 'No user found',
+        buttons: [
+        {
+            text: 'Ok',
+        }
+        ] 
+    }).present();
     }
     
 }

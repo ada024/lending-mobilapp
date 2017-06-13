@@ -18,13 +18,11 @@
     <div class="item-name">{{item.name}}</div>
 
     <b>Description</b><br>
-     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
-      <ion-textarea class="description-text" readonly="true">
-        {{itemDescription}
-      </ion-textarea>
+     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''" ngDefaultControl>
+        {{itemDescription}}
     </div>
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
-      <b>No description....yet</b>
+      <b>No description...yet</b>
     </div>
 
     <p class="status">

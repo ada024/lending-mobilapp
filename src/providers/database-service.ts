@@ -758,13 +758,17 @@ updateTermsAndConditions(termsAndConditions){
 
 
   getEntity(onDataLoaded) {
-      this.entities.subscribe(entityArray => {
-          entityArray = entityArray.filter(entity => {
+      var entityReturn;
+      let subscription = this.entities.subscribe(entityArray => {
+          entityReturn = entityArray.filter(entity => {
               return (entity.$key == this.currentUser.entity)
           });
-          onDataLoaded(entityArray)
+          onDataLoaded(entityReturn);
       });
+        
   }
+
+
 
   setEntity(entity) {
     this.users.update(this.currentUser.$key, {
@@ -817,19 +821,6 @@ editHours(hours){
 });
 }
 
-/*editResDays(resdays){
-    this.entities.update(this.currentUser.entity, {
-        reservationDays:resdays
-    });
-
-    this.items.subscribe(itemsArray => {
-          itemsArray = itemsArray.filter(item => {
-            item.entity==this.currentUser.entity && this.items.update(item.$key, {
-                reservationDays:resdays
-          });
-      });
-});
-}*/
 
 editResDays(resdays){
     this.entities.update(this.currentUser.entity, {
@@ -852,7 +843,6 @@ editResDays(resdays){
 
 
 editItemResDays(resdays, itemKey){
-    console.log("resdays i db: " + resdays);
     this.items.update(itemKey, {
         reservationDays: resdays
     })

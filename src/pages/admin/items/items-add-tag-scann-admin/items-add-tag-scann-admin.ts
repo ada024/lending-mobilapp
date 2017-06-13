@@ -13,6 +13,7 @@ export class ItemsAddTagScannAdminPage {
   photoURI;
   item;
   close = false;
+  success: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService,
   public zone: NgZone, public platform: Platform) {
@@ -46,6 +47,7 @@ ionViewCanLeave(): boolean{
           this.db.getItems().update(this.item.$key, {
             id: tagId
           });
+          this.success = true;
         }
       });
       this.close = true;
