@@ -25,7 +25,7 @@ export class NavbarPage {
   }
 
   trimUsername(username){
-      var length = 26;
+      var length = 25;
       if(username.length>length){
                    username = username.substring(0, length - 3) + "...";
       }
