@@ -1,29 +1,38 @@
 ﻿page-checkout-item-picked {
 
-  .listProps {
-    background-color: #d3d3d3;
-    font-size: 1em;
-    padding: 0.2em 2em;
-  }
+  
 
   .someText {
     font-size: 18px;
-    text-align: center;
     color: #696969;
   }
 
-  .item-image {
-    margin-left:-1.7em;
-    margin-bottom: -0.3em;
-    width: 2.4em;
-    height: 2.4em;
+ .item-image {
+    width:4em;
+    height:4em;
+    float: left;
+    position:relative;
+    top:0.1em;
   }
 
-  .item-name {
-    font-size: 1.4em;
-    margin-left: 1em;
-    bottom: 0.25em;
-    position: relative;
+   .item-name {
+    font-size: 1.3em;
+    margin-left:1em;
+    float: left;
+  }
+  .scroll-bar {
+    overflow: auto;
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
+
+  .item-container {
+    width: 110%;
+    height: 68px;
+    border: 5px solid #d6d6d6;
+    background-color: #d6d6d6;
+    margin-bottom:0.5em;
+    position:relative;
   }
 
   .placeBottom {
@@ -33,9 +42,9 @@
 
   .close-icon{
     font-weight:bold;
-    font-size:1.5em;
-    left: 11.2em;
-    bottom: 1em;
-    position:fixed;
+    font-size:1em;
+    left: 21.5em;
+    bottom: 2.8em;
+    position:absolute;
   }
 }

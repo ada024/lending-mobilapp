@@ -2,7 +2,6 @@
 import { ViewController, NavController, NavParams} from 'ionic-angular';
 import { Reservation } from '../../../../app/models/reservation';
 import { DatabaseService } from '../../../../providers/database-service';
-import { Toast } from 'ionic-native';
 import {ItemConfirmConfirmPickupPage} from '../item-confirm-confirm-pickup/item-confirm-confirm-pickup';
 
 

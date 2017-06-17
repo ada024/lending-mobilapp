@@ -6,18 +6,21 @@
 
 
 <ion-content padding>
+  
 <p class="title"><b>Check out to</b></p>
 <img class="user-image" [src]="user.photoURL" />
-<p class="someText">{{user.fullname}} </p>
+<p class="user-name">{{user.fullname}} </p>
   <p class="return-date" style="margin-bottom:-0.7em;margin-top:2em;">Return date:</p>
   <p class="return-date">{{formattedReturnDate}}</p>
 <div class="placeBottom">
+
 <p class="someText">Items you are checking out</p>
-<ion-list>
-    <ion-item *ngFor="let item of itemList">
-      <div class="listProps"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span></div>
-    </ion-item>
-  </ion-list>
+<div *ngFor="let item of itemList">
+         <div class="item-container">
+        <img [src]="item.photoURL" class="item-image" />
+        <div class="item-name">{{item.name}}</div>
+      </div>
+        </div>
   
   <button class="black-button" (click)="checkIfReserved()">
     <div class="button-text">

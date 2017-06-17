@@ -42,15 +42,9 @@ export class CheckoutUserPickedPage {
 
 
     checkIfReserved() {
-        var isNotReserved = true;
-        var noReservations = true;
-        var numberOfRes = 0;
-        var numberOfAnswer = 0;
         var reservedByOthers = [];
         this.today = new Date();
         this.today.setHours(0o0,0o0,0o0,0o0);
-        console.log("todayInCheck: " + this.today.getTime());
-         console.log("Check: real returnDate: " + this.returnDate + " returnDateInDelete: " + this.returnDate.getTime());
         for(var item of this.itemList){
             if(item.reserved!=null){
                 for(var reservation of item.reserved){
@@ -68,7 +62,7 @@ export class CheckoutUserPickedPage {
            for(var reservation of reservedByOthers){
             this.returnText+=  "<br> '" + reservation.itemName + "' is reserved by " + reservation.userName + " from " + reservation.formattedShortpUpDate + " to " + reservation.formattedShortRetDate + "<br>";
            }
-                var newAlertCtrl = this.alertCtrl.create({
+                this.alertCtrl.create({
                         title: 'This loan overlap reservations',
                         message: this.returnText + "<br> <b>Do you want to check out these items anyway?<b>",
                         buttons: [
@@ -92,7 +86,7 @@ export class CheckoutUserPickedPage {
         }
 
         deleteReservations(){
-                            var newAlertCtrl = this.alertCtrl.create({
+                           this.alertCtrl.create({
                         title: 'Do you also want to delete these reservations?',
                         message: this.returnText,
                         buttons: [
@@ -108,11 +102,9 @@ export class CheckoutUserPickedPage {
                                 if(item.reserved!=null){
                                     var deleteReservations = [];
                                 for(var reservation of item.reserved){
-                                    console.log("formatted respickup" + reservation.formattedShortpUpDate + " resPickup: " + reservation.pickupDate + " formatted returnDate " + reservation.formattedShortRetDate + " resReturnDate " + reservation.returnDate);
                             if(reservation.pickupDate<=this.today.getTime() && reservation.returnDate>=this.today.getTime() || reservation.pickupDate<=this.returnDate.getTime() && reservation.returnDate>=this.returnDate.getTime() || this.today.getTime()<=reservation.pickupDate && this.returnDate.getTime()>=reservation.returnDate){
                             if(reservation.userId!=this.user.uid){
                              var index = item.reserved.indexOf(reservation);
-                             console.log("sletter reservasjon med pUpDate: " + reservation.formattedShortpUpDate);
                              deleteReservations.push(reservation);
                         }
                      }
@@ -120,9 +112,7 @@ export class CheckoutUserPickedPage {
             for(var reservation of deleteReservations){
                 var index = item.reserved.indexOf(reservation);
                if (item.reserved.length > -1) {
-                   console.log("itemResLength before splice: " + item.reserved.length);
                                 item.reserved.splice(index, 1);
-                   console.log("itemResLength after splice: " + item.reserved.length);
                }
             }
             this.db.addReservation(item.reserved, item);

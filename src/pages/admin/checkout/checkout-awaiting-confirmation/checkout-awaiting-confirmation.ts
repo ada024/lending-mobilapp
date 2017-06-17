@@ -9,17 +9,20 @@ import { DatabaseService } from '../../../../providers/database-service';
 })
 export class CheckoutAwaitingConfirmationPage {
     user: any;
-    items: any;
+    itemList: any;
     confirmCheck: any;
     formattedDate: any;
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+        console.log("awaiting-confirmation");
         this.user = navParams.get("user");
         this.formattedDate = navParams.get("formattedDate");
-        this.items = db.getTemporaryItems();
+        this.itemList = db.getTemporaryItems();
+        console.log("itemlist: " + this.itemList.length);
         
-        db.checkIfConfirmed(this.items, this.onCheckConfLoaded.bind(this));
+        db.checkIfConfirmed(this.itemList, this.onCheckConfLoaded.bind(this));
+        console.log("awaiting-confirmation2");
 
     }
 

@@ -17,8 +17,8 @@
         {{entity.name}}
         <br/>
         <span style="color:blue" *ngIf="currentUser.entity==entity.$key">Currently selected</span>
-        <span style="color:lightgrey" *ngIf="currentUser.entity!=entity.$key && currentUser.uid==entity.owner">Admin</span>
-        <span style="color:lightgrey" *ngIf="currentUser.entity!=entity.$key && currentUser.uid!=entity.owner">Borrower</span>
+        <span style="color:lightgrey" *ngIf="currentUser.entity!=entity.$key && currentUser.uid==entity.owner">Owner</span>
+        <span style="color:lightgrey" *ngIf="currentUser.entity!=entity.$key && currentUser.uid!=entity.owner">Admin</span>
       </ion-item>
       <ion-item-options>
         <button danger (click)="removeItem(item)"> Delete</button>

@@ -22,7 +22,6 @@
 <br>
 <hr style="color:gray;height:0.5em;">
 <div class="office-and-opening">Opening hours:</div>
-<div class="alert-text" *ngIf="notAdded1">You have to select days open</div>
 <div class="location-and-days" *ngIf="!modifyDays">{{currentEntityDays}}</div><ion-item *ngIf="modifyDays">
       <ion-label>Opening days</ion-label>
       <ion-select  multiple="true" [(ngModel)]="entityDays">
@@ -37,7 +36,6 @@
     </ion-item>
 <ion-icon name="md-create" class="edit-icon" (click)="modifyDays = true" *ngIf="!modifyDays"></ion-icon>
  <ion-icon name="checkbox-outline" class="edit-icon" (click)="editDays()" *ngIf="modifyDays"></ion-icon>
-  <div class="alert-text" *ngIf="notAdded2">You have to select opening hours</div>
 <div class="room-and-hours" *ngIf="!modifyHours">{{currentEntityHours}}</div> <ion-item *ngIf="modifyHours">
       <ion-label>Open from</ion-label>
       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursFrom" ></ion-datetime>
@@ -48,7 +46,7 @@
     </ion-item>
 <ion-icon name="md-create" class="edit-icon2" (click)="modifyHours = true" *ngIf="!modifyHours">
   </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editHours()" *ngIf="modifyHours"></ion-icon>
-
+<hr style="color:gray;height:0.5em;">
   <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div><ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
   </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
 <ion-item class="reservation-input" *ngIf="modifyResDays">

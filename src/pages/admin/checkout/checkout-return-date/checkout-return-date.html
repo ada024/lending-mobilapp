@@ -8,10 +8,16 @@
 <ion-content padding>
   <p class="title-text">When should the items be returned?</p>
   <div>
+    <template #template let-view="view" let-row="row" let-col="col">
+    <div class="calendar-day {{ view.dates[row*7+col].events[0]?.color }}">
+      {{view.dates[row*7+col].label}}
+    </div>
+  </template>
     <p class="calendar-title"><ion-icon name="arrow-back" (click)="previousMonth()"></ion-icon><span class="month">{{viewTitle}}</span><ion-icon name="arrow-forward" (click)="nextMonth()"></ion-icon></p>
     <calendar (swipe)="swipeEvent()"
               [markDisabled]="markDisabled"
               [currentDate]="calendar.currentDate"
+            [monthviewDisplayEventTemplate]="template"
               autoSelect="false"
               noEventsLabel=""
               (onCurrentDateChanged)="onCurrentDateChanged($event)"

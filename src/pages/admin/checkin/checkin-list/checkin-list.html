@@ -11,9 +11,7 @@
   </ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let loan of loansList" (click)="goToCheckinConfirmPage(loan)">
-      <div class="listProps">
         <img [src]="loan.photoURL" class="item-image" /><span class="item-name">{{loan.name}}</span>
-      </div>
     </ion-item>
   </ion-list>
 </ion-content>

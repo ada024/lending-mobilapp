@@ -1,13 +1,26 @@
 ﻿page-checkout-user {
   
  .user-image {
-   width: 23px;
-   height: 23px;
+   position:relative;
+   top:0.3em;
+   width: 50px;
+   height: 50px;
    border-radius: 50%;
   }
   
-  .centerText{
-  text-align:center;
+  .user-name{
+  position:relative;
+  bottom:1em;
+  left:1em;
+  }
+  .user-container {
+    width: 95%;
+    height: 68px;
+    border: 5px solid #F5F5F5;
+    background-color: #F5F5F5;
+    margin-top:0.5em;
+    left:0.6em;
+    position:relative;
   }
  
 }

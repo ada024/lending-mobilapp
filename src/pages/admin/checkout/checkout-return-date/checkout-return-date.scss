@@ -44,4 +44,50 @@
     bottom: 0.8em;
     left: 0.8em;
   }
+
+   .monthview-selected {
+    background-color: transparent !important;
+    color: black !important;
+  }
+
+  td.monthview-current {
+    color: white;
+
+    .calendar-day {
+      background-color: color($colors, 'light') !important;
+    }
+  }
+
+  .monthview-datetable {
+    border: 0 !important;
+
+    td, th {
+      border: 0 !important;
+      padding: 3px!important;
+      background-color: transparent!important;
+    }
+  }
+
+ .calendar-day {
+    padding: 3px 5px;
+
+
+    &.resLoaned {
+      background-color: #F98782;
+      color: white;
+    }
+
+  }
+.monthview-eventdetail-timecolumn{
+  display:none;
+}
+
+.monthview-eventdetail{
+  display:none;
+}
+
+.event-detail-container{
+  display:none;
+}
+
 }

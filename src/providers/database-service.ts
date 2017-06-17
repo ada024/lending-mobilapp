@@ -759,7 +759,7 @@ updateTermsAndConditions(termsAndConditions){
 
   getEntity(onDataLoaded) {
       var entityReturn;
-      let subscription = this.entities.subscribe(entityArray => {
+      this.entities.subscribe(entityArray => {
           entityReturn = entityArray.filter(entity => {
               return (entity.$key == this.currentUser.entity)
           });

@@ -24,11 +24,13 @@
   
   <div class="placeBottom">
         <p class="someText">Items you are checking out</p>
-<ion-list>
-      <ion-item *ngFor="let item of itemList">
-        <div class="listProps"><img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span><ion-icon name="close" class="close-icon" (click)="removeItem(item)"></ion-icon></div>
-      </ion-item>
-  </ion-list>
+        <div *ngFor="let item of itemList">
+         <div class="item-container">
+           <div class="close-icon"><ion-icon name="close" (click)="removeItem(item)"></ion-icon></div>
+        <img [src]="item.photoURL" class="item-image" />
+        <div class="item-name">{{item.name}}</div>
+      </div>
+        </div>
   </div>
    
 </ion-content>

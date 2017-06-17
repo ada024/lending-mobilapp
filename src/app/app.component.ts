@@ -1,5 +1,5 @@
 ﻿import {Component} from '@angular/core';
-import {Platform, ToastController} from 'ionic-angular';
+import {Platform} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {ChooseAccountTypePage} from "../pages/choose-account-type/choose-account-type";

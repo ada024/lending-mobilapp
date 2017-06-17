@@ -56,6 +56,6 @@ export class ItemsReservedAdminPage {
   }
 
   goToItemsAddNameAdminPage(){
-    this.navCtrl.push(ItemsAddNameAdminPage);
+    this.appCtrl.getRootNav().push(ItemsAddNameAdminPage);
   }
 }
