@@ -1,5 +1,15 @@
 ﻿page-home-admin {
 
+  .top-text {
+    font-size: 15px;
+  }
+
+  .current-entity {
+    font-family: 'Montserrat';
+    color: #4E4F4F;
+    font-size: 25px;
+  }
+
   .check-out-button {
     width: 150px;
     height: 130px;
@@ -13,6 +23,8 @@
   }
 
   .check-out-text {
+    font-family: 'Montserrat';
+    color: #844341;
     font-size: 20px;
     margin-top: 10px;
   }
@@ -32,6 +44,8 @@
   }
 
   .check-in-text {
+    font-family: 'Montserrat';
+    color: #0D5E19;
     font-size: 20px;
     margin-top: 10px;
   }

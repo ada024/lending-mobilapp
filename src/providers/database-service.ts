@@ -50,29 +50,6 @@ export class DatabaseService {
         this.tempItems = new Tempitems();
 
 
-var now = new Date();
-now.setDate(now.getDate()-1);
-
-   this.items.subscribe(items => {
-            items.forEach(item => {
-                if(item.reserved!=null){
-                 for(var res of item.reserved){
-        if(res.pickupDate<=now.getTime()){
-            var index = item.reserved.indexOf(res);
-            if (item.reserved.length > -1) {
-            item.reserved.splice(index, 1);
-            this.addReservation(item.reserved, item);
-        }
-    }
-}
-}
-            });
-   });
-               
-
-
-
-
         // CURREMT USER INFO
         this.af.auth.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
@@ -88,7 +65,35 @@ now.setDate(now.getDate()-1);
     }
 
 
-    //Methods to add and get items
+
+
+    // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Item And Reservation
+     * 
+     */
+
+    checkReservations() {
+        var now = new Date();
+        now.setDate(now.getDate()-1);
+
+        this.items.subscribe(items => {
+            items.forEach(item => {
+                if(item.reserved!=null){
+                    for(var res of item.reserved){
+                        if(res.pickupDate<=now.getTime()){
+                            var index = item.reserved.indexOf(res);
+                            if (item.reserved.length > -1) {
+                                item.reserved.splice(index, 1);
+                                this.addReservation(item.reserved, item);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    }
 
     addItem(name, id, photoURI, reservationDays) {
         this.items.push({
@@ -323,7 +328,14 @@ status:"Notify"
     }
 
 
-    //Methods to add and get users
+
+
+    // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Users
+     * 
+     */
 
     getUsers() {
         return this.users;
@@ -515,7 +527,12 @@ status:"Notify"
   }
 
 
-  //Pending stuff
+      // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Pending Users And Pending Loans
+     * 
+     */
 
 
   addPendingLoan(loan, itemKey) {
@@ -638,7 +655,12 @@ status:"Notify"
   }
 
 
-  //Methods to add and get loans
+      // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Loans
+     * 
+     */
 
   addLoan(loan, item) {
       this.items.update(item.$key, {
@@ -689,7 +711,16 @@ status:"Notify"
           this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
   }
 
-  //Methods to add and get entities
+
+
+
+    // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Entity
+     * 
+     */
+
 
   addEntity(name, office, reservationDays, termsAndConditions) {
     return this.entities.push({
@@ -885,24 +916,14 @@ editItemResDays(resdays, itemKey){
     }
 
 
-  //Searches a list
-
-  search(loadedList, key, property) {
-    let list = loadedList;
-    if (key) {
-      list = list.filter((v) => {
-        if (eval(property) && key) {
-          if (eval(property).toLowerCase().indexOf(key.toLowerCase()) > -1) {
-            return true;
-          }
-          return false;
-        }
-      });
-    }
-    return list;
-  }
 
 
+    // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Facebook Login
+     * 
+     */
 
 
   //FACEBOOK AUTH
@@ -914,6 +935,7 @@ editItemResDays(resdays, itemKey){
           const facebookCredential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
           this.firebase.auth().signInWithCredential(facebookCredential).then(() => {
             observer.next();
+            this.checkReservations();
           }).catch(error => {
             console.log("Internal error...");
             observer.error(error);
@@ -986,7 +1008,75 @@ editItemResDays(resdays, itemKey){
     }
   }
 
+  
+  
+  
+    // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Image
+     * 
+     */
 
+  uploadImage(photoURI, key) {
+    if(photoURI != null) {
+      firebase.storage().ref('images/' + this.currentUser.entity + "/" + key)
+      .putString(photoURI.split(",")[1], 'base64').then(function(snapshot) {
+        this.items.update(key, {
+          photoURL: snapshot.downloadURL
+        });
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+      }.bind(this))
+    }
+  }
+
+  deleteImage(key) {
+      firebase.storage().ref('images/' + this.currentUser.entity + "/" + key).delete().catch(() => {});
+  }
+
+  resizeImage(size, uri, callback) {
+  var tempImg = new Image();
+  tempImg.src = uri;
+  tempImg.setAttribute('crossOrigin', 'anonymous');
+  tempImg.onload = function() {
+    var canvas = document.createElement('canvas');
+    canvas.width = canvas.height = size;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(<HTMLImageElement>this, 0, 0, tempImg.width, tempImg.height, 0, 0, size, size);
+    callback(canvas.toDataURL("image/jpeg"));
+    };
+  }
+
+
+
+
+    // ------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Utils
+     * 
+     */
+
+
+  search(loadedList, key, property) {
+    let list = loadedList;
+    if (key) {
+      list = list.filter((v) => {
+        if (eval(property) && key) {
+          if (eval(property).toLowerCase().indexOf(key.toLowerCase()) > -1) {
+            return true;
+          }
+          return false;
+        }
+      });
+    }
+    return list;
+  }
+  
+  isAndroid() {
+      return this.platform.is("android")
+  }
+  
   msgToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
@@ -1030,40 +1120,5 @@ editItemResDays(resdays, itemKey){
         });
         console.log('Total: '+total);
       });
-  }
-
-
-  //image stuff
-  uploadImage(photoURI, key) {
-    if(photoURI != null) {
-      firebase.storage().ref('images/' + this.currentUser.entity + "/" + key)
-      .putString(photoURI.split(",")[1], 'base64').then(function(snapshot) {
-        this.items.update(key, {
-          photoURL: snapshot.downloadURL
-        });
-        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-      }.bind(this))
-    }
-  }
-
-  deleteImage(key) {
-      firebase.storage().ref('images/' + this.currentUser.entity + "/" + key).delete().catch(() => {});
-  }
-
-  resizeImage(size, uri, callback) {
-  var tempImg = new Image();
-  tempImg.src = uri;
-  tempImg.setAttribute('crossOrigin', 'anonymous');
-  tempImg.onload = function() {
-    var canvas = document.createElement('canvas');
-    canvas.width = canvas.height = size;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(<HTMLImageElement>this, 0, 0, tempImg.width, tempImg.height, 0, 0, size, size);
-    callback(canvas.toDataURL("image/jpeg"));
-    };
-  }
-
-  isAndroid() {
-      return this.platform.is("android")
   }
 }

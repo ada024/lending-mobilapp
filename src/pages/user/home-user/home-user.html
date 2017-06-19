@@ -28,6 +28,10 @@
 
 <ion-content padding>
 
+  <div class="top-text">Current entity:</div>
+  <div class="current-entity" *ngIf="currentEntity != 'No entity, join an entity to get started'">{{currentEntity}}</div>
+  <div class="current-entity" *ngIf="currentEntity == 'No entity, join an entity to get started'">No entity</div>
+
   <div *ngIf="pendingLoans && pendingLoans.length != 0" class="scroll-bar">
     <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
       <h6>{{pendingLoan.pendingLoan.itemOwnerName}} wants to lend you:</h6>
