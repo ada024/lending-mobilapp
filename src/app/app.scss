@@ -69,6 +69,7 @@
   }
 
   .blue-button {
+    position: relative;
     width: 100%;
     height: 70px;
     margin-top: 10px;
@@ -77,6 +78,7 @@
   }
 
   .black-button {
+    position: relative;
     width: 100%;
     height: 70px;
     margin-top: 10px;
@@ -85,6 +87,7 @@
   }
 
   .white-button {
+    position: relative;
     width: 100%;
     height: 70px;
     margin-top: 10px;
@@ -99,37 +102,47 @@
   //button icons
 
   .button-icon {
+    position: absolute;
     color: white;
     float: left;
     font-size: 55px;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-
-  .white-button-icon {
-    color: #4E4E4E;
-    float: left;
-    font-size: 55px;
-    margin-left: 15px;
-    margin-right: 15px;
+    left: 7%;
+    top: 10%;
   }
 
   .button-icon-svg {
+    position: absolute;
     color: white;
     float: left;
     margin-left: 15px;
     margin-right: 15px;
     height: 40px;
     width: 40px;
+    left: 0%;
+    top: 20%;
+  }
+
+  .white-button-icon {
+    position: absolute;
+    color: #4E4E4E;
+    float: left;
+    font-size: 55px;
+    margin-left: 15px;
+    margin-right: 15px;
+    left: 0%;
+    top: 7%;
   }
 
   .white-button-icon-svg {
+    position: absolute;
     color: #4E4E4E;
     float: left;
     margin-left: 15px;
     margin-right: 15px;
     height: 40px;
     width: 40px;
+    left: 0%;
+    top: 20%;
   }
 
 
@@ -141,44 +154,71 @@
     font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .button-with-icon-text {
     font-family: 'Montserrat', sans-serif;
     color: white;
-    float: left;
     font-size: 25px;
-    margin-top: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 70px;
+    top: 32%;
+    max-width: calc(100% - 80px);
   }
 
   .button-with-icon-svg-text {
     font-family: 'Montserrat', sans-serif;
     color: white;
-    float: left;
     font-size: 25px;
-    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 70px;
+    top: 32%;
+    max-width: calc(100% - 80px);
   }
 
   .white-button-text {
     font-family: 'Montserrat', sans-serif;
     color: #4E4E4E;
     font-size: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .white-button-with-icon-text {
     font-family: 'Montserrat', sans-serif;
     color: #4E4E4E;
-    float: left;
     font-size: 25px;
-    margin-top: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 70px;
+    top: 32%;
+    max-width: calc(100% - 80px);
   }
 
   .white-button-with-icon-svg-text {
     font-family: 'Montserrat', sans-serif;
     color: #4E4E4E;
-    float: left;
-    font-size: 24px;
+    font-size: 25px;
     margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    left: 70px;
+    top: 15%;
+    max-width: calc(100% - 80px);
   }
 
 

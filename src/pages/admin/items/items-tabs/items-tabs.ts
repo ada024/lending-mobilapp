@@ -9,7 +9,6 @@ import { DatabaseService } from '../../../../providers/database-service';
 @Component({
   selector: 'page-items-tabs',
   templateUrl: 'items-tabs.html',
-  providers: [DatabaseService]
 })
 export class ItemsTabsPage {
     AvailableItems = ItemsListAdminPage;

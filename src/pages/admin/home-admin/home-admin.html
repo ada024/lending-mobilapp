@@ -32,8 +32,9 @@
   <div class="current-entity" *ngIf="currentEntity != 'No entity, join an entity to get started'">{{currentEntity}}</div>
   <div class="current-entity" *ngIf="currentEntity == 'No entity, join an entity to get started'">No entity</div>
 
-<td style="white-space: nowrap;">
-  <div class="button-container">
+
+  <div class="button-container2">
+    <div class="check-out-container ">
     <button class="check-out-button" (click)="goToCheckOut()">
       <div>
         <img src="./assets/icons/checkout.svg" class="check-out-icon">
@@ -42,7 +43,9 @@
         </div>
       </div>
     </button>
+    </div>
 
+    <div class="check-in-container">
     <button class="check-in-button"  (click)="goToCheckIn()">
       <div>
         <img src="./assets/icons/checkin.svg" class="check-in-icon">
@@ -51,8 +54,9 @@
         </div>
       </div>
     </button>
+    </div>
   </div>
-</td>
+
 
 <div class="button-container">
   <button class="grey-button" (click)="goToItemsAdminPage()">

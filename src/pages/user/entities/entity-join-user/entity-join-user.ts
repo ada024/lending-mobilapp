@@ -56,7 +56,7 @@ export class EntityJoinUserPage {
     if (this.entity.termsAndConditions != null) {
       this.alertCtrl.create({
         title: 'Confirm',
-        message: 'By joining this entity you agree to the Terms and Conditions',
+        message: 'By joining this entity you agree to the Terms and Conditions below',
         buttons: [
         {
           text: 'Cancel',
