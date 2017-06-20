@@ -6,7 +6,7 @@
 
 
 <ion-content padding>
-<div class="title-text">{{currentEntity.name}}</div>
+<div class="title">{{currentEntity.name}}</div>
 <div class="office-and-opening">Borrowing office location:</div>
 <div class="location-and-days" *ngIf="!modifyLocation">{{currentEntityLocation}}</div><ion-item *ngIf="modifyLocation">
       <ion-input placeholder="Location" [(ngModel)]="entityLocation"></ion-input>

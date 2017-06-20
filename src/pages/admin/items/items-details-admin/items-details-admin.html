@@ -40,9 +40,12 @@
     <div class="item-name">{{item.name}}</div>
 
     <b>Description</b><br>
-    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''" ngDefaultControl>
+    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
+      <ion-textarea class="description-text">
         {{itemDescription}}
+      </ion-textarea>
     </div>
+
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
       <b>No description...yet</b>
     </div>
@@ -68,7 +71,7 @@
 
 <button class="blue-button" (click)="goToReservationCalendar()">
       <img src="./assets/icons/calendar.svg" class="button-icon-svg">
-      <div class="blue-button-text">
+      <div class="button-with-icon-svg-text">
         <b>Item calendar</b>
       </div>
     </button>
@@ -133,7 +136,7 @@
       <div class="button-container">
         <button class="white-button" (click)="encode()">
           <img src="./assets/icons/scantag.svg" class="button-icon-svg2">
-          <div class="encode-text">
+          <div class="white-button-with-icon-svg-text">
             <b>Register new NFC tag</b>
           </div>
         </button>

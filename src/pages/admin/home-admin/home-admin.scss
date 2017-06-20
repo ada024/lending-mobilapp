@@ -47,6 +47,7 @@
 
   .check-out-text {
     font-family: 'Montserrat';
+    font-weight: bold;
     color: #844341;
     font-size: 20px;
     margin-top: 10px;
@@ -68,6 +69,7 @@
 
   .check-in-text {
     font-family: 'Montserrat';
+    font-weight: bold;
     color: #0D5E19;
     font-size: 20px;
     margin-top: 10px;
@@ -105,12 +107,17 @@
   }
 
   .grey-button-text-title {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #545659;
     font-size: 20px;
     float: left;
   }
 
   .grey-button-text-info {
+    color: #3E3C3C;
     float: left;
+    font-size: 15px;
   }
 
   .notification-container {

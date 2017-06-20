@@ -140,11 +140,12 @@
       <div class="reservations-container">
         <img [src]="reservation.itemPhoto" class="item-image" />
         <div class="item-name">
-          <div>{{trimString(reservation.itemName)}}  <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon></div>
+          <div>{{trimString(reservation.itemName)}}</div>
           <div class = "entity-info">Entity: {{trimString(reservation.entityName)}}</div>
           <div class="dueDate"><span>Pickup date: {{reservation.formattedShortpUpDate}} ({{dueDate(reservation.pickupDate)}})</span></div>
           <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='Today'">Reservation will be deleted tomorrow</div>
         </div>
+        <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
       </div>
     </div>
   </div>

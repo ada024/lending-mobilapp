@@ -22,6 +22,7 @@
 
   .title {
     font-family: 'Montserrat';
+    font-weight: bold;
     text-align: center;
     color: #585858;
     font-size: 35px;
@@ -113,12 +114,9 @@
   .button-icon-svg {
     position: absolute;
     color: white;
-    float: left;
-    margin-left: 15px;
-    margin-right: 15px;
     height: 40px;
     width: 40px;
-    left: 0%;
+    left: 5%;
     top: 20%;
   }
 
@@ -127,21 +125,16 @@
     color: #4E4E4E;
     float: left;
     font-size: 55px;
-    margin-left: 15px;
-    margin-right: 15px;
-    left: 0%;
+    left: 5%;
     top: 7%;
   }
 
   .white-button-icon-svg {
     position: absolute;
     color: #4E4E4E;
-    float: left;
-    margin-left: 15px;
-    margin-right: 15px;
     height: 40px;
     width: 40px;
-    left: 0%;
+    left: 5%;
     top: 20%;
   }
 
@@ -151,7 +144,8 @@
   //button text
 
   .button-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: white;
     font-size: 25px;
     white-space: nowrap;
@@ -160,33 +154,35 @@
   }
 
   .button-with-icon-text {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
+    font-family: 'Montserrat';
+    font-weight: bold;
     font-size: 25px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     position: absolute;
-    left: 70px;
     top: 32%;
-    max-width: calc(100% - 80px);
+    left: calc(7% + 45px);
+    max-width: calc(93% - 55px);
   }
 
   .button-with-icon-svg-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: white;
     font-size: 25px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     position: absolute;
-    left: 70px;
     top: 32%;
-    max-width: calc(100% - 80px);
+    left: calc(7% + 45px);
+    max-width: calc(93% - 55px);
   }
 
   .white-button-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: #4E4E4E;
     font-size: 25px;
     white-space: nowrap;
@@ -195,30 +191,31 @@
   }
 
   .white-button-with-icon-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: #4E4E4E;
     font-size: 25px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     position: absolute;
-    left: 70px;
     top: 32%;
-    max-width: calc(100% - 80px);
+    left: calc(5% + 55px);
+    max-width: calc(95% - 65px);
   }
 
   .white-button-with-icon-svg-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: #4E4E4E;
     font-size: 25px;
-    margin-top: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     position: absolute;
-    left: 70px;
-    top: 15%;
-    max-width: calc(100% - 80px);
+    top: 32%;
+    left: calc(5% + 55px);
+    max-width: calc(95% - 65px);
   }
 
 

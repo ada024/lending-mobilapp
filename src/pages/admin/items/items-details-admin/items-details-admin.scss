@@ -1,29 +1,51 @@
 ﻿page-items-details-admin {
 
   .top-button-container {
-    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 55px;
   }
 
   .checkout-button {
-    float: left;
-    width: 160px;
-    height: 55px;
     background-color: #f28282;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    height: 100%;
+    width: 55%;
+  }
+
+  .edit-button {
+    background-color: #4091FF;
+    position: absolute;
+    top: 0%;
+    left: 60%;
+    height: 100%;
+    width: 40%;
   }
   
   .checkout-icon {
+    position: absolute;
+    color: white;
     float: left;
     height: 25px;
     width: 25px;
-    margin: 7px;
+    left: 6%;
+    top: 30%;
   }
 
   .checkout-text {
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: #844341;
-    float: left;
     font-size: 20px;
-    margin-top: 10px;
-    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    top: 32%;
+    left: calc(6% + 35px);
+    max-width: calc(94% - 45px);
   }
 
   .cancel-pending-text {
@@ -49,25 +71,28 @@
     background-color: #7cd87b;
   }
 
-  .edit-button {
-    width: 120px;
-    height: 55px;
-    background-color: #4091FF;
-  }
-
   .edit-icon {
+    position: absolute;
+    color: white;
     float: left;
     height: 30px;
     width: 30px;
-    margin: 10px;
+    left: 10%;
+    top: 20%;
   }
 
   .edit-text {
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: white;
-    float: left;
     font-size: 20px;
-    margin-top: 15px;
-    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    top: 30%;
+    left: calc(10% + 40px);
+    max-width: calc(90% - 50px);
   }
 
   .image-button-container {
@@ -162,17 +187,17 @@
   }
 
   .description {
-    border: 4px solid #DADCDE;
     margin-top: 5px;
-  }
-
-  .description-text {
-    height:auto;
   }
 
   .no-description-text {
     color: grey;
   }
+
+  textarea {
+    height: 60px;
+    resize: both;
+}
 
   .status {
     margin-top: 10px;
@@ -183,24 +208,9 @@
     position: relative;
   }
 
-  .encode-text {
-    color: black;
-    white-space: nowrap;
-    top: 50%;
-    left: 55%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-  }
-
   .resdays {
     font-size: 15px;
     margin-left: 5px;
-  }
-
-  textarea {
-    height: 100px;
   }
 
   .item-image {
@@ -243,13 +253,5 @@
     margin-right: 15px;
     height: 40px;
     width: 40px;
-  }
-
-  .blue-button-text {
-    color: white;
-    position:relative;
-    right:1.2em;
-    top:0.3em;
-    font-size: 24px;
   }
 }

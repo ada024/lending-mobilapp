@@ -66,15 +66,18 @@
     background-color: dimgrey;
   }
 
+  .button-container {
+    text-align: center;
+  }
+
   .cancel-button {
-    width: 11em;
+    width: 45%;
     height: 4em;
-    margin-right: 20px;
     background-color: #F98782
   }
 
   .confirm-button {
-    width: 11em;
+    width: 45%;
     height: 4em;
     background-color: #80E08F
   }

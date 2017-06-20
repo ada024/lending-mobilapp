@@ -8,7 +8,7 @@
 <ion-content padding>
     <button class="blue-button" (click)="goToItemPickedPage()">
       <img src="./assets/icons/calendar.svg" class="button-icon-svg">
-      <div class="blue-button-text">
+      <div class="button-text">
         <b>Reserve</b>
       </div>
     </button>
@@ -18,9 +18,12 @@
     <div class="item-name">{{item.name}}</div>
 
     <b>Description</b><br>
-     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''" ngDefaultControl>
+    <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
+      <ion-textarea class="description-text">
         {{itemDescription}}
+      </ion-textarea>
     </div>
+
     <div class="no-description-text" *ngIf="!(itemDescription && itemDescription!='')">
       <b>No description...yet</b>
     </div>

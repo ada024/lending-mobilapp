@@ -28,21 +28,26 @@ page-users-details-admin {
   }
 
   .red-button-icon {
-      float: left;
-      margin-left: 5px;
+      position: absolute;
+      color: white;
       height: 60px;
       width: 60px;
+      left: 3%;
+      top: 10%;
   }
 
   .red-button-text {
+      font-family: 'Montserrat';
+      font-weight: bold;
       color: white;
       white-space: nowrap;
-      top: 50%;
-      left: 50%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       position: absolute;
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
       font-size: 25px;
+      top: 30%;
+      left: calc(3% + 80px);
+      max-width: calc(97% - 90px);
   }
 
 }

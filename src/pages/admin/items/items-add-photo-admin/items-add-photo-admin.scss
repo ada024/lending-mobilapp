@@ -3,15 +3,15 @@ page-items-add-photo-admin {
   .image-container {
     position: relative;
     float: left;
-    width: 25%;
+    width: 70px;
     height: 70px;
     background-color: #525150;
   }
 
   .item-name-container {
     float: left;
-    width: 75%;
     height: 70px;
+    width: calc(100% - 70px);
     background-color: #DCDEE0;
   }
 
