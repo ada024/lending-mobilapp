@@ -49,19 +49,27 @@
   }
 
   .cancel-pending-text {
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: white;
-    float: left;
     font-size: 20px;
-    margin-top: 10px;
-    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .checkin-text {
+    font-family: 'Montserrat';
+    font-weight: bold;
     color: white;
-    float: left;
     font-size: 20px;
-    margin-top: 10px;
-    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    top: 32%;
+    left: calc(6% + 35px);
+    max-width: calc(94% - 45px);
   }
 
   .checkin-button {
