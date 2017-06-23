@@ -28,9 +28,10 @@
               (onTimeSelected)="onTimeSelected($event)"
               step="30">
     </calendar>
-    <div class="foo-red"></div><div class="res-loan-info">Reserved/Loaned</div>
-    <div *ngIf="loan!=null" class="reserved-by"><span style="margin-left:-1.5em;">Until {{loan.formattedShortDate}}:</span> <br> loaned by {{loan.loanerName}}</div>
-    <div *ngIf="reservation!=null" class="reserved-by"><br>{{reservation.formattedShortpUpDate}} - {{reservation.formattedShortRetDate}}: <br> Reserved by {{reservation.userName}} </div> 
-    <button class="cancel-res-button" (click)="cancelRes(reservation)" *ngIf="reservation!=null"><div class="button-text">Cancel this reservation?</div></button>
+    <div class="foo-red"></div><div class="res-loan-info">Reserved / Loaned</div>
+    <div *ngIf="loan!=null" class="reserved-by">Until {{loan.formattedShortDate}}: <br> loaned by {{loan.loanerName}}</div>
+    <div *ngIf="reservation!=null" class="reserved-by">{{reservation.formattedShortpUpDate}} - {{reservation.formattedShortRetDate}}: <br> Reserved by {{reservation.userName}}</div>
+    <br>
+    <button class="cancel-res-button" (click)="cancelRes(reservation)" *ngIf="reservation!=null"><div class="button-text">Cancel reservation</div></button>
   </div>
 </ion-content>

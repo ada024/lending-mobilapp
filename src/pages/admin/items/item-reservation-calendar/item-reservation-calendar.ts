@@ -1,7 +1,6 @@
 import { Component, NgZone } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { NgCalendarModule } from 'ionic2-calendar';
-import { ItemConfirmPickupPage } from '../item-confirm-pickup/item-confirm-pickup';
 import { DatabaseService } from '../../../../providers/database-service';
 
 
@@ -26,7 +25,7 @@ export class ItemReservationCalendarPage {
     notClickable=[];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public ngCal: NgCalendarModule,
-    public db: DatabaseService, public zone: NgZone) {
+    public db: DatabaseService, public zone: NgZone, public alertCtrl: AlertController) {
         this.item = navParams.get("item");
         this.loadEvents();
     }
@@ -164,12 +163,26 @@ export class ItemReservationCalendarPage {
   };
 
   cancelRes(reservation){
-      var index = this.item.reserved.indexOf(reservation);
+      this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Are you sure you want to cancel the reservation made by ' + reservation.userName,
+      buttons: [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Confirm',
+        handler: () => {
+          var index = this.item.reserved.indexOf(reservation);
             if (this.item.reserved.length > -1) {
-            this.item.reserved.splice(index, 1);
-            this.db.addReservation(this.item.reserved, this.item);
-            this.reservation=null;
-            this.loadEvents();
-  }
+                this.item.reserved.splice(index, 1);
+                this.db.addReservation(this.item.reserved, this.item);
+                this.reservation=null;
+                this.loadEvents();
+            }
+        }
+      }
+      ]
+    }).present();
   }
 }

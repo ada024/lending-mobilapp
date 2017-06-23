@@ -23,7 +23,7 @@ export class SettingsPage {
   goToSettingsAddUserTagPage() {
     this.alertCtrl.create({
       title: 'Warning',
-      message: 'This will override your previous tag ',
+      message: 'This will override your previous tag',
       buttons: [
       {
         text: 'Cancel',
