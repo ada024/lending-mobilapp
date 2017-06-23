@@ -35,10 +35,16 @@
       </button>
     </div>
 
-    <img [src]="item.photoURL" class="item-image" *ngIf="item" />
-    <div class="inner-wrapper"></div>
-    <div class="item-name">{{item.name}}</div>
+    <div class="item-image-super-container">
+    <div class="item-image-container">
+      <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+      <div class="inner-wrapper">
+        <div class="item-name">{{item.name}}</div>
+      </div>
+    </div>
+    </div>
 
+    <br>
     <b>Description</b><br>
     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
       <ion-textarea class="description-text">
@@ -97,24 +103,25 @@
         </button>
     </div>
     
+    <div class="item-image-super-container">
+    <div class="item-image-container">
       <img [src]="item.photoURL" class="item-image" *ngIf="item" />
-    <div class="inner-wrapper"></div>
-    <ion-input placeholder="Add name" [(ngModel)]="itemName" class="item-name-input">
-        {{itemName}}
-      </ion-input>
-    
+    </div>
+    </div>
 
       <div class="image-button-container">
         <button class="image-button" (click)="getPicture(true)">
-          <img src="./assets/icons/camera.svg" class="button-icon-svg">
+          <img src="./assets/icons/camera.svg" class="button-icon-svg3">
         </button>
 
         <button class="image-button" (click)="getPicture(false)">
-          <img src="./assets/icons/image.svg" class="button-icon-svg">
+          <img src="./assets/icons/image.svg" class="button-icon-svg3">
         </button>
       </div>
 
-      
+      <ion-input placeholder="Add name" [(ngModel)]="itemName" class="item-name-input">
+        {{itemName}}
+      </ion-input>
 
       <b>Description</b><br>
         <div class="description" [(ngModel)]="itemDescription">

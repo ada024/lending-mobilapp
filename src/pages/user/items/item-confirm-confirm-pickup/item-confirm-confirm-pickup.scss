@@ -83,19 +83,18 @@ page-item-confirm-confirm-pickup {
   .image-container {
     position: relative;
     float: left;
-    width: 25%;
+    width: 70px;
     height: 70px;
-    margin-top:-1em;
     background-color: #525150;
   }
 
   .item-name-container {
     float: left;
-    width: 75%;
     height: 70px;
-    margin-top:-1em;
+    width: calc(100% - 70px);
     background-color: #DCDEE0;
   }
+
   .item-image {
     width: 100%;
     height: 100%;

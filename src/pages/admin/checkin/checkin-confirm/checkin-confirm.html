@@ -11,9 +11,14 @@
    <b>Check in</b>  
   </div>
 
-  <img [src]="loan.photoURL" class="item-image" *ngIf="loan" />
-  <div class="inner-wrapper"></div>
-  <div class="item-name">{{loan.name}}</div>
+  <div class="item-image-super-container">
+    <div class="item-image-container">
+      <img [src]="loan.photoURL" class="item-image" *ngIf="loan" />
+      <div class="inner-wrapper">
+        <div class="item-name">{{loan.name}}</div>
+      </div>
+    </div>
+    </div>
 
  <div class="placeBottom">
 

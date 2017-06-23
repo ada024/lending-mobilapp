@@ -15,9 +15,14 @@
     <b>Success.<br>Added and Encoded </b>
   </div>
 
-  <img [src]="photoURI" class="item-image" />
-  <div class="inner-wrapper"></div>
-  <div class="item-name">{{itemName}}</div>
+  <div class="item-image-super-container">
+    <div class="item-image-container">
+      <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+      <div class="inner-wrapper">
+        <div class="item-name">{{itemName}}</div>
+      </div>
+    </div>
+    </div>
 
   <div class="bar">
     <div class="progress"></div>

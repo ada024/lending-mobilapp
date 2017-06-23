@@ -12,11 +12,19 @@
         <b>Reserve</b>
       </div>
     </button>
-     <div style="text-align: center;">You can borrow this item for {{resDays}} days</div>
-    <img [src]="item.photoURL" class="item-image" *ngIf="item" />
-    <div class="inner-wrapper"></div>
-    <div class="item-name">{{item.name}}</div>
+    <div style="text-align: center;">You can borrow this item for {{resDays}} days</div>
+    <br>
+    
+    <div class="item-image-super-container">
+    <div class="item-image-container">
+      <img [src]="item.photoURL" class="item-image" *ngIf="item" />
+      <div class="inner-wrapper">
+        <div class="item-name">{{item.name}}</div>
+      </div>
+    </div>
+    </div>
 
+    <br>
     <b>Description</b><br>
     <div class="description" [(ngModel)]="itemDescription" *ngIf="itemDescription && itemDescription!=''">
       <ion-textarea class="description-text">
