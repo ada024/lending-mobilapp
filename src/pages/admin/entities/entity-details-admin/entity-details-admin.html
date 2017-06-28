@@ -9,12 +9,12 @@
 <div class="title">{{currentEntity.name}}</div>
 <div class="office-and-opening">Borrowing office location:</div>
 <div class="location-and-days" *ngIf="!modifyLocation">{{currentEntityLocation}}</div><ion-item *ngIf="modifyLocation">
-      <ion-input placeholder="Location" [(ngModel)]="entityLocation"></ion-input>
+      <ion-input placeholder="Location" [(ngModel)]="currentEntityLocation" (keypress)="locationHandler($event.keyCode)"></ion-input>
     </ion-item>
 <ion-icon name="md-create" class="edit-icon" (click)="modifyLocation = true" *ngIf="!modifyLocation"></ion-icon> 
 <ion-icon name="checkbox-outline" class="edit-icon" (click)="editLocation()" *ngIf="modifyLocation"></ion-icon>
 <div class="room-and-hours" *ngIf="!modifyRoom">{{currentEntityRoom}}</div><ion-item *ngIf="modifyRoom">
-      <ion-input placeholder="Room" [(ngModel)]="entityRoom"></ion-input>
+      <ion-input placeholder="Room" [(ngModel)]="currentEntityRoom" (keypress)="roomHandler($event.keyCode)"></ion-input>
     </ion-item>
 <ion-icon name="md-create" class="edit-icon2" (click)="modifyRoom = true" *ngIf="!modifyRoom">
 </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editRoom()" *ngIf="modifyRoom"></ion-icon>

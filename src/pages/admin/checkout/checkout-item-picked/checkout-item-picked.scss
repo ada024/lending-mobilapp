@@ -16,9 +16,10 @@
   }
 
    .item-name {
-    font-size: 1.3em;
-    margin-left:1em;
+    top:1.5em;
+    left:1.5em;
     float: left;
+    position:relative;
   }
   .scroll-bar {
     overflow: auto;

@@ -22,8 +22,6 @@ modifyResDays = false;
 notAdded1 = false;
 notAdded2=false;
 
-entityLocation="";
-entityRoom="";
 entityHoursFrom="";
 entityHoursTo="";
 entityDays="";
@@ -51,16 +49,16 @@ onEntityLoaded(entity){
 
 
 editLocation(){
-    if(this.entityLocation.length!=0){
-    this.db.editLocation(this.entityLocation);
+    if(this.currentEntityLocation.length!=0){
+    this.db.editLocation(this.currentEntityLocation);
     this.modifyLocation= false;
 }
 this.modifyLocation = false;
 }
 
 editRoom(){
-    if(this.entityRoom.length!=0){
-    this.db.editRoom(this.entityRoom);
+    if(this.currentEntityRoom.length!=0){
+    this.db.editRoom(this.currentEntityRoom);
     this.modifyRoom= false;
 }
 this.modifyRoom = false;
@@ -97,7 +95,17 @@ goToTermsAndConditions(){
 this.navCtrl.push(TermsAndConditionsDetailsPage, {entity:this.currentEntity});
 }
 
+locationHandler(keyCode){
+if(keyCode==13){
+this.editLocation();
+}
+}
 
+roomHandler(keyCode){
+if(keyCode==13){
+this.editRoom();
+}
+}
 
 getWeekDays(n) {
       var weekday = new Array(7);
