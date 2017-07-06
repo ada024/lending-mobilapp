@@ -24,11 +24,21 @@
     (You want to borrow items from an entity)
     </div>
 
-    <button (click)="goToHomeAdminPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'true'? 'black-button' : 'white-button'">
-      <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'true' ? 'button-text' : 'white-button-text'">
-        <b>Admin mode</b>
-      </div>
-    </button>
+    <div *ngIf="db.currentUser && db.currentUser.numberOfMaxEntities && db.currentUser.numberOfMaxEntities != '0'">
+      <button (click)="goToHomeAdminPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'true'? 'black-button' : 'white-button'">
+        <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'true' ? 'button-text' : 'white-button-text'">
+          <b>Admin mode</b>
+        </div>
+      </button>
+    </div>
+
+    <div *ngIf="db.currentUser && (!db.currentUser.numberOfMaxEntities || db.currentUser.numberOfMaxEntities == '0')">
+      <button (click)="goToHomeAdminPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'true'? 'black-button' : 'white-button'">
+        <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'true' ? 'button-text' : 'white-button-text'">
+          <b>Admin mode (3£/29NOK)</b>
+        </div>
+      </button>
+    </div>
 
     <div class="info-text">
       (You want to administer loans to users)

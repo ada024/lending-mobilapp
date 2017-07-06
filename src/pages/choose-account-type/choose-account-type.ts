@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 import { HomeAdminPage } from '../admin/home-admin/home-admin';
 import { HomeUserPage } from '../user/home-user/home-user';
+import { PaymentPage } from '../payment/payment';
 
 
 @Component({
@@ -28,6 +29,10 @@ export class ChooseAccountTypePage {
     else {
       this.navCtrl.setRoot(HomeUserPage);
     }
+  }
+
+  goToPaymentPage() {
+    this.navCtrl.setRoot(PaymentPage);
   }
 
 }

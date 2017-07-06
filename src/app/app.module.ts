@@ -11,6 +11,7 @@ import { ChooseAccountTypePage } from '../pages/choose-account-type/choose-accou
 import { HomeAdminPage } from '../pages/admin/home-admin/home-admin';
 import { HomeUserPage } from '../pages/user/home-user/home-user';
 import { SendMailPage } from '../pages/send-mail/send-mail';
+import { PaymentPage } from '../pages/payment/payment';
 
 import { SettingsPage } from '../pages/settings/settings/settings';
 import { SettingsAddUserTagPage } from '../pages/settings/settings-add-user-tag/settings-add-user-tag';
@@ -103,6 +104,7 @@ export const firebaseConfig = {
     DropdownMenuPage,
     NavbarPage,
     SendMailPage,
+    PaymentPage,
 
     SettingsPage,
     SettingsAddUserTagPage,
@@ -186,6 +188,7 @@ export const firebaseConfig = {
     DropdownMenuPage,
     NavbarPage,
     SendMailPage,
+    PaymentPage,
 
     SettingsPage,
     SettingsAddUserTagPage,
