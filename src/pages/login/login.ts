@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 
 // email auth
-import {HomeUserPage} from '../pages/user/home-user/home-user';
+//import {HomeUserPage} from '../pages/user/home-user/home-user';
 import {EmailLoginPage} from "../email-login/email-login";
 
 @Component({

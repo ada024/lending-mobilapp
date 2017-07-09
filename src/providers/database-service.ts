@@ -924,6 +924,18 @@ editItemResDays(resdays, itemKey){
         this.entities.remove(entity);
     }
 
+    loadNumberOfEntitiesYouOwn(onDataLoaded) {
+        this.entities.subscribe(loadedEntities => {
+            onDataLoaded(this.search(loadedEntities, this.currentUser.uid, "v.owner").length);
+        });
+    }
+
+    loadnumberOfMaxEntities(onDataLoaded) {
+        this.users.subscribe(loadedUsers => {
+            onDataLoaded(this.search(loadedUsers, this.currentUser.uid, "v.uid")[0].numberOfMaxEntities);
+        });
+    }
+
 
 
 
@@ -1155,6 +1167,22 @@ editItemResDays(resdays, itemKey){
 
   forgotPasswordUser(email: any){
     return this.fireAuth.sendPasswordResetEmail(email);
+  }
+
+  purchase() {
+      return new Promise(resolve => {
+          this.users.update(this.currentUser.$key, {
+            numberOfMaxEntities: "1"
+        }).then(res => {resolve()})
+      })
+  }
+
+  increaseNumberOfMaxEntities() {
+      return new Promise(resolve => {
+          this.users.update(this.currentUser.$key, {
+            numberOfMaxEntities: (parseInt(this.currentUser.numberOfMaxEntities) + 1).toString()
+        }).then(res => {resolve()})
+      })
   }
 
 

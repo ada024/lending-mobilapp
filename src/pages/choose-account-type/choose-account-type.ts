@@ -32,7 +32,7 @@ export class ChooseAccountTypePage {
   }
 
   goToPaymentPage() {
-    this.navCtrl.setRoot(PaymentPage);
+    this.navCtrl.setRoot(PaymentPage,{purchaseAdminMode: true});
   }
 
 }

@@ -9,15 +9,34 @@ import { HomeAdminPage } from '../admin/home-admin/home-admin';
   templateUrl: 'payment.html'
 })
 export class PaymentPage {
+  purchaseAdminMode;
+  success;
+  newMax;
 
-  constructor(public navCtrl: NavController, public db: DatabaseService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
+    this.purchaseAdminMode = navParams.get("purchaseAdminMode");
+    this.success = false;
+    this.newMax = (parseInt(db.currentUser.numberOfMaxEntities) + 1).toString()
+  }
 
   purchase() {
-    if (!(this.db.currentUser != null && this.db.currentUser.adminRole == "true")) {
-      this.db.setAdminRole("true");
-    }
-    else {
-      this.navCtrl.setRoot(HomeAdminPage);
-    }
+    this.db.purchase().then(resolve => {
+      this.db.setAdminRole("true")
+    })
+  }
+
+  increaseNumberOfMaxEntities() {
+    this.db.increaseNumberOfMaxEntities().then(resolve => {
+      this.success = true;
+    })
+  }
+
+  done() {
+    this.navCtrl.pop();
+  }
+
+  reset() {
+    this.db.purchase();
+    this.navCtrl.pop();
   }
 }

@@ -1,9 +1,9 @@
 ﻿import { Component, NgZone} from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
-import { EntityAddAdminPage } from '../entity-add-admin/entity-add-admin';
 import { EntityListAdminPage } from '../entity-list-admin/entity-list-admin';
 import { EntityDetailsAdminPage } from '../entity-details-admin/entity-details-admin';
+import { EntityInfoAdminPage } from '../entity-info-admin/entity-info-admin';
 
 @Component({
   selector: 'page-entity-admin',
@@ -47,8 +47,7 @@ onEntityLoaded(entities){
     this.navCtrl.push(EntityListAdminPage, {self:this.sentThis});
   }
 
-  goToEntityAddAdminPage() {
-      this.navCtrl.push(EntityAddAdminPage);
-
+  goToEntityInfoAdminPage() {
+      this.navCtrl.push(EntityInfoAdminPage);
   }
 }

@@ -7,9 +7,39 @@
 
 <ion-content padding>
 
-  <button class="white-button" (click)="purchase()">
+  <div *ngIf="purchaseAdminMode && !success">
+    <button class="white-button" (click)="purchase()">
+      <div class="white-button-text">
+        <b>Buy Admin mode (3£/29NOK)</b>
+      </div>
+    </button>
+  </div>
+
+  <div *ngIf="!purchaseAdminMode && !success">
+    <button class="white-button" (click)="increaseNumberOfMaxEntities()">
+      <div class="white-button-text">
+        <b>Increase cap (3£/29NOK)</b>
+      </div>
+    </button>
+  </div>
+
+  <div class="success-text" *ngIf="success">
+    Success, you can now have {{newMax}} entities
+  </div>
+
+  <div *ngIf="success">
+    <button class="black-button" (click)="done()">
+      <div class="button-text">
+        <b>Done</b>
+      </div>
+    </button>
+  </div>
+
+  <br><br><br>
+
+  <button class="white-button" (click)="reset()">
     <div class="white-button-text">
-      <b>Pay (3£/29NOK)</b>
+      <b>Reset</b>
     </div>
   </button>
 

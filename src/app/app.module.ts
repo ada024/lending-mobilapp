@@ -36,6 +36,7 @@ import { UsersDetailsAdminPage } from '../pages/admin/users/users-details-admin/
 import { UsersAddTagAdminPage } from '../pages/admin/users/users-add-tag-admin/users-add-tag-admin';
 
 import { EntityAdminPage } from '../pages/admin/entities/entity-admin/entity-admin';
+import { EntityInfoAdminPage } from '../pages/admin/entities/entity-info-admin/entity-info-admin';
 import { EntityAddAdminPage } from '../pages/admin/entities/entity-add-admin/entity-add-admin';
 import { EntityOfficeAdminPage } from '../pages/admin/entities/entity-office-admin/entity-office-admin';
 import { EntityOpeningTimeAdminPage } from '../pages/admin/entities/entity-opening-time-admin/entity-opening-time-admin';
@@ -131,6 +132,7 @@ export const firebaseConfig = {
     UsersAddTagAdminPage,
 
     EntityAdminPage,
+    EntityInfoAdminPage,
       EntityAddAdminPage,
       EntityOfficeAdminPage,
       EntityOpeningTimeAdminPage,
@@ -218,6 +220,7 @@ export const firebaseConfig = {
     UsersAddTagAdminPage,
 
     EntityAdminPage,
+    EntityInfoAdminPage,
       EntityAddAdminPage,
       EntityOfficeAdminPage,
       EntityOpeningTimeAdminPage,
