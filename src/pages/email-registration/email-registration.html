@@ -1,0 +1,25 @@
+<ion-content padding>
+
+  <ion-list>
+    <ion-label stacked style="color: #000; margin-left: 10px; "><ion-icon name="person"></ion-icon> Full name</ion-label>
+    <ion-input type="text" [(ngModel)]="usernameField" style="border: 1px solid #000; border-radius: 15px; color: #000;"></ion-input>
+
+
+    <ion-label stacked style="color: #000; margin-left: 10px; "><ion-icon name="mail"></ion-icon> Email</ion-label>
+    <ion-input type="text" [(ngModel)]="emailField" style="border: 1px solid #000; border-radius: 15px; color: #000;"></ion-input>
+
+
+
+    <ion-label stacked style="color: #000; margin-left: 10px;"> <ion-icon name="lock"></ion-icon> Password</ion-label>
+    <ion-input type="password"[(ngModel)]="passField" style="border: 1px solid #000; border-radius: 15px; color: #000;"></ion-input>
+
+  </ion-list>
+
+
+
+  <button ion-button large icon-left (click)="signUpEmail()" class="buttonEmail">
+    <ion-icon name="icon-ios-email"></ion-icon>
+    Registry
+  </button>
+
+</ion-content>
