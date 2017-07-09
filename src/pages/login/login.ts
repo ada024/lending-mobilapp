@@ -2,6 +2,10 @@
 import { NavController } from 'ionic-angular';
 import { DatabaseService } from '../../providers/database-service';
 
+// email auth
+import {HomeUserPage} from '../pages/user/home-user/home-user';
+import {EmailLoginPage} from "../email-login/email-login";
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -15,10 +19,16 @@ export class LoginPage {
 
   loginWithFacebook(): void {
     this.db.loginWithFacebook().subscribe(() => {
-     let success = "success";
-      console.log("Login: "+success);
+      this.db.existInDb();
+      let success = "success";
+      console.log("Login: " + success);
     }, err => {
       console.log(err);
     });
   }
+
+  loginWithEmail() {
+    this.navCtrl.push(EmailLoginPage);
+  }
+
 }

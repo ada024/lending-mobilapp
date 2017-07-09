@@ -82,6 +82,8 @@ import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-
 import { NgCalendarModule } from 'ionic2-calendar';
 import { Camera } from '@ionic-native/camera';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import {EmailLoginPage} from "../pages/email-login/email-login";
+import {EmailRegistrationPage} from "../pages/email-registration/email-registration";
 
 
 
@@ -149,7 +151,7 @@ export const firebaseConfig = {
       CheckoutReturnDatePage,
       CheckoutAwaitingConfirmationPage,
     CustomAlertPage,
-	
+
       CheckinFirstPage,
       CheckinScanPage,
       CheckinListPage,
@@ -170,7 +172,10 @@ export const firebaseConfig = {
     ItemConfirmPickupPage,
     ItemConfirmConfirmPickupPage,
     ItemsTabsUserPage,
-    ItemsUnavailableUserPage
+    ItemsUnavailableUserPage,
+
+    EmailLoginPage,
+    EmailRegistrationPage
   ],
   imports: [
       IonicModule.forRoot(MyApp, { tabsPlacement: "top", tabsHideOnSubPages: true, backButtonText: '',
@@ -200,7 +205,7 @@ export const firebaseConfig = {
     ItemsAddTagScannAdminPage,
     ItemsAddSuccessAdminPage,
     ItemsListAdminPage,
-    ItemsDetailsAdminPage, 
+    ItemsDetailsAdminPage,
     ItemsTabsPage,
     ItemsLoanedAdminPage,
     ItemsReservedAdminPage,
@@ -239,7 +244,7 @@ export const firebaseConfig = {
       CheckinListPage,
     CheckinConfirmPage,
     CustomAlertCheckinPage,
-	
+
     EntityUserPage,
     EntityListUserPage,
     EntityChangeUserPage,
@@ -254,9 +259,12 @@ export const firebaseConfig = {
     ItemConfirmPickupPage,
     ItemConfirmConfirmPickupPage,
     ItemsTabsUserPage,
-    ItemsUnavailableUserPage
+    ItemsUnavailableUserPage,
+
+    EmailLoginPage,
+    EmailRegistrationPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, 
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
   DatabaseService, Camera, SocialSharing]
 })
 export class AppModule {}

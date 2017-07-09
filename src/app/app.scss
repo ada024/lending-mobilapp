@@ -220,12 +220,12 @@
   }
 
 
-  
+
   .modal-wrapper{
 position: absolute;
 width: 90vw;
 height: 60vh;
-top: 0; 
+top: 0;
 bottom: 0;
 left: 0;
 right: 0;
@@ -243,7 +243,7 @@ overflow:hidden !important;
 
 
   // navbar logo
-  
+
   .android-logo {
     position: absolute;
     top: 5%;
@@ -264,7 +264,10 @@ overflow:hidden !important;
 
   @font-face {
     font-family: Montserrat;
+    font-family: Roboto;
+
     src: url(https://fonts.gstatic.com/s/montserrat/v10/IQHow_FEYlDC4Gzy_m8fcoWiMMZ7xLd792ULpGE4W_Y.woff2) format('woff2');
+    src: url(https://fonts.gstatic.com/s/roboto/v16/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
   }
 }
 

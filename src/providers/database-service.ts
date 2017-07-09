@@ -2,7 +2,10 @@
 import {Http} from '@angular/http';
 import Rx from "rxjs/Rx"
 import 'rxjs/add/operator/map';
-import {AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, AuthMethods} from 'angularfire2';
+import {
+  AngularFire, AuthProviders, FirebaseListObservable, FirebaseAuthState, AuthMethods,
+  AngularFireAuth
+} from 'angularfire2';
 import firebase from 'firebase';
 import { Observable } from "rxjs/Observable";
 import {Tempitems} from '../app/models/tempItems';
@@ -33,8 +36,12 @@ export class DatabaseService {
 
     currentUser: any;
 
+    // email auth
+  public  fireAuth: any;
+
+
     constructor(public http: Http, public af: AngularFire, private platform: Platform,
-        private toastCtrl: ToastController) {
+        private toastCtrl: ToastController, private firebaseAuth: AngularFireAuth) {
         this.items = af.database.list('/items');
         this.users = af.database.list('/users');
         this.loans = af.database.list('/loans');
@@ -45,7 +52,6 @@ export class DatabaseService {
         this.temporaryItems = af.database.list('/temporaryItems');
         this.firebase = firebase;  //Add reference to native firebase SDK
         this.itemsRef = firebase.database().ref('/items');
-        this.usersRef = firebase.database().ref('/users');
         this.entitiesRef = firebase.database().ref('/entities');
         this.tempItems = new Tempitems();
 
@@ -61,6 +67,9 @@ export class DatabaseService {
         });
 
 
+        // email auth
+      this.fireAuth = firebase.auth();
+        this.usersRef = firebase.database().ref('/users');
 
     }
 
@@ -68,10 +77,10 @@ export class DatabaseService {
 
 
     // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Item And Reservation
-     * 
+     *
      */
 
     checkReservations() {
@@ -331,10 +340,10 @@ status:"Notify"
 
 
     // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Users
-     * 
+     *
      */
 
     getUsers() {
@@ -528,10 +537,10 @@ status:"Notify"
 
 
       // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Pending Users And Pending Loans
-     * 
+     *
      */
 
 
@@ -656,10 +665,10 @@ status:"Notify"
 
 
       // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Loans
-     * 
+     *
      */
 
   addLoan(loan, item) {
@@ -715,10 +724,10 @@ status:"Notify"
 
 
     // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Entity
-     * 
+     *
      */
 
 
@@ -796,7 +805,7 @@ updateTermsAndConditions(termsAndConditions){
           });
           onDataLoaded(entityReturn);
       });
-        
+
   }
 
 
@@ -857,7 +866,7 @@ editResDays(resdays){
     this.entities.update(this.currentUser.entity, {
         reservationDays:resdays
     });
-    
+
     let itemsToEdit;
     this.items.subscribe(itemsArray => {
         itemsToEdit = itemsArray.filter(item => {return item.entity==this.currentUser.entity});
@@ -866,7 +875,7 @@ editResDays(resdays){
     itemsToEdit.forEach(item => {
           this.items.update(item.$key, {
                 reservationDays:resdays
-          }); 
+          });
       });
 }
 
@@ -919,10 +928,10 @@ editItemResDays(resdays, itemKey){
 
 
     // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Facebook Login
-     * 
+     *
      */
 
 
@@ -1008,14 +1017,14 @@ editItemResDays(resdays, itemKey){
     }
   }
 
-  
-  
-  
+
+
+
     // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Image
-     * 
+     *
      */
 
   uploadImage(photoURI, key) {
@@ -1051,10 +1060,10 @@ editItemResDays(resdays, itemKey){
 
 
     // ------------------------------------------------------------------------------------------------------------------
-    
+
     /**
      * Utils
-     * 
+     *
      */
 
 
@@ -1072,11 +1081,11 @@ editItemResDays(resdays, itemKey){
     }
     return list;
   }
-  
+
   isAndroid() {
       return this.platform.is("android")
   }
-  
+
   msgToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
@@ -1121,4 +1130,32 @@ editItemResDays(resdays, itemKey){
         console.log('Total: '+total);
       });
   }
+
+  signUpEmail(email: string, pass: string, username: string) {
+// crate user auth
+     return this.firebase.auth().createUserWithEmailAndPassword(email, pass).then((newUser) => {
+      //sign in the user
+      this.fireAuth.signInWithEmailAndPassword(email, pass).then((authenticatedUser) => {
+        // create user profile in db
+        this.usersRef.child(authenticatedUser.uid).set({
+          uid: authenticatedUser.uid,
+          email: email,
+          fullname: username || 'none',
+          entity: "No entity, join an entity to get started",
+          entityName: "No entity, join an entity to get started",
+          photoURL:  ""
+        });
+      });
+    });
+  } // emailSignUp
+
+  loginWithEmail(email, pass) {
+    return this.fireAuth.signInWithEmailAndPassword(email, pass);
+  }
+
+  forgotPasswordUser(email: any){
+    return this.fireAuth.sendPasswordResetEmail(email);
+  }
+
+
 }
