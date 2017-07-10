@@ -35,13 +35,11 @@
   <div *ngIf="pendingLoans && pendingLoans.length != 0" class="scroll-bar">
     <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
       <h6>{{pendingLoan.pendingLoan.itemOwnerName}} wants to lend you:</h6>
-      <div class="item-container">
-        <img [src]="pendingLoan.photoURL" class="item-image" />
-        <div class="item-name">
-          <div>{{trimString(pendingLoan.name)}}</div>  
-        <div class = "entity-info">Entity: {{trimString(pendingLoan.entityName)}}</div>
-        <div class="entity-info">Return date: {{pendingLoan.pendingLoan.formattedShortDate}}</div>
-        </div>
+      <div class="global-item-container-grey">
+        <img class="global-item-container-image" [src]="pendingLoan.photoURL"/>
+        <div class="global-item-container-title">{{trimString(pendingLoan.name)}}</div>  
+        <div class="global-item-container-text-big-line-1">Entity: {{trimString(pendingLoan.entityName)}}</div>
+        <div class="global-item-container-text-big-line-2">Return date: {{pendingLoan.pendingLoan.formattedShortDate}}</div>
       </div>
       
       <div class="item-container-buttons">
@@ -137,14 +135,12 @@
 
   <div *ngIf="reservations && reservations.length != 0" class="scroll-bar">
     <div *ngFor="let reservation of reservations" class="scroll-bar-element">
-      <div class="reservations-container">
-        <img [src]="reservation.itemPhoto" class="item-image" />
-        <div class="item-name">
-          <div>{{trimString(reservation.itemName)}}</div>
-          <div class = "entity-info">Entity: {{trimString(reservation.entityName)}}</div>
-          <div class="dueDate"><span>Pickup date: {{reservation.formattedShortpUpDate}} ({{dueDate(reservation.pickupDate)}})</span></div>
-          <div class="dueDate" *ngIf="dueDate(reservation.pickupDate)=='Today'">Reservation will be deleted tomorrow</div>
-        </div>
+      <div class="global-item-container-green">
+        <img [src]="reservation.itemPhoto" class="global-item-container-image" />
+        <div class="global-item-container-title">{{trimString(reservation.itemName)}}</div>
+        <div class="global-item-container-text-small-line-1">Entity: {{trimString(reservation.entityName)}}</div>
+        <div class="global-item-container-text-small-line-2">Pickup date: {{reservation.formattedShortpUpDate}} ({{dueDate(reservation.pickupDate)}})</div>
+        <div class="global-item-container-text-small-line-3" *ngIf="dueDate(reservation.pickupDate)=='Today'">Reservation will be deleted tomorrow</div>
         <ion-icon name="close" class="close-icon" (click)="removeReservation(reservation)"></ion-icon>
       </div>
     </div>
@@ -154,14 +150,12 @@
 
   <div *ngIf="loans && loans.length != 0" class="scroll-bar">
     <div *ngFor="let loan of loans" class="scroll-bar-element">
-      <div class="borrowed-container">
-        <img [src]="loan.photoURL" class="item-image" />
-        <div class="item-name">
-          <div>{{trimString(loan.name)}}</div>
-          <div class = "entity-info">Entity: {{trimString(loan.entityName)}}</div>
-          <div class="dueDateBorrowed">Return date: {{loan.loan.formattedShortDate}} <span *ngIf="dueDate(loan.loan.timeInMillis)!='expired'">({{dueDate(loan.loan.timeInMillis)}})</span></div>
-          <div class="dueDateBorrowed" *ngIf="dueDate(loan.loan.timeInMillis)=='expired'">LOAN EXPIRED - PLEASE RETURN</div>
-        </div>
+      <div class="global-item-container-red">
+        <img [src]="loan.photoURL" class="global-item-container-image" />
+          <div class="global-item-container-title">{{trimString(loan.name)}}</div>
+          <div class="global-item-container-text-small-line-1">Entity: {{trimString(loan.entityName)}}</div>
+          <div class="global-item-container-text-small-line-2">Return date: {{loan.loan.formattedShortDate}} <span *ngIf="dueDate(loan.loan.timeInMillis)!='expired'">({{dueDate(loan.loan.timeInMillis)}})</span></div>
+          <div class="global-item-container-text-small-line-3" *ngIf="dueDate(loan.loan.timeInMillis)=='expired'">LOAN EXPIRED - PLEASE RETURN</div>
       </div>
     </div>
   </div>
