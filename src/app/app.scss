@@ -316,6 +316,17 @@ overflow:hidden !important;
     max-width: calc(100% - 70px);
   }
 
+  .global-item-container-name-only{
+    position: absolute;
+    font-size: 20px;
+    top: 25%;
+    left: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 90px);
+  }
+
   .global-item-container-text-big-line-1 {
     position: absolute;
     font-size: 15px;

@@ -1,37 +1,51 @@
 ﻿page-items-unavailable-user {
 
  .item-image {
-    height: 4em;
-    width: 4em;
-    margin-right: 2em;
+    height: 65px;
+    width: 65px;
+    margin-right: 30px;
     float: left;
   }
 
   .item-name {
-    font-size: 1em;;
-    margin-top: 1em;
-    float: left;
+    position: absolute;
+    font-size: 1.2em;
+    top: 10%;
+    left: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 90px);
   }
+
+  .reserved-date{
+    color: red;
+    position: absolute;
+    font-size: 0.7em;
+    top: 60%;
+    left: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 90px);
+  }
+
+  .return-date{
+    color: green;
+    position: absolute;
+    font-size: 0.7em;
+    top: 40%;
+    left: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 90px);
+  }
+
   .available-date{
     font-size:0.7em;
     position:fixed;
     left:14.8em;
     top:7em;
-  }
-
-  .return-date{
-    color: green;
-    font-size: 0.58em;
-    position: fixed;
-    top:1.3em;
-    left: 8.8em;
-  }
-
-  .reserved-date{
-    color: red;
-    font-size: 0.58em;
-    position: fixed;
-    top:7em;
-    left: 8.8em;
   }
 }

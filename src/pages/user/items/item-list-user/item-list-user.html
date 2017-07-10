@@ -13,11 +13,12 @@
 
   <ion-list>
       <ion-item (click)="goToItemPickedUserPage(item)" *ngFor="let item of itemsList" >
-        <img [src]="item.photoURL" class="item-image" />
+        <img [src]="item.photoURL" class="item-image"/>
         <div class="item-name">
           {{item.name}}
         </div>
-      <span *ngIf="item.reserved!=null" class="reserved-date">Next reservation: {{item.reserved[0].formattedShortpUpDate}} - {{item.reserved[0].formattedShortRetDate}}</span>
+        <br>
+        <div class="description">{{item.description}}</div>
       </ion-item>
   </ion-list>
 </ion-content>

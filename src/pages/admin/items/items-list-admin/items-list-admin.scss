@@ -17,6 +17,14 @@
     max-width: calc(100% - 90px);
   }
 
+  .res-date{
+    color: red;
+    position: absolute;
+    font-size: 0.7em;
+    top: 50%;
+    left: 90px;
+  }
+
   .hideShow {
     display: none;
   }
@@ -26,14 +34,6 @@
     font-size: 0.8em;
     position:absolute;
     left:13.8em;
-  }
-
-  .res-date{
-    color: red;
-    position: absolute;
-    font-size: 0.7em;
-    top: 50%;
-    left: 90px;
   }
 
   .add-icon {

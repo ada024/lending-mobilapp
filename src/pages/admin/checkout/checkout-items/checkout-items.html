@@ -12,8 +12,13 @@
   </ion-searchbar>
   <ion-list>
       <ion-item *ngFor="let item of itemsList" [class.hide-loans]="item.loan!=null||item.pendingLoan!=null" (click)="goToCheckoutItemPickedPage(item)">
-      <img [src]="item.photoURL" class="item-image" /> <span class="item-name">{{item.name}}</span>
-        <span *ngIf="item.reserved!=null" class="item-with-reservation">Reserved by {{item.reserved[0].userName}} from {{item.reserved[0].formattedShortpUpDate}}</span>
+        <img [src]="item.photoURL" class="item-image"/>
+          <div class="item-name">
+            {{item.name}}
+          </div>  
+          <div class="res-date" *ngIf="item.reserved!=null">
+            Next reservation:<br> {{item.reserved[0].formattedShortpUpDate}} - {{item.reserved[0].formattedShortRetDate}}
+          </div> 
       </ion-item>
   </ion-list>
 

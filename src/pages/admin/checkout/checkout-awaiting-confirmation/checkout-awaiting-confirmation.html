@@ -26,13 +26,14 @@
 
     <div class="items-placement">
     <div class="user-item-title">Items you are checking out</div>
-    <div *ngFor="let item of itemList">
-         <div class="item-container">
-        <img [src]="item.photoURL" class="item-image" />
-        <div class="item-name">{{item.name}}</div>
-      </div>
+      <div *ngFor="let item of itemList">
+        <div class="global-item-container-grey">
+          <img [src]="item.photoURL" class="global-item-container-image" />
+          <div class="global-item-container-name-only">{{item.name}}</div>
         </div>
-  </div> 
+        <br>
+      </div>
+    </div> 
 
 
   <button class="black-button" (click)="done()">

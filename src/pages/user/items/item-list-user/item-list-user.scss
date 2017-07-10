@@ -8,15 +8,29 @@
   }
 
   .item-name {
-    font-size: 1em;;
-    margin-top: 1em;
-    float: left;
+    position: absolute;
+    font-size: 1.2em;
+    top: 10%;
+    left: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 90px);
   }
+
   .reserved-date{
     color: red;
-    font-size: 0.58em;
-    position: fixed;
-    top:7em;
-    left: 8.8em;
+    position: absolute;
+    font-size: 0.7em;
+    top: 50%;
+    left: 90px;
+  }
+
+  .description {
+    position: absolute;
+    font-size: 0.8em;
+    top: 40%;
+    left: 90px;
+    white-space: normal;
   }
 }

@@ -23,14 +23,15 @@
   </button>
   
   <div class="placeBottom">
-        <p class="someText">Items you are checking out</p>
-        <div *ngFor="let item of itemList">
-         <div class="item-container">
-           <div class="close-icon"><ion-icon name="close" (click)="removeItem(item)"></ion-icon></div>
-        <img [src]="item.photoURL" class="item-image" />
-        <div class="item-name">{{item.name}}</div>
+    <p class="someText">Items you are checking out</p>
+    <div *ngFor="let item of itemList">
+      <div class="global-item-container-grey">
+        <img [src]="item.photoURL" class="global-item-container-image" />
+        <div class="global-item-container-name-only">{{item.name}}</div>
+        <ion-icon name="close" class="close-icon" (click)="removeItem(item)"></ion-icon>
       </div>
-        </div>
+      <br>
+    </div>
   </div>
    
 </ion-content>

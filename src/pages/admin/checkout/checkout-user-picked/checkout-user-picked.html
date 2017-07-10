@@ -16,12 +16,13 @@
 
 <p class="someText">Items you are checking out</p>
 <div *ngFor="let item of itemList">
-         <div class="item-container">
-        <img [src]="item.photoURL" class="item-image" />
-        <div class="item-name">{{item.name}}</div>
-      </div>
-        </div>
-  
+    <div class="global-item-container-grey">
+      <img [src]="item.photoURL" class="global-item-container-image" />
+      <div class="global-item-container-name-only">{{item.name}}</div>
+    </div>
+    <br>
+  </div>
+
   <button class="black-button" (click)="checkIfReserved()">
     <div class="button-text">
       <b>Confirm</b>

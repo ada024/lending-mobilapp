@@ -11,7 +11,12 @@
   </ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let loan of loansList" (click)="goToCheckinConfirmPage(loan)">
-        <img [src]="loan.photoURL" class="item-image" /><span class="item-name">{{loan.name}}</span>
+        <img [src]="loan.photoURL" class="item-image"/>
+        <div class="item-name">
+          {{loan.name}}
+        </div>
+        <br>
+        <div class="description">{{loan.description}}</div>
     </ion-item>
   </ion-list>
 </ion-content>
