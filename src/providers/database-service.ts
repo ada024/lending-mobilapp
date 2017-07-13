@@ -68,12 +68,38 @@ export class DatabaseService {
 
 
         // email auth
-      this.fireAuth = firebase.auth();
+        this.fireAuth = firebase.auth();
         this.usersRef = firebase.database().ref('/users');
-
     }
 
 
+
+
+    fix() {
+        let yourEntities = [];
+        this.entities.subscribe(entities => {
+            yourEntities = this.search(entities, this.currentUser.uid, "v.owner");
+        })
+        yourEntities.forEach(element => {
+            this.usersEntityMap.push({
+      userUid: this.currentUser.uid,
+      entity: element.$key,
+      entityName: element.name,
+      adminAccess: true,
+      newUser: false
+    });
+        });
+    }
+
+    deleteMap() {
+        let rows = [];
+        this.usersEntityMap.subscribe(el => {
+            rows = this.search(el, this.currentUser.uid, "v.userUid");
+        })
+        rows.forEach(element => {
+            this.usersEntityMap.remove(element);
+        });
+    }
 
 
     // ------------------------------------------------------------------------------------------------------------------
@@ -732,7 +758,8 @@ status:"Notify"
 
 
   addEntity(name, office, reservationDays, termsAndConditions) {
-    return this.entities.push({
+    
+    let entityPromise = this.entities.push({
       name: name,
       owner: this.currentUser.uid,
       ownerName: this.currentUser.fullname,
@@ -740,6 +767,17 @@ status:"Notify"
       reservationDays:reservationDays,
       termsAndConditions:termsAndConditions
     });
+
+    entityPromise.then((resolve) => {
+        this.usersEntityMap.push({
+            userUid: this.currentUser.uid,
+            entity: resolve.key,
+            entityName: name,
+            adminAccess: true,
+            newUser: false
+        });
+    })
+    return entityPromise;
   }
 
 updateTermsAndConditions(termsAndConditions){
@@ -761,7 +799,7 @@ updateTermsAndConditions(termsAndConditions){
   loadEntitiesYouOwn(onDataLoaded) {
     Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
         let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
-        let entities = this.search(loadedEntities, this.currentUser.uid, "v.owner");
+        let entities = [];
         filteredMap.forEach(element => {
             if(element.adminAccess != null && element.adminAccess == true) {
                 let entity = this.search(loadedEntities, element.entity, "v.$key");
@@ -775,7 +813,7 @@ updateTermsAndConditions(termsAndConditions){
   loadJoinedEntities(onDataLoaded) {
     Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
       let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
-      let entities = this.search(loadedEntities, this.currentUser.uid, "v.owner");
+      let entities = [];
       filteredMap.forEach(element => {
         let entity = this.search(loadedEntities, element.entity, "v.$key");
         entities.push(entity[0]);

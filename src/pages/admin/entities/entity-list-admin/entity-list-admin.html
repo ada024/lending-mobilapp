@@ -11,6 +11,18 @@
                  (ionInput)="search()">
   </ion-searchbar>
 
+  <button class="white-button" (click)="fix()">
+    <div class="white-button-text">
+      Not showing, Fix
+    </div>
+  </button>
+
+  <button class="white-button" (click)="deleteMap()">
+    <div class="white-button-text">
+      Delete all
+    </div>
+  </button>
+
   <ion-list>
     <ion-item-sliding *ngFor="let entity of entitiesList">
       <ion-item (click)="changeEntity(entity)">
