@@ -29,18 +29,22 @@
     </div>
   </button>
 
-  <button class="white-button" (click)="giveAdminAccess()">
-    <img src="./assets/icons/unlock.svg" class="white-button-icon-svg">
-    <div class="white-button-with-icon-svg-text">
-      <b>Give admin access</b>
-    </div>
-  </button>
+  <div *ngIf="currentEntity && user.uid != currentEntity.owner">
+    <button class="white-button" (click)="giveAdminAccess()">
+      <img src="./assets/icons/unlock.svg" class="white-button-icon-svg">
+      <div class="white-button-with-icon-svg-text">
+        <b>Give admin access</b>
+      </div>
+    </button>
+  </div>
 
-  <button class="red-button" (click)="kickUser()">
-    <img src="./assets/icons/kick.svg" class="red-button-icon">
-    <div class="red-button-text">
-      <b>Kick out user</b>
-    </div>
-  </button>
+  <div *ngIf="currentEntity && user.uid != currentEntity.owner">
+    <button class="red-button" (click)="kickUser()">
+      <img src="./assets/icons/kick.svg" class="red-button-icon">
+      <div class="red-button-text">
+        <b>Kick out user</b>
+      </div>
+    </button>
+  </div>
 
 </ion-content>
