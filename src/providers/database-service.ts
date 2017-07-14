@@ -60,6 +60,7 @@ export class DatabaseService {
         this.af.auth.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
             if (state) {
+                this.existInDb();
                 this.loadCurrentUser((currentUser) => {
                     this.currentUser = currentUser;
                 });
