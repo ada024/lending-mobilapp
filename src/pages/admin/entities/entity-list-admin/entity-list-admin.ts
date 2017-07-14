@@ -39,12 +39,4 @@ export class EntityListAdminPage {
     this.db.setEntity(entity);
     this.navCtrl.popToRoot();
   }
-
-  fix() {
-    this.db.fix();
-  }
-
-  deleteMap() {
-    this.db.deleteMap();
-  }
 }

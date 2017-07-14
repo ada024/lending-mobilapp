@@ -72,34 +72,7 @@ export class DatabaseService {
         this.usersRef = firebase.database().ref('/users');
     }
 
-
-
-
-    fix() {
-        let yourEntities = [];
-        this.entities.subscribe(entities => {
-            yourEntities = this.search(entities, this.currentUser.uid, "v.owner");
-        })
-        yourEntities.forEach(element => {
-            this.usersEntityMap.push({
-      userUid: this.currentUser.uid,
-      entity: element.$key,
-      entityName: element.name,
-      adminAccess: true,
-      newUser: false
-    });
-        });
-    }
-
-    deleteMap() {
-        let rows = [];
-        this.usersEntityMap.subscribe(el => {
-            rows = this.search(el, this.currentUser.uid, "v.userUid");
-        })
-        rows.forEach(element => {
-            this.usersEntityMap.remove(element);
-        });
-    }
+    
 
 
     // ------------------------------------------------------------------------------------------------------------------
