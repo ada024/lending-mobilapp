@@ -1145,41 +1145,41 @@ editItemResDays(resdays, itemKey){
   }
 
 
-  listPendingUsers() {
-    console.log("All pending users...............");
-    let pendingQuery = firebase.database().ref('/users').orderByChild("isPending").equalTo("true");
-    pendingQuery.once("value")
-      .then(function (snapshot) {
-        let total = snapshot.numChildren();
-        snapshot.forEach(function (childSnapshot) {
-          let usersUid = childSnapshot.key;
-          let userName = childSnapshot.child("fullname").val();
-          let isPending = childSnapshot.child("isPending").val();
-          let pending = isPending === "true"? 'Yes':'No';
-          console.log('UserUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
-        });
-        console.log('Total: '+total);
-      });
-  }
+//   listPendingUsers() {
+//     console.log("All pending users...............");
+//     let pendingQuery = firebase.database().ref('/users').orderByChild("isPending").equalTo("true");
+//     pendingQuery.once("value")
+//       .then(function (snapshot) {
+//         let total = snapshot.numChildren();
+//         snapshot.forEach(function (childSnapshot) {
+//           let usersUid = childSnapshot.key;
+//           let userName = childSnapshot.child("fullname").val();
+//           let isPending = childSnapshot.child("isPending").val();
+//           let pending = isPending === "true"? 'Yes':'No';
+//           console.log('UserUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
+//         });
+//         console.log('Total: '+total);
+//       });
+//   }
 
 
-  listUsers() {
-    console.log("List all users alphabetical...............");
-    let userQuery = firebase.database().ref('/users').orderByKey();
-    userQuery.once("value")
-      .then(function (snapshot) {
-        let total = snapshot.numChildren();
-        snapshot.forEach(function (childSnapshot) {
-          let usersUid = childSnapshot.key;
-          let userName = childSnapshot.child("fullname").val();
-          let entity = childSnapshot.child("entity").val();
-          let isAdmin = childSnapshot.child("isAdmin").val();
-          let admin = isAdmin === "true"? 'Yes' : 'No';
-          console.log('Name: '+userName+' Entity: '+entity+' Admin: '+admin);
-        });
-        console.log('Total: '+total);
-      });
-  }
+//   listUsers() {
+//     console.log("List all users alphabetical...............");
+//     let userQuery = firebase.database().ref('/users').orderByKey();
+//     userQuery.once("value")
+//       .then(function (snapshot) {
+//         let total = snapshot.numChildren();
+//         snapshot.forEach(function (childSnapshot) {
+//           let usersUid = childSnapshot.key;
+//           let userName = childSnapshot.child("fullname").val();
+//           let entity = childSnapshot.child("entity").val();
+//           let isAdmin = childSnapshot.child("isAdmin").val();
+//           let admin = isAdmin === "true"? 'Yes' : 'No';
+//           console.log('Name: '+userName+' Entity: '+entity+' Admin: '+admin);
+//         });
+//         console.log('Total: '+total);
+//       });
+//   }
 
   signUpEmail(email: string, pass: string, username: string) {
 // crate user auth

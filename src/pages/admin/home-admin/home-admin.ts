@@ -43,12 +43,9 @@ onNumberOfResLoaded(numberOfRes){
 }
 
   onItemsLoaded(loadedList) {
-      var loaded = false;
       this.zone.run(() => {
           this.items = loadedList;
-
       });
-      
   }
       
   onNumberOfPendingUsersLoaded(pendingUsers) {
