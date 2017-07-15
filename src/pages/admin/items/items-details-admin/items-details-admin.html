@@ -89,19 +89,6 @@
 
 
     <div *ngIf="modify">
-
-      <div class="top-button-container">
-        <button class="checkout-button" (click)="cancel()">
-          <div class="button-text">
-            <b>Cancel</b>
-          </div>
-        </button>
-        <button class="edit-button" (click)="confirm()">
-          <div class="button-text">
-            <b>Save</b>
-          </div>
-        </button>
-    </div>
     
     <div class="item-image-super-container">
     <div class="item-image-container">
@@ -139,6 +126,21 @@
         <ion-input placeholder="#" type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
       </ion-item>
       <div class="info-text">(Altering wont affect reservations already made)</div>
+
+      <br>
+
+      <div class="top-button-container">
+        <button class="checkout-button" (click)="cancel()">
+          <div class="button-text">
+            <b>Cancel</b>
+          </div>
+        </button>
+        <button class="edit-button" (click)="confirm()">
+          <div class="button-text">
+            <b>Save</b>
+          </div>
+        </button>
+    </div>
 
       <div class="button-container">
         <button class="white-button" (click)="encode()">

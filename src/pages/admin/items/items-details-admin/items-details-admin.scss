@@ -122,9 +122,10 @@
   }
 
   .reservation-input{
-    width:5.5em;
     position:relative;
-    bottom:1em;
+    width:5.5em;
+    margin-top:2em;
+    margin-bottom:1em; 
   }
 
   .button-container {
@@ -215,7 +216,7 @@
   }
 
   .resdays {
-    font-size: 15px;
+    font-size: 20px;
     margin-left: 5px;
   }
 

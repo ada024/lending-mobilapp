@@ -60,6 +60,7 @@ export class DatabaseService {
         this.af.auth.subscribe((state: FirebaseAuthState) => {
             this.authState = state;
             if (state) {
+                this.existInDb();
                 this.loadCurrentUser((currentUser) => {
                     this.currentUser = currentUser;
                 });
@@ -68,12 +69,11 @@ export class DatabaseService {
 
 
         // email auth
-      this.fireAuth = firebase.auth();
+        this.fireAuth = firebase.auth();
         this.usersRef = firebase.database().ref('/users');
-
     }
 
-
+    
 
 
     // ------------------------------------------------------------------------------------------------------------------
@@ -732,7 +732,8 @@ status:"Notify"
 
 
   addEntity(name, office, reservationDays, termsAndConditions) {
-    return this.entities.push({
+    
+    let entityPromise = this.entities.push({
       name: name,
       owner: this.currentUser.uid,
       ownerName: this.currentUser.fullname,
@@ -740,6 +741,17 @@ status:"Notify"
       reservationDays:reservationDays,
       termsAndConditions:termsAndConditions
     });
+
+    entityPromise.then((resolve) => {
+        this.usersEntityMap.push({
+            userUid: this.currentUser.uid,
+            entity: resolve.key,
+            entityName: name,
+            adminAccess: true,
+            newUser: false
+        });
+    })
+    return entityPromise;
   }
 
 updateTermsAndConditions(termsAndConditions){
@@ -761,7 +773,7 @@ updateTermsAndConditions(termsAndConditions){
   loadEntitiesYouOwn(onDataLoaded) {
     Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
         let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
-        let entities = this.search(loadedEntities, this.currentUser.uid, "v.owner");
+        let entities = [];
         filteredMap.forEach(element => {
             if(element.adminAccess != null && element.adminAccess == true) {
                 let entity = this.search(loadedEntities, element.entity, "v.$key");
@@ -775,7 +787,7 @@ updateTermsAndConditions(termsAndConditions){
   loadJoinedEntities(onDataLoaded) {
     Rx.Observable.combineLatest(this.entities, this.usersEntityMap, (loadedEntities, loadedMap) => {
       let filteredMap = this.search(loadedMap, this.currentUser.uid, "v.userUid");
-      let entities = this.search(loadedEntities, this.currentUser.uid, "v.owner");
+      let entities = [];
       filteredMap.forEach(element => {
         let entity = this.search(loadedEntities, element.entity, "v.$key");
         entities.push(entity[0]);
@@ -1108,41 +1120,41 @@ editItemResDays(resdays, itemKey){
   }
 
 
-  listPendingUsers() {
-    console.log("All pending users...............");
-    let pendingQuery = firebase.database().ref('/users').orderByChild("isPending").equalTo("true");
-    pendingQuery.once("value")
-      .then(function (snapshot) {
-        let total = snapshot.numChildren();
-        snapshot.forEach(function (childSnapshot) {
-          let usersUid = childSnapshot.key;
-          let userName = childSnapshot.child("fullname").val();
-          let isPending = childSnapshot.child("isPending").val();
-          let pending = isPending === "true"? 'Yes':'No';
-          console.log('UserUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
-        });
-        console.log('Total: '+total);
-      });
-  }
+//   listPendingUsers() {
+//     console.log("All pending users...............");
+//     let pendingQuery = firebase.database().ref('/users').orderByChild("isPending").equalTo("true");
+//     pendingQuery.once("value")
+//       .then(function (snapshot) {
+//         let total = snapshot.numChildren();
+//         snapshot.forEach(function (childSnapshot) {
+//           let usersUid = childSnapshot.key;
+//           let userName = childSnapshot.child("fullname").val();
+//           let isPending = childSnapshot.child("isPending").val();
+//           let pending = isPending === "true"? 'Yes':'No';
+//           console.log('UserUid: '+usersUid+' Name: '+userName+' isPending: '+pending);
+//         });
+//         console.log('Total: '+total);
+//       });
+//   }
 
 
-  listUsers() {
-    console.log("List all users alphabetical...............");
-    let userQuery = firebase.database().ref('/users').orderByKey();
-    userQuery.once("value")
-      .then(function (snapshot) {
-        let total = snapshot.numChildren();
-        snapshot.forEach(function (childSnapshot) {
-          let usersUid = childSnapshot.key;
-          let userName = childSnapshot.child("fullname").val();
-          let entity = childSnapshot.child("entity").val();
-          let isAdmin = childSnapshot.child("isAdmin").val();
-          let admin = isAdmin === "true"? 'Yes' : 'No';
-          console.log('Name: '+userName+' Entity: '+entity+' Admin: '+admin);
-        });
-        console.log('Total: '+total);
-      });
-  }
+//   listUsers() {
+//     console.log("List all users alphabetical...............");
+//     let userQuery = firebase.database().ref('/users').orderByKey();
+//     userQuery.once("value")
+//       .then(function (snapshot) {
+//         let total = snapshot.numChildren();
+//         snapshot.forEach(function (childSnapshot) {
+//           let usersUid = childSnapshot.key;
+//           let userName = childSnapshot.child("fullname").val();
+//           let entity = childSnapshot.child("entity").val();
+//           let isAdmin = childSnapshot.child("isAdmin").val();
+//           let admin = isAdmin === "true"? 'Yes' : 'No';
+//           console.log('Name: '+userName+' Entity: '+entity+' Admin: '+admin);
+//         });
+//         console.log('Total: '+total);
+//       });
+//   }
 
   signUpEmail(email: string, pass: string, username: string) {
 // crate user auth

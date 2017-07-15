@@ -109,8 +109,7 @@ presentConfirm() {
           this.db.addEntity(this.entityName, this.entityOffice, this.reservationDays, null).then(resolve => {
             this.db.setEntity({$key: resolve.key, name: this.entityName});
           });
-          this.navCtrl.remove(2, 4);
-          this.navCtrl.pop();
+          this.navCtrl.popToRoot();
         }
       },
       {

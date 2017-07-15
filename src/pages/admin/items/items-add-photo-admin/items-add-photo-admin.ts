@@ -29,7 +29,7 @@ export class ItemsAddPhotoAdminPage {
         srcType = this.camera.PictureSourceType.SAVEDPHOTOALBUM;
       }
       var options = {
-        quality: 50,
+        quality: 100,
         targetHeight: 200,
         targetWidth: 200,
         sourceType: srcType,
