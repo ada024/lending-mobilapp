@@ -1,5 +1,5 @@
 ﻿export class EntityOffice {
-    constructor(public location, public room, public days, public hours) {
+    constructor(public location, public room, public days, public fromHours, public toHours) {
 
     }
     getLocation() {
@@ -14,8 +14,12 @@
         return this.days;
     }
 
-    gethours() {
-        return this.hours;
+    getFromHours() {
+        return this.fromHours;
+    }
+
+    getToHours() {
+        return this.toHours;
     }
 
 }

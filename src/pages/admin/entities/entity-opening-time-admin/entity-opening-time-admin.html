@@ -12,11 +12,11 @@
     <b>When is the entity open?</b>
   </p>
 
-  <div>
+ 
     <div class="alert-text" *ngIf="notAdded1">You have to select days open</div>
-    <ion-item>
+    <ion-item *ngIf="!daysPicked">
       <ion-label>Opening days</ion-label>
-      <ion-select  multiple="true" [(ngModel)]="entityDays">
+      <ion-select  multiple="true" [(ngModel)]="entityDays" *ngIf="!daysPicked" (ionChange)="daysChanged()">
         <ion-option value="1">Monday</ion-option>
         <ion-option value="2">Tuesday</ion-option>
         <ion-option value="3">Wednesday</ion-option>
@@ -28,17 +28,20 @@
     </ion-item>
    
     <div class="alert-text" *ngIf="notAdded2">You have to select opening hours</div>
-    <ion-item>
-      <ion-label>Open from</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursFrom" ></ion-datetime>
-    </ion-item>
-    <div class="alert-text" *ngIf="notAdded3">You have to select closing hours</div>
-    <ion-item>
-      <ion-label>Open to</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="entityHoursTo"></ion-datetime>
-    </ion-item>
 
-  </div>
+    <div *ngIf="daysPicked">
+      <div class="days" *ngFor="let entityDay of entityDays" >{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span>
+      <ion-item class="edit-from"  *ngIf="modifyHours"><ion-label>From</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="fromHours[entityDay]"></ion-datetime>
+      </ion-item> 
+      <ion-item class="edit-to"  *ngIf="modifyHours"><ion-label>To</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="toHours[entityDay]" ></ion-datetime>
+      </ion-item></div>
+    </div>
+
+    <div *ngIf="daysPicked" class="change-days-text">Change days </div> <ion-icon name="calendar" class="edit-days" (click)="daysPicked=false" *ngIf="daysPicked"></ion-icon>
+
+  
 
   <br>
 

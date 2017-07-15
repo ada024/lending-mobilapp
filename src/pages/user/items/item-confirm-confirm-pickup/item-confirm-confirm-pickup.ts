@@ -39,6 +39,33 @@ export class ItemConfirmConfirmPickupPage {
     }
 
 
+ getWeekDay(n){
+    var weekday = new Array(7);
+      weekday[0] = "Sundays";
+      weekday[1] = "Mondays";
+      weekday[2] = "Tuesdays";
+      weekday[3] = "Wednesdays";
+      weekday[4] = "Thursdays";
+      weekday[5] = "Fridays";
+      weekday[6] = "Saturdays";
+
+      return weekday[n];
+}
+
+getHours(n){
+if(this.currentEntity.office.fromHours!=null && this.currentEntity.office.toHours!=null){
+   var hoursFrom = this.currentEntity.office.fromHours;
+   var hoursTo = this.currentEntity.office.toHours;
+
+if(hoursFrom[n]!=null || hoursTo[n]!=null){
+    return hoursFrom[n] + "-" + hoursTo[n];
+}  else return "undefined";
+
+   }
+ 
+else return "undefined";
+}
+
 
   getWeekDays(n) {
       var weekday = new Array(7);

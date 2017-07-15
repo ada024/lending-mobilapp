@@ -4,13 +4,57 @@ margin-top:1em;
 font-size:1.5em;
 text-align:center;
 }
-.location-and-days{
+.location{
     margin-top:0.1em;
     margin-bottom:0.1em;
     font-size:1.4em;
 font-weight:bold;
 text-align:center;
 }
+
+.edit-icon{
+position:relative;
+left:18em;
+bottom:1.2em;
+}
+
+.edit-icon2{
+position:relative;
+left:18em;
+bottom:1em;
+}
+
+.days-and-hours{
+    position:relative;
+    top:0.5em;
+    margin-bottom:1.5em;
+    font-size:1.4em;
+font-weight:bold;
+}
+
+.edit-from{
+  width:7em;
+  height:1em;
+  bottom:2.2em;
+  margin-bottom:-2em;
+  left:9em;
+  position:relative;
+}
+
+.edit-to{
+  width:6em;
+  height:1em;
+  bottom:3em;
+  margin-bottom:-2em;
+  left:15em;
+  position:relative;
+}
+
+.opening-hours{
+    position:fixed;
+    left:11em;
+}
+
 .room-and-hours{
 font-size:1.8em;
 font-weight:bold;
@@ -20,16 +64,16 @@ bottom:0.7em;
 margin-bottom:-1em;
 }
 
-.edit-icon{
-    position:relative;
-    left:19em;
-    bottom:1.5em;
+.edit-days{
+    position:absolute;
+    left:3em;
+    bottom:21.5em;
 }
 
-.edit-icon2{
-    position:relative;
-    left:19em;
-    bottom:1em;
+.edit-hours{
+    position:absolute;
+    left:17em;
+    bottom:21.5em;
 }
 
 .edit-icon3{

@@ -15,8 +15,7 @@
 <br>
 <hr style="color:gray;height:0.5em;">
 <div class="office-and-opening">Opening hours:</div>
-<div class="location-and-days">{{currentEntityDays}}</div>
-<div class="room-and-hours">{{currentEntityHours}}</div>
+<div class="location-and-days" *ngFor="let entityDay of currentEntity.office.days">{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span></div>
 
 <button class="blue-button" (click)="goToTermsAndConditions()" *ngIf="currentEntity.termsAndConditions!=null"><div class="button-text">Terms and conditions</div></button>
 </ion-content>

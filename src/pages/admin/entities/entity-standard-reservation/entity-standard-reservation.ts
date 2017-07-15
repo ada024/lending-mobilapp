@@ -30,6 +30,34 @@ this.presentConfirm();
 }
 
 
+
+ getWeekDay(n){
+    var weekday = new Array(7);
+      weekday[0] = "Sundays";
+      weekday[1] = "Mondays";
+      weekday[2] = "Tuesdays";
+      weekday[3] = "Wednesdays";
+      weekday[4] = "Thursdays";
+      weekday[5] = "Fridays";
+      weekday[6] = "Saturdays";
+
+      return weekday[n];
+}
+
+getHours(n){
+if(this.entityOffice.fromHours!=null && this.entityOffice.toHours!=null){
+   var hoursFrom = this.entityOffice.fromHours;
+   var hoursTo = this.entityOffice.toHours;
+
+if(hoursFrom[n]!=null || hoursTo[n]!=null){
+    return hoursFrom[n] + "-" + hoursTo[n];
+}  else return "undefined";
+
+   }
+ 
+else return "undefined";
+}
+
 getWeekDays(n) {
       var weekday = new Array(7);
       weekday[0] = "Sundays";

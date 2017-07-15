@@ -22,11 +22,15 @@ modifyResDays = false;
 notAdded1 = false;
 notAdded2=false;
 
+fromHours = new Array(7);
+toHours = new Array(7);
+
 entityHoursFrom="";
 entityHoursTo="";
 entityDays="";
 entityHours="";
 resDays="";
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
   public alertCtrl: AlertController, public db: DatabaseService) {
@@ -73,9 +77,8 @@ else this.modifyDays = false;
 }
 
 editHours(){
-    this.entityHours = this.entityHoursFrom + " - " + this.entityHoursTo;
-    if(this.entityHoursFrom.length!=0 && this.entityHoursTo.length!=0){
-    this.db.editHours(this.entityHours);
+    if(this.fromHours!=null && this.toHours!=null){
+    this.db.editHours(this.fromHours, this.toHours);
     this.modifyHours= false;
 }
 else this.modifyHours = false;
@@ -105,6 +108,33 @@ roomHandler(keyCode){
 if(keyCode==13){
 this.editRoom();
 }
+}
+
+getWeekDay(n){
+    var weekday = new Array(7);
+      weekday[0] = "Sundays";
+      weekday[1] = "Mondays";
+      weekday[2] = "Tuesdays";
+      weekday[3] = "Wednesdays";
+      weekday[4] = "Thursdays";
+      weekday[5] = "Fridays";
+      weekday[6] = "Saturdays";
+
+      return weekday[n];
+}
+
+getHours(n){
+    if(this.currentEntity.office.fromHours!=null && this.currentEntity.office.toHours!=null){
+   var hoursFrom = this.currentEntity.office.fromHours;
+   var hoursTo = this.currentEntity.office.toHours;
+
+if(hoursFrom[n]!=null || hoursTo[n]!=null){
+    return hoursFrom[n] + "-" + hoursTo[n];
+}  else return "undefined";
+
+   }
+ 
+else return "undefined";
 }
 
 getWeekDays(n) {

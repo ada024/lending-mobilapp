@@ -21,6 +21,12 @@ export class EntityOpeningTimeAdminPage {
     notAdded2: boolean;
     notAdded3: boolean;
 
+    daysPicked = false;
+    modifyHours = true;
+
+    fromHours = new Array(7);
+    toHours = new Array(7);
+
     officeInfo;
     constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
         this.entityName = navParams.get("entityName");
@@ -30,9 +36,8 @@ export class EntityOpeningTimeAdminPage {
     
 
   addEntity() {
-      this.entityHours = this.entityHoursFrom + " - " + this.entityHoursTo;
-      this.officeInfo = new EntityOffice(this.entityLocation, this.entityRoom, this.entityDays, this.entityHours);
-      if (this.entityDays.length != 0 && this.entityHoursTo.length != 0 && this.entityHours.length != 0) {
+      this.officeInfo = new EntityOffice(this.entityLocation, this.entityRoom, this.entityDays, this.fromHours, this.toHours);
+      if (this.entityDays.length != 0) {
           this.navCtrl.push(EntityStandardReservationPage, {entityName: this.entityName, office: this.officeInfo});
           this.navCtrl.remove(2, 3);
       }
@@ -40,16 +45,31 @@ export class EntityOpeningTimeAdminPage {
           this.notAdded1 = true;
       }
       else this.notAdded1 = false;
-      if (this.entityHoursFrom.length == 0) {
-          this.notAdded2 = true;
-      }
-      else this.notAdded2 = false;
-      if (this.entityHoursTo.length == 0) {
-          this.notAdded3 = true;
-      }
-      else this.notAdded3 = false;
-     
   }
 
+  daysChanged(){
+    
+      this.daysPicked=true;
+      console.log("hei");
+  }
 
+  getWeekDay(n){
+    var weekday = new Array(7);
+      weekday[0] = "Sundays";
+      weekday[1] = "Mondays";
+      weekday[2] = "Tuesdays";
+      weekday[3] = "Wednesdays";
+      weekday[4] = "Thursdays";
+      weekday[5] = "Fridays";
+      weekday[6] = "Saturdays";
+
+      return weekday[n];
+}
+
+getHours(n){
+if(this.fromHours[n]!=null || this.toHours[n]!=null){
+    return this.fromHours[n] + "-" + this.toHours[n];
+}  else return "undefined";
+
+}
 }

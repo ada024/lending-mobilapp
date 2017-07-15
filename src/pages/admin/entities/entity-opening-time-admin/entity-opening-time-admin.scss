@@ -3,4 +3,49 @@
     text-align: center;
     color: red;
   }
+
+  .days{
+    position:relative;
+    top:0.5em;
+    margin-bottom:1.5em;
+    font-size:1.4em;
+font-weight:bold;
+}
+
+.opening-hours{
+    position:fixed;
+    left:11em;
+}
+
+.edit-from{
+  width:7em;
+  height:1em;
+  bottom:2.8em;
+  margin-bottom:-2em;
+  left:7em;
+  position:relative;
+}
+
+.edit-to{
+  width:6em;
+  height:1em;
+  bottom:3.55em;
+  margin-bottom:-2em;
+  left:13em;
+  position:relative;
+}
+
+.change-days-text{
+  font-size:1.5em;
+  position:relative;
+  left:4em;
+}
+
+.edit-days{
+  font-size:1.5em;
+  position:relative;
+  bottom:1em;
+  left: 11em;
+}
+
 }

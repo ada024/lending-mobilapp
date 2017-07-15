@@ -854,10 +854,11 @@ editDays(days){
 });
 }
 
-editHours(hours){
+editHours(fromHours, toHours){
     var officeRef = this.entitiesRef.child(this.currentUser.entity + "/office")
     officeRef.update({
-  "hours": hours
+         "fromHours": fromHours,
+         "toHours": toHours  
 });
 }
 
