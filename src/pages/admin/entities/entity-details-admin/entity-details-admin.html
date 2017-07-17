@@ -22,6 +22,12 @@
 <br>
 <hr style="color:gray;height:0.5em;">
 
+
+ <ion-icon name="clock" class="edit-hours" (click)="modifyHours = true" *ngIf="!modifyHours">
+  </ion-icon> <ion-icon name="clock" class="edit-hours" (click)="editHours()" *ngIf="modifyHours"></ion-icon>
+<ion-icon name="calendar" class="edit-days" (click)="modifyDays = true" *ngIf="!modifyDays"></ion-icon>
+ <ion-icon name="calendar" class="edit-days" (click)="editDays()" *ngIf="modifyDays"></ion-icon>
+
 <div class="office-and-opening">Opening hours:</div>
 <div class="days-and-hours" *ngIf="!modifyDays"><div *ngFor="let entityDay of currentEntity.office.days" >{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span>
       <ion-item class="edit-from"  *ngIf="modifyHours"><ion-label>From</ion-label>
@@ -41,10 +47,7 @@
         <ion-option value="0">Sunday</ion-option>
       </ion-select>
     </ion-item>
-    <ion-icon name="clock" class="edit-hours" (click)="modifyHours = true" *ngIf="!modifyHours">
-  </ion-icon> <ion-icon name="clock" class="edit-hours" (click)="editHours()" *ngIf="modifyHours"></ion-icon>
-<ion-icon name="calendar" class="edit-days" (click)="modifyDays = true" *ngIf="!modifyDays"></ion-icon>
- <ion-icon name="calendar" class="edit-days" (click)="editDays()" *ngIf="modifyDays"></ion-icon>
+   
 
 <hr style="color:gray;height:0.5em;">
   <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div><ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">

@@ -32,6 +32,12 @@ bottom:1em;
 font-weight:bold;
 }
 
+.opening-hours{
+    position:fixed;
+    left:11em;
+}
+
+
 .edit-from{
   width:7em;
   height:1em;
@@ -50,10 +56,7 @@ font-weight:bold;
   position:relative;
 }
 
-.opening-hours{
-    position:fixed;
-    left:11em;
-}
+
 
 .room-and-hours{
 font-size:1.8em;
@@ -65,17 +68,16 @@ margin-bottom:-1em;
 }
 
 .edit-days{
-    position:absolute;
-    left:3em;
-    bottom:21.5em;
+    position:relative;
+    left:1em;
 }
 
 .edit-hours{
-    position:absolute;
-    left:17em;
-    bottom:21.5em;
+    position:relative;
+    left:15em;
 
 }
+
 .edit-icon3{
     position:relative;
     left:97%;

@@ -18,7 +18,6 @@ export class ItemConfirmPickupPage {
     officeLocation: any;
     officeRoom: any;
     officeHours: any;
-    officeDays: any;
     additionDaysToRes;
 
     returnDate: Date;
@@ -32,7 +31,6 @@ export class ItemConfirmPickupPage {
         this.officeLocation = this.currentEntity.office.location;
         this.officeRoom = this.currentEntity.office.room;
         this.officeHours = this.currentEntity.office.hours;
-        this.officeDays = this.getWeekDays(this.currentEntity.office.days.length);
 
         var year = this.eventDate.getFullYear();
         var month = this.eventDate.getMonth()+1;
@@ -97,43 +95,6 @@ if(hoursFrom[n]!=null || hoursTo[n]!=null){
 else return "undefined";
 }
 
-  getWeekDays(n) {
-      var weekday = new Array(7);
-      weekday[0] = "Sundays";
-      weekday[1] = "Mondays";
-      weekday[2] = "Tuesdays";
-      weekday[3] = "Wednesdays";
-      weekday[4] = "Thursdays";
-      weekday[5] = "Fridays";
-      weekday[6] = "Saturdays";
-
-      var days = this.currentEntity.office.days;
-
-      var dayInfo = null;
-      if (n == 1) {
-          dayInfo = weekday[days[0]];
-      }
-      if (n == 2) {
-          dayInfo = weekday[days[0]] + " and " +  weekday[days[1]];
-      }
-      if (n == 3) {
-          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + " and " + weekday[days[2]];
-      }
-      if (n == 4) {
-          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + ", " + weekday[days[2]] + " and " + weekday[days[3]];
-      }
-      if (n == 5) {
-          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + ", " + weekday[days[2]] + ", " + weekday[days[3]] + " and " + weekday[days[4]];
-      }
-      if (n == 6) {
-          dayInfo = weekday[days[0]] + ", " + weekday[days[1]] + ", " + weekday[days[2]] + ", " + weekday[days[3]] + ", " + weekday[days[4]] + " and " + weekday[days[5]];
-      }
-      if (n == 7) {
-          dayInfo = "Everyday"
-      }
-
-      return dayInfo;
-  }
 
   getMonthAsText(n) {
       switch (n) {

@@ -14,7 +14,7 @@
   <p class="location-and-opening-info">Borrowing office location and opening hours:</p>
   <p class="officeInfo">{{officeLocation}}</p>
   <p class="roomAndTimeInfo">{{officeRoom}}</p>
- <p class="dayAndOpeningInfo"*ngFor="let entityDay of currentEntity.office.days">{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span></p>
+ <p class="days-and-hours" *ngFor="let entityDay of currentEntity.office.days">{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span></p>
   <div class="button-container">
     <button class="confirm-button" (click)="okClicked()">
       <div class="button-text">Ok</div>

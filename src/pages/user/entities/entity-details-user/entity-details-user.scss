@@ -22,9 +22,22 @@ text-align:center;
     text-align:center;
 }
 
+
 .blue-button{
     height:3em;
     margin-top:6em;
     width:100%
+}
+
+.days-and-hours{
+    position:relative;
+    top:0.5em;
+    font-size:1.4em;
+font-weight:bold;
+}
+
+.opening-hours{
+    position:fixed;
+    left:11em;
 }
 }
