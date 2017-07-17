@@ -603,11 +603,12 @@ status:"Notify"
 
   addPendingUser(entity) {
     this.pendingUsers.push({
-      userUid: this.currentUser.uid,
-      fullname: this.currentUser.fullname,
+      userUid: this.authState.auth.uid||'authEmailUidHer',
+      fullname: this.authState.auth.displayName||'emailFullNameHer',
       entity: entity.$key,
       entityName: entity.name,
-      photoURL: this.currentUser.photoURL
+      email:this.authState.auth.email|| 'authForEmailHer',
+      photoURL: this.authState.auth.photoURL
     });
   }
 
@@ -637,7 +638,10 @@ status:"Notify"
       userUid: pendingUser.userUid,
       entity: pendingUser.entity,
       entityName: pendingUser.entityName,
-      newUser: true
+      newUser: true,
+      fullname: pendingUser.fullname,
+      email: pendingUser.email,
+      photoURL: pendingUser.photoURL
     });
   }
 
@@ -736,7 +740,7 @@ status:"Notify"
     let entityPromise = this.entities.push({
       name: name,
       owner: this.currentUser.uid,
-      ownerName: this.currentUser.fullname,
+      ownerName: this.authState.auth.displayName|| 'authForEmailHer',
       office: office,
       reservationDays:reservationDays,
       termsAndConditions:termsAndConditions
@@ -744,11 +748,14 @@ status:"Notify"
 
     entityPromise.then((resolve) => {
         this.usersEntityMap.push({
-            userUid: this.currentUser.uid,
             entity: resolve.key,
             entityName: name,
             adminAccess: true,
-            newUser: false
+            newUser: false,
+            userUid: this.authState.auth.uid||'authEmailUidHer',
+            fullname: this.authState.auth.displayName||'emailFullNameHer',
+            email:this.authState.auth.email|| 'authForEmailHer',
+            photoURL: this.authState.auth.photoURL
         });
     })
     return entityPromise;
@@ -1014,6 +1021,12 @@ editItemResDays(resdays, itemKey){
 
 
   existInDb() {
+
+    /* Get facebook profile picture */
+    Facebook.api("/{user-id}/picture",[])
+    .then(a => console.log("profile picture -> (open link to check) "+a))
+    .catch(error => console.log("cant get profile picture "+error));
+
     let userUid = this.authState.auth.uid;
     let fullUserRef = firebase.database().ref('/users/'+userUid);
     fullUserRef.once('value', (snapshot) => {
@@ -1171,7 +1184,7 @@ editItemResDays(resdays, itemKey){
           photoURL:  ""
         });
       });
-    });
+    })
   } // emailSignUp
 
   loginWithEmail(email, pass) {
