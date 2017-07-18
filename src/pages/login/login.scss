@@ -11,8 +11,8 @@ page-login {
 
   .logo {
     color: white;
-    height: 170px;
-    width: 170px;
+    height: 150px;
+    width: 150px;
   }
 
   .title {
@@ -30,19 +30,30 @@ page-login {
     font-family: 'Roboto';
   }
 
-  .button {
-    top: 90%;
+  .button-container {
+    top: 80%;
     left: 50%;
+    width: 100%;
     position: absolute;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 
+  .button {
+    font-weight: bold;
+    width: 90%;
+    left: 5%;
+    margin-top: 10px;
+  }
+
   .buttonEmail {
-    top: 90%;
-    left: 10%;
-    position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    width: 90%;
+    left: 5%;
+    border: 5px solid #4E4E4E;
+  }
+
+  .email-text {
+    color: #4E4E4E;
+    font-weight: bold;
   }
 }

@@ -2,20 +2,21 @@
 
   <div class="container">
     <img src="./assets/icons/logo.svg" class="logo">
-    <div class="title"><b>Borrowing</b></div>
-    <div class="text">Lending and borrowing<br>made easy</div>
+    <div class="title"><b>Pigify</b></div>
+    <div class="text">Your Libraries of Things</div>
   </div>
 
-  <button ion-button large icon-left (click)="loginWithFacebook()" class="button">
-    <ion-icon name="logo-facebook"></ion-icon>
-    Sign in with Facebook
-  </button>
 
+  <div class="button-container">
+    <button ion-button large color="light" (click)="loginWithEmail()" class="buttonEmail">
+      <span class="email-text">Sign in with email</span>
+    </button>
 
-  <button ion-button large icon-left (click)="loginWithEmail()" class="buttonEmail">
-    <ion-icon name="icon-ios-email"></ion-icon>
-    Email
-  </button>
+    <button ion-button large icon-left (click)="loginWithFacebook()" class="button">
+      <ion-icon name="logo-facebook"></ion-icon>
+      Sign in with Facebook
+    </button>
+  </div>
 
 
 </ion-content>
