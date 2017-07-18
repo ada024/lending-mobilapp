@@ -10,9 +10,11 @@ import {TermsAndConditionsDetailsPage} from '../terms-and-conditions-details/ter
 })
 export class EntityDetailsAdminPage {
 currentEntity: any;
+currentEntityTitle: any;
 currentEntityLocation: any;
 currentEntityRoom: any;
 currentEntityHours: any;
+modifyTitle = false;
 modifyLocation = false;
 modifyRoom = false;
 modifyDays = false;
@@ -40,6 +42,7 @@ resDays="";
 onEntityLoaded(entity){
     if(entity[0]){
         this.currentEntity = entity[0];
+        this.currentEntityTitle = this.currentEntity.name;
         this.currentEntityLocation = this.currentEntity.office.location;
         this.currentEntityRoom = this.currentEntity.office.room;
         this.currentEntityHours = this.currentEntity.office.hours;
@@ -49,6 +52,13 @@ onEntityLoaded(entity){
     }
 }
 
+editTitle(){
+ if(this.currentEntityTitle.length!=0){
+    this.db.editTitle(this.currentEntityTitle);
+    this.modifyTitle= false;
+}
+this.modifyTitle = false;
+}
 
 editLocation(){
     if(this.currentEntityLocation.length!=0){
@@ -105,6 +115,12 @@ this.editLocation();
 roomHandler(keyCode){
 if(keyCode==13){
 this.editRoom();
+}
+}
+
+titleHandler(keyCode){
+if(keyCode==13){
+this.editTitle();
 }
 }
 

@@ -852,6 +852,13 @@ updateTermsAndConditions(termsAndConditions){
       });
   }
 
+editTitle(title){
+    var officeRef = this.entitiesRef.child(this.currentUser.entity)
+    officeRef.update({
+  "name": title
+});
+}
+
 editLocation(location){
     var officeRef = this.entitiesRef.child(this.currentUser.entity + "/office")
     officeRef.update({

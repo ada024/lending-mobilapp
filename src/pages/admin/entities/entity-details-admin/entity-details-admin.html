@@ -6,7 +6,12 @@
 
 
 <ion-content padding>
-<div class="title">{{currentEntity.name}}</div>
+<div class="title" *ngIf="!modifyTitle">{{currentEntity.name}}</div><ion-item *ngIf="modifyTitle">
+      <ion-input placeholder="Title" [(ngModel)]="currentEntityTitle" (keypress)="titleHandler($event.keyCode)"></ion-input>
+    </ion-item>
+<ion-icon name="md-create" class="edit-title" (click)="modifyTitle = true" *ngIf="!modifyTitle"></ion-icon> 
+<ion-icon name="checkbox-outline" class="edit-title" (click)="editTitle()" *ngIf="modifyTitle"></ion-icon>
+
 <div class="office-and-opening">Borrowing office location:</div>
 <div class="location" *ngIf="!modifyLocation">{{currentEntityLocation}}</div><ion-item *ngIf="modifyLocation">
       <ion-input placeholder="Location" [(ngModel)]="currentEntityLocation" (keypress)="locationHandler($event.keyCode)"></ion-input>

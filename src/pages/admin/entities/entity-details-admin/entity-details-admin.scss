@@ -33,7 +33,7 @@ font-weight:bold;
 }
 
 .opening-hours{
-    position:fixed;
+    position:sticky;
     left:11em;
 }
 
@@ -67,6 +67,12 @@ bottom:0.7em;
 margin-bottom:-1em;
 }
 
+.edit-title{
+    position:relative;
+    left:18em;
+    bottom:1.2em;
+}
+
 .edit-days{
     position:relative;
     left:1em;
@@ -74,7 +80,7 @@ margin-bottom:-1em;
 
 .edit-hours{
     position:relative;
-    left:15em;
+    left:15.8em;
 
 }
 
@@ -91,12 +97,15 @@ margin-bottom:-1em;
 .reservation-input{
     position:relative;
     width:5.5em;
-    margin-bottom:1em;
+    left:14em;
+    bottom:2.6em;
+    height:0.4em;
+    margin-bottom:-2.7em;
 
 }
 .reservation-text{
     position:relative;
-    top:0.5em;
+    top:1em;
     margin-left:2em;
 }
 
