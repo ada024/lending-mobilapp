@@ -17,6 +17,15 @@
 
 
 
+    @font-face {
+      font-family: Montserrat;
+      font-family: Roboto;
+      src: url(https://fonts.gstatic.com/s/montserrat/v10/IQHow_FEYlDC4Gzy_m8fcoWiMMZ7xLd792ULpGE4W_Y.woff2) format('woff2');
+      src: url(https://fonts.gstatic.com/s/roboto/v16/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
+    }
+
+
+
 
   //title and big icons
 
@@ -165,7 +174,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     position: absolute;
-    top: 32%;
+    top: 35%;
     left: calc(7% + 45px);
     max-width: calc(93% - 55px);
   }
@@ -206,7 +215,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     position: absolute;
-    top: 32%;
+    top: 35%;
     left: calc(5% + 55px);
     max-width: calc(95% - 65px);
   }
@@ -265,16 +274,6 @@ overflow:hidden !important;
     left: 10%;
     height: 50px;
     width: 50px;
-  }
-
-
-
-  @font-face {
-    font-family: Montserrat;
-    font-family: Roboto;
-
-    src: url(https://fonts.gstatic.com/s/montserrat/v10/IQHow_FEYlDC4Gzy_m8fcoWiMMZ7xLd792ULpGE4W_Y.woff2) format('woff2');
-    src: url(https://fonts.gstatic.com/s/roboto/v16/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
   }
 
 

@@ -38,7 +38,7 @@ onEntityLoaded(entities){
 
 
   goToEntityDetailsAdminPage() {
-    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    if(this.db.currentUser.entity != "No library, join a library to get started") {
       this.navCtrl.push(EntityDetailsAdminPage, {entity:this.currentEntity});
     }
   }

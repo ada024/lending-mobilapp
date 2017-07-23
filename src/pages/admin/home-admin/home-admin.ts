@@ -67,26 +67,26 @@ onNumberOfResLoaded(numberOfRes){
   }
 
   goToCheckOut() {
-    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    if(this.db.currentUser.entity != "No library, join a library to get started") {
     this.db.removeTemporaryItems();
       this.navCtrl.push(CheckoutFirstPage);
     }
   }
   
   goToCheckIn() {
-    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    if(this.db.currentUser.entity != "No library, join a library to get started") {
       this.navCtrl.push(CheckinFirstPage);
     }
   }
   
   goToItemsAdminPage() {
-    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    if(this.db.currentUser.entity != "No library, join a library to get started") {
       this.navCtrl.push(ItemsTabsPage);
     }
   }
 
   goToUsersAdminPage() {
-    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    if(this.db.currentUser.entity != "No library, join a library to get started") {
       this.navCtrl.push(UsersTabsPage);
     }
   }

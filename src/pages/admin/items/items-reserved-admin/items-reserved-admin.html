@@ -10,6 +10,13 @@
                  (ionInput)="search()">
   </ion-searchbar>
 
+  <button class="blue-button" (click)="goToItemsAddNameAdminPage()">
+    <ion-icon name="add" class="button-icon"></ion-icon>
+    <div class="button-with-icon-text">
+      <b>Add new item</b>
+    </div>
+   </button>
+
   <ion-list>
       <ion-item (click)="goToItemsDetailsAdminPage(item)" *ngFor="let item of itemsList">
         <img [src]="item.photoURL" class="item-image"/>
@@ -22,8 +29,5 @@
       </ion-item>
   </ion-list>
 
-  <ion-fab class="add-icon">
-    <ion-icon name="md-add-circle" (click)="goToItemsAddNameAdminPage()"></ion-icon>
-  </ion-fab>
 
 </ion-content>

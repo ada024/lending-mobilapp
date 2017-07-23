@@ -28,9 +28,9 @@
 
 <ion-content padding>
 
-  <div class="top-text">Current entity:</div>
-  <div class="current-entity" *ngIf="currentEntity != 'No entity, join an entity to get started'">{{currentEntity}}</div>
-  <div class="current-entity" *ngIf="currentEntity == 'No entity, join an entity to get started'">No entity</div>
+  <div class="top-text">Current Library:</div>
+  <div class="current-entity" *ngIf="currentEntity != 'No library, join a library to get started'">{{currentEntity}}</div>
+  <div class="current-entity" *ngIf="currentEntity == 'No library, join a library to get started'">No entity</div>
 
 
   <div class="button-container2">
@@ -78,12 +78,12 @@
     </div>
   </div>
 
-  <button [ngClass]="currentEntity != 'No entity, join an entity to get started' ? 'grey-button' : 'grey-button-glowing'" (click)="goToEntityAdminPage()">
+  <button [ngClass]="currentEntity != 'No library, join a library to get started' ? 'grey-button' : 'grey-button-glowing'" (click)="goToEntityAdminPage()">
     <div>
       <img src="./assets/icons/entities.svg" class="grey-button-icon">
       <div class="grey-button-text-container">
         <div class="grey-button-text-title">
-          Entity
+          Library
         </div><br>
         <div class="grey-button-text-info">
           <div class="grey-button-text">{{currentEntity}}</div>

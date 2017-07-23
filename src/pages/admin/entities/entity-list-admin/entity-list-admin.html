@@ -20,9 +20,6 @@
         <span style="color:lightgrey" *ngIf="currentUser.entity!=entity.$key && currentUser.uid==entity.owner">Owner</span>
         <span style="color:lightgrey" *ngIf="currentUser.entity!=entity.$key && currentUser.uid!=entity.owner">Admin</span>
       </ion-item>
-      <ion-item-options>
-        <button danger (click)="removeItem(item)"> Delete</button>
-      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 

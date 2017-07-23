@@ -16,12 +16,9 @@
       <ion-item (click)="goToEntityJoinUserPage(entity)">
         {{entity.name}}
         <br/>
-        <span style="color:red" *ngIf="currentUser.uid==entity.owner">You're admin of this entity</span>
-        <span style="color:green" *ngIf="currentUser.uid!=entity.owner && checkIfJoined(entity)">You have already joined this entity</span>
+        <span style="color:red" *ngIf="currentUser.uid==entity.owner">You're admin of this library</span>
+        <span style="color:green" *ngIf="currentUser.uid!=entity.owner && checkIfJoined(entity)">You have joined this library</span>
       </ion-item>
-      <ion-item-options>
-        <button danger (click)="removeItem(item)"> Delete</button>
-      </ion-item-options>
     </ion-item-sliding>
   </ion-list>
 

@@ -1,25 +1,33 @@
 <ion-content padding>
 
+  <p class="title">
+    <b>Sign up</b>
+  </p>
+
   <ion-list>
-    <ion-label stacked style="color: #000; margin-left: 10px; "><ion-icon name="person"></ion-icon> Full name</ion-label>
-    <ion-input type="text" [(ngModel)]="usernameField" style="border: 1px solid #000; border-radius: 15px; color: #000;"></ion-input>
-
-
-    <ion-label stacked style="color: #000; margin-left: 10px; "><ion-icon name="mail"></ion-icon> Email</ion-label>
-    <ion-input type="text" [(ngModel)]="emailField" style="border: 1px solid #000; border-radius: 15px; color: #000;"></ion-input>
-
-
-
-    <ion-label stacked style="color: #000; margin-left: 10px;"> <ion-icon name="lock"></ion-icon> Password</ion-label>
-    <ion-input type="password"[(ngModel)]="passField" style="border: 1px solid #000; border-radius: 15px; color: #000;"></ion-input>
-
+    <ion-input class="input" type="text" [(ngModel)]="usernameField" placeholder="Full name"></ion-input><br>
+    <ion-input class="input" type="text" [(ngModel)]="emailField" placeholder="E-mail"></ion-input><br>
+    <ion-input class="input" type="password"[(ngModel)]="passField" placeholder="Password"></ion-input>
   </ion-list>
 
+  <div class="error">
+    {{errorMessage}}
+  </div>
 
+  <div class="info-text">
+    when signing up you agree to the<br><span class="terms" (click)="showTerms()">terms and conditions</span>
+  </div>
 
-  <button ion-button large icon-left (click)="signUpEmail()" class="buttonEmail">
-    <ion-icon name="icon-ios-email"></ion-icon>
-    Registry
+  <br>
+
+  <button ion-button large (click)="signUpEmail()" class="buttonEmail">
+    <div class="button-text">
+      Register
+    </div>
   </button>
+
+  <div class="info-text-2" (click)="goBack()">
+    Already have an account? Login here!
+  </div>
 
 </ion-content>

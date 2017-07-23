@@ -455,8 +455,8 @@ status:"Notify"
                 adminRole: adminRole,
                 otherRoleEntity: this.currentUser.entity,
                 otherRoleEntityName: this.currentUser.entityName,
-                entity: "No entity, join an entity to get started",
-                entityName: "No entity, join an entity to get started"
+                entity: "No library, join a library to get started",
+                entityName: "No library, join a library to get started"
             })
         }
         else if(this.currentUser && this.currentUser.otherRoleEntity){
@@ -493,8 +493,8 @@ status:"Notify"
         });
 		this.usersEntityMap.remove(key);
         this.users.update(user.$key, {
-          entity: "No entity, join an entity to get started",
-          entityName: "No entity, join an entity to get started"
+          entity: "No library, join a library to get started",
+          entityName: "No library, join a library to get started"
       })
     }
 
@@ -928,14 +928,14 @@ editItemResDays(resdays, itemKey){
             users.forEach(user => {
                 if(user.entity == entity.$key) {
                     this.users.update(user, {
-                        entity: "No entity, join an entity to get started",
-                        entityName: "No entity, join an entity to get started"
+                        entity: "No library, join a library to get started",
+                        entityName: "No library, join a library to get started"
                     })
                 }
                 if(user.otherRoleEntity == entity.$key) {
                     this.users.update(user, {
-                        otherRoleEntity: "No entity, join an entity to get started",
-                        otherRoleEntityName: "No entity, join an entity to get started"
+                        otherRoleEntity: "No library, join a library to get started",
+                        otherRoleEntityName: "No library, join a library to get started"
                     })
                 }
             });
@@ -1051,8 +1051,8 @@ editItemResDays(resdays, itemKey){
       //splits fullname into an array
       this.usersRef.child(user.uid).set({
         uid: user.uid,
-        entity: "No entity, join an entity to get started",
-        entityName: "No entity, join an entity to get started",
+        entity: "No library, join a library to get started",
+        entityName: "No library, join a library to get started",
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || "",
@@ -1186,8 +1186,8 @@ editItemResDays(resdays, itemKey){
           uid: authenticatedUser.uid,
           email: email,
           fullname: username || 'none',
-          entity: "No entity, join an entity to get started",
-          entityName: "No entity, join an entity to get started",
+          entity: "No library, join a library to get started",
+          entityName: "No library, join a library to get started",
           photoURL:  ""
         });
       });

@@ -1,3 +1,42 @@
 page-email-registration {
 
+    .buttonEmail {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #1bc491;
+  }
+
+  .input {
+      border: 3px solid grey;
+      border-radius: 15px;
+  }
+
+  .info-text {
+      font-size: 15px;
+      text-align: center;
+      color: grey;
+  }
+
+  .info-text-2 {
+      font-size: 15px;
+      margin-top: 20px;
+      text-align: center;
+  }
+
+  .terms {
+      color: blue;
+  }
+
+  .error {
+      text-align: center;
+      color: red;
+      margin-bottom: 20px;
+  }
+
+  .text-input {
+    margin-left: 20px;
+  }
 }
