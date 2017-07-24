@@ -1061,7 +1061,7 @@ editItemResDays(resdays, itemKey){
     Facebook.api("me/?fields=picture", ['email', 'public_profile'])
     .then(a => {
         console.log("profile picture -> (open link to check) "+JSON.stringify(a.picture.data.url))
-        this.usersRef.child(this.authState.auth.uid).set({
+        this.usersRef.update(this.authState.auth.uid, {
             photoURL: a.picture.data.url
         });
     })
