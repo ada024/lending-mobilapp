@@ -68,7 +68,7 @@ export class DatabaseService {
                     Facebook.api("me/?fields=picture", ['email', 'public_profile'])
                     .then(a => {
                         console.log("profile picture -> (open link to check) "+JSON.stringify(a.picture.data.url))
-                        this.usersRef.update(currentUser.uid, {
+                        this.usersRef.update(currentUser.$key, {
                             photoURL: JSON.stringify(a.picture.data.url)
                         });
                     })
