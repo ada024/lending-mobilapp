@@ -66,13 +66,11 @@ export class DatabaseService {
 
                     /* Update facebook profile picture */
                     Facebook.api("me/?fields=picture", ['email', 'public_profile'])
-                    .then(a => {
-                        console.log("profile picture -> (open link to check) "+JSON.stringify(a.picture.data.url))
-                        this.usersRef.update(currentUser.$key, {
-                            photoURL: JSON.stringify(a.picture.data.url)
+                    .then(response => {
+                        this.users.update(currentUser.$key, {
+                            photoURL: JSON.stringify(response.picture.data.url)
                         });
                     })
-                    .catch(error => console.log("cant get profile picture "+error));
                 });
             }
         });
