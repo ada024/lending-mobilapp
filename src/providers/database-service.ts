@@ -857,6 +857,9 @@ editTitle(title){
     officeRef.update({
   "name": title
 });
+ this.users.update(this.currentUser.$key, {
+        entityName: title
+    });
 }
 
 editLocation(location){
