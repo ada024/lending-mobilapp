@@ -12,11 +12,23 @@ font-weight:bold;
 text-align:center;
 }
 
-.edit-icon{
-position:relative;
-left:18em;
-bottom:1.2em;
+.save-button{
+    position: relative;
+    width: 20%;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #4091FF;
 }
+
+.edit-icon{
+  height: 30px;
+    width: 30px;
+    position:relative;
+    left:21em;
+    bottom:2em;
+}
+
 
 .edit-icon2{
 position:relative;
@@ -66,25 +78,32 @@ margin-bottom:-1em;
 }
 
 .edit-title{
+    height: 30px;
+    width: 30px;
     position:relative;
-    left:18em;
-    bottom:1.2em;
+    left:21em;
+    bottom:2.5em;
 }
 
 .edit-days{
+    height: 30px;
+    width: 30px;
     position:relative;
     left:1em;
 }
 
 .edit-hours{
+height: 30px;
+    width: 30px;
     position:relative;
     left:15.8em;
-
 }
 
 .edit-icon3{
+    height: 30px;
+    width: 30px;
     position:relative;
-    left:97%;
+    left:90%;
     bottom:0.7em;
 }
 .alert-text{

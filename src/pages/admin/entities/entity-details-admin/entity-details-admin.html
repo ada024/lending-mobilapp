@@ -9,29 +9,26 @@
 <div class="title" *ngIf="!modifyTitle">{{currentEntity.name}}</div><ion-item *ngIf="modifyTitle">
       <ion-input placeholder="Title" [(ngModel)]="currentEntityTitle" (keypress)="titleHandler($event.keyCode)"></ion-input>
     </ion-item>
-<ion-icon name="md-create" class="edit-title" (click)="modifyTitle = true" *ngIf="!modifyTitle"></ion-icon> 
+<img src="./assets/icons/edit2.svg" class="edit-title" (click)="modifyTitle = true" *ngIf="!modifyTitle">
 <ion-icon name="checkbox-outline" class="edit-title" (click)="editTitle()" *ngIf="modifyTitle"></ion-icon>
 
 <div class="office-and-opening">Borrowing office location:</div>
 <div class="location" *ngIf="!modifyLocation">{{currentEntityLocation}}</div><ion-item *ngIf="modifyLocation">
       <ion-input placeholder="Location" [(ngModel)]="currentEntityLocation" (keypress)="locationHandler($event.keyCode)"></ion-input>
     </ion-item>
-<ion-icon name="md-create" class="edit-icon" (click)="modifyLocation = true" *ngIf="!modifyLocation"></ion-icon> 
-<ion-icon name="checkbox-outline" class="edit-icon" (click)="editLocation()" *ngIf="modifyLocation"></ion-icon>
+    <img src="./assets/icons/edit2.svg" class="edit-icon" (click)="modifyLocation=true" *ngIf="!modifyLocation"> 
+    <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editLocation()" *ngIf="modifyLocation"></ion-icon>
 <div class="room-and-hours" *ngIf="!modifyRoom">{{currentEntityRoom}}</div><ion-item *ngIf="modifyRoom">
       <ion-input placeholder="Room" [(ngModel)]="currentEntityRoom" (keypress)="roomHandler($event.keyCode)"></ion-input>
     </ion-item>
-<ion-icon name="md-create" class="edit-icon2" (click)="modifyRoom = true" *ngIf="!modifyRoom">
-</ion-icon> <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editRoom()" *ngIf="modifyRoom"></ion-icon>
+<img src="./assets/icons/edit2.svg" class="edit-icon" (click)="modifyRoom = true" *ngIf="!modifyRoom">
+<ion-icon name="checkbox-outline" class="edit-icon2" (click)="editRoom()" *ngIf="modifyRoom"></ion-icon>
 <br>
 <br>
 <hr style="color:gray;height:0.5em;">
 
 
- <ion-icon name="clock" class="edit-hours" (click)="modifyHours = true" *ngIf="!modifyHours">
-  </ion-icon> <ion-icon name="clock" class="edit-hours" (click)="editHours()" *ngIf="modifyHours"></ion-icon>
-<ion-icon name="calendar" class="edit-days" (click)="modifyDays = true" *ngIf="!modifyDays"></ion-icon>
- <ion-icon name="calendar" class="edit-days" (click)="editDays()" *ngIf="modifyDays"></ion-icon>
+
 
 <div class="office-and-opening">Opening hours:</div>
 <div class="days-and-hours" *ngIf="!modifyDays"><div *ngFor="let entityDay of currentEntity.office.days" >{{getWeekDay(entityDay)}}
@@ -56,10 +53,16 @@
       </ion-select>
     </ion-item>
    
+     
+<img src="./assets/icons/edit2.svg" class="edit-days" (click)="modifyDays = true" *ngIf="!modifyDays">
+<button class="save-button" (click)="editDays()" *ngIf="modifyDays" ><div class="button-text">Save</div></button> 
+
+<img src="./assets/icons/edit2.svg" class="edit-hours" (click)="modifyHours = true" *ngIf="!modifyHours">
+   <button class="save-button" (click)="editHours()" *ngIf="modifyHours" style="position:relative;left:15em;bottom:1em;"><div class="button-text">Save</div></button>
 
 <hr style="color:gray;height:0.5em;">
-  <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div><ion-icon name="md-create" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
-  </ion-icon> <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
+  <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div><img src="./assets/icons/edit2.svg" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
+  <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
 <ion-item class="reservation-input" *ngIf="modifyResDays">
       <ion-input type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
     </ion-item>
