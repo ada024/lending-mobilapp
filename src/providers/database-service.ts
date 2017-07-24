@@ -64,13 +64,15 @@ export class DatabaseService {
                 this.loadCurrentUser((currentUser) => {
                     this.currentUser = currentUser;
 
-                    /* Update facebook profile picture */
-                    Facebook.api("me/?fields=picture", ['email', 'public_profile'])
-                    .then(response => {
-                        this.users.update(currentUser.$key, {
-                            photoURL: JSON.stringify(response.picture.data.url)
-                        });
-                    })
+                    // Update facebook profile picture
+                     if (this.platform.is('cordova')) {
+                         Facebook.api("me/?fields=picture", ['email', 'public_profile'])
+                            .then(response => {
+                                this.users.update(currentUser.$key, {
+                                    photoURL: response.picture.data.url
+                                });
+                            })
+                        }
                 });
             }
         });
