@@ -34,13 +34,16 @@
  <ion-icon name="calendar" class="edit-days" (click)="editDays()" *ngIf="modifyDays"></ion-icon>
 
 <div class="office-and-opening">Opening hours:</div>
-<div class="days-and-hours" *ngIf="!modifyDays"><div *ngFor="let entityDay of currentEntity.office.days" >{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span>
+<div class="days-and-hours" *ngIf="!modifyDays"><div *ngFor="let entityDay of currentEntity.office.days" >{{getWeekDay(entityDay)}}
+    <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span>
       <ion-item class="edit-from"  *ngIf="modifyHours"><ion-label>From</ion-label>
       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="fromHours[entityDay]"></ion-datetime>
       </ion-item> 
       <ion-item class="edit-to"  *ngIf="modifyHours"><ion-label>To</ion-label>
       <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="toHours[entityDay]" ></ion-datetime>
-      </ion-item></div></div><ion-item *ngIf="modifyDays">
+      </ion-item></div></div>
+    
+      <ion-item *ngIf="modifyDays">
       <ion-label>Opening days</ion-label>
       <ion-select  multiple="true" [(ngModel)]="entityDays">
         <ion-option value="1">Monday</ion-option>
