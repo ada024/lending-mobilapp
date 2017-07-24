@@ -23,6 +23,6 @@
 </button>
 
   <button ion-button icon-only (click)="openDropdownMenu($event)">
-    <img [src]="db.currentUserPhotoURI" [ngClass]="db.isAndroid() ? 'facebook-image-android' : 'facebook-image-ios'">
+    <img *ngIf="db.currentUser" [src]="db.currentUser.photoURL" [ngClass]="db.isAndroid() ? 'facebook-image-android' : 'facebook-image-ios'">
   </button>
 </ion-buttons>
