@@ -1033,7 +1033,7 @@ editItemResDays(resdays, itemKey){
   existInDb() {
 
     /* Get facebook profile picture */
-    Facebook.api("/{user-id}/picture", ['email', 'public_profile'])
+    Facebook.api("me?fields=picture", ['email', 'public_profile'])
     .then(a => console.log("profile picture -> (open link to check) "+a))
     .catch(error => console.log("cant get profile picture "+error));
 
