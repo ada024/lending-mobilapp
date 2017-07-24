@@ -22,8 +22,7 @@ export class SendMailPage {
     if (this.platform.is('cordova')) {
       this.socialSharing.canShareViaEmail().then(() => {
         this.socialSharing.shareViaEmail(this.form.message, this.form.subject, [this.user.email]).then((resolve) => {
-          this.done = true;
-          console.log(resolve);
+          this.navCtrl.pop();
         })
       })
     }
