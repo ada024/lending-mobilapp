@@ -19,8 +19,9 @@
 
 
   @font-face {
-    font-family: 'Montserrat', sans-serif;
-    src: url('../assets/fonts/M.tff') format('truetype');
+    font-family: 'Montserrat';
+    font-weight: bold;
+    src: local('Montserrat'), url('../assets/fonts/Montserrat-Bold.tff') format('truetype');
   }
 
 
