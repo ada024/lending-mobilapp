@@ -1031,12 +1031,6 @@ editItemResDays(resdays, itemKey){
 
 
   existInDb() {
-
-    /* Get facebook profile picture */
-    Facebook.api("me/?fields=picture", ['email', 'public_profile'])
-    .then(a => console.log("profile picture -> (open link to check) "+JSON.stringify(a.picture.data.url)))
-    .catch(error => console.log("cant get profile picture "+error));
-
     let userUid = this.authState.auth.uid;
     let fullUserRef = firebase.database().ref('/users/'+userUid);
     fullUserRef.once('value', (snapshot) => {
@@ -1063,6 +1057,15 @@ editItemResDays(resdays, itemKey){
     } else {
       console.log("User exist in db");
     }
+    /* Update facebook profile picture */
+    Facebook.api("me/?fields=picture", ['email', 'public_profile'])
+    .then(a => {
+        console.log("profile picture -> (open link to check) "+JSON.stringify(a.picture.data.url))
+        this.usersRef.child(this.authState.auth.uid).set({
+            photoURL: a.picture.data.url
+        });
+    })
+    .catch(error => console.log("cant get profile picture "+error));
   }
 
 
