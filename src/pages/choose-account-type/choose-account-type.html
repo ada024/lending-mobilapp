@@ -35,7 +35,7 @@
     <div *ngIf="db.currentUser && (!db.currentUser.numberOfMaxEntities || db.currentUser.numberOfMaxEntities == '0')">
       <button (click)="goToPaymentPage()" [ngClass]="db.currentUser && db.currentUser.adminRole == 'true'? 'black-button' : 'white-button'">
         <div [ngClass]="db.currentUser && db.currentUser.adminRole == 'true' ? 'button-text' : 'white-button-text'">
-          <b>Admin mode (3£/29NOK)</b>
+          <b>Admin mode (29NOK)</b>
         </div>
       </button>
     </div>
