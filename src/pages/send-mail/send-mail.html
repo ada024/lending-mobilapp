@@ -7,6 +7,8 @@
 
 <ion-content padding>
 
+  <div *ngIf="!done">
+
   <p class="title">
     Send mail to 
     <br>
@@ -28,6 +30,31 @@
     </ion-item>
     <button ion-button type="submit">Send</button>
   </form>
+
+  </div>
+
+
+  
+
+  <div *ngIf="done">
+
+    <p class="title">
+    Your email has been sent to
+    <br>
+    {{user.fullname}}
+  </p>
+
+  <div class="image-container">
+    <img class="facebook-image-2" [src]="user.photoURL"/>
+  </div>
+
+  <button class="black-button" (click)="goBack()">
+    <div class="button-text">
+      <b>Done</b>
+    </div>
+  </button>
+
+  </div>
 
 
 </ion-content>

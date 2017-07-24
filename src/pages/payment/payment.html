@@ -18,13 +18,13 @@
   <div *ngIf="!purchaseAdminMode && !success">
     <button class="white-button" (click)="increaseNumberOfMaxEntities()">
       <div class="white-button-text">
-        <b>Increase cap (3£/29NOK)</b>
+        <b>Buy a new library (29NOK)</b>
       </div>
     </button>
   </div>
 
   <div class="success-text" *ngIf="success">
-    Success, you can now have {{newMax}} entities
+    Success, you can now have {{newMax}} libraries
   </div>
 
   <div *ngIf="success">

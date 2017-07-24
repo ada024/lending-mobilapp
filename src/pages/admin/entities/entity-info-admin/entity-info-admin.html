@@ -7,31 +7,39 @@
 
 <ion-content padding>
 
-  <div class="info-text">
-    You currently have {{numberOfEntitiesYouOwn}} / {{numberOfMaxEntities}} entities
+  <div class="info-text" *ngIf="numberOfEntitiesYouOwn == numberOfMaxEntities">
+    Oops. No more free libraries.
   </div>
 
-  <div class="info-text-2" *ngIf="numberOfEntitiesYouOwn == numberOfMaxEntities">
-    Ops, maximum number of entities reached, increase cap below or delete an existing entity
+  <div class="info-text-2">
+    You are currently using your<br>{{numberOfEntitiesYouOwn}} / {{numberOfMaxEntities}} libraries.
   </div>
 
-  <button class="black-button" (click)="goToEntityAddAdminPage()" [disabled]="numberOfEntitiesYouOwn == numberOfMaxEntities">
-    <div class="button-text">
-      <b>Continue</b>
+  <div class="info-text-3">
+    If you buy a new library now you will have the possibility to manage {{numberOfMaxEntitiesPlussOne}} libraries at once. 
+  </div>
+
+  <br>
+
+  <button class="white-button" (click)="goToEntityAddAdminPage()" [disabled]="numberOfEntitiesYouOwn == numberOfMaxEntities">
+    <div class="white-button-text">
+      <b>Continue making new library</b>
     </div>
   </button>
 
   <br>
 
-  <button class="black-button" (click)="goToPaymentPage()">
-    <div class="button-text">
-      <b>Increase cap (3£/29NOK)</b>
+  <button class="white-button" (click)="goToPaymentPage()">
+    <div class="white-button-text">
+      <b>Buy a new library (29NOK)</b>
     </div>
   </button>
 
-  <div class="info-text">
-    Increasing the cap will allow you to have {{numberOfMaxEntitiesPlussOne}} enitites at once.
-    You can delete and create a new entity at any time without increasing the cap.
+  <br>
+  <br>
+
+  <div class="info-text-3">
+    You can alternatively delete an existing library and then create a new library for free from the {{numberOfMaxEntities}} you have paid for.
   </div>
 
 </ion-content>

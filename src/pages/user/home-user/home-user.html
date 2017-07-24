@@ -28,9 +28,9 @@
 
 <ion-content padding>
 
-  <div class="top-text">Current entity:</div>
-  <div class="current-entity" *ngIf="currentEntity != 'No entity, join an entity to get started'">{{currentEntity}}</div>
-  <div class="current-entity" *ngIf="currentEntity == 'No entity, join an entity to get started'">No entity</div>
+  <div class="top-text">Current library:</div>
+  <div class="current-entity" *ngIf="currentEntity != 'No library, join a library to get started'">{{currentEntity}}</div>
+  <div class="current-entity" *ngIf="currentEntity == 'No library, join a library to get started'">No library</div>
 
   <div *ngIf="pendingLoans && pendingLoans.length != 0" class="scroll-bar">
     <div *ngFor="let pendingLoan of pendingLoans" class="scroll-bar-element">
@@ -74,12 +74,12 @@
       </div>
     </button>
 
-    <button [ngClass]="currentEntity != 'No entity, join an entity to get started' ? 'grey-button' : 'grey-button-glowing'" (click)="goToEntityUserPage()">
+    <button [ngClass]="currentEntity != 'No library, join a library to get started' ? 'grey-button' : 'grey-button-glowing'" (click)="goToEntityUserPage()">
       <div>
         <img src="./assets/icons/entities.svg" class="grey-button-icon">
         <div class="grey-button-text-container">
           <div class="grey-button-text-title">
-            Entity
+            Library
           </div><br>
           <div class="grey-button-text-info">
             <div class="grey-button-text">{{currentEntity}}</div>
@@ -89,7 +89,7 @@
     </button>
   </div>
 
-  <h3 style="margin-top: 20px;" *ngIf="map && map.length != 0">New entity</h3>
+  <h3 style="margin-top: 20px;" *ngIf="map && map.length != 0">New Library</h3>
 
   <div *ngIf="map && map.length != 0">
     <div *ngFor="let map of map" class="scroll-bar-element">

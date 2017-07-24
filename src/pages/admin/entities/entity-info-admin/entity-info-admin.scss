@@ -2,15 +2,19 @@ page-entity-info-admin {
 
     .info-text {
         text-align: center;
-        color: grey;
-        font-size: 20px;
+        font-weight: bold;
+        color:#F98782;
+        font-size: 22px;
         margin: 20px;
     }
 
     .info-text-2 {
         text-align: center;
-        color:red;
         font-size: 20px;
         margin: 20px;
+    }
+
+    .info-text-3 {
+        font-size: 16px;
     }
 }

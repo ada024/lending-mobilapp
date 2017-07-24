@@ -155,7 +155,7 @@ else return "undefined";
   delete() {
       this.alertCtrl.create({
       title: 'Confirm',
-      message: 'Do you want to delete this entity? This will delete all items in this entity and all current loans and reservations',
+      message: 'Do you want to delete this library? This will delete all items in this library and all current loans and reservations',
       buttons: [
       {
         text: 'Cancel',

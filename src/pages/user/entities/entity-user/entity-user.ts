@@ -41,7 +41,7 @@ export class EntityUserPage {
   }
 
   goToEntityDetailsUserPage(){
-    if(this.db.currentUser.entity != "No entity, join an entity to get started") {
+    if(this.db.currentUser.entity != "No library, join a library to get started") {
       this.navCtrl.push(EntityDetailsUserPage);
     }
   }

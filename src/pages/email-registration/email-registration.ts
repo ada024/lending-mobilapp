@@ -16,29 +16,46 @@ export class EmailRegistrationPage {
   public usernameField: any;
   public emailField: any;
   public passField: any;
+  public errorMessage: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {}
 
 
   signUpEmail() {
-    this.db.signUpEmail(this.emailField, this.passField, this.usernameField).then(authData => {
-      //successful
-    console.log('signUp successfully');
-  /*
-    let loader = this.loadingCtrl.create({
-        dismissOnPageChange: true,
+    if(this.emailField && this.passField && this.usernameField) {
+      this.db.signUpEmail(this.emailField, this.passField, this.usernameField).then(authData => {
+        //successful
+      console.log('signUp successfully');
+    /*
+      let loader = this.loadingCtrl.create({
+          dismissOnPageChange: true,
+        });
+        loader.present();
+  */
+      }, error => {
+        this.errorMessage = error.message;
+        /*
+        alert("error logging in: "+ error.message);
+        let alert = this.alertCtrl.create({
+          title: 'Signup error:',
+          subTitle: error.message,
+          buttons: ['OK']
+        });
+        */
       });
-      loader.present();
-*/
-    }, error => {
-      //alert("error logging in: "+ error.message);
-      let alert = this.alertCtrl.create({
-        title: 'Signup error:',
-        subTitle: error.message,
-        buttons: ['OK']
-      });
-    });
 
-  } // signup
+    }
+    else {
+      this.errorMessage = "Invalid Input";
+    }
+  }
+  
 
+
+  showTerms() {
+  }
+
+  goBack() {
+    this.navCtrl.pop();
+  }
 }

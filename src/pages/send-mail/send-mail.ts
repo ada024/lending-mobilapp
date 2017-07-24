@@ -10,6 +10,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class SendMailPage {
   form = {subject:"",message:""};
+  done = false;
   user;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform,
@@ -20,8 +21,15 @@ export class SendMailPage {
   send() {
     if (this.platform.is('cordova')) {
       this.socialSharing.canShareViaEmail().then(() => {
-        this.socialSharing.shareViaEmail(this.form.message, this.form.subject, [this.user.email])
+        this.socialSharing.shareViaEmail(this.form.message, this.form.subject, [this.user.email]).then((resolve) => {
+          this.done = true;
+          console.log(resolve);
+        })
       })
     }
+  }
+
+  goBack() {
+      this.navCtrl.popToRoot();
   }
 }
