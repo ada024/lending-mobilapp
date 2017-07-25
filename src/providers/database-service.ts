@@ -871,7 +871,14 @@ editTitle(title){
         entityName: title
     });
 
+    if(this.currentUser.entity==this.currentUser.otherRoleEntity){
+         this.users.update(this.currentUser.$key, {
+        otherRoleEntityName: title
+    });
+    }
+
     this.updateEntityNameInUsersEntityMap(this.currentUser.entity, title);
+    this.updateEntityNameInItems(this.currentUser.entity, title);
 }
 
 updateEntityNameInUsersEntityMap(entity, title) {
@@ -887,6 +894,40 @@ updateEntityNameInUsersEntityMap(entity, title) {
                 })
             }
         });
+  }
+
+  updateEntityNameInItems(entity, title) {
+    let rows;
+    this.items.subscribe(x => {
+        rows = x;
+    }).unsubscribe();
+
+    rows.forEach(row => {
+            if(row.entity == entity) {
+                this.items.update(row, {
+                    entityName: title
+                })
+            
+            if(row.loan!=null){
+                var loanRef = this.itemsRef.child(row.$key + "/loan");
+                loanRef.update({
+                  entityName: title  
+                })
+            
+            }
+
+            if(row.reserved!=null){
+                var reservations=row.reserved;
+                reservations.forEach(reservation =>{
+                    reservation.entityName=title;
+                })
+                this.items.update(row, {
+                    reserved: reservations
+                })
+            }
+            }
+            });
+    
   }
 
 editLocation(location){
