@@ -1,6 +1,7 @@
 page-entity-details-admin {
 .office-and-opening{
 margin-top:1em;
+margin-bottom:0.5em;
 font-size:1.5em;
 text-align:center;
 }
@@ -16,8 +17,6 @@ text-align:center;
     position: relative;
     width: 20%;
     height: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
     background-color: #4091FF;
 }
 
@@ -32,7 +31,7 @@ text-align:center;
 
 .edit-icon2{
 position:relative;
-left:18em;
+left:21em;
 bottom:1em;
 }
 
@@ -96,16 +95,17 @@ margin-bottom:-1em;
 height: 30px;
     width: 30px;
     position:relative;
-    left:15.8em;
+    left:19em;
 }
 
 .edit-icon3{
     height: 30px;
     width: 30px;
     position:relative;
-    left:90%;
-    bottom:0.7em;
+    left:21em;
+    top:1em;
 }
+
 .alert-text{
     text-align:center;
     color:red;
@@ -114,8 +114,8 @@ height: 30px;
 .reservation-input{
     position:relative;
     width:5.5em;
-    left:14em;
-    bottom:2.6em;
+    left:13.5em;
+    bottom:1.2em;
     height:0.4em;
     margin-bottom:-2.7em;
 
@@ -128,6 +128,8 @@ height: 30px;
 
 
 .info-text{
+    position:relative;
+    top:1em;
     text-align:center;
 }
 
@@ -135,7 +137,7 @@ height: 30px;
     position:relative;
     width: 100%;
     height: 70px;
-    margin-top: 5px;
+    margin-top: 15px;
     background-color: #f28282;
   }
 

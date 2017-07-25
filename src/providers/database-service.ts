@@ -875,18 +875,13 @@ editTitle(title){
 }
 
 updateEntityNameInUsersEntityMap(entity, title) {
-    console.log("mapupdate");
     let rows;
     this.usersEntityMap.subscribe(x => {
-        console.log("mapupdate2");
         rows = x;
     }).unsubscribe();
 
     rows.forEach(row => {
-        console.log("mapupdate3");
-        console.log("rowentitykey: " + row.entity + " sent entitykey: " + entity);
             if(row.entity == entity) {
-                console.log("mapupdate4");
                 this.usersEntityMap.update(row, {
                     entityName: title
                 })

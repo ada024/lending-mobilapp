@@ -10,19 +10,19 @@
       <ion-input placeholder="Title" [(ngModel)]="currentEntityTitle" (keypress)="titleHandler($event.keyCode)"></ion-input>
     </ion-item>
 <img src="./assets/icons/edit2.svg" class="edit-title" (click)="modifyTitle = true" *ngIf="!modifyTitle">
-<ion-icon name="checkbox-outline" class="edit-title" (click)="editTitle()" *ngIf="modifyTitle"></ion-icon>
+<button class="save-button"  (click)="editTitle()" *ngIf="modifyTitle" style="position:relative;left:20em;bottom:3em;"><div class="button-text">Save</div></button>
 
 <div class="office-and-opening">Borrowing office location:</div>
 <div class="location" *ngIf="!modifyLocation">{{currentEntityLocation}}</div><ion-item *ngIf="modifyLocation">
       <ion-input placeholder="Location" [(ngModel)]="currentEntityLocation" (keypress)="locationHandler($event.keyCode)"></ion-input>
     </ion-item>
     <img src="./assets/icons/edit2.svg" class="edit-icon" (click)="modifyLocation=true" *ngIf="!modifyLocation"> 
-    <ion-icon name="checkbox-outline" class="edit-icon2" (click)="editLocation()" *ngIf="modifyLocation"></ion-icon>
+    <button class="save-button" (click)="editLocation()" *ngIf="modifyLocation" style="position:relative;left:20em;bottom:3em;"><div class="button-text">Save</div></button>
 <div class="room-and-hours" *ngIf="!modifyRoom">{{currentEntityRoom}}</div><ion-item *ngIf="modifyRoom">
       <ion-input placeholder="Room" [(ngModel)]="currentEntityRoom" (keypress)="roomHandler($event.keyCode)"></ion-input>
     </ion-item>
 <img src="./assets/icons/edit2.svg" class="edit-icon" (click)="modifyRoom = true" *ngIf="!modifyRoom">
-<ion-icon name="checkbox-outline" class="edit-icon2" (click)="editRoom()" *ngIf="modifyRoom"></ion-icon>
+<button class="save-button" (click)="editRoom()" *ngIf="modifyRoom" style="position:relative;left:20em;bottom:3em;"><div class="button-text">Save</div></button>
 <br>
 <br>
 <hr style="color:gray;height:0.5em;">
@@ -41,7 +41,7 @@
       </ion-item></div></div>
     
       <ion-item *ngIf="modifyDays">
-      <ion-label>Opening days</ion-label>
+      <ion-label style="color:#4091FF">Choose/change opening days</ion-label>
       <ion-select  multiple="true" [(ngModel)]="entityDays">
         <ion-option value="1">Monday</ion-option>
         <ion-option value="2">Tuesday</ion-option>
@@ -55,18 +55,20 @@
    
      
 <img src="./assets/icons/edit2.svg" class="edit-days" (click)="modifyDays = true" *ngIf="!modifyDays">
-<button class="save-button" (click)="editDays()" *ngIf="modifyDays" ><div class="button-text">Save</div></button> 
+<button class="save-button" (click)="editDays()" *ngIf="modifyDays" style="margin-right:-2em;"><div class="button-text">Save</div></button> 
 
 <img src="./assets/icons/edit2.svg" class="edit-hours" (click)="modifyHours = true" *ngIf="!modifyHours">
-   <button class="save-button" (click)="editHours()" *ngIf="modifyHours" style="position:relative;left:15em;bottom:1em;"><div class="button-text">Save</div></button>
+   <button class="save-button" (click)="editHours()" *ngIf="modifyHours" style="position:relative;left:17em;bottom:1em;"><div class="button-text">Save</div></button>
 
 <hr style="color:gray;height:0.5em;">
-  <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div><img src="./assets/icons/edit2.svg" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
-  <ion-icon name="checkbox-outline" class="edit-icon3" (click)="editResDays()" *ngIf="modifyResDays"></ion-icon>
+  <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div>
 <ion-item class="reservation-input" *ngIf="modifyResDays">
       <ion-input type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
     </ion-item>
+    <img src="./assets/icons/edit2.svg" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
+  <button class="save-button" (click)="editResDays()" *ngIf="modifyResDays" style="position:relative;left:19em;top:1em;margin-top:10px;"><div class="button-text">Save</div></button>
     <div class="info-text">(Altering wont affect reservations already made)</div>
+    
 
   <button class="blue-button" (click)="goToTermsAndConditions()" *ngIf="currentEntity.termsAndConditions!=null">
     <div class="button-text">

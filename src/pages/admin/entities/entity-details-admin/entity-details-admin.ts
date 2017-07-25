@@ -36,6 +36,8 @@ resDays="";
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, 
   public alertCtrl: AlertController, public db: DatabaseService) {
      db.getEntity(this.onEntityLoaded.bind(this));
+
+     this.entityDays = this.currentEntity.office.days;
      
   }
 
@@ -141,6 +143,9 @@ getHours(n){
     if(this.currentEntity.office.fromHours!=null && this.currentEntity.office.toHours!=null){
    var hoursFrom = this.currentEntity.office.fromHours;
    var hoursTo = this.currentEntity.office.toHours;
+
+   this.fromHours=this.currentEntity.office.fromHours;
+   this.toHours=this.currentEntity.office.toHours;
 
 if(hoursFrom[n]!=null || hoursTo[n]!=null){
     return hoursFrom[n] + "-" + hoursTo[n];
