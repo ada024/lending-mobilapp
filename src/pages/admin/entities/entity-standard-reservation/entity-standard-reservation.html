@@ -15,7 +15,9 @@
 <br>
 <hr style="color:gray;height:0.5em;">
 <div class="office-and-opening">Opening hours:</div>
-<div class="days-and-hours" *ngFor="let entityDay of entityOffice.days">{{getWeekDay(entityDay)}}  <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span></div>
+<div class="days-and-hours" *ngFor="let entityDay of entityOffice.days">{{getWeekDay(entityDay)}}<br>
+  <div class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</div>
+</div>
 
 <div class="reservation-text"> Number of loan days:</div>
 <ion-item class="reservation-input">

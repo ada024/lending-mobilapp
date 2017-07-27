@@ -24,7 +24,7 @@ text-align:center;
   height: 30px;
     width: 30px;
     position:relative;
-    left:21em;
+    left:90%;
     bottom:2em;
 }
 
@@ -44,26 +44,26 @@ bottom:1em;
 }
 
 .opening-hours{
-    position:absolute;
-    left:65%;
+    font-weight:normal;
+    margin-bottom:0.5em;
+    margin-top:0.2em;
 }
 
 
 .edit-from{
-  width:7em;
+  width:50%;
   height:1em;
   bottom:2.2em;
   margin-bottom:-2em;
-  left:9em;
   position:relative;
 }
 
 .edit-to{
-  width:6em;
+  width:45%;
   height:1em;
   bottom:3em;
   margin-bottom:-2em;
-  left:15em;
+  left:55%;
   position:relative;
 }
 
@@ -80,7 +80,7 @@ margin-bottom:-1em;
     height: 30px;
     width: 30px;
     position:relative;
-    left:21em;
+    left:90%;
     bottom:2.5em;
 }
 
@@ -88,21 +88,21 @@ margin-bottom:-1em;
     height: 30px;
     width: 30px;
     position:relative;
-    left:1em;
+    left:5%;
 }
 
 .edit-hours{
 height: 30px;
     width: 30px;
     position:relative;
-    left:19em;
+    left:80%;
 }
 
 .edit-icon3{
     height: 30px;
     width: 30px;
     position:relative;
-    left:21em;
+    left:90%;
     top:1em;
 }
 
@@ -145,5 +145,4 @@ height: 30px;
       font-size: 20px;
       margin-left: 5px;
   }
-
 }

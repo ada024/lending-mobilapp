@@ -48,9 +48,7 @@ export class EntityOpeningTimeAdminPage {
   }
 
   daysChanged(){
-    
       this.daysPicked=true;
-      console.log("hei");
   }
 
   getWeekDay(n){

@@ -148,7 +148,7 @@ getHours(n){
    this.toHours=this.currentEntity.office.toHours;
 
 if(hoursFrom[n]!=null || hoursTo[n]!=null){
-    return hoursFrom[n] + "-" + hoursTo[n];
+    return hoursFrom[n] + " - " + hoursTo[n];
 }  else return "undefined";
 
    }

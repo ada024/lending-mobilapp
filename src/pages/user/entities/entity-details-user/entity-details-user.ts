@@ -46,7 +46,7 @@ if(this.currentEntity.office.fromHours!=null && this.currentEntity.office.toHour
    var hoursTo = this.currentEntity.office.toHours;
 
 if(hoursFrom[n]!=null || hoursTo[n]!=null){
-    return hoursFrom[n] + "-" + hoursTo[n];
+    return hoursFrom[n] + " - " + hoursTo[n];
 }  else return "undefined";
 
    }
