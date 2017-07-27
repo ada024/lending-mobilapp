@@ -48,7 +48,7 @@ if(this.entityOffice.fromHours!=null && this.entityOffice.toHours!=null){
    var hoursTo = this.entityOffice.toHours;
 
 if(hoursFrom[n]!=null || hoursTo[n]!=null){
-    return hoursFrom[n] + "-" + hoursTo[n];
+    return hoursFrom[n] + " - " + hoursTo[n];
 }  else return "undefined";
 
    }
