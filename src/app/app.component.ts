@@ -28,7 +28,6 @@ export class MyApp {
 
       // Based on user login , sets root page and write user to db
       if (this.authState) {
-        this.db.existInDb();
         this.db.loadCurrentUser((currentUser) => {
           if(currentUser.adminRole == "true") {
             this.rootPage = HomeAdminPage;

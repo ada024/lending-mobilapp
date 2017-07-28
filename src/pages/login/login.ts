@@ -19,9 +19,7 @@ export class LoginPage {
 
   loginWithFacebook(): void {
     this.db.loginWithFacebook().subscribe(() => {
-      this.db.existInDb();
-      let success = "success";
-      console.log("Login: " + success);
+      console.log("Login: success");
     }, err => {
       console.log(err);
     });

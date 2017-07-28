@@ -37,8 +37,9 @@ export class DatabaseService {
     currentUser: any;
 
     // email auth
-  public  fireAuth: any;
+    public fireAuth: any;
 
+    errorFunc = error => {console.log(error)};
 
     constructor(public http: Http, public af: AngularFire, private platform: Platform,
         private toastCtrl: ToastController, private firebaseAuth: AngularFireAuth) {
@@ -111,7 +112,7 @@ export class DatabaseService {
                     }
                 }
             });
-        });
+        }, this.errorFunc);
     }
 
     addItem(name, id, photoURI, reservationDays) {
@@ -170,7 +171,7 @@ status:"Notify"
                 }
                 });
             onDataLoaded(returnList)
-            });
+            }, this.errorFunc);
 
 
     }
@@ -202,7 +203,7 @@ status:"Notify"
         if (this.currentUser != null) {
             this.items.subscribe(loadedList => {
                 onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
-            })
+            }, this.errorFunc)
         }
         else
             this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
@@ -216,7 +217,7 @@ status:"Notify"
                     foundItem = item;
                 }
             });
-        });
+        }, this.errorFunc);
         return foundItem;
     }
 
@@ -225,55 +226,55 @@ status:"Notify"
     loadAvailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan == null);
-        }).subscribe(availableItems => onDataLoaded(availableItems));
+        }).subscribe(availableItems => onDataLoaded(availableItems), this.errorFunc);
     }
 
     loadUnavailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
-        }).subscribe(availableItems => onDataLoaded(availableItems));
+        }).subscribe(availableItems => onDataLoaded(availableItems), this.errorFunc);
     }
 
     loadLoanedItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
-        }).subscribe(availableItems => onDataLoaded(availableItems));
+        }).subscribe(availableItems => onDataLoaded(availableItems), this.errorFunc);
     }
 
     loadNumberOfUnavailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null).length;
-        }).subscribe(availableItems => onDataLoaded(availableItems));
+        }).subscribe(availableItems => onDataLoaded(availableItems), this.errorFunc);
     }
 
     loadNumberOfAvailableItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan == null).length;
-        }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems));
+        }).subscribe(numberOfAvailableItems => onDataLoaded(numberOfAvailableItems), this.errorFunc);
     }
 
     loadNumberOfLoanedItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null).length;
-        }).subscribe(availableItems => onDataLoaded(availableItems));
+        }).subscribe(availableItems => onDataLoaded(availableItems), this.errorFunc);
     }
 
     loadReservedItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null);
-        }).subscribe(reservedItems => onDataLoaded(reservedItems));
+        }).subscribe(reservedItems => onDataLoaded(reservedItems), this.errorFunc);
     }
 
     getItemForDetailsPage(onDataLoaded, itemKey) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.$key == itemKey);
-        }).subscribe(itemForDetail => onDataLoaded(itemForDetail));
+        }).subscribe(itemForDetail => onDataLoaded(itemForDetail), this.errorFunc);
     }
 
     loadNumberOfReservedItems(onDataLoaded) {
         Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
             return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.reserved != null).length;
-        }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems));
+        }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems), this.errorFunc);
     }
 
 
@@ -281,7 +282,7 @@ status:"Notify"
         if (this.currentUser != null) {
             Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
                 return this.search(loadedItems, this.currentUser.entity, "v.entity").length;
-            }).subscribe(numberOfItems => onDataLoaded(numberOfItems));
+            }).subscribe(numberOfItems => onDataLoaded(numberOfItems), this.errorFunc);
         }
         else
             this.setCurrentUser(this.loadNumberOfItems.bind(this), onDataLoaded)
@@ -296,7 +297,7 @@ status:"Notify"
                    }
                });
                 onDataLoaded(reservations)
-           });
+           }, this.errorFunc);
            */
 
            this.items.subscribe(itemsArray => {
@@ -311,7 +312,7 @@ status:"Notify"
                         }
                 });
             onDataLoaded(reservations)
-            });
+            }, this.errorFunc);
         }
 
 
@@ -325,7 +326,7 @@ status:"Notify"
                 }
             });
 
-        });
+        }, this.errorFunc);
         return foundItem;
     }
 
@@ -368,14 +369,14 @@ status:"Notify"
                     foundUser = user;
                 }
             });
-        });
+        }, this.errorFunc);
         return foundUser;
     }
 
     loadUsers(onDataLoaded) {
         this.users.subscribe(loadedList => {
             onDataLoaded(loadedList)
-        });
+        }, this.errorFunc);
     }
 
     loadUsersInThisEntity(onDataLoaded) {
@@ -388,7 +389,7 @@ status:"Notify"
                     users.push(user[0]);
                 });
                 return users;
-            }).subscribe(users => onDataLoaded(users));
+            }).subscribe(users => onDataLoaded(users), this.errorFunc);
         }
         else {
             this.setCurrentUser(this.loadUsersInThisEntity.bind(this), onDataLoaded)
@@ -408,11 +409,11 @@ status:"Notify"
         if (this.currentUser != null) {
             this.users.subscribe(users => {
                 users.forEach(user => {
-                    if (user.fullname == this.currentUser.fullname) {
+                    if (user.uid == this.authState.auth.uid) {
                         onDataLoaded(user)
                     }
                 })
-            })
+            }, this.errorFunc)
         }
         else
             this.setCurrentUser(this.loadCurrentUser.bind(this), onDataLoaded)
@@ -426,7 +427,7 @@ status:"Notify"
                 }
             })
             callback(parameter);
-        });
+        }, this.errorFunc);
     }
 
     setUserTag(tagId) {
@@ -489,7 +490,7 @@ status:"Notify"
                     })
                 }
             });
-        });
+        }, this.errorFunc);
     }
 
     kickUser(user) {
@@ -500,7 +501,7 @@ status:"Notify"
 					key = element.$key;
                 }
             });
-        });
+        }, this.errorFunc);
 		this.usersEntityMap.remove(key);
         this.users.update(user.$key, {
           entity: "No library, join a library to get started",
@@ -531,7 +532,7 @@ status:"Notify"
                 }
                 }
             onDataLoaded(foundItem);
-        });
+        }, this.errorFunc);
 
 }
 
@@ -566,7 +567,7 @@ status:"Notify"
               return (item.pendingLoan != null)
           });
           onDataLoaded(itemsArray)
-      });
+      }, this.errorFunc);
   }
 
   loadPendingLoans(onDataLoaded) {
@@ -576,7 +577,7 @@ status:"Notify"
                 return (item.pendingLoan != null && item.pendingLoan.loaner == this.currentUser.uid)
             });
             onDataLoaded(itemsArray)
-        });
+        }, this.errorFunc);
     }
     else
       this.setCurrentUser(this.loadPendingLoans.bind(this), onDataLoaded)
@@ -592,7 +593,7 @@ status:"Notify"
           foundUser = user;
         }
       });
-    });
+    }, this.errorFunc);
     return foundUser;
   }
 
@@ -604,7 +605,7 @@ status:"Notify"
                 resolve(user);
                 }
             });
-        }).unsubscribe();
+        }, this.errorFunc).unsubscribe();
       });
   }
 
@@ -614,11 +615,11 @@ status:"Notify"
   addPendingUser(entity) {
     this.pendingUsers.push({
       userUid: this.authState.auth.uid||'authEmailUidHer',
-      fullname: this.authState.auth.displayName||'emailFullNameHer',
+      fullname: this.currentUser.fullname||'emailFullNameHer',
       entity: entity.$key,
       entityName: entity.name,
       email:this.authState.auth.email|| 'authForEmailHer',
-      photoURL: this.authState.auth.photoURL
+      photoURL: this.currentUser.photoURL
     });
   }
 
@@ -629,14 +630,14 @@ status:"Notify"
   loadPendingUsers(onDataLoaded) {
     this.pendingUsers.subscribe(loadedList => {
       onDataLoaded(loadedList);
-    })
+    }, this.errorFunc)
   }
 
   loadPendingUsersInThisEntity(onDataLoaded) {
     if(this.currentUser != null) {
       Rx.Observable.combineLatest(this.pendingUsers, this.users, (loadedPendingUsers, loadedUsers) => {
         return this.search(loadedPendingUsers, this.currentUser.entity, "v.entity");
-      }).subscribe(pendingUsersInThisEntity => onDataLoaded(pendingUsersInThisEntity));
+      }).subscribe(pendingUsersInThisEntity => onDataLoaded(pendingUsersInThisEntity), this.errorFunc);
     }
     else
       this.setCurrentUser(this.loadPendingUsersInThisEntity.bind(this), onDataLoaded)
@@ -707,7 +708,7 @@ status:"Notify"
               return (item.loan != null)
           });
           onDataLoaded(itemsArray)
-      });
+      }, this.errorFunc);
   }
 
 
@@ -718,7 +719,7 @@ status:"Notify"
                   return (item.loan != null && item.loan.loaner == this.currentUser.uid)
               });
               onDataLoaded(itemsArray)
-          });
+          }, this.errorFunc);
       }
       else
           this.setCurrentUser(this.loadPendingLoans.bind(this), onDataLoaded)
@@ -728,7 +729,7 @@ status:"Notify"
       if (this.currentUser != null) {
           Rx.Observable.combineLatest(this.items, this.users, (loadedItems, loadedUsers) => {
               return this.search(loadedItems, this.currentUser.entity, "v.entity").filter(item => item.loan != null);
-          }).subscribe(loansForCheckin => onDataLoaded(loansForCheckin));
+          }).subscribe(loansForCheckin => onDataLoaded(loansForCheckin), this.errorFunc);
       }
       else
           this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
@@ -750,7 +751,7 @@ status:"Notify"
     let entityPromise = this.entities.push({
       name: name,
       owner: this.currentUser.uid,
-      ownerName: this.authState.auth.displayName|| 'authForEmailHer',
+      ownerName: this.currentUser.fullname|| 'authForEmailHer',
       office: office,
       reservationDays:reservationDays,
       termsAndConditions:termsAndConditions
@@ -763,9 +764,9 @@ status:"Notify"
             adminAccess: true,
             newUser: false,
             userUid: this.authState.auth.uid||'authEmailUidHer',
-            fullname: this.authState.auth.displayName||'emailFullNameHer',
+            fullname: this.currentUser.fullname||'emailFullNameHer',
             email:this.authState.auth.email|| 'authForEmailHer',
-            photoURL: this.authState.auth.photoURL
+            photoURL: this.currentUser.photoURL
         });
     })
     return entityPromise;
@@ -784,7 +785,7 @@ updateTermsAndConditions(termsAndConditions){
   loadEntities(onDataLoaded) {
     this.entities.subscribe(loadedList => {
       onDataLoaded(loadedList)
-    });
+    }, this.errorFunc);
   }
 
   loadEntitiesYouOwn(onDataLoaded) {
@@ -798,7 +799,7 @@ updateTermsAndConditions(termsAndConditions){
             }
         });
         return entities;
-    }).subscribe(entities => onDataLoaded(entities));
+    }).subscribe(entities => onDataLoaded(entities), this.errorFunc);
   }
 
   loadJoinedEntities(onDataLoaded) {
@@ -810,7 +811,7 @@ updateTermsAndConditions(termsAndConditions){
         entities.push(entity[0]);
       });
       return entities;
-    }).subscribe(entities => onDataLoaded(entities));
+    }).subscribe(entities => onDataLoaded(entities), this.errorFunc);
   }
 
   hasJoined(entity, onAnswerLoaded) {
@@ -833,7 +834,7 @@ updateTermsAndConditions(termsAndConditions){
               return (entity.$key == this.currentUser.entity)
           });
           onDataLoaded(entityReturn);
-      });
+      }, this.errorFunc);
 
   }
 
@@ -850,7 +851,7 @@ updateTermsAndConditions(termsAndConditions){
       if (this.currentUser != null) {
         this.usersEntityMap.subscribe(loadedList => {
             onDataLoaded(loadedList);
-        });
+        }, this.errorFunc);
       }
     else
         this.setCurrentUser(this.loadUserEntityMap.bind(this), onDataLoaded)
@@ -885,7 +886,7 @@ updateEntityNameInUsersEntityMap(entity, title) {
     let rows;
     this.usersEntityMap.subscribe(x => {
         rows = x;
-    }).unsubscribe();
+    }, this.errorFunc).unsubscribe();
 
     rows.forEach(row => {
             if(row.entity == entity) {
@@ -900,7 +901,7 @@ updateEntityNameInUsersEntityMap(entity, title) {
     let rows;
     this.items.subscribe(x => {
         rows = x;
-    }).unsubscribe();
+    }, this.errorFunc).unsubscribe();
 
     rows.forEach(row => {
             if(row.entity == entity) {
@@ -968,7 +969,7 @@ editResDays(resdays){
     let itemsToEdit;
     this.items.subscribe(itemsArray => {
         itemsToEdit = itemsArray.filter(item => {return item.entity==this.currentUser.entity});
-    });
+    }, this.errorFunc);
 
     itemsToEdit.forEach(item => {
           this.items.update(item.$key, {
@@ -993,7 +994,7 @@ editItemResDays(resdays, itemKey){
             elementsToDelete.forEach(el => {
                  this.usersEntityMap.remove(el);
             });
-        }).unsubscribe();
+        }, this.errorFunc).unsubscribe();
 
         this.users.subscribe(users => {
             users.forEach(user => {
@@ -1010,14 +1011,14 @@ editItemResDays(resdays, itemKey){
                     })
                 }
             });
-        }).unsubscribe();
+        }, this.errorFunc).unsubscribe();
 
         this.items.subscribe(items => {
             let itemsToDelete = items.filter(item => {return (item.entity == entity.$key)});
             itemsToDelete.forEach(item => {
                 this.items.remove(item);
             });
-        }).unsubscribe();
+        }, this.errorFunc).unsubscribe();
 
         this.entities.remove(entity);
     }
@@ -1025,13 +1026,13 @@ editItemResDays(resdays, itemKey){
     loadNumberOfEntitiesYouOwn(onDataLoaded) {
         this.entities.subscribe(loadedEntities => {
             onDataLoaded(this.search(loadedEntities, this.currentUser.uid, "v.owner").length);
-        });
+        }, this.errorFunc);
     }
 
     loadnumberOfMaxEntities(onDataLoaded) {
         this.users.subscribe(loadedUsers => {
             onDataLoaded(this.search(loadedUsers, this.currentUser.uid, "v.uid")[0].numberOfMaxEntities);
-        });
+        }, this.errorFunc);
     }
 
 
@@ -1077,7 +1078,7 @@ editItemResDays(resdays, itemKey){
 
   // FB USER INFO
   get currentUserName(): string {
-    return this.authState ? this.authState.auth.displayName : 'no Name';
+    return this.authState ? this.currentUser.fullname : 'no Name';
   }
 
   get currentUserEmail(): string {
@@ -1085,7 +1086,7 @@ editItemResDays(resdays, itemKey){
   }
 
   get currentUserPhotoURI(): string {
-    return this.authState ? this.authState.auth.photoURL : 'no photo';
+    return this.authState ? this.currentUser.photoURL : 'no photo';
   }
 
 //FACEBOOK LOGOUT
