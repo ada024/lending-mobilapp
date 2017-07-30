@@ -62,6 +62,8 @@ export class DatabaseService {
             this.authState = state;
             if (state) {
                 this.existInDb();
+                this.checkReservations();
+                this.updateFacebookPicture();
                 this.loadCurrentUser((currentUser) => {
                     this.currentUser = currentUser;
                 });
@@ -1045,8 +1047,6 @@ editItemResDays(resdays, itemKey){
           const facebookCredential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
           this.firebase.auth().signInWithCredential(facebookCredential).then(() => {
             observer.next();
-            this.checkReservations();
-            this.updateFacebookPicture();
           }).catch(error => {
             console.log("Internal error...");
             observer.error(error);
