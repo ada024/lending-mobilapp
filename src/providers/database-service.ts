@@ -64,16 +64,6 @@ export class DatabaseService {
                 this.existInDb();
                 this.loadCurrentUser((currentUser) => {
                     this.currentUser = currentUser;
-
-                    // Update facebook profile picture
-                     if (this.platform.is('cordova')) {
-                         Facebook.api("me/?fields=picture", ['email', 'public_profile'])
-                            .then(response => {
-                                this.users.update(currentUser.$key, {
-                                    photoURL: response.picture.data.url
-                                });
-                            })
-                        }
                 });
             }
         });
@@ -1056,6 +1046,7 @@ editItemResDays(resdays, itemKey){
           this.firebase.auth().signInWithCredential(facebookCredential).then(() => {
             observer.next();
             this.checkReservations();
+            this.updateFacebookPicture();
           }).catch(error => {
             console.log("Internal error...");
             observer.error(error);
@@ -1254,7 +1245,7 @@ editItemResDays(resdays, itemKey){
           fullname: username || 'none',
           entity: "No library, join a library to get started",
           entityName: "No library, join a library to get started",
-          photoURL:  ""
+          photoURL:  "./assets/icons/profile.svg"
         });
       });
     })
@@ -1282,7 +1273,22 @@ editItemResDays(resdays, itemKey){
             numberOfMaxEntities: (parseInt(this.currentUser.numberOfMaxEntities) + 1).toString()
         }).then(res => {resolve()})
       })
-  }
+    }
+    
+    
+    // Update facebook profile picture
+
+    updateFacebookPicture() {
+        if (this.platform.is('cordova')) {
+            Facebook.api("me/?fields=picture", ['email', 'public_profile'])
+            .then(response => {
+                this.users.update(this.authState.auth.uid, {
+                    photoURL: response.picture.data.url
+                });
+            })
+        }
+    }
+
 
 
 }

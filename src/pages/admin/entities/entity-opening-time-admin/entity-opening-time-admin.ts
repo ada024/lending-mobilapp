@@ -39,7 +39,6 @@ export class EntityOpeningTimeAdminPage {
       this.officeInfo = new EntityOffice(this.entityLocation, this.entityRoom, this.entityDays, this.fromHours, this.toHours);
       if (this.entityDays.length != 0) {
           this.navCtrl.push(EntityStandardReservationPage, {entityName: this.entityName, office: this.officeInfo});
-          this.navCtrl.remove(2, 3);
       }
       if (this.entityDays.length == 0) {
           this.notAdded1 = true;
@@ -48,7 +47,10 @@ export class EntityOpeningTimeAdminPage {
   }
 
   daysChanged(){
-      this.daysPicked=true;
+      if(this.entityDays.length != 0) {
+          this.daysPicked = true;
+          this.notAdded1 = false;
+      }
   }
 
   getWeekDay(n){
