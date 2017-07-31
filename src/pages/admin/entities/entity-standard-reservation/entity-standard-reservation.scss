@@ -57,9 +57,12 @@ text-align:center;
 }
 
 .opening-hours{
+    position:absolute;
     font-weight:normal;
+    white-space: nowrap;
     margin-bottom:0.5em;
     margin-top:0.2em;
+    left:calc(100% - 6em);
 }
 
 }

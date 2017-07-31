@@ -7,25 +7,24 @@
 
 <ion-content padding>
 
-  <div class="big-icon-svg">
-     <img src="./assets/icons/entities.svg">
-  </div>
+  <div>Active library:</div>
 
-  <p class="title">
-    <b>Selected library</b>
-  </p>
-
-  <div class="current-entity" (click)="goToEntityDetailsAdminPage()">
-     <img src="./assets/icons/edit.svg" class="edit-icon">
+  <div class="current-entity-container" (click)="goToEntityDetailsAdminPage()">
     <div class="current-entity-text">
-      <b>{{currentUserEntity}}</b>
+      <span *ngIf="db.currentUser && db.currentUser.entity != 'No library, join a library to get started'">
+        {{currentUserEntity}}
+      </span>
+      <span *ngIf="db.currentUser && db.currentUser.entity == 'No library, join a library to get started'">
+        No library here yet. Please create one to get started.
+      </span>
     </div>
+    <img src="./assets/icons/edit2.svg" class="edit-icon" *ngIf="db.currentUser && db.currentUser.entity != 'No library, join a library to get started'">
   </div>
 
   <div class="button-container">
-    <button class="black-button" (click)="goToEntityListAdminPage()">
-      <img src="./assets/icons/list.svg" class="button-icon-svg">
-      <div class="button-with-icon-svg-text">
+    <button class="white-button" (click)="goToEntityListAdminPage()">
+      <img src="./assets/icons/list2.svg" class="white-button-icon-svg">
+      <div class="white-button-with-icon-svg-text">
         <b>List my libraries</b>
       </div>
    </button>

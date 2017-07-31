@@ -7,18 +7,18 @@
 
 <ion-content padding>
 
-  <div class="big-icon-svg">
-     <img src="./assets/icons/entities.svg">
-  </div>
+  <div>Active library:</div>
 
-  <p class="title">
-    <b>Selected library</b>
-  </p>
-
-  <div class="current-entity" (click)="goToEntityDetailsUserPage()">
+  <div class="current-entity-container" (click)="goToEntityDetailsUserPage()">
     <div class="current-entity-text">
-      <b>{{currentUserEntity}}</b>
+      <span *ngIf="db.currentUser && db.currentUser.entity != 'No library, join a library to get started'">
+        {{currentUserEntity}}
+      </span>
+      <span *ngIf="db.currentUser && db.currentUser.entity == 'No library, join a library to get started'">
+        You are not connected to a library. Please join one to get started.
+      </span>
     </div>
+    <ion-icon name="md-arrow-forward" class="edit-icon" *ngIf="db.currentUser && db.currentUser.entity != 'No library, join a library to get started'"></ion-icon>
   </div>
 
   <div class="button-container">

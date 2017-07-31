@@ -1,19 +1,23 @@
 page-entity-user {
 
-    .current-entity {
+    .current-entity-container {
     position: relative;
-    background-color: #DCDEE0;
-    height: 100px;
+    font-weight: bold;
+    color: #4E4E4E;
+    font-size: 25px;
+    margin-bottom: 100px;
   }
 
   .current-entity-text {
-    text-align: center;
-    font-size: 25px;
-    top: 50%;
-    left: 50%;
+    max-width: 90%;
+  }
+
+  .edit-icon {
+    height: 25px;
+    width: 25px;
+    left: 90%;
+    top: 0%;
     position: absolute;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
   }
   
 }

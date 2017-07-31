@@ -29,8 +29,12 @@
 <ion-content padding>
 
   <div class="top-text">Current Library:</div>
-  <div class="current-entity" *ngIf="currentEntity != 'No library, join a library to get started'">{{currentEntity}}</div>
-  <div class="current-entity" *ngIf="currentEntity == 'No library, join a library to get started'">No entity</div>
+  <div class="current-entity" *ngIf="currentEntity != 'No library, join a library to get started'">
+    {{currentEntity}}
+  </div>
+  <div class="current-entity" *ngIf="currentEntity == 'No library, join a library to get started'">
+    No library here yet. Please create one to get started.
+  </div>
 
 
   <div class="button-container2">
@@ -86,7 +90,12 @@
           Library
         </div><br>
         <div class="grey-button-text-info">
-          <div class="grey-button-text">{{currentEntity}}</div>
+          <div class="grey-button-text" *ngIf="db.currentUser && db.currentUser.entity != 'No library, join a library to get started'">
+            {{currentEntity}}
+          </div>
+          <div class="grey-button-text" *ngIf="db.currentUser && db.currentUser.entity == 'No library, join a library to get started'">
+            Create a library to get started
+          </div>
         </div>
       </div>
     </div>

@@ -32,8 +32,8 @@
 
 <div class="office-and-opening">Opening hours:</div>
 <div class="days-and-hours" *ngIf="!modifyDays">
-  <div *ngFor="let entityDay of currentEntity.office.days">{{getWeekDay(entityDay)}}<br>
-    <div class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</div>
+  <div *ngFor="let entityDay of currentEntity.office.days">{{getWeekDay(entityDay)}}
+    <span class="opening-hours" *ngIf="!modifyHours">{{getHours(entityDay)}}</span>
     <div *ngIf="modifyHours"><br><br>
       <ion-item class="edit-from"><ion-label>From</ion-label>
         <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="fromHours[entityDay]"></ion-datetime>

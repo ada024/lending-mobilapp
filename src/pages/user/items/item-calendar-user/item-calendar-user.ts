@@ -276,8 +276,8 @@ export class ItemCalendarUserPage {
           var current = new Date();
           current.setHours(0, 0, 0);
           if(this.item.reserved!=null){
-              var startDate = new Date().setTime(this.item.reserved.pickupDate);
-              var endDate = new Date().setTime(this.item.reserved.returnDate);
+              //var startDate = new Date().setTime(this.item.reserved.pickupDate);
+              //var endDate = new Date().setTime(this.item.reserved.returnDate);
           }
 
           if (officeDays.length == 1) {
