@@ -1,14 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from "../../providers/database-service";
 import {EmailRegistrationPage} from "../email-registration/email-registration";
 
-/*
- Generated class for the EmailLogin page.
 
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
   selector: 'page-email-login',
   templateUrl: 'email-login.html'
@@ -16,23 +11,25 @@ import {EmailRegistrationPage} from "../email-registration/email-registration";
 export class EmailLoginPage {
   public emailField: any;
   public passField: any;
+  public errorMessage: any;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public zone: NgZone) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-  }
 
   loginWithEmail() {
-    this.db.loginWithEmail(this.emailField, this.passField).then(authData => {
-      console.log('login success');
-    }, error => {
-      //alert("error logging in: "+ error.message);
-      let alert = this.alertCtrl.create({
-        title: 'Login error:',
-        subTitle: error.message,
-        buttons: ['OK']
+    if(this.emailField && this.passField) {
+      this.db.loginWithEmail(this.emailField, this.passField).then(authData => {
+        console.log('login success');
+      }, error => {
+        this.zone.run(() => {
+          this.errorMessage = error.message;
+        });
       });
-      alert.present();
-    });
+    }
+    else {
+      this.errorMessage = "All fields required";
+    }
   }
 
   registryNewEmail() {
@@ -53,7 +50,6 @@ export class EmailLoginPage {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
           }
         },
         {

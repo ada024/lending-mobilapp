@@ -1,3 +1,12 @@
+<ion-header no-border>
+  <ion-navbar color="navbar-color">
+    <div>
+      <img src="./assets/icons/logo.svg" (click)="navCtrl.popToRoot();"  [ngClass]="db.isAndroid() ? 'android-logo' : 'ios-logo'">
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
 <ion-content padding>
 
   <p class="title">
@@ -15,7 +24,7 @@
   </div>
 
   <div class="info-text">
-    When signing up you agree to the<br><span class="terms" (click)="showTerms()">terms and conditions.</span>
+    When signing up you agree to the<br><span class="blue-text" (click)="showTerms()">terms and conditions.</span>
   </div>
 
   <br>
@@ -27,7 +36,7 @@
   </button>
 
   <div class="info-text-2" (click)="goBack()">
-    Already have an account? Login here!
+    Already have an account? <span class="blue-text">Login here.</span>
   </div>
 
 </ion-content>
