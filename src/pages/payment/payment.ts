@@ -8,25 +8,19 @@ import { DatabaseService } from '../../providers/database-service';
   templateUrl: 'payment.html'
 })
 export class PaymentPage {
-  purchaseAdminMode;
-  success;
-  newMax;
+  processing = false;
+  success = false;
+  newMax = "1";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService) {
-    this.purchaseAdminMode = navParams.get("purchaseAdminMode");
-    this.success = false;
-    this.newMax = (parseInt(db.currentUser.numberOfMaxEntities) + 1).toString()
+    if(db.currentUser.numberOfMaxEntities) {
+      this.newMax = (parseInt(db.currentUser.numberOfMaxEntities) + 1).toString()
+    }
   }
 
   purchase() {
-    this.db.purchase().then(resolve => {
-      this.db.setAdminRole("true")
-    })
-  }
-
-  increaseNumberOfMaxEntities() {
-    this.db.increaseNumberOfMaxEntities().then(resolve => {
-      this.success = true;
+    this.db.purchase(success => {
+      this.success = success;
     })
   }
 
@@ -34,8 +28,8 @@ export class PaymentPage {
     this.navCtrl.pop();
   }
 
-  reset() {
-    this.db.purchase();
-    this.navCtrl.pop();
+  free() {
+    this.db.increaseNumberOfMaxEntities();
+    this.success = true;
   }
 }

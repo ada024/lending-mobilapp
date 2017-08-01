@@ -83,6 +83,7 @@ import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-
 import { NgCalendarModule } from 'ionic2-calendar';
 import { Camera } from '@ionic-native/camera';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import {EmailLoginPage} from "../pages/email-login/email-login";
 import {EmailRegistrationPage} from "../pages/email-registration/email-registration";
 
@@ -268,6 +269,6 @@ export const firebaseConfig = {
     EmailRegistrationPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
-  DatabaseService, Camera, SocialSharing]
+  DatabaseService, Camera, SocialSharing, InAppPurchase]
 })
 export class AppModule {}

@@ -9,6 +9,7 @@ import {
 import firebase from 'firebase';
 import { Observable } from "rxjs/Observable";
 import {Tempitems} from '../app/models/tempItems';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 
 import {Platform, ToastController} from 'ionic-angular';
 import {Facebook} from 'ionic-native';
@@ -41,7 +42,7 @@ export class DatabaseService {
 
     errorFunc = error => {console.log(error)};
 
-    constructor(public http: Http, public af: AngularFire, private platform: Platform,
+    constructor(public http: Http, public af: AngularFire, private platform: Platform, private iap: InAppPurchase,
         private toastCtrl: ToastController, private firebaseAuth: AngularFireAuth) {
         this.items = af.database.list('/items');
         this.users = af.database.list('/users');
@@ -1156,7 +1157,7 @@ editItemResDays(resdays, itemKey){
         entityName: "No library, join a library to get started",
         email: user.email || "",
         photoURL: user.photoURL || "",
-        fullname: user.displayName || "",
+        fullname: user.displayName || ""
       });
     } else {
       console.log("User exist in db");
@@ -1303,21 +1304,45 @@ editItemResDays(resdays, itemKey){
     return this.fireAuth.sendPasswordResetEmail(email);
   }
 
-  purchase() {
-      return new Promise(resolve => {
-          this.users.update(this.currentUser.$key, {
-            numberOfMaxEntities: "1"
-        }).then(res => {resolve()})
-      })
-  }
 
-  increaseNumberOfMaxEntities() {
-      return new Promise(resolve => {
-          this.users.update(this.currentUser.$key, {
-            numberOfMaxEntities: (parseInt(this.currentUser.numberOfMaxEntities) + 1).toString()
-        }).then(res => {resolve()})
-      })
+  // Inn app purchase
+
+  purchase(success) {
+      this.iap.getProducts(['library']).then(products => {
+          console.log(products[0].productId);
+          this.iap.buy(products[0].productId).then(data => {
+              this.iap.consume(data.productType, data.receipt, data.signature).then(() => {
+                  console.log('product was successfully consumed!');
+                  this.increaseNumberOfMaxEntities();
+                  success(true);
+                }).catch(err => {
+                    console.log(err);
+                    success(false);
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                success(false);
+            });
+        }).catch(err => {
+            console.log(err);
+            success(false);
+        });
     }
+
+    increaseNumberOfMaxEntities() {
+        if(this.currentUser.numberOfMaxEntities) {
+            return this.users.update(this.currentUser.$key, {
+                numberOfMaxEntities: (parseInt(this.currentUser.numberOfMaxEntities) + 1).toString()
+            })
+        }
+        else {
+            return this.users.update(this.currentUser.$key, {
+                numberOfMaxEntities: "1"
+            })
+        }
+    }
+    
     
     
     // Update facebook profile picture
