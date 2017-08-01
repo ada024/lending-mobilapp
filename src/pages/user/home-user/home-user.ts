@@ -31,6 +31,7 @@ export class HomeUserPage {
         db.loadUsersReservations(this.onReservationsLoaded.bind(this));
         db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
         db.loadUserEntityMap(this.onMapLoaded.bind(this))
+
     }
 
     onCurrentEntityLoaded(currentUser) {

@@ -24,7 +24,6 @@ export class ItemPickedUserPage {
     onEntityLoaded(entities) {
         this.zone.run(() => {
             this.currentEntity= entities[0];
-            console.log("entityname: " + this.currentEntity.name);
         });
 
 

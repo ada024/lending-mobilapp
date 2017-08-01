@@ -149,18 +149,30 @@ status:"Notify"
 
 
     loadUsersReservations(onDataLoaded) {
-
+        var now = new Date();
+        now.setHours(0o0,0o0,0o0,0o0);
 
         this.items.subscribe(itemsArray => {
             var returnList = [];
             itemsArray = itemsArray.filter(item => {
+
                 if(item.reserved!=null){
                     for(var reservation of item.reserved){
-                        if(reservation.userId==this.currentUser.uid){
+                        if(reservation.pickupDate<now.getTime()){
+                             var index = item.reserved.indexOf(reservation, 0);
+                        if (index > -1) {
+                     item.reserved.splice(index, 1);
+                      this.items.update(item.$key, {
+                    reserved: item.reserved
+                        })
+                        }
+                        }
+                        else if(reservation.userId==this.currentUser.uid){
                         returnList.push(reservation)
                         }
                     }
                 }
+
                 });
             onDataLoaded(returnList)
             }, this.errorFunc);
@@ -191,15 +203,44 @@ status:"Notify"
         return this.items;
     }
 
+
+    isReservationOutdated(){
+    var now = new Date();
+    now.setHours(0o0,0o0,0o0,0o0);
+
+           this.items.subscribe(loadedList => {
+               this.search(loadedList, this.currentUser.entity, "v.entity").forEach(item => {
+                     if(item.reserved!=null){
+                    for(var reservation of item.reserved){
+                        if(reservation.pickupDate<now.getTime()){
+                             var index = item.reserved.indexOf(reservation, 0);
+                        if (index > -1) {
+                     item.reserved.splice(index, 1);
+
+                      this.items.update(item.$key, {
+                    reserved: item.reserved
+                        })
+                        }
+                        }
+    }
+                 } 
+        });
+           }).unsubscribe;
+    }
+              
+
     loadItems(onDataLoaded) {
         if (this.currentUser != null) {
             this.items.subscribe(loadedList => {
                 onDataLoaded(this.search(loadedList, this.currentUser.entity, "v.entity"));
             }, this.errorFunc)
+            
         }
         else
             this.setCurrentUser(this.loadItems.bind(this), onDataLoaded)
     }
+
+
 
     getItemByKey(itemKey) {
         var foundItem;
@@ -269,6 +310,9 @@ status:"Notify"
         }).subscribe(numberOfReservedItems => onDataLoaded(numberOfReservedItems), this.errorFunc);
     }
 
+    deleteOutdatedReservations(){
+
+    }
 
     loadNumberOfItems(onDataLoaded) {
         if (this.currentUser != null) {

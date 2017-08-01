@@ -28,6 +28,7 @@ export class HomeAdminPage {
     db.loadItems(this.onItemsLoaded.bind(this));
     db.loadNumberOfReservedItems(this.onNumberOfResLoaded.bind(this));
     db.loadCurrentUser(this.onCurrentEntityLoaded.bind(this));
+    db.isReservationOutdated();
   }
 
   onCurrentEntityLoaded(currentUser) {
