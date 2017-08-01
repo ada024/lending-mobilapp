@@ -1324,7 +1324,7 @@ editItemResDays(resdays, itemKey){
 
     updateFacebookPicture() {
         if (this.platform.is('cordova')) {
-            Facebook.api("me/?fields=picture", ['email', 'public_profile'])
+            Facebook.api("me/?fields=picture.type(large)", ['email', 'public_profile'])
             .then(response => {
                 this.users.update(this.authState.auth.uid, {
                     photoURL: response.picture.data.url
