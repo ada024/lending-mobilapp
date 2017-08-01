@@ -1309,7 +1309,6 @@ editItemResDays(resdays, itemKey){
 
   purchase(success) {
       this.iap.getProducts(['library']).then(products => {
-          console.log(products[0].productId);
           this.iap.buy(products[0].productId).then(data => {
               this.iap.consume(data.productType, data.receipt, data.signature).then(() => {
                   console.log('product was successfully consumed!');
