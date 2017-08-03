@@ -16,6 +16,8 @@ import { PaymentPage } from '../pages/payment/payment';
 import { SettingsPage } from '../pages/settings/settings/settings';
 import { SettingsAddUserTagPage } from '../pages/settings/settings-add-user-tag/settings-add-user-tag';
 import { SettingsTagMakeReadOnlyPage } from '../pages/settings/settings-tag-make-read-only/settings-tag-make-read-only';
+import { GlobalTermsAndConditionsPage } from '../pages/about-this-app/global-terms-and-conditions/global-terms-and-conditions';
+import { AboutPage } from '../pages/about-this-app/about/about';
 
 import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
 import { ItemsAddPhotoAdminPage } from '../pages/admin/items/items-add-photo-admin/items-add-photo-admin';
@@ -113,6 +115,8 @@ export const firebaseConfig = {
     SettingsPage,
     SettingsAddUserTagPage,
     SettingsTagMakeReadOnlyPage,
+    GlobalTermsAndConditionsPage,
+    AboutPage,
 
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
@@ -201,6 +205,8 @@ export const firebaseConfig = {
     SettingsPage,
     SettingsAddUserTagPage,
     SettingsTagMakeReadOnlyPage,
+    GlobalTermsAndConditionsPage,
+    AboutPage,
 
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,

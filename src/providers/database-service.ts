@@ -226,7 +226,7 @@ status:"Notify"
     }
                  } 
         });
-           }).unsubscribe;
+           }, this.errorFunc).unsubscribe();
     }
               
 
