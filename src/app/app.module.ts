@@ -16,6 +16,8 @@ import { PaymentPage } from '../pages/payment/payment';
 import { SettingsPage } from '../pages/settings/settings/settings';
 import { SettingsAddUserTagPage } from '../pages/settings/settings-add-user-tag/settings-add-user-tag';
 import { SettingsTagMakeReadOnlyPage } from '../pages/settings/settings-tag-make-read-only/settings-tag-make-read-only';
+import { GlobalTermsAndConditionsPage } from '../pages/about-this-app/global-terms-and-conditions/global-terms-and-conditions';
+import { AboutPage } from '../pages/about-this-app/about/about';
 
 import { ItemsAddNameAdminPage } from '../pages/admin/items/items-add-name-admin/items-add-name-admin';
 import { ItemsAddPhotoAdminPage } from '../pages/admin/items/items-add-photo-admin/items-add-photo-admin';
@@ -83,6 +85,7 @@ import { ItemsUnavailableUserPage } from '../pages/user/items/items-unavailable-
 import { NgCalendarModule } from 'ionic2-calendar';
 import { Camera } from '@ionic-native/camera';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import {EmailLoginPage} from "../pages/email-login/email-login";
 import {EmailRegistrationPage} from "../pages/email-registration/email-registration";
 
@@ -112,6 +115,8 @@ export const firebaseConfig = {
     SettingsPage,
     SettingsAddUserTagPage,
     SettingsTagMakeReadOnlyPage,
+    GlobalTermsAndConditionsPage,
+    AboutPage,
 
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
@@ -200,6 +205,8 @@ export const firebaseConfig = {
     SettingsPage,
     SettingsAddUserTagPage,
     SettingsTagMakeReadOnlyPage,
+    GlobalTermsAndConditionsPage,
+    AboutPage,
 
     ItemsAddNameAdminPage,
     ItemsAddPhotoAdminPage,
@@ -268,6 +275,6 @@ export const firebaseConfig = {
     EmailRegistrationPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
-  DatabaseService, Camera, SocialSharing]
+  DatabaseService, Camera, SocialSharing, InAppPurchase]
 })
 export class AppModule {}

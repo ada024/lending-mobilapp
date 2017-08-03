@@ -7,7 +7,7 @@
 
 <ion-content padding>
 
-  <div class="info-text" *ngIf="numberOfEntitiesYouOwn == numberOfMaxEntities">
+  <div class="info-text" *ngIf="numberOfEntitiesYouOwn_and_numberOfMaxEntities_loaded && !enableAddButton">
     Oops. No more free libraries.
   </div>
 
@@ -21,7 +21,7 @@
 
   <br>
 
-  <button class="white-button" (click)="goToEntityAddAdminPage()" [disabled]="numberOfEntitiesYouOwn == numberOfMaxEntities">
+  <button class="white-button" (click)="goToEntityAddAdminPage()" [disabled]="!enableAddButton">
     <div class="white-button-text">
       <b>Continue making new library</b>
     </div>

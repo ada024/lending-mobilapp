@@ -7,16 +7,8 @@
 
 <ion-content padding>
 
-  <div *ngIf="purchaseAdminMode && !success">
+  <div *ngIf="!success">
     <button class="white-button" (click)="purchase()">
-      <div class="white-button-text">
-        <b>Buy Admin mode (3£/29NOK)</b>
-      </div>
-    </button>
-  </div>
-
-  <div *ngIf="!purchaseAdminMode && !success">
-    <button class="white-button" (click)="increaseNumberOfMaxEntities()">
       <div class="white-button-text">
         <b>Buy a new library (29NOK)</b>
       </div>
@@ -37,9 +29,9 @@
 
   <br><br><br>
 
-  <button class="white-button" (click)="reset()">
+  <button class="white-button" (click)="free()" *ngIf="!success">
     <div class="white-button-text">
-      <b>Reset</b>
+      <b>Free (Developer only)</b>
     </div>
   </button>
 

@@ -10,9 +10,11 @@ import { PaymentPage } from '../../../payment/payment';
   templateUrl: 'entity-info-admin.html'
 })
 export class EntityInfoAdminPage {
+  enableAddButton = false;
   numberOfEntitiesYouOwn;
   numberOfMaxEntities;
   numberOfMaxEntitiesPlussOne;
+  numberOfEntitiesYouOwn_and_numberOfMaxEntities_loaded;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public db: DatabaseService) {
     db.loadNumberOfEntitiesYouOwn(this.onNumberOfEntitiesYouOwn.bind(this));
@@ -21,14 +23,43 @@ export class EntityInfoAdminPage {
 
   onNumberOfEntitiesYouOwn(numberOfEntitiesYouOwn){
     this.zone.run(() => {
-      this.numberOfEntitiesYouOwn = numberOfEntitiesYouOwn;
+      if(numberOfEntitiesYouOwn) {
+        this.numberOfEntitiesYouOwn = numberOfEntitiesYouOwn;
+      }
+      else {
+        this.numberOfEntitiesYouOwn = "0";
+      }
+      if(this.numberOfMaxEntities) {
+        if((parseInt(this.numberOfEntitiesYouOwn)) < (parseInt(this.numberOfMaxEntities)) ) {
+          this.enableAddButton = true;
+        }
+        else {
+          this.enableAddButton = false;
+        }
+        this.numberOfEntitiesYouOwn_and_numberOfMaxEntities_loaded = true;
+      }
     });
   }
 
   onNumberOfMaxEntities(numberOfMaxEntities){
     this.zone.run(() => {
-      this.numberOfMaxEntities = numberOfMaxEntities;
-      this.numberOfMaxEntitiesPlussOne = (parseInt(numberOfMaxEntities) + 1).toString();
+      if(numberOfMaxEntities) {
+        this.numberOfMaxEntities = numberOfMaxEntities;
+        this.numberOfMaxEntitiesPlussOne = (parseInt(numberOfMaxEntities) + 1).toString();
+      }
+      else {
+        this.numberOfMaxEntities = "0";
+        this.numberOfMaxEntitiesPlussOne = "1";
+      }
+      if(this.numberOfEntitiesYouOwn) {
+        if((parseInt(this.numberOfEntitiesYouOwn)) < (parseInt(this.numberOfMaxEntities)) ) {
+          this.enableAddButton = true;
+        }
+        else {
+          this.enableAddButton = false;
+        }
+        this.numberOfEntitiesYouOwn_and_numberOfMaxEntities_loaded = true;
+      }
     });
   }
 
