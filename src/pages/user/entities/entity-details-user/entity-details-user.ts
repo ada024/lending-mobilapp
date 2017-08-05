@@ -21,7 +21,6 @@ currentEntityHours;
 
 onEntityLoaded(entity){
     this.currentEntity = entity[0];
-    console.log("Entityname: " + this.currentEntity.name);
     this.currentEntityLocation = this.currentEntity.office.location;
      this.currentEntityRoom = this.currentEntity.office.room;
      this.currentEntityHours = this.currentEntity.office.hours;

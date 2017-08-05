@@ -56,14 +56,14 @@ export class ItemCalendarUserPage {
       this.viewTitle = title;
   }
   onEventSelected(event) {
-      console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+      //console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
   today() {
       this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
-      console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-          (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+     // console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+          //(ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
   onCurrentDateChanged(event: Date) {
       this.loadEvents(event);
@@ -101,7 +101,7 @@ export class ItemCalendarUserPage {
   }
     
   onRangeChanged(ev) {
-      console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+      //console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
    createRandomEvents(event: Date) {

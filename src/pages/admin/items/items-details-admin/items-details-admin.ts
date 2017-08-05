@@ -38,7 +38,6 @@ export class ItemsDetailsAdminPage {
       if(this.item.reserved!=null){
           this.reservations = this.item.reserved
           this.reservations.sort((date1, date2) => date1.pickupDate - date2.pickupDate);
-          console.log("resLength: "+ this.reservations.length);
       }
 
       if (this.item.reservation != null) {
@@ -63,7 +62,6 @@ export class ItemsDetailsAdminPage {
 
   editResDays(){
       if(this.resDays.length!=0){
-          console.log("resdays: " + this.resDays);
     this.db.editItemResDays(this.resDays, this.item.$key);
     this.modifyResDays= false;
 }
