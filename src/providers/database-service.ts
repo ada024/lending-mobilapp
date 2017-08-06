@@ -326,17 +326,6 @@ status:"Notify"
     }
 
     loadNumberOfReservations(onDataLoaded) {
-          /* this.items.subscribe(items=> {
-               var reservations = 0;
-               items.forEach(item=>{
-                   if(item.entity==this.currentUser.entity && item.reserved!=null){
-                    reservations+=item.reserved.length;
-                   }
-               });
-                onDataLoaded(reservations)
-           }, this.errorFunc);
-           */
-
            this.items.subscribe(itemsArray => {
 
 
@@ -1307,17 +1296,16 @@ editItemResDays(resdays, itemKey){
 
   // Inn app purchase
 
-  purchase() {
-      this.iap.getProducts(['library']).then(products => {
-          this.iap.buy(products[0].productId).then(data => {
-              this.iap.consume(data.productType, data.receipt, data.signature).then(() => {
-                  this.increaseNumberOfMaxEntities();
-                }).catch(this.errorFunc);
-            })
-            .catch(this.errorFunc);
-        }).catch(this.errorFunc);
-    }
+ purchase() {
+this.iap.getProducts(['library']).then(products => {
+this.iap.buy(products[0].productId).then(data => {
+this.iap.consume(data.productType, data.receipt, data.signature).then(() => {
+ this.increaseNumberOfMaxEntities();
+}).catch(this.errorFunc);
+    }).catch(this.errorFunc);
+}).catch(this.errorFunc);
 
+     }
     increaseNumberOfMaxEntities() {
         if(this.currentUser.numberOfMaxEntities) {
             return this.users.update(this.currentUser.$key, {
