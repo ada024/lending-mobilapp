@@ -1137,6 +1137,14 @@ editItemResDays(resdays, itemKey){
   writeDbUser(exist) {
     if (!exist) {
       let user = this.authState.auth;
+      var usesFacebook = false;
+                this.firebase.auth().currentUser.providerData.forEach(user => {
+                     if (user.providerId == "facebook.com") {
+                    usesFacebook = true;
+                }
+                });
+
+            if(usesFacebook){
       this.usersRef.child(user.uid).set({
         uid: user.uid,
         entity: "No library, join a library to get started",
@@ -1147,9 +1155,19 @@ editItemResDays(resdays, itemKey){
       }).then(() => {
           this.updateFacebookPicture();
       });
+            }
+    else{
+        this.usersRef.child(user.uid).set({
+        uid: user.uid,
+        entity: "No library, join a library to get started",
+        entityName: "No library, join a library to get started",
+        email: user.email || "",
+        photoURL:  "./assets/icons/profile.svg",
+        fullname: user.displayName || ""
+    })
     }
   }
-
+  }
 
 
 
