@@ -1307,26 +1307,15 @@ editItemResDays(resdays, itemKey){
 
   // Inn app purchase
 
-  purchase(success) {
+  purchase() {
       this.iap.getProducts(['library']).then(products => {
           this.iap.buy(products[0].productId).then(data => {
               this.iap.consume(data.productType, data.receipt, data.signature).then(() => {
-                  console.log('product was successfully consumed!');
                   this.increaseNumberOfMaxEntities();
-                  success(true);
-                }).catch(err => {
-                    console.log(err);
-                    success(false);
-                });
+                }).catch(this.errorFunc);
             })
-            .catch(err => {
-                console.log(err);
-                success(false);
-            });
-        }).catch(err => {
-            console.log(err);
-            success(false);
-        });
+            .catch(this.errorFunc);
+        }).catch(this.errorFunc);
     }
 
     increaseNumberOfMaxEntities() {

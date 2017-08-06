@@ -2,7 +2,6 @@ import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DatabaseService } from '../../../../providers/database-service';
 import { EntityAddAdminPage } from '../entity-add-admin/entity-add-admin';
-import { PaymentPage } from '../../../payment/payment';
 
 
 @Component({
@@ -67,8 +66,8 @@ export class EntityInfoAdminPage {
       this.navCtrl.push(EntityAddAdminPage);
   }
 
-  goToPaymentPage() {
-      this.navCtrl.push(PaymentPage,{purchaseAdminMode: false});
+  purchase() {
+    this.db.purchase();
   }
 
 }
