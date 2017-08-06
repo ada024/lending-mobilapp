@@ -64,7 +64,6 @@ export class DatabaseService {
             if (state) {
                 this.existInDb();
                 this.checkReservations();
-                this.updateFacebookPicture();
                 this.loadCurrentUser((currentUser) => {
                     this.currentUser = currentUser;
                 });
@@ -1137,9 +1136,7 @@ editItemResDays(resdays, itemKey){
 
   writeDbUser(exist) {
     if (!exist) {
-      console.log("User added in db");
       let user = this.authState.auth;
-      //splits fullname into an array
       this.usersRef.child(user.uid).set({
         uid: user.uid,
         entity: "No library, join a library to get started",
@@ -1147,9 +1144,9 @@ editItemResDays(resdays, itemKey){
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || ""
+      }).then(() => {
+          this.updateFacebookPicture();
       });
-    } else {
-      console.log("User exist in db");
     }
   }
 
