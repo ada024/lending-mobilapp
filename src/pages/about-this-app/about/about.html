@@ -12,13 +12,16 @@
   </p>
   
   <div class="version-text">Version</div>
-  <div class="version-number">0.0.1</div>
+  <div class="version-number">{{version}}</div>
   
   <div class="privacy-policy-text">Privacy Policy</div>
   <div class="privacy-policy-link"><a href="http://mobilvennlig.no/pigify/privacy_policy_1.html">Privacy Policy</a></div>
   
   <div class="terms-and-conditions-text">Terms and conditions</div>
-  <div class="terms-and-conditions-link" (click)="goToGlobalTermsAndConditionsPage()">terms and conditions</div>
+  <div class="terms-and-conditions-link" (click)="goToGlobalTermsAndConditionsPage()"><u>terms and conditions</u></div>
+
+  <div class="contact-info-text">Contact information</div>
+  <div class="contact-info-email" (click)="sendMail()"><u>zahlhuus@gmail.com</u></div>
 
 
 </ion-content>

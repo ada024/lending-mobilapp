@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {DatabaseService} from "../../providers/database-service";
+import { GlobalTermsAndConditionsPage } from '../about-this-app/global-terms-and-conditions/global-terms-and-conditions';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class EmailRegistrationPage {
   }
 
   showTerms() {
+    this.navCtrl.push(GlobalTermsAndConditionsPage);
   }
 
   goBack() {

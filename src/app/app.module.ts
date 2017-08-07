@@ -85,6 +85,7 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { Camera } from '@ionic-native/camera';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
+import { AppVersion } from '@ionic-native/app-version';
 import {EmailLoginPage} from "../pages/email-login/email-login";
 import {EmailRegistrationPage} from "../pages/email-registration/email-registration";
 
@@ -272,6 +273,6 @@ export const firebaseConfig = {
     EmailRegistrationPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
-  DatabaseService, Camera, SocialSharing, InAppPurchase]
+  DatabaseService, Camera, SocialSharing, InAppPurchase, AppVersion]
 })
 export class AppModule {}
