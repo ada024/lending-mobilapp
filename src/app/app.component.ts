@@ -1,5 +1,5 @@
 ﻿import {Component} from '@angular/core';
-import {Platform} from 'ionic-angular';
+import {Platform, LoadingController} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {ChooseAccountTypePage} from "../pages/choose-account-type/choose-account-type";
@@ -20,7 +20,7 @@ export class MyApp {
   public firebase: any;
   public rootPage;
 
-  constructor(platform: Platform, public af: AngularFire, private db: DatabaseService) {
+  constructor(platform: Platform, public af: AngularFire, private db: DatabaseService, private loadingCtrl: LoadingController) {
 
 
     this.af.auth.subscribe((state: FirebaseAuthState) => {
@@ -28,7 +28,13 @@ export class MyApp {
 
       // Based on user login , sets root page and write user to db
       if (this.authState) {
+
+        // show loading animation while loadinig current user
+        let loading = this.loadingCtrl.create({});
+        loading.present();
+
         this.db.loadCurrentUser((currentUser) => {
+          loading.dismiss();
           if(currentUser.adminRole == "true") {
             this.rootPage = HomeAdminPage;
           }
