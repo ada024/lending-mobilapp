@@ -1137,12 +1137,7 @@ editItemResDays(resdays, itemKey){
   writeDbUser(exist) {
     if (!exist) {
       let user = this.authState.auth;
-      var usesFacebook = false;
-                this.firebase.auth().currentUser.providerData.forEach(user => {
-                     if (user.providerId == "facebook.com") {
-                    usesFacebook = true;
-                }
-                });
+      var usesFacebook = this.checkIfProviderIsFacebook();
 
             if(usesFacebook){
       this.usersRef.child(user.uid).set({
@@ -1169,7 +1164,15 @@ editItemResDays(resdays, itemKey){
   }
   }
 
-
+checkIfProviderIsFacebook(){
+    var usesFacebook = false;
+    this.firebase.auth().currentUser.providerData.forEach(user => {
+                     if (user.providerId == "facebook.com") {
+                    usesFacebook = true;
+                }
+                });
+            return usesFacebook;
+}
 
     // ------------------------------------------------------------------------------------------------------------------
 
@@ -1305,6 +1308,7 @@ editItemResDays(resdays, itemKey){
   }
 
   forgotPasswordUser(email: any){
+    
     return this.fireAuth.sendPasswordResetEmail(email);
   }
 

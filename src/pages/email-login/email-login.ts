@@ -12,9 +12,11 @@ export class EmailLoginPage {
   public emailField: any;
   public passField: any;
   public errorMessage: any;
+  public notFacebook: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: DatabaseService, 
-    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public zone: NgZone) {}
+    private alertCtrl: AlertController, private loadingCtrl: LoadingController, public zone: NgZone) {
+    }
 
 
   loginWithEmail() {
@@ -43,7 +45,7 @@ export class EmailLoginPage {
       inputs: [
         {
           name: 'recoverEmail',
-          placeholder: 'registered@email.com'
+          placeholder: 'registered@email.com',
         },
       ],
       buttons: [
@@ -56,14 +58,27 @@ export class EmailLoginPage {
           text: 'Submit',
           handler: data => {
 
+            
+            let facebookWarning = this.alertCtrl.create({
+               title: 'Warning',
+               message: "If this e-mail is associated with a Facebook-account you wont be able to login with Facebook anymore",
+               buttons: [
+        {
+          text: 'Abort',
+          handler: abort => {
 
+          }
+        }, {
+          text: 'Continue',
+          handler: ok =>{
             //show loadAnimaton
             let loading = this.loadingCtrl.create({
               dismissOnPageChange: true,
-              content: 'Reseting your password..'
+              content: 'Resetting your password..'
             });
             loading.present();
-            //call usersservice
+          
+                //call usersservice
             this.db.forgotPasswordUser(data.recoverEmail).then(() => {
               //add toast
               loading.dismiss().then(() => {  // stop loadAnimation
@@ -89,6 +104,11 @@ export class EmailLoginPage {
 
 
             });
+          }
+        },
+               ]}).present();
+
+               
           }
         }
       ]
