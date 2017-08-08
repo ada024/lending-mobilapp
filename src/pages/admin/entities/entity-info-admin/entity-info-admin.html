@@ -31,7 +31,10 @@
 
   <button class="white-button" (click)="purchase()">
     <div class="white-button-text">
-      <b>Buy a new library (29NOK)</b>
+      <b>Buy a new library 
+        <span *ngIf="db.isAndroid()">(29NOK)</span>
+        <span *ngIf="!(db.isAndroid())">(33NOK)</span>
+      </b>
     </div>
   </button>
 
