@@ -72,7 +72,10 @@
             Full list of items
           </div><br>
           <div class="grey-button-text-info">
-            <div class="grey-button-text">{{numberOfItems}} items you can borrow</div>
+            <div class="grey-button-text">{{numberOfItems}} 
+              <span *ngIf="numberOfItems == '1'">item you can borrow</span>
+              <span *ngIf="numberOfItems != '1'">items you can borrow</span>
+            </div>
           </div>
         </div>
       </div>

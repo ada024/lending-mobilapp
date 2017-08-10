@@ -16,7 +16,9 @@
   </div>
 
   <div class="info-text-3">
-    If you buy a new library now you will have the possibility to manage {{numberOfMaxEntitiesPlussOne}} libraries at once. 
+    If you buy a new library now you will have the possibility to manage {{numberOfMaxEntitiesPlussOne}} 
+    <span *ngIf="numberOfMaxEntitiesPlussOne == '1'">library at once.</span>
+    <span *ngIf="numberOfMaxEntitiesPlussOne != '1'">libraries at once.</span>
   </div>
 
   <br>

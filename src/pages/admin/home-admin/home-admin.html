@@ -28,7 +28,7 @@
 
 <ion-content padding>
 
-  <div class="top-text">Current Library:</div>
+  <div class="top-text">Active library:</div>
   <div class="current-entity" *ngIf="currentEntity != 'No library, join a library to get started'">
     {{currentEntity}}
   </div>
@@ -71,14 +71,19 @@
           Items
         </div><br>
         <div class="grey-button-text-info">
-          <div class="grey-button-text">{{numberOfItems}} items registered</div>
+          <div class="grey-button-text">{{numberOfItems}}
+            <span *ngIf="numberOfItems == '1'">item registered</span>
+            <span *ngIf="numberOfItems != '1'">items registered</span>
+          </div>
         </div>
       </div>
     </div>
   </button>
   <div class="notification-container" *ngIf="numberOfReservations && numberOfReservations!=0">
     <div class="notification-reservation">
-      {{numberOfReservations}} items with reservations
+      {{numberOfReservations}} 
+      <span *ngIf="numberOfReservations == '1'">item with reservation</span>
+      <span *ngIf="numberOfReservations != '1'">items with reservations</span> 
     </div>
   </div>
 
@@ -116,7 +121,9 @@
   </button>
   <div class="notification-container" *ngIf="numberOfPendingUsers && numberOfPendingUsers!=0">
     <div class="notification-pending">
-      {{numberOfPendingUsers}} users with pending requests
+      {{numberOfPendingUsers}} 
+      <span *ngIf="numberOfPendingUsers == '1'">user with pending request</span>
+      <span *ngIf="numberOfPendingUsers != '1'">users with pending requests</span>
     </div>
   </div>
 

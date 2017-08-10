@@ -21,9 +21,10 @@
 
 <div class="reservation-text"> Number of loan days:</div>
 <ion-item class="reservation-input">
-      <ion-input placeholder="#days" type="number" min="1" max="99" [(ngModel)]="reservationDays"></ion-input>
-    </ion-item>
-<div class="empty-res-days" *ngIf="emptyResDays">You have to add standard reservation days</div>
+  <ion-input placeholder="#days" type="number" min="1" max="99" [(ngModel)]="reservationDays"></ion-input>
+</ion-item>
+<br>
+<div class="empty-res-days" *ngIf="emptyResDays">You have to add default loan days for items</div>
     <div class="info-text">(you can alter office and reservation days at library page)</div>
 
 <br>

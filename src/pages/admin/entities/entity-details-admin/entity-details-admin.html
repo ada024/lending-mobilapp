@@ -66,13 +66,13 @@
    <button class="save-button" (click)="editHours()" *ngIf="modifyHours" style="position:relative;left:70%;bottom:1em;"><div class="button-text">Save</div></button>
 
 <hr style="color:gray;height:0.5em;">
-  <div class="reservation-text">Standard loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div>
+  <div class="reservation-text">Default loan days for all items:<span *ngIf="!modifyResDays"><b class="resDays">{{resDays}}</b></span></div>
 <ion-item class="reservation-input" *ngIf="modifyResDays">
       <ion-input type="number" min="1" max="99" [(ngModel)]="resDays"></ion-input>
     </ion-item>
     <img src="./assets/icons/edit2.svg" class="edit-icon3" (click)="modifyResDays = true" *ngIf="!modifyResDays">
   <button class="save-button" (click)="editResDays()" *ngIf="modifyResDays" style="position:relative;left:80%;top:1em;margin-top:10px;"><div class="button-text">Save</div></button>
-    <div class="info-text">(Altering wont affect reservations already made)</div>
+    <div class="info-text">(Altering will not affect current reservations)</div>
 
     <br>
     

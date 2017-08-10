@@ -21,7 +21,7 @@
     </button>
 
     <div class="info-text">
-    (You want to borrow items from an library)
+    (You want to borrow items from a library)
     </div>
 
     <div>
@@ -33,17 +33,17 @@
     </div>
 
     <div class="info-text">
-      (You want to administer loans to users)
+      (You want to manage loans to users)
     </div>
 
   </div>
 
   <div class="info-text2" *ngIf="db.currentUser && !db.currentUser.adminRole">
-    <b>You can change role any<br>time in your Settings</b>
+    <b>You can change role any time in your Settings by clicking on your profile picture</b>
   </div>
 
   <div class="info-text3" *ngIf="db.currentUser && db.currentUser.adminRole">
-    (You can switch between these<br>2 modes any time)
+    (You can switch between these 2 modes any time)
   </div>
 
 </ion-content>
