@@ -1079,6 +1079,7 @@ editItemResDays(resdays, itemKey){
         return Facebook.login(['email', 'public_profile']).then(res => {
           const facebookCredential = auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
           this.firebase.auth().signInWithCredential(facebookCredential).then(() => {
+              this.updateFacebookPicture(false);
             observer.next();
           }).catch(error => {
             console.log("Internal error...");
@@ -1147,9 +1148,7 @@ editItemResDays(resdays, itemKey){
         email: user.email || "",
         photoURL: user.photoURL || "",
         fullname: user.displayName || ""
-      }).then(() => {
-          this.updateFacebookPicture();
-      });
+      })
             }
     else{
         this.usersRef.child(user.uid).set({
@@ -1304,11 +1303,12 @@ checkIfProviderIsFacebook(){
   } // emailSignUp
 
   loginWithEmail(email, pass) {
-    return this.fireAuth.signInWithEmailAndPassword(email, pass);
+    return this.fireAuth.signInWithEmailAndPassword(email, pass).then((authenticatedUser) => {
+        this.updateFacebookPicture(true);
+    });
   }
 
   forgotPasswordUser(email: any){
-    
     return this.fireAuth.sendPasswordResetEmail(email);
   }
 
@@ -1342,14 +1342,21 @@ this.iap.consume(data.productType, data.receipt, data.signature).then(() => {
     
     // Update facebook profile picture
 
-    updateFacebookPicture() {
+    updateFacebookPicture(defaultPhoto) {
         if (this.platform.is('cordova')) {
-            Facebook.api("me/?fields=picture.type(large)", ['email', 'public_profile'])
-            .then(response => {
+            if(defaultPhoto) {
                 this.users.update(this.authState.auth.uid, {
-                    photoURL: response.picture.data.url
+                    photoURL:  "./assets/icons/profile.svg"
                 });
-            })
+            }
+            else {
+                Facebook.api("me/?fields=picture.type(large)", ['email', 'public_profile'])
+                .then(response => {
+                    this.users.update(this.authState.auth.uid, {
+                        photoURL: response.picture.data.url
+                    });
+                })
+            }
         }
     }
 
