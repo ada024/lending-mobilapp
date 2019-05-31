@@ -91,15 +91,6 @@ import {EmailRegistrationPage} from "../pages/email-registration/email-registrat
 
 
 
-//Firebase Settings
-export const firebaseConfig = {
-  apiKey: "AIzaSyAHfCQArz_9VdSVJ0rGhaEMYeZuv8JJCIY",
-  authDomain: "borrowing-app.firebaseapp.com",
-  databaseURL: "https://borrowing-app.firebaseio.com",
-  storageBucket: "borrowing-app.appspot.com",
-  messagingSenderId: "226399216748"
-};
-
 @NgModule({
   declarations: [
     MyApp,
@@ -186,7 +177,7 @@ export const firebaseConfig = {
   imports: [
       IonicModule.forRoot(MyApp, { tabsPlacement: "top", tabsHideOnSubPages: true, backButtonText: '',
       scrollAssist: false, autoFocusAssist: false }),
-      AngularFireModule.initializeApp(firebaseConfig),
+      AngularFireModule.initializeApp(),
       NgCalendarModule,
   ],
   bootstrap: [IonicApp],
