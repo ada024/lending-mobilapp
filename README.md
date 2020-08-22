@@ -2,7 +2,8 @@
 The related mobile-app for the lending system.
 
 
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/1_0login.png" width="240">
+
+ <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/1_0login.png" style="width:100%;msFlex:50%;flex:50%">
 <br /> 
 
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/2.png" width="240">
