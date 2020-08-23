@@ -1,18 +1,25 @@
 # lending-mobilapp
-The related mobile-app for the lending system.
+<p> Pigify is a very easy to use library-ish app for both borrowers and admin users.
+The main purpose of this Library of Things app is to keep track of items you are lending out.
+Who has them, for how long and who has reserved it next? </p>
+<br/> 
+<strong>With Pigify you'll always know who has your things.</strong>
+</p>
 
 
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/pigify.gif" width=240>
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/1_0login.png" width=240>
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/2.png" width="240">
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/3_0.png" width="240">
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/3_1.png" width="240">
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_0.png" width="240">
+###### On Android & iOS
+<p float="left">
+ <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/pigify.gif" width=240  >
+  &nbsp;   &nbsp;   &nbsp;   &nbsp;
+ <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/pigify_2.gif" width=240>
+</p>
+<strong>Reserve items</strong>
+<br/> 
+<p float="left">
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_1.png" width="240">
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_2.png" width="240">
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_22.png" width="240">
+</p>
 <br/> 
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_23.png" width="240">
-<br/> 
-<img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/7.png" width="240">
 
+Visit  [Pigify.com](https://www.pigify.com/).
