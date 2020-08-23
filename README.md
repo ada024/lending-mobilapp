@@ -1,4 +1,4 @@
-# lending-mobilapp
+# Pigify-mobilapp
 <p> Pigify is a very easy to use library-ish app for both borrowers and admin users.
 The main purpose of this Library of Things app is to keep track of items you are lending out.
 Who has them, for how long and who has reserved it next? </p>
