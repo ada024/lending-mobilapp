@@ -19,8 +19,9 @@ Who has them, for how long and who has reserved it next? </p>
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_1.png" width="240">
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_2.png" width="240">
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/4_22.png" width="240">
+  <br/> 
 </p>
-<br/> 
+
 ###### Play & App Store
 <br/> 
 <img src="https://github.com/ada024/lending-mobilapp/blob/master/screenshots/playstore.PNG" width="240">
